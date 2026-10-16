@@ -1,0 +1,15 @@
+cambc run v4 v2 --map lanes -o /home/kcube/battlecode/results/v4-eval/v2/.lanes__cand-A.replay --statistics /home/kcube/battlecode/results/v4-eval/v2/lanes__cand-A.stats.json
+
+v4 vs v2 on /home/kcube/battlecode/maps/lanes.map26a
+Team A (v4) wins: reached 1000 gems in round 463
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v4   1002     3      0        1820        0  Varg, Ryth, Stellar, Marcella, Willow
+  B    v2    698     0      4        1260        0  Varg, Cassi & Issac, Ryth, Stellar, Tavi
+replay bundle: /home/kcube/battlecode/results/v4-eval/v2/.lanes__cand-A.replay/v4-vs-v2-1792163006734.repl26a
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+finished: round 463/2000 — teamA
