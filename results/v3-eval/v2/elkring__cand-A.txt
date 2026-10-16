@@ -1,0 +1,19 @@
+cambc run v3 v2 --map elkring -o /home/kcube/battlecode/results/v3-eval/v2/.elkring__cand-A.replay --statistics /home/kcube/battlecode/results/v3-eval/v2/elkring__cand-A.stats.json
+
+v3 vs v2 on /home/kcube/battlecode/maps/elkring.map26a
+Team B (v2) wins: reached 1000 gems in round 645
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v3    864    11      2        5348        0  Varg, Ryth, Stellar, Marcella, Willow
+  B    v2   1008     2     16        7013        0  Varg, Cassi & Issac, Ryth, Stellar, Tavi
+replay bundle: /home/kcube/battlecode/results/v3-eval/v2/.elkring__cand-A.replay/v3-vs-v2-1792158888895.repl26a
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+finished: round 645/2000 — teamB

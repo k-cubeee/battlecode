@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./sdk/python"
+    ],
+    "C_Cpp.default.compilerPath": "/usr/bin/g++"
+}
