@@ -1,6 +1,6 @@
 # Bot version notes
 
-**Current champion: v6**
+**Current champion: v8**
 
 Baseline: v1. Chronological log below: version entries and analyses are appended
 at the end. Promotion gate: >= 55% head-to-head vs the current champion over a full
@@ -181,3 +181,62 @@ Record: 58-14 overall (81%); v1 18-0, v2 17-1, v3 12-6, v5 11-7. 0 crashes. Weak
    - Confidence: medium (stockpile is clear; effect on winning is not measured).
 
 Fix first: #1 (it explains 13 of the 14 losses, including the mirror losses that nothing in the draft can fix), then #3 (cheap one-liner), then #2.
+
+### Analysis of v6 — 2026-10-16 (results/eval_v6, second pass)
+Record: 58-14 (v1 18-0, v2 17-1, v3 12-6, v5 11-7); weakest maps elkring and monolith (5-3 each); side is even (29-7 each). Limit of this pass: Bash was unavailable, so I read summary.json and a few stats.json/txt files by hand and did not aggregate across all 72 matches. Numbers below come from summary.json unless a stats file is named. The earlier v6 analysis above covers bag loss, Willow and unspent gold; the three points below are different or sharpen it.
+
+1. **12 of the 14 losses are games v6 plays against its own code, so they are decided by who wins the first contact, not by strategy**
+   - Evidence: v3 differs from v6 only on expanse (v6 drafts C&I there), and v5 differs only in the 5th pick (Tavi vs Willow). In collision, packs, corners, elkring, lanes and monolith vs v3 and in collision, packs, interlock, rows vs v5 the rosters are identical. Each of those games appears twice with the sides swapped and gives the identical score, so one side always wins: collision 530 vs 1014 (r1132, B side wins, both opponents), packs 364 vs 1044 (A side wins), corners vs v3 0 vs 1002 (B wins), lanes 608 vs 1002 (B), interlock vs v5 558 vs 1014 (A), rows vs v5 858 vs 1056 (A). Only monolith vs v5 (0-2) and elkring vs v5 (1-1) differ between sides. The loser is lopsided, not close: in `results/eval_v6/v3/corners__cand-A.stats.json` all 5 v6 champions died 2-4 times (13 deaths), collected 476 gems and submitted 0, and 3 of them earned 0 gold. The winning side died twice, submitted every gem it collected (1002 of 1002), and earned 1350 gold vs 370.
+   - Cause in code: `bots/v6/src/ball.py:871-933` (`skirmish`) is the only fight policy. `need = R_GO (1.05)` is identical for both teams and nothing makes a team that is losing the opening exchange disengage. With `SOLO = 1` the champions meet the enemy one at a time. Once one team wins the first 1v1 or 2v2 it snowballs (kills heal nobody but remove the other side's farmers and bags). `hard_retreat` (line 917) only triggers on `ratio < 0.5` or HP < 40%, by which time the champion is already in reach of the enemy.
+   - Suggested fix: after a champion death, stop fighting and fall back for a short time. Concretely, when `ally deaths in the last ~40 rounds > enemy deaths + 1`, set `R_GO` to ~1.5 and the camp-choice weight toward groups far from the last enemy sighting. Test on corners A vs v3 (0 gems, 13 deaths) and collision A vs v3 (r1132). This is a behaviour change on every map, so it can move the head-to-head rate off the 8-8 mirror split.
+   - Confidence: medium on the diagnosis (the mirror symmetry is certain); low on the fix, since I have no replay-level view of the first contacts (replays exist as `*.repl26a` next to each stats file but I did not parse them).
+
+2. **Banking is blocked by a third veto that earlier analyses missed (`task is not None and camps and inc > 0`)**
+   - Evidence: corners A vs v3 above: 476 gems collected, 0 submitted, 13 deaths. Collision A (v3/v5) ended with 530 submitted while the same code on B submitted 1014 in the same round count. Earlier analyses blamed `threat_near()` (line 470) and `committed()` (line 475); both sit after another return at line 468.
+   - Cause in code: `bots/v6/src/ball.py:468-469`: `if self.task is not None and self.camps and self.inc > 0.0: return False`. It returns before the threat checks, so any champion with a live camp task and positive income never banks, whatever the bag size or the enemy nearby. The only things that skip it are `endgame_bank` (line 466, only close to the round limit) and the `bank_latch` path that starts later. `bank_threshold` (bot.py:980) caps at 110, but the veto means the threshold is never consulted during a task.
+   - Suggested fix: change line 468 to `if self.task is not None and self.camps and self.inc > 0.0 and self.gems < 60 and not self.enemies: return False`, so a loaded champion (or one with an enemy in view) may bank. Combine with the earlier suggestion to relax `committed()` when an enemy was sighted recently. Test: gems lost per death in corners/collision/packs mirrors, and that `submitted` is non-zero for corners A.
+   - Confidence: medium-low. The veto exists and runs first (read from code). Whether it is what stopped corners A from banking, rather than the threat veto, is untested; I did not read the per-round logs.
+
+3. **Tavi (v5) beats Willow (v6) on monolith, and v6's gold income trails on the 5-pick maps it loses**
+   - Evidence: monolith vs v5 is lost from both sides (A 804 vs 1040, r612; B 806 vs 1032, r665). v6 earned 4010 vs 5314 gold on A and 4796 vs 4904 on B, with the roster identical except Willow vs Tavi. Elkring B vs v5 was lost 396 vs 1080 (v6 earned 3954 vs 6467 gold). In the corners games v6 earned 1140 gold vs 2330 for v5 (A, r980, a win only by 1198-984 after 15 deaths each). The earlier v5 analysis said Tavi was the weakest body, and v6 reverted that. These games say the reverse on monolith/elkring; on corners and lanes v6 wins 4-0 vs v5, so Willow is not worse everywhere. Hypothesis: Tavi's field shop converts gold into items without a trip home, which matters on the big maps (monolith, elkring) where `need_home_ball` (ball.py:488-494) rarely fires. I could not check item counts per champion without aggregation.
+   - Cause in code: `bots/v6/src/draft.py:20` (PREFS[5] with Willow fifth) is one fixed list for all 5-pick maps; `ball.py:491-492` limits shopping trips to <= 18 steps from spawn, so on large maps a body without a field shop leaves gold unspent (v6 monolith vs v1: 2,264 of 4,674 gold unspent, from the earlier analysis).
+   - Suggested fix: make the 5th pick map-dependent: Tavi on monolith and elkring (large maps, spawn distances 49 and 31 per v4 notes; use the existing spawn-distance helper in draft.py), Willow on corners and lanes. Test on monolith and elkring vs v5 and v3 and check that corners/lanes vs v5 stay 4-0. If it fails, the alternative is the `need_home_ball` fallback already proposed (gold >= 450, task None).
+   - Confidence: low-medium (4 games on monolith/elkring vs v5, two sides each; Tavi vs Willow is confounded by the mirror side effect in finding 1).
+
+Fix first: #2 (a one-line change in `ball_want_bank` that targets the clearest symptom, 476 gems collected and 0 submitted). Then #3 (draft only, easy to test on two maps), then #1 (a larger behaviour change).
+
+### Engine change: cambc 2.1.6 -> 2.2.3 — 2026-10-16
+- SDK refreshed to 2.2.3. 6 of the 9 maps changed (collision, corners, expanse, interlock,
+  lanes, packs); elkring, monolith and rows are unchanged. API additions: `Camp.state()` /
+  `CampState` (DEAD, ALIVE, ASLEEP per camp) and `debug_block`.
+- All win rates and map numbers above this line were measured on 2.1.6 and are only a rough
+  guide now. New results start from a fresh benchmark of the champion.
+
+### Analysis of v6 — 2026-10-16 (results/bench_v6)
+Record (from the 104 `.txt` result tables; summary.json is missing from this folder and the `.stats.json` files are now a binary "CAMSTAT" format that I could not parse, so everything below is from the `.txt` tables): 65-39 overall; v1 36-0, v3 18-16, v5 11-23. 0 crashes. 17 maps x 2 sides vs v3/v5, 18 vs v1 (new maps: ambush, contest, eight, fragment, pilgrimage, rushbait-v2, stampede, swirl). Weakest: 5-pick maps vs v5. Side: in mirror games the same side wins on both swaps, so A/B is the main variable. Slowest wins: contest vs v1 r1360/1494, vs v3 r1765; stampede vs v3 r1626; ambush vs v3 r1146; pilgrimage vs v3 r1123.
+
+1. **Willow as 5th pick loses every 5-pick map to Tavi (v5): the v6 "fix" is now wrong**
+   - Evidence: v5 differs from v6 only in the 5th pick (Tavi vs Willow) and on expanse. On corners, pilgrimage, monolith, lanes, elkring and stampede v6 is 0-12 vs v5 (both sides lose each): corners 700-1040 (A), 478-1180 (B); monolith 804-1040 / 608-1018; lanes 944-1016 / 650-1016; elkring 630-1026 / 504-1008; pilgrimage 964-1090 / 762-1066; stampede 360-1080 both sides. On the other 5-pick maps (ambush, contest, eight) the sides split 1-1 as in a mirror, so v6 is 3-15 on the nine 5-pick maps vs v5. Vs v3 (also Willow) v6 is only 1-1 per map, so the loss is Willow-vs-Tavi, not noise. Gold earned is lower for v6 in most of these (monolith A 4010 vs 5314, eight A 2088 vs 5966, stampede 10188 vs 12988) (results/bench_v6/v5/*.txt).
+   - Cause in code: `bots/v6/src/draft.py:20` (PREFS[5]) picks D_WILLOW fifth and D_TAVI last. v6 reverted v5's Tavi based on 2.1.6 results, which no longer hold on 2.2.3.
+   - Suggested fix: PREFS[5] = Varg, Ryth, Stellar, Marcella, Tavi (v5's roster). Test vs v5 and v3 on the 9 5-pick maps. Leave the 4-pick list alone (v6's Marcella 4-pick beat v3's Willow 4-pick 2-0 on rows).
+   - Confidence: high on direction (12 deterministic games, same sign). Medium on cause (Tavi's field shop spending gold is a hypothesis; per-champion stats unreadable).
+
+2. **One side collapses in contact games: bags are lost and the loser submits almost nothing**
+   - Evidence: losing-side tables (results/bench_v6/v3, v5): fragment A 0 gems, 0 kills, 8 deaths vs 7 kills / 0 deaths (r599); eight A 44 gems, 19 deaths vs v3, 380 gems, 18 deaths vs v5; contest B 0 gems, 56 deaths vs v5 (r1730); corners A vs v3 484 gems, 9 deaths; stampede A vs v5 360 gems, 21 deaths; packs 544 gems, 9 deaths vs 2; swirl A vs v3 468, 13 deaths vs 5. Fights are lopsided, not close: first contact decides. Vs v1 v6 has 0-1 deaths, so it is the contact policy, not farming.
+   - Cause in code: `bots/v6/src/ball.py:468-469` (`ball_want_bank`) returns False for any champion with a live camp task and positive income, before the threat checks (470-471) and the `committed()` veto (475). A champion keeps carrying while enemies are near. `skirmish` (ball.py:871-933) uses the same R_GO for both teams, and only `hard_retreat` (ratio < 0.5) disengages.
+   - Suggested fix: (a) line 468: also require `self.gems < 60 and not self.enemies`; (b) in `skirmish`, when our recent deaths exceed theirs by 2 in ~50 rounds, raise R_GO to ~1.5 and bank at the nearest altar. Test fragment, eight, contest, corners A vs v3/v5.
+   - Confidence: medium on the pattern, low-medium on the mechanism (no stats/replay parsing).
+
+3. **Fight-heavy maps give slow wins, and the expanse Cassi & Issac gate no longer pays**
+   - Evidence: wins vs v1 on contest took r1360/r1494 (v6 48-51 kills, v1 0 gems) against r460-680 elsewhere; vs v3 contest 1765, stampede 1626, ambush 1146, pilgrimage 1123. Expanse is a pure farming race (0-1 kills) where Team A wins on either roster: v6 A (Varg, Cassi & Issac, Ryth) 1016 vs 878 at r715, but v6 B with the same roster loses 836-1050 at r704 (5 deaths, 0 kills) to the 3-pick Varg, Ryth, Marcella (results/bench_v6/v5/expanse__cand-B.txt; v3 identical). The gate gives no side-independent gain on 2.2.3's expanse (1-1).
+   - Cause in code: `bots/v6/src/ball.py:871-933` (`skirmish`) fights whenever enemies are in view regardless of the gem lead; `bots/v6/src/draft.py:56` (`FAR_SPAWN_DIST` gate) picks C&I based on 2.1.6 measurements.
+   - Suggested fix: (a) when our submitted gems lead by >= 150, set R_GO ~1.6 and skip the hunt bonus; test on contest, stampede, pilgrimage (rounds). (b) A/B the expanse gate off on 2.2.3.
+   - Confidence: low (correlation across maps; time in fights not measured; one game per side on expanse).
+
+Fix first: #1 (a one-line PREFS[5] change; 12 deterministic losses point the same way), then #2, then #3.
+
+### v8 — promoted (68% vs v6)
+- Based on: v6
+- Changes: draft.py PREFS[5]: Tavi picked 5th again instead of Willow (fix #1 of the bench_v6 analysis). Built by the strategist in the run that crashed in the smoke test; evaluated by hand with run_matches.py.
+- Evaluation (results/eval_v8): v6 68%, v5 50%, v3 71%; overall 63%
+- Status: promoted, new champion.

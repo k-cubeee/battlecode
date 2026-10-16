@@ -1,15 +1,16 @@
 {
-  "champion": "v6",
+  "champion": "v8",
   "history": [
     "v1",
     "v2",
     "v3",
     "v5",
-    "v6"
+    "v6",
+    "v8"
   ],
-  "next_version": 7,
-  "total_cost": 0.7842134,
+  "next_version": 9,
+  "total_cost": 1.1015716,
   "last_results": [
-    "eval_v6"
+    "eval_v8"
   ]
 }
