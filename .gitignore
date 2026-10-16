@@ -8,3 +8,6 @@ results/**/*.repl26a
 __pycache__/
 venv/
 rejected/*/.cambc/
+venv/
+.venv/
+__pycache__/

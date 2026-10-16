@@ -1,26 +1,28 @@
 """
-orchestrator.py - automated self-improvement loop for Cambridge Battlecode.
+orchestrator_hardened.py - hardened version of orchestrator.py (Cambridge Battlecode).
 
-Loop:  analyse champion -> strategist builds bots/vN -> smoke test
-       -> evaluate vs pool -> promote or reject -> log -> repeat
+Same loop as the original:
+  analyse champion -> strategist builds bots/vN -> smoke test
+  -> evaluate vs pool -> promote or reject -> log -> repeat
 
-Requirements:
-  pip install claude-agent-sdk
-  ANTHROPIC_API_KEY set in this terminal
-  run_matches.py working as:
-      python run_matches.py <bot> <opponent1> <opponent2> ... --tag <tag>
-  which writes results/<tag>/summary.json with "overall" and "by_opponent"
-  win rates (0.0 - 1.0)
+What is different (search for "HARDENING" to see every change):
+  1. Refuses to run outside the container unless you pass --allow-host.
+  2. Analyst has no Bash. Strategist's Bash is limited to a small allow-list.
+  3. Deny rules block secrets paths, /mnt (Windows drives), network tools,
+     env dumps and git push.
+  4. Subprocesses we start (run_matches.py, cambc) do NOT get ANTHROPIC_API_KEY,
+     so agent-written bot code can't read it.
+  5. git commits only add bots/, rejected/ and NOTES.md, not everything.
 
-Conventions (see CLAUDE.md):
-  - Bots live in bots/vN/src/. v1 is the baseline (starter bot).
-  - bots/ holds only the baseline and promoted versions; rejected versions
-    are moved to rejected/vN.
-  - The champion is the "**Current champion: vN**" line at the top of NOTES.md.
+Limits you should know about:
+  - Deny and allow patterns are a seatbelt, not a wall. The container is the wall.
+  - The agents' own `claude` process still needs the API key, so use a
+    dedicated key with a spend limit set in the Anthropic Console.
+  - Tool-rule syntax can differ between SDK versions. Run once with
+    ITERATIONS = 1 and watch the output for "permission denied" messages.
 
-Run:     python orchestrator.py
-Resume:  just run it again (progress is saved in orchestrator_state.json)
-Reset:   delete orchestrator_state.json (the champion is re-read from NOTES.md)
+Run (inside the container, via run_contained.sh):  python orchestrator_hardened.py
+Resume: just run it again (progress is saved in orchestrator_state.json)
 """
 
 import asyncio
@@ -46,21 +48,21 @@ from run_matches import parse_output
 
 # ============================ CONFIG ============================
 ROOT = Path(__file__).resolve().parent
-BOT_DIR = ROOT / "bots"         # folder that contains v1/, v2/, ...
-BASELINE = "v1"                 # starter bot, always included as an opponent
+BOT_DIR = ROOT / "bots"
+BASELINE = "v1"
 
-ITERATIONS = 5                  # improvement cycles per run
-PROMOTE_THRESHOLD = 0.55        # head-to-head win rate vs the champion needed to promote
-POOL_SIZE = 3                   # number of recent champions to test against
-MATCH_JOBS = 5                  # parallel matches inside run_matches.py
+ITERATIONS = 5
+PROMOTE_THRESHOLD = 0.55
+POOL_SIZE = 3
+MATCH_JOBS = 5
 
 ANALYST_MODEL = "claude-sonnet-5-5"
 STRATEGIST_MODEL = "claude-sonnet-5-5"
 MAX_TURNS_ANALYST = 30
 MAX_TURNS_STRATEGIST = 60
-MAX_TOTAL_COST_USD = 20.00      # hard stop for API spending
+MAX_TOTAL_COST_USD = 20.00
 
-MATCH_BATCH_TIMEOUT_S = 60 * 60 # max time for one run_matches.py call
+MATCH_BATCH_TIMEOUT_S = 60 * 60
 SMOKE_TEST_TIMEOUT_S = 10 * 60
 
 RESULTS_DIR = ROOT / "results"
@@ -68,6 +70,37 @@ REJECTED_DIR = ROOT / "rejected"
 NOTES = ROOT / "NOTES.md"
 STATE_FILE = ROOT / "orchestrator_state.json"
 CHAMPION_RE = re.compile(r"^\*\*Current champion: (v\d+)\*\*$", re.M)
+
+# ---- HARDENING: tool permissions ----
+# Analyst: read-only plus Edit (it must append to NOTES.md). No Bash.
+ANALYST_TOOLS = ["Read", "Grep", "Glob", "Edit"]
+ANALYST_DENY_EXTRA = ["Edit(bots/**)", "Write(bots/**)"]   # never touch bot code
+
+# Strategist: file tools plus a short list of shell commands.
+STRATEGIST_TOOLS = ["Read", "Write", "Edit", "Grep", "Glob", "Bash"]
+STRATEGIST_AUTO_ALLOW = [
+    "Read", "Write", "Edit", "Grep", "Glob",
+    "Bash(cambc:*)",      # smoke tests
+    "Bash(ls:*)", "Bash(head:*)", "Bash(tail:*)", "Bash(wc:*)",
+]
+# Any Bash command not matched above is denied (the script runs headless,
+# so there is nobody to approve it). Add commands here if the strategist needs them.
+
+# Denied for every agent, whatever else is allowed.
+DENY_ALWAYS = [
+    # secrets and personal files
+    "Read(~/.ssh/**)", "Read(~/.aws/**)", "Read(~/.config/**)", "Read(~/.gnupg/**)",
+    "Read(**/.env)", "Read(**/.env.*)", "Read(/etc/**)", "Read(/proc/**)",
+    # Windows drives mounted into WSL
+    "Read(/mnt/**)", "Edit(/mnt/**)", "Write(/mnt/**)",
+    # network and exfiltration tools
+    "Bash(curl:*)", "Bash(wget:*)", "Bash(ssh:*)", "Bash(scp:*)", "Bash(nc:*)",
+    "Bash(ncat:*)", "Bash(socat:*)", "Bash(ftp:*)", "WebFetch", "WebSearch",
+    # environment dumps (would reveal the API key)
+    "Bash(env:*)", "Bash(printenv:*)", "Bash(export:*)", "Bash(set:*)",
+    # destructive or privileged
+    "Bash(sudo:*)", "Bash(su:*)", "Bash(rm -rf:*)", "Bash(git push:*)",
+]
 # ================================================================
 
 DEFAULT_ANALYST_PROMPT = """You are a Battlecode strategy analyst. You read match
@@ -86,6 +119,22 @@ def log(msg: str) -> None:
     print(f"[{datetime.now():%H:%M:%S}] {msg}", flush=True)
 
 
+def clean_env() -> dict:
+    """HARDENING: environment for subprocesses, without the API key.
+
+    run_matches.py and cambc execute bot code that an agent wrote, so that code
+    must not be able to read the key from its environment.
+    """
+    env = dict(os.environ)
+    for key in ("ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN", "CLAUDE_CODE_OAUTH_TOKEN"):
+        env.pop(key, None)
+    return env
+
+
+def in_container() -> bool:
+    return os.environ.get("ORCH_IN_CONTAINER") == "1" or Path("/.dockerenv").exists()
+
+
 def load_agent_prompt(name: str, default: str) -> str:
     """Use .claude/agents/<name>.md as the system prompt (without frontmatter)."""
     path = ROOT / ".claude" / "agents" / f"{name}.md"
@@ -102,7 +151,6 @@ def version_num(bot: str) -> int:
 
 
 def existing_versions() -> list[int]:
-    """Version numbers used so far, including rejected ones (never reuse a number)."""
     nums = []
     for d in (BOT_DIR, REJECTED_DIR):
         if d.exists():
@@ -124,16 +172,15 @@ def load_state() -> dict:
     if STATE_FILE.exists():
         return json.loads(STATE_FILE.read_text())
     champion = notes_champion()
-    # bots/ only holds the baseline and promoted versions, so they form the history.
     history = sorted((p.name for p in BOT_DIR.iterdir()
                       if re.fullmatch(r"v\d+", p.name) and version_num(p.name) <= version_num(champion)),
                      key=version_num)
     return {
         "champion": champion,
-        "history": history,      # all promoted champions, oldest first
+        "history": history,
         "next_version": max(existing_versions()) + 1,
         "total_cost": 0.0,
-        "last_results": [],      # result tags the analyst should read
+        "last_results": [],
     }
 
 
@@ -149,14 +196,17 @@ def append_notes(text: str) -> None:
 
 
 def git_commit(message: str) -> None:
+    """HARDENING: stage only the paths this script manages, never `git add -A`."""
     if not (ROOT / ".git").exists():
         return
-    subprocess.run(["git", "add", "-A"], cwd=ROOT, capture_output=True)
+    paths = [p for p in ("bots", "rejected", "NOTES.md") if (ROOT / p).exists()]
+    if not paths:
+        return
+    subprocess.run(["git", "add", "--", *paths], cwd=ROOT, capture_output=True)
     subprocess.run(["git", "commit", "-m", message], cwd=ROOT, capture_output=True)
 
 
 def build_pool(state: dict) -> list[str]:
-    """Champion + recent previous champions + baseline, without duplicates."""
     recent = list(reversed(state["history"]))[:POOL_SIZE]
     return list(dict.fromkeys(recent + [BASELINE]))
 
@@ -167,12 +217,11 @@ def fmt(wr: float | None) -> str:
 
 # ----------------------------- matches -----------------------------
 def run_matches(bot: str, opponents: list[str], tag: str) -> dict | None:
-    """Run the batch and return summary.json, or None if it failed."""
     cmd = [sys.executable, "run_matches.py", bot, *opponents, "--tag", tag,
            "-j", str(MATCH_JOBS), "--force"]
     log("Running matches: " + " ".join(cmd[1:]))
     try:
-        subprocess.run(cmd, cwd=ROOT, timeout=MATCH_BATCH_TIMEOUT_S)
+        subprocess.run(cmd, cwd=ROOT, timeout=MATCH_BATCH_TIMEOUT_S, env=clean_env())
     except subprocess.TimeoutExpired:
         log("run_matches.py timed out.")
         return None
@@ -191,37 +240,39 @@ def win_rate_vs(summary: dict | None, opponent: str) -> float | None:
 
 
 def smoke_test(bot: str) -> tuple[bool, str]:
-    """One match vs the baseline. Fails on a cambc error or any bot crash/fault."""
     cambc = shutil.which("cambc") or "cambc"
     with tempfile.TemporaryDirectory() as tmp:
         stats_path = Path(tmp) / "stats.json"
         try:
             proc = subprocess.run(
                 [cambc, "run", bot, BASELINE, "-o", tmp, "--statistics", str(stats_path)],
-                cwd=ROOT, capture_output=True, text=True, timeout=SMOKE_TEST_TIMEOUT_S,
+                cwd=ROOT, capture_output=True, text=True,
+                timeout=SMOKE_TEST_TIMEOUT_S, env=clean_env(),
             )
         except subprocess.TimeoutExpired:
             return False, "Smoke test timed out."
         output = (proc.stdout or "") + (proc.stderr or "")
         if not stats_path.exists():
-            return False, output                      # build error, missing bot, ...
+            return False, output
         faults = json.loads(stats_path.read_text()).get("botFaults", [0, 0])
     crashes = parse_output(output)["teams"].get("A", {}).get("crashes", 0)
     return (crashes == 0 and faults[0] == 0), output
 
 
 # ----------------------------- agents -----------------------------
-async def run_agent(label, prompt, system_prompt, tools, model, max_turns, budget_usd):
+async def run_agent(label, prompt, system_prompt, tools, auto_allow, extra_deny,
+                    model, max_turns, budget_usd):
     options = ClaudeAgentOptions(
         system_prompt=system_prompt,
-        tools=tools,                   # tools the agent can use at all
-        allowed_tools=tools,           # ...and they run without permission prompts
+        tools=tools,                                  # tools that exist for this agent
+        allowed_tools=auto_allow,                     # tools/commands that run without asking
+        disallowed_tools=DENY_ALWAYS + extra_deny,    # HARDENING: always blocked
         cwd=str(ROOT),
-        permission_mode="acceptEdits",
+        permission_mode="acceptEdits",                # anything not allowed is denied (headless)
         max_turns=max_turns,
         max_budget_usd=budget_usd,
         model=model,
-        setting_sources=["project"],   # loads CLAUDE.md from the project
+        setting_sources=["project"],
     )
     final_text, cost = "", 0.0
     async for msg in query(prompt=prompt, options=options):
@@ -266,15 +317,25 @@ Rules:
 - Check the game docs for correct API usage. Never guess the API.
 - Implement the most promising change(s), keeping them focused.
 - Smoke test with: cambc run {new_bot} {champion}   and fix any crash.
+- Shell access is limited to cambc, ls, head, tail and wc. Use Read/Grep/Glob for everything else.
 - Do NOT edit NOTES.md; the orchestrator records the version entry and result.
 
 Finish with a short summary: what you changed (file:function) and why it should win."""
 
 
+def strategist_deny(new_bot: str) -> list[str]:
+    """HARDENING: the strategist may only write inside its own bot folder."""
+    return ["Edit(NOTES.md)", "Write(NOTES.md)", "Edit(orchestrator*.py)", "Write(orchestrator*.py)",
+            "Edit(run_matches.py)", "Write(run_matches.py)", "Edit(.claude/**)", "Write(.claude/**)"]
+
+
 # ----------------------------- main loop -----------------------------
 async def main() -> None:
+    if not in_container() and "--allow-host" not in sys.argv:
+        sys.exit("Not running inside the container. Use ./run_contained.sh, "
+                 "or pass --allow-host if you really mean to run on the host.")
     if not os.environ.get("ANTHROPIC_API_KEY"):
-        sys.exit("ANTHROPIC_API_KEY is not set in this terminal.")
+        sys.exit("ANTHROPIC_API_KEY is not set.")
     if not (ROOT / "run_matches.py").exists():
         sys.exit("run_matches.py not found in the project root.")
 
@@ -284,7 +345,6 @@ async def main() -> None:
     REJECTED_DIR.mkdir(exist_ok=True)
     log(f"Champion: {state['champion']} | history: {state['history']}")
 
-    # Initial benchmark so the analyst has data to study
     if not state["last_results"]:
         champ = state["champion"]
         tag = f"bench_{champ}"
@@ -306,24 +366,25 @@ async def main() -> None:
         new_path = BOT_DIR / new_bot
         log(f"===== Building {new_bot} (champion: {champion}) =====")
 
-        # 1. Analyse (the analyst appends its findings to NOTES.md itself)
+        # 1. Analyse
         analysis, cost = await run_agent(
             "analyst", analyst_task(champion, state["last_results"]),
-            analyst_prompt, ["Read", "Grep", "Glob", "Bash", "Edit"],
+            analyst_prompt, ANALYST_TOOLS, ANALYST_TOOLS, ANALYST_DENY_EXTRA,
             ANALYST_MODEL, MAX_TURNS_ANALYST, remaining,
         )
         state["total_cost"] += cost
         save_state(state)
 
-        # 2. Build the new version from a copy of the champion's source
-        if new_path.exists():                 # leftover from an interrupted run
+        # 2. Build the new version from a copy of the champion
+        if new_path.exists():
             shutil.rmtree(new_path)
         shutil.copytree(BOT_DIR / champion, new_path,
                         ignore=shutil.ignore_patterns(".cambc", "build", "target", "__pycache__"))
 
         changes, cost = await run_agent(
             "strategist", strategist_task(new_bot, champion, analysis),
-            strategist_prompt, ["Read", "Write", "Edit", "Grep", "Glob", "Bash"],
+            strategist_prompt, STRATEGIST_TOOLS, STRATEGIST_AUTO_ALLOW,
+            strategist_deny(new_bot),
             STRATEGIST_MODEL, MAX_TURNS_STRATEGIST,
             MAX_TOTAL_COST_USD - state["total_cost"],
         )
@@ -340,7 +401,8 @@ async def main() -> None:
                 f"{output[-3000:]}\n\nBot stdout/stderr for the latest match is in "
                 f"the newest .cambc/match-*/team-a.stdout.\n"
                 f"Fix the bug. Only edit files in bots/{new_bot}/. Do not edit NOTES.md.",
-                strategist_prompt, ["Read", "Write", "Edit", "Grep", "Glob", "Bash"],
+                strategist_prompt, STRATEGIST_TOOLS, STRATEGIST_AUTO_ALLOW,
+                strategist_deny(new_bot),
                 STRATEGIST_MODEL, MAX_TURNS_STRATEGIST,
                 MAX_TOTAL_COST_USD - state["total_cost"],
             )
@@ -358,7 +420,7 @@ async def main() -> None:
             git_commit(f"{new_bot} rejected (crash)")
             continue
 
-        # 4. Evaluate against champion, recent champions, and baseline
+        # 4. Evaluate
         opponents = build_pool(state)
         tag = f"eval_{new_bot}"
         summary = run_matches(new_bot, opponents, tag)
@@ -367,7 +429,7 @@ async def main() -> None:
         overall = fmt(summary["overall"]["win_rate"]) if summary else "unknown"
         log(f"{new_bot} vs champion {champion}: {fmt(wr)} | {per_opp} | overall {overall}")
 
-        # 5. Promote or reject (gate: head-to-head vs the champion)
+        # 5. Promote or reject
         record = (f"- Based on: {champion}\n- Changes: {changes}\n"
                   f"- Evaluation (results/{tag}): {per_opp}; overall {overall}")
         if wr is not None and wr >= PROMOTE_THRESHOLD:

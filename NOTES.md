@@ -158,3 +158,26 @@ I expect `v6` to win more because it should fix the 0-2 expanse losses to v2. Wi
 I did not edit NOTES.md.
 - Evaluation (results/eval_v6): v5 61%, v3 67%, v2 94%, v1 100%; overall 81%
 - Status: promoted, new champion.
+
+### Analysis of v6 — 2026-10-16 (results/eval_v6)
+Record: 58-14 overall (81%); v1 18-0, v2 17-1, v3 12-6, v5 11-7. 0 crashes. Weakest maps: elkring 5-3, monolith 5-3 (collision/packs 6-2). Side is even (29-7 each). Of the 14 losses, 13 are vs v3/v5. Avg winning round 548, losing 675. Slowest wins: collision mirror r1132, corners A vs v5 r980, interlock A vs v3 r747. Aggregate numbers below come from results/eval_v6/*/*.stats.json.
+
+1. **Gem bags are lost in contact fights vs v3/v5 (decides the losses)**
+   - Evidence: vs v3/v5 the share of collected gems never submitted is, by champion type, 22% (Ryth), 19% (Stellar), 20% (Marcella), 24% (Willow), 16% (Varg) of collected gems never get submitted; vs v1/v2 the same figure is 2-8% (Ryth collected 8,902, submitted 6,952, 57 deaths vs v3/v5; 7 deaths vs v1/v2 in the same number of games). Losses: corners A vs v3 submitted 0 of 376 collected with 13 deaths (opp 2 deaths); packs B 364 of 504 (6 deaths vs 2); collision A (vs v3 and v5, same game) 530 of 964 and 238 gems still held at end; interlock B vs v5 558 of 1060 with 204 held; monolith A vs v3 608 of 916, 198 held; elkring B vs v5 396 of 792. In four of these losses the opponent's roster was identical to ours (collision, packs, corners A vs v3), so the loss comes from who gets caught in a fight carrying a bag, not from the draft.
+   - Cause in code: `bots/v6/src/ball.py:459-486` (`ball_want_bank`): `threat_near()` (line 471) refuses to bank unless an altar is within BANK_NEAR=3, and `committed()` (line 475) vetoes banking in any camp fight; `bank_threshold` (`bot.py:980`) is 30-110 gems, so bags of 100-250 build up while enemies are near. Same pattern flagged in the v3/v5 analyses; never tried.
+   - Suggested fix: in `ball_want_bank`, when an enemy champion was seen within ~10 tiles in the last ~20 rounds and gems >= 40, bank even if `committed()` (unless the camp is nearly dead), and cap the bag at ~100 gems while any enemy champion has been seen. Test on corners, packs, collision, interlock vs v3/v5; target gems lost per death below 15%.
+   - Confidence: medium on the pattern (clear in the data), low-medium on the mechanism (no replay inspection).
+
+2. **Willow is the weakest farmer and dies most (5-pick maps hold 7 of the losses)**
+   - Evidence: type 8 (Willow) collects 24.1 gems/100 rounds vs v3/v5 and 29.0 vs v1/v2, against Varg 40.3/62.4, Marcella 41.7/48.5, Stellar 41.5/51.9. Willow had 21 deaths in 16 champion-games vs v3/v5 (1.3 each, highest of any type; Varg 41 in 36 games) and loses 24% of its gems. On 5-pick maps v6 lost 7 of its 14 losses vs v3/v5 (elkring B vs v3 and v5, monolith A and B vs v5, monolith A vs v3, lanes A vs v3) Willow's gold at the end was 0-253 and its submit rate poor (monolith A vs v3: 44 of 132). v6's 4-pick maps (interlock, rows) are 7-1 and 7-1 with no Willow.
+   - Cause in code: `bots/v6/src/draft.py:20` (PREFS[5] has `D_WILLOW` fifth). The only special use of Willow is `ball.py:799-805` (`fight_ratio`), and SOLO mode (`ball.py:89`) means she mostly farms alone, which she does poorly (tables.py:63 gives her 0.0 damage factor).
+   - Suggested fix: on 5-pick maps draft the 4-pick roster plus Cassi & Issac, or simply stop at four champions if the API allows; the cleanest test is PREFS[5] = Varg, Ryth, Stellar, Marcella, Cassi & Issac. Test on corners, elkring, lanes, monolith vs v3/v5.
+   - Confidence: low-medium (hypothesis: Willow's low farm rate is clear, but the effect of the replacement was not measured; Tavi was also weak per the v5 analysis).
+
+3. **Gold left unspent on the big maps (monolith, elkring)**
+   - Evidence: v6 wins with large unspent gold: monolith A vs v1 2,264 unspent of 4,674 earned, monolith B vs v1 2,254 of 4,564, monolith B vs v2 1,682 of 4,682, monolith B vs v5 1,196 of 4,796 (a loss), elkring B vs v1 1,364 of 6,084, elkring A vs v3 956 of 6,426. These are 20-48% of gold earned on the maps where v6 is weakest (5-3 each). Varg is typically the holder (e.g. monolith vs v3 B: Varg 1,188 gold unspent; lanes A vs v3: Varg 540).
+   - Cause in code: `bots/v6/src/ball.py:488-494` (`need_home_ball`): shopping trips need gold >= 300, no enemy visible and spawn within 18 steps (`GOLD_HOME`, line 30); there is no fallback to go home from far away when carrying a lot of gold between tasks. v2's `need_home` (`bots/v2/src/bot.py:582-593`) had this; it was suggested in the v3 analysis and never applied.
+   - Suggested fix: in `need_home_ball` add `if self.gold >= 450 and self.task is None and not self.field_shop and not self.enemies: return True`. Test on monolith, elkring, collision; check unspent gold at end falls below 15% of earned and winning rounds shorten.
+   - Confidence: medium (stockpile is clear; effect on winning is not measured).
+
+Fix first: #1 (it explains 13 of the 14 losses, including the mirror losses that nothing in the draft can fix), then #3 (cheap one-liner), then #2.
