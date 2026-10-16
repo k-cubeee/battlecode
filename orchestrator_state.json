@@ -1,0 +1,14 @@
+{
+  "champion": "v5",
+  "history": [
+    "v1",
+    "v2",
+    "v3",
+    "v5"
+  ],
+  "next_version": 6,
+  "total_cost": 0.3383563,
+  "last_results": [
+    "eval_v5"
+  ]
+}
