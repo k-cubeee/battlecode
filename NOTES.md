@@ -1,6 +1,6 @@
 # Bot version notes
 
-**Current champion: v5**
+**Current champion: v6**
 
 Baseline: v1. Chronological log below: version entries and analyses are appended
 at the end. Promotion gate: >= 55% head-to-head vs the current champion over a full
@@ -119,4 +119,42 @@ Smoke test: `cambc run v5 v3 --map rows` — v5 won in round 671 (1056 gems to 9
 
 Note that `bots/v5` is a copy of v3, so it lacks v4's expanse draft. The full evaluation should compare v5 against both v3 and v4.
 - Evaluation (results/eval_v5): v3 56%, v2 83%, v1 100%; overall 80%
+- Status: promoted, new champion.
+
+### Analysis of v5 — 2026-10-16 (results/eval_v5)
+Record: 43-11 overall; v3 10-8 (56%), v2 15-3, v1 18-0. Weakest maps/side: expanse 3-3 (0-2 vs v2, 1-1 vs v3 mirror) and lanes 3-3 (0-2 vs v3, lost B vs v2), corners 4-2 (both losses to v3, r636 and r980). Losses are 5-pick maps vs v3 (corners, lanes, elkring B: 5 losses; only monolith and elkring A won, 3-5 overall) plus expanse. Side is balanced (A 22-5, B 21-6). Slowest: collision mirror r1132, corners B vs v3 r980, elkring B vs v3 r776. 0 crashes. Average winning round 533, losing 620.
+
+1. **Tavi (new 5th pick) is the weakest body and v5 loses the 5-pick maps to v3's Willow**
+   - Evidence: on 5-pick maps (corners, elkring, lanes, monolith) v5 is 3-5 vs v3, whose only difference there is Willow instead of Tavi (summary.json; drafts in matches[].teams). Per-champion aggregate from results/eval_v5/*/*.stats.json (type 11 = Tavi): collected gems per 100 rounds (vs v1/v2 | vs v3): Varg 64.2 | 38.4, Stellar 56.8 | 46.9, Marcella 50.4 | 38.1, Tavi 43.0 | 34.8 (Ryth/type 0 is 53.7 | 36.4). Tavi is last in both. Vs v3 Tavi lost 730 of 1,864 gems collected (39%; deaths 10 in 8 games) against 14-25% for others in the same games. Examples: corners B vs v3 Tavi collected 282, submitted 48, 3 deaths; lanes B 134 collected, 44 submitted; elkring A 216/36. Tavi's monster damage is also lowest on corners (4,130 vs v3, 4,000 vs v2 in A). 
+   - Cause in code: `bots/v5/src/draft.py:16` (PREFS[5] picks `D_TAVI` fifth). The v5 change was chosen for Tavi's field shop, but nothing in the draft or farm logic exploits it in SOLO mode (`ball.py:89`), so she is just a fragile farmer who carries a big bag and dies (gems lost = collected - submitted).
+   - Suggested fix: restore Willow in 5th place on 5-pick maps only (PREFS[5] = Varg, Ryth, Stellar, Marcella, Willow) and keep v5's Willow-free 4-pick roster, which won 6-0 on rows/interlock. Alternative to test as v-next: Cassi & Issac as 5th. Test on corners, lanes, elkring vs v3 and v2.
+   - Confidence: medium. Eight games, same-map comparisons are consistent, but the other four bodies are identical to v3's so some of the gap could be mirror-side luck (the same side tends to win a mirror).
+
+2. **The v4 expanse draft fix is missing from v5 (v5 was copied from v3)**
+   - Evidence: expanse vs v2 is a 0-2 loss again: A 988 vs 1032 (r421), B 796 vs 1010 (r386), 0 deaths both sides (results/eval_v5/v2/expanse__cand-{A,B}.stats.json). v2 drafts 4 bodies (Varg, Cassi & Issac, Ryth); v5 drafts 3 (Varg, Ryth, Marcella). v4 beat v2 2-0 on expanse (r409-440, NOTES v4). These 2 games and the expanse mirror (A loses 988-1000 at r440) are 3 of the 11 losses.
+   - Cause in code: `bots/v5/src/draft.py:14` (PREFS[3]) is one fixed 3-pick list; v4's `spawn_distance`/`FAR_SPAWN_DIST = 60` gate does not exist in v5.
+   - Suggested fix: port v4's draft gate into a copy of v5 (expanse distance 85 vs packs 26, collision 34), unchanged otherwise. Expected: +2 vs v2, and +1 in the v3 mirror only if the other side stays on v3's roster (v3 would lose A at r440).
+   - Confidence: high (same game, deterministic, v4 already measured it).
+
+3. **Gem bags are lost in contact fights, and they decide the v3 games**
+   - Evidence: vs v3, v5 champions collected 19,472 gems, submitted 15,432 and ended holding 1,004, so 3,036 (15.6%) were lost, in 108 deaths. Vs v1/v2: 39,017 collected, 36,873 submitted, 1,516 held, so 628 lost (1.6%) in 29 deaths. Losses vs v3: corners A submitted 192 total with 16 deaths (type 0 champion 256 collected, 0 submitted), corners B 984 final vs 1,198 (v5 lost 814 gems), elkring B 630 vs 1,008, lanes A 644 vs 1,004. The loser lost more gems than the winner in these games (results/eval_v5/v3/*.stats.json). Collision mirror r1132: loser A ended with 530.
+   - Cause in code: `bots/v5/src/ball.py:459-486` (`ball_want_bank`): line 471 (`threat_near()` blocks banking unless an altar is within BANK_NEAR) and line 475 (`committed()` veto) mean the bag keeps growing while an enemy is around; `bank_threshold` (bot.py:980) can be large. Also earlier analyses #2 (v4) already flagged this; it has never been tried.
+   - Suggested fix: in `ball_want_bank`, when an enemy champion was sighted within ~10 tiles in the last ~20 rounds and gems >= 40, bank even if `committed()` (skip only if the camp is nearly dead). Test: gems lost per death vs v3 should fall below 21% and corners/lanes should flip.
+   - Confidence: medium on the pattern, low-medium on the exact mechanism (no replay inspection).
+
+Fix first: #2 (cheap, exact, ported from v4, no risk to other maps), then #1 (Willow back on 5-pick maps), then #3.
+
+### v6 — promoted (61% vs v5)
+- Based on: v5
+- Changes: I made `v6` from `v5` with two draft changes, both in `bots/v6/src/draft.py`. I did not implement finding #3 (banking gems during contact fights). Only the one smoke test on expanse was run, and it was clean.
+
+- **Expanse gate (finding #2):** I ported v4's spawn-distance gate unchanged. On 3-pick maps where the spawns are 60 or more tiles apart, `v6` drafts Varg, Cassi & Issac, Ryth. That gives four bodies instead of three, which is the roster that beat v2 on expanse in v4. Other maps keep `v5`'s picks.
+- **Willow back as 5th pick (finding #1):** On 5-pick maps the order is now Varg, Ryth, Stellar, Marcella, Willow, with Tavi last. The 3-pick and 4-pick lists are as they were in `v5`, so the 4-pick roster still has no Willow.
+
+**Smoke test:** `cambc run v6 v5 --map expanse`: v6 won, reaching 1000 gems in round 438. It finished 1010 gems to 844 for `v5`, with 0 crashes. That map exercises only the gate, not the Willow change.
+
+I expect `v6` to win more because it should fix the 0-2 expanse losses to v2. Willow should also help on the 5-pick maps (corners, elkring, lanes and monolith) that `v5` lost 3-5 to v3.
+
+I did not edit NOTES.md.
+- Evaluation (results/eval_v6): v5 61%, v3 67%, v2 94%, v1 100%; overall 81%
 - Status: promoted, new champion.
