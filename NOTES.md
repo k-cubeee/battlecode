@@ -411,3 +411,47 @@ Fix first: #1 (largest effect: contest and any game decided by the opening, whic
 **Evaluation command:** `python run_matches.py v12 v9 v6 v1 --tag v12-eval`
 - Evaluation (results/eval_v12): v9 47%, v8 56%, v6 65%; overall 56%
 - Status: rejected, moved to rejected/v12. Lesson: these changes did not beat v9.
+
+### Analysis of v9 — 2026-10-17 (results/arena_2, results/eval_v12)
+Record: arena_2 34-0 vs b2 (avg win r679, v9 0.6 deaths vs b2 9.1, 17 maps x 2 sides, 0 crashes). eval_v12 (v12 = v9 + death memory) 57-45: v6 22-12, v8 19-15, v9 16-18. Weakest: expanse 1-5 and swirl 2-4 in eval_v12; every other map is a mirror split. Slowest arena wins: contest r1257/r1498, stampede r1076/r1065, ambush B r837, rushbait-v2 B r798 (A r595), expanse r689/651. Limit: no Bash; read summary.json by hand, stats.json not opened. Old items (bank veto, Willow, unspent gold, death memory, contest/stampede party logic) are not repeated. v10/v11/v12 showed the mirror split cannot be moved by one-map or bank/death tweaks.
+
+1. **The "bank now, the game is won" test ignores teammates' bags, so 60-230 gems sit in pockets when the game ends**
+   - Evidence: arena_2 `side_stats.candidate` collected 1,097.7 and submitted 1,035.8 per game, with only 0.6 deaths, so about 62 gems per game (about 40 rounds at the 1.5 gems/round pace) are carried unbanked at the end, not lost. Worst: ambush B (r837) collected 1,226, submitted 1,000 (Marcella held 106, Stellar 120); rushbait-v2 B (r798) collected 1,158, submitted 1,020 (Marcella 204 collected, 66 submitted) while rushbait A won in r595. The opponent was at 72-154 gems, so the only clock is our own banking.
+   - Cause in code: `bots/v9/src/ball.py:474` (`ball_want_bank`): `submitted + gems * max(1, self.ball_n) >= 998`. In SOLO mode `ball_n` is 1 (ball.py:132, set at :264), so a champion banks for the win only if its own bag completes 1000. Nobody counts the other bags. Collected gems are in shared memory only as `tot` for the old farm path (`bot.py:384`, `want_bank` line 1008) and are not used in ball mode. Meanwhile lines 469-470/476 still veto banking for champions with a task.
+   - Suggested fix: each champion already writes its slot byte to `cambc.shared_memory` (ball.py:336). Add a second byte per slot (gems carried, /4) and in `ball_want_bank` return True when `submitted + sum(carried over all slots) >= 1000 + 20`, overriding the task veto at 469 and `committed()` at 476 when no enemy is in view. Test: arena rounds on ambush B, rushbait B, pilgrimage and rows (target -30 to -100 rounds) and check no new deaths.
+   - Confidence: medium (end-of-game bags are certain; the round saving is an estimate; the endgame banking walk is up to d + gems/10 rounds).
+
+2. **Two of five bodies still produce nothing on ambush (and Tavi/Marcella idle in other games): the idle-body problem is real in a won arena game**
+   - Evidence: results/arena_2/summary.json ambush A (r704): Varg 452 and Ryth 368 gems, Stellar 0, Marcella 0 (0 gems, 0 gold, 0 items each, lines 426-437), Tavi 318. Ambush B (r837): Marcella 106 collected, 0 submitted, 4 items, Tavi 0 gems (295 gold), 1 death. Same shape as v8/v9 analyses (4+4 games). Where all bodies work (collision r698/721, eight r448/474) the game ends 25-40% earlier. Rushbait-v2 B (r798): Varg 452 gems, Ryth 198, Stellar 304, Marcella 204, so there it is the lopsided Varg bag, not idle bodies.
+   - Cause in code: not isolated (hypothesis from v8 analysis #3 still stands): `bots/v9/src/bot.py` `best_group` (`cap_inc` gate, around line 1092/1120) can leave a low-HP, no-item champion with no accepted group; with no gold there are no items, which keeps it below the gate.
+   - Suggested fix: after 250 rounds with a champion at < 150 gold earned, relax `cap_inc` for the lowest-`stsum` group with value > 0 (or send it to the nearest small gold cluster). Test on ambush A/B vs b2 and v8; check Stellar/Marcella gems and round.
+   - Confidence: medium on the symptom, low on the mechanism.
+
+3. **Expanse C&I gate is still in the champion: 1-5 in eval_v12 and a 689/651 win vs b2 that the 3-pick roster would also win**
+   - Evidence: eval_v12 by_map expanse 1-5 (v12 keeps v9's gate); v10 (gate off) was 6-0 on expanse vs v9/v8/v6 (r631-719, eval_v10). In arena_2 v9 wins expanse at r689 and r651 with Cassi 280 and Issac 121 gems over 2 games (candidate_champions), so C&I give little even where it wins. v10/v11 were rejected only because 2 extra wins out of 34 are below the 55% gate (see v10 analysis).
+   - Cause in code: `bots/v9/src/draft.py:27` (`FAR_SPAWN_DIST = 60`) and `play()` line ~56.
+   - Suggested fix: set `FAR_SPAWN_DIST = 10**6` in the next version and bundle it with finding 1 or 2, which can add wins on many maps. Do not submit it alone.
+   - Confidence: high on the expanse effect (12 deterministic games over two evals); the gate arithmetic limits it to about +2 of 34 head-to-head.
+
+Fix first: #1. It is a small change inside `ball_want_bank`, applies to every map and both sides, and attacks game length in the arena (the main metric when the win rate is already 100%). #3 can ride along for free.
+
+### v13 — rejected (50% vs v9)
+- Based on: v9
+- Changes: I made `v13` from `v9` with two changes. The smoke test on expanse passed with 0 crashes. I did not run the full evaluation.
+
+**Changes**
+- **Team-wide bank check (finding #1)**
+  - `bot.py:write_shared` now calls a new `report_gems`. It keeps a team total of carried gems in shared bytes 6–7, as the farming stage already did.
+  - `ball.py:ball_write`, in solo mode, calls `report_gems` instead of writing the leader position into bytes 6–7. The leader position is only read for followers, and in solo mode every champion was overwriting it anyway.
+  - `ball.py:ball_want_bank` now banks when submitted gems plus the team's carried gems reach 998. Before, it only counted this champion's own bag. This should shorten games, because a champion banks as soon as the team total will complete 1000.
+- **Expanse draft gate (finding #3):** in `draft.py`, `FAR_SPAWN_DIST` goes from 60 to `10**6`, so the Cassi & Issac gate is off. In the smoke test v13 drafted Varg, Ryth, Marcella, and v9 drafted Cassi & Issac.
+
+I did not address finding #2.
+
+**Smoke test:** `cambc run v13 v9 --map expanse`: v13 won at round 631 with 1086 gems and 0 crashes. v9 reached 810 gems.
+
+**Why it should win:** the game ends on gems banked, so reaching 1000 submitted earlier is the metric that matters. The gems held in other bags (about 62 per game in v9) get banked sooner, on every map and from both sides. The draft change targets expanse, where the Cassi & Issac gate cost v12 games.
+
+**Next evaluation command:** `python run_matches.py v13 v9 v1 --tag v13-eval`
+- Evaluation (results/eval_v13): v9 50%, v8 56%, v6 68%; overall 58%
+- Status: rejected, moved to rejected/v13. Lesson: these changes did not beat v9.
