@@ -39,3 +39,22 @@ Per map: A won both sides on all 17 maps (ambush, collision, contest, corners, e
 - **Team B:** copy v9's banking and farming rules, which are readable from `results/arena_*`. b2 loses about 91 gems per match (276.4 collected, 185.3 submitted), and each death costs 60 rounds out of play. Next, add real retreat logic: simulate the fight and flee if it would be lost, instead of a fixed 35% HP rule. Then add spell use and shop for set bonuses. b2 has no cast calls and no purchase order.
 - **Team A:** the gap is large enough that b2 gives little useful signal. Keep tuning against Team A's own pool. The remaining target is contest and stampede (1000–1500 rounds). Look at what slows farming on those two maps, not only at the retreat thresholds.
 - **Harness:** there were no crashes, errors or fuel problems (`candidate_crashes` 0, all 34 ended on gems). Arena 1's note still applies: caught exceptions don't show in the crash counters. Team B has fixed the draft crash, so this no longer matters for b2.
+
+### Arena 3 — v9 (Team A) vs b7 (Team B) — 2026-10-17
+Score: Team A 34-0 Team B (100%); draws/errors: 0. Previous arena: Team A 34-0 (v9 vs b2).
+Per map: A won both sides on all 17 maps (ambush, collision, contest, corners, eight, elkring, expanse, fragment, interlock, lanes, monolith, packs, pilgrimage, rows, rushbait-v2, stampede, swirl). Average winning round: A 680.8, B n/a (no wins). Arena 2 was 679.3 (`summary.json: avg_round_of_wins`).
+
+**Why the winner wins**
+- **v9 farms about four times as much and banks more of it.** Per match, v9 collects 1077.5 gems and submits 1039.4 (96%). b7 collects 266.2 and submits 172.4 (65%) (`side_stats`). Arena 2's b2 was at 276.4 collected and 185.3 submitted, so b7 has not improved on farming. Ryth (301 collected) and Varg (339) lead v9's gem income (`candidate_champions`). All 34 games ended at "reached 1000 gems" (`end_reasons`).
+- **v9 wins every fight.** Kills and deaths are 8.2 and 0.5 for v9 against 0.3 and 8.5 for b7. Champion damage is 13178 for v9 against 2340 for b7. v9's champions barely take damage (Stellar 264, Tavi 339), so its retreat and spell logic is working. b7's `bot.py` still has no spell casting and no fight simulation. The only fighting changes I found in `NOTES_B.md` are b2's `danger_tiles` and its low-HP retreat. b7 did not touch fighting. I did not re-read the source of either bot for this report.
+- **v9 has a much larger economy.** Earned gold is 5567 against 1716, and spent gold is 4947 against 1337. v9 buys 33–54 items per champion (Ryth 53.5, Varg similar). b7's only change, in `buy_items` (`bots/b7/src/bot.py`, ~line 110), swaps Power shards for passive-emblem shards (`Item.TREASURE_SHARD_OF_STRENGTH` / `JUNGLE_SHARD_OF_HEALTH`) (`NOTES_B.md:293-300`). That raises b7's income per gem a little. It can't close a 4× gap in gems farmed.
+
+**Where the loser is competitive**
+- b7 is not competitive in any match. It has no wins, and the game always ended on v9 reaching 1000 gems.
+- b7 beat b2 only 56% in Team B's own evaluation, and its smoke test on stampede was a tiebreak at 8071 gold to 8008 (`NOTES_B.md`). Its improvements are marginal in its own pool and don't register against v9.
+- The slow maps are still v9's weakness: contest ended at rounds 1242 and 1506, and stampede at 1013 and 1204. Every other map ended between 416 and 862. This is the third arena in a row with the same two slow maps.
+
+**Advice to the lead**
+- **Team B:** stop tuning shard choices. The gap is in farming and fighting. b7 loses 94 gems per match between collecting and submitting (266 against 172). It also loses 8.5 champions per match, and each death costs about 60 rounds. First fix recall and banking so gems are submitted before engaging. Then add a fight-outcome check before engaging, and use spells.
+- **Team A:** b7 gives no useful signal, because v9 wins 34-0 for the third arena running. Spend the effort on contest and stampede, which take 1000–1500 rounds. Compare v9's gem rate on those maps with the rest through the `.stats.json` timelines. The cause is not visible in the summary. Hypothesis: geometry or monsters slow farming.
+- **Harness:** `candidate_crashes` is 0 and all 34 games ended on gems, so I saw no rules or fuel problem. `healingDone` is 0.0 for both teams, so nobody uses healing.

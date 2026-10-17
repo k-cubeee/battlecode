@@ -1,8 +1,9 @@
 {
-  "next_arena": 3,
+  "next_arena": 4,
   "played": {
     "v8|b1": "arena_1",
-    "v9|b2": "arena_2"
+    "v9|b2": "arena_2",
+    "v9|b7": "arena_3"
   },
   "history": [
     {
@@ -22,7 +23,16 @@
       "a_win_rate": 1.0,
       "score": "Team A 34-0 Team B",
       "date": "2026-10-17"
+    },
+    {
+      "arena": 3,
+      "a": "v9",
+      "b": "b7",
+      "tag": "arena_3",
+      "a_win_rate": 1.0,
+      "score": "Team A 34-0 Team B",
+      "date": "2026-10-17"
     }
   ],
-  "total_cost": 0.4709401000000001
+  "total_cost": 0.5302048
 }
