@@ -455,3 +455,44 @@ I did not address finding #2.
 **Next evaluation command:** `python run_matches.py v13 v9 v1 --tag v13-eval`
 - Evaluation (results/eval_v13): v9 50%, v8 56%, v6 68%; overall 58%
 - Status: rejected, moved to rejected/v13. Lesson: these changes did not beat v9.
+
+### Analysis of v9 — 2026-10-17 (results/arena_2, results/eval_v13)
+Record: arena_2 34-0 vs b2 (avg win r679, v9 0.6 deaths vs b2 9.1; b2 still collects 276 gems and submits 185 per game). eval_v13 (v13 = v9 + team-bank + expanse gate off) 59-43: v6 23-11, v8 19-15, v9 17-17. Weakest maps/side: swirl 2-4; every other map is a same-side mirror split (3-3) except expanse 6-0, interlock 5-1, stampede 5-1. Side A 32-19, side B 27-24. 0 crashes. Slowest arena wins: contest r1257/r1498, stampede r1076/r1065. Limit: no Bash; summary.json read by hand, and `results/arena_2/b2/contest__cand-A.stats.json` (text JSON, `championTimelines`) read for timing. Findings 1 and 2 below are new measurements of the contest/stampede slowness. They also overturn one hypothesis from the earlier v8/v9 analyses (that the `cap_inc` HP gate is what keeps champions off the big camps).
+
+1. **On contest the team earns no gems for 719 rounds, then three of five champions never earn any: gold is farmed long after it stops being useful**
+   - Evidence: contest A (arena_2, r1257, 0 deaths). Gem timelines: first gem anywhere is Ryth at r719 (200), then Ryth r805, Tavi r961, Ryth r1059, Marcella r1212. That is 5 monolith captures (1000 gems) in 1257 rounds. The first 719 rounds are 57% of the game. Varg and Stellar collect 0 gems all game. Varg ended with 90 items, 2,287 gold earned and took 19,082 monster damage, so he fought camps all game but never captured a gem camp. Stellar earned 1,618 gold on 54 items, again 0 gems. The team earned 11,916 gold and spent 11,590 on about 460 items for 1000 gems. Ryth's `spentGold` timeline: 40 until r378, then 560, 830 (r~600), 1610... Between r~270 and r378 his gold rose from 268 to 548 unspent (the 300-gold trigger only works within 18 steps of spawn, and the far trigger needs 450). He took his first gem only after about 1,600 gold of items. Stampede A (r1076): Varg 720 of 1,080 gems and 175 items, Stellar, Marcella and Tavi 0 gems, 2,098/1,124/966 gold. Stampede B (r1065): Varg 540, Tavi 360, Marcella 180, Ryth and Stellar 0. Contest B (r1498): Marcella's single 200-gem bag was lost in her one death.
+   - Cause in code: `bots/v9/src/bot.py:1092` (`cap_inc`) is NOT the main block. Varg with 90 items clears it easily (the earlier analyses guessed it was). What blocks him is the choice rule in `best_group` (bot.py:1079-1214): `val = g.gems + kappa*g.gold` with `kappa` at its floor 0.05 from round ~300 (bot.py:1085, `KAPPA0 = 0.3`, `KAPPA_DECAY = 1200`) still ranks short gold clusters above a 200-gem monolith when the monolith's `tf` (fight turns) is long, and the monolith is not `is_big` (bot.py:59-61 needs `g.n >= 2`), so nobody joins it. The join test (bot.py:1206, `saving <= 1.15*cost`) ignores the joiner's share for non-big groups. Gold farmers therefore never help the one champion on the monolith. Separately, `ball.py:489-497` (`need_home_ball`) sends a champion home from far away only at 450 gold (`GOLD_HOME_FAR`), so the first upgrade that unlocks the big camps comes late (r378 for Ryth).
+   - Suggested fix: two small changes, test together on contest and stampede vs b2 and vs v8 (both sides). (a) In `best_group`, once a champion has at least ~20 items (or `spentGold >= 1500`) or `rnd >= 400`, use `kappa = 0`, so extra gold counts for nothing and the 200- and 360-gem groups win the ranking. (b) Allow a join on a single-monster group worth >= 150 gems (extend `is_big` to `g.gems >= 150`, not `n >= 2`) only when `push_f == 0.0` (we lead by >= 100 submitted gems, `ball.py:update_push`) or no enemy champion has been in `self.sightings` for 40 rounds. That keeps the rule that made the v9 monolith party lose on contest vs v8 (3 champions caught on one camp), because it only fires when we are ahead. Check: round of first gem on contest should drop from 719 and the number of champions with 0 gems should fall from 3. A third, optional step is `GOLD_HOME_FAR` 450 -> 250 while `maxhp` is still below the monolith threshold.
+   - Confidence: medium on the pattern (timelines are exact; stampede shows the same shape). Low-medium on which term dominates, since I did not log `best_group` scores. A `DEBUG` run printing Varg's chosen task and `ub` on contest would settle it.
+
+2. **The mirror loser dies 10.6 times and keeps losing bags; no change so far has moved this, and v13 shows a team-wide bank rule does not either**
+   - Evidence: eval_v13 `side_stats`: in losses the candidate has 10.6 deaths against the opponent's 4.8, collects 727 gems and submits 520 (28% lost). In wins it has 4.3 deaths, collects 1,153 and submits 1,038. The opponent in our losses earns 5,408 gold against our 3,457. v13 vs v9 is 17-17, the same as v10, v11 and v12, so none of the four edits (expanse gate, relaxed bank veto, death memory, team bank) changed any mirror pair. v13 does show the team-wide bank count is not worth more rounds: its wins come at r786 on average against v9's 779.
+   - Cause in code: not in banking or fight ratio. The mirror pairs are exactly symmetric, so the opening exchange, set by spawn side and the order of turns (`the starting team swaps each round`, GameRules l.122), decides the game. `ball.py:ball_decide` (403-449) treats a champion that just respawned like a fresh one, and the five champions walk out one by one into the winner's camp-and-hunt posture (`skirmish`, ball.py:874-947, same `R_GO` for both sides).
+   - Suggested fix: stop spending versions on bank and fight-ratio tweaks. Use the arena-style gap instead: only fight when `push_f`-like lead info says we are ahead or the enemy is alone, and otherwise farm away from the enemy half (`DENY_W` and `ESP_AVOID`-style penalty on groups where an enemy was seen in the last 40 rounds, scale 0.7 even in ball mode, bot.py:1161-1168 currently gives 1.25 for hunting in company). Test on the mirror-loser maps first (collision B, ambush A, corners A, fragment, eight, contest B vs v8/v9).
+   - Confidence: low (the symmetric pairs are certain; the mechanism and the fix are hypotheses with no per-round data).
+
+3. **The expanse Cassi & Issac gate is still in the champion and buys nothing, even in the arena**
+   - Evidence: eval_v13 expanse is 6-0 with the gate off (v13 vs v9, v8, v6), against 0-6 for v9 in eval_v9. In arena_2 v9 wins expanse at r689 and r651, against the arena average of r679. Cassi and Issac collect 280 and 121 gems over those 2 games (candidate_champions, arena_2/summary.json lines 266-287), 0 deaths each, so the 4-body roster is no faster than the 3-body roster there.
+   - Cause in code: `bots/v9/src/draft.py:27` (`FAR_SPAWN_DIST = 60`) and `play()` (~line 56).
+   - Suggested fix: ship `FAR_SPAWN_DIST = 10**6`, but only bundled with finding 1. v10, v11, v12 and v13 each carried it and failed the 55% gate, because the expanse pair adds at most +2 of 34 head-to-head. It must ride along with a change that works on the 16 other maps. Do not submit it alone.
+   - Confidence: high on the expanse effect (18 deterministic games over three evals). The gate arithmetic limits the gain.
+
+Fix first: #1 (it targets the slowest arena games and acts on 4 of the 5 bodies, and it does not depend on winning the opening exchange). Bundle #3 with it.
+
+### v14 — rejected (41% vs v9)
+- Based on: v9
+- Changes: I created `v14` from `v9` with three small changes. It ran without crashing on contest, but it lost that match. The 600–600 gem tie went to `v9` on gold earned, 11,627 to 3,450.
+
+The one smoke match is a crash check, not evidence of strength. I made no change for finding #2, and I didn't add the "join a lone 150+ gem group" rule from finding #1.
+
+- **`bot.py:best_group`:** `kappa` is now 0 from round 400 on, or once a champion has bought 20 or more items. Short gold clusters then stop outranking big gem camps late in the game. This is the main change for finding #1.
+- **`ball.py:GOLD_HOME_FAR`:** lowered from 450 to 250, so a far-from-home champion goes shopping sooner and gears up earlier.
+- **`draft.py:FAR_SPAWN_DIST`:** raised from 60 to `10**6`, which turns the Cassi & Issac far-spawn draft gate off (finding #3). Expanse was 6-0 with the gate off, but the analysis says it only passes the 55% gate when paired with #1.
+
+The `kappa` change also zeroes the gold term in join-share scoring, so gold-heavy groups lose some pull there too.
+
+I made no other changes, and I didn't touch `NOTES.md`.
+
+Smoke test: `cambc run v14 v9 --map contest` — v14 crashes 0.
+- Evaluation (results/eval_v14): v9 41%, v8 50%, v6 56%; overall 49%
+- Status: rejected, moved to rejected/v14. Lesson: these changes did not beat v9.
