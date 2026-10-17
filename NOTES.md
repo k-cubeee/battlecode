@@ -1488,3 +1488,123 @@ Fallback (re-run only the affected games after each step):
 3. **Race rule:
 - Evaluation (results/eval_v19): v18 50%, v17 56%, v16 71%; overall 59%
 - Status: rejected, moved to rejected/v19. Lesson: these changes did not beat v18.
+
+### Research on v17 — 2026-10-17 (general-bot effort for v20; results/eval_v17, eval_v18, eval_v19)
+Method: no Bash. The mirror baseline is the 14 ungated v18-vs-v17 games (results/eval_v18/summary.json l.7389-14420; both records on a map are the same game). I read the timeline fields of all 28 records, `by_side` for eval_v10-v19 and `side_stats` for eval_v17. I opened eval_v18/v17/{collision,contest}__cand-A.stats.json for the first deaths. Data marked (coord.) comes from the coordinator's DEBUG v17-vs-v17 run: 17,214 A-side turns on lanes, eight, contest, collision and rows.
+
+**Correction: the seat-B bias is about 57%, not 73-80%.** The 73-80% figure is the *candidate's* win rate in seat B, so it includes the candidate's strength. Seat B's share of all games is cand-B wins plus cand-A losses:
+- eval_v16: 37+23 = 60/102 (59%)
+- eval_v17: 41+17 = 58 (57%)
+- eval_v18: 40+17 = 57 (56%)
+- eval_v19: 34+25 = 59 (58%)
+- eval_v10 to v15: 49, 51, 48, 46, 49 and 53 of 102 (45-52%). There was no tilt before v16.
+- In the true v17 mirror, B wins 10 of 14.
+
+contest and eight are A seats for every lineage code (v17 is WL against all 5 opponents), so this is not a constant engine edge for B.
+
+Map picture: v17 mirror, giving first death A/B, submitted by r500 A/B and gems lost A/B.
+- **Seat A wins:**
+  - contest: 39/31, 0/0, 200/400
+  - eight: 173/56, 584/0, 88/176
+  - elkring: 113/113, 558/306, 126/216
+  - rows: 252/159, 792/660, 0/0
+- **Seat B wins:**
+  - ambush: 89/90, 106/452, 318/0
+  - collision: 44/466, 132/278, 176/66
+  - corners: 42/47, 320/474, 160/168
+  - fragment: 49/672, 168/554, 160/58
+  - interlock: 113/229, 352/286, 154/204
+  - lanes: 99/none, 746/972, 44/0
+  - packs: 47/46, 552/432, 136/92
+  - rushbait: 993/none, 0/220, 66/0
+  - stampede: 79/46, 0/0, 0/0
+  - swirl: 80/110, 600/904, 184/0
+- There is no v17-vs-v17 game for expanse, monolith or pilgrimage.
+- Flips by rejected versions against this mirror: v19 took ambush A, corners A and elkring B, and lost corners B (8 of its games were byte-identical). v18 moved only its gated maps.
+
+Lessons from rejected versions:
+- **v19** (v17 plus big-bag, race and finish bank triggers) moved only 4 seats, net +2.
+  - The big-bag rule reached the 318-gems-lost seat (ambush A) and the finish rule reached corners A.
+  - It still never banks with an enemy close. The triggers keep `threat_near` (rejected/v19/src/ball.py:511-513), and `skirmish` runs before any bank check (ball.py:420-423).
+  - So the idea is partly confirmed, but it is still vetoed in exactly the situation where bags get lost.
+- **v18:** a fuel-identical change moves only the seats it touches. A general change must re-roll many seats to win.
+
+1. **The first champion death decides the mirror. v17's opening duel check is local and identical on both sides, so arrival order picks the loser.**
+   - Evidence:
+     - In the 13 mirror games with a first death, the side that died first lost 10. A died first 7 times and B won all 7. B died first 5 times and A won 3 of those.
+     - eval_v17 losses: first death r86 against r168, deaths 12.0 against 6.1. 11.9 of the 12.0 deaths were to champions and 0.1 to monsters (`side_stats` candidate_in_losses / opponent_in_losses).
+     - contest mirror: B's Ryth died at r31 with 5 A credits (a kill plus 4 assists, ordinals 5334-5338, contest__cand-A.stats.json l.25774-32037). B's Stellar died at r35. A arrived with more bodies.
+     - collision mirror: A shops at (3,1) and B at (3,39), a y-reflection. A's Ryth died at r44 at (21,22), on B's half, to B's Varg (collision__cand-A.stats.json l.14375-14394). After 44 rounds the identical code had already made non-mirrored assignments.
+   - Cause in code:
+     - Rounds before the ball stage run `decide()` (`bots/v17/src/bot.py:592-637`).
+     - `assess_enemies` (`bot.py:727-759`) has three blind spots. It counts allies only within 4 tiles and only by Strength (l.738-742). It counts only enemies within their range+2 (l.731-733). It ignores spells and burst.
+     - `fight_enemies` (`bot.py:789-830`) then commits.
+     - Vision isn't shared, so a lone champion on a contested camp judges a 1v1 that becomes a 1v3.
+     - The ball stage uses `fight_ratio` (`ball.py:829-849`) with R_GO=1.05 (`ball.py:46`). Identical code on both sides computes the same ratio, so even fights are settled by who arrives or strikes first.
+   - Maps it decides:
+     - A seat (A died first): collision, fragment, corners, swirl, lanes, interlock, ambush
+     - B seat (B died first): contest, eight, rows
+     - The general mechanism is early lone contact at contested camps.
+   - Confidence: high on the correlation; medium on the mechanism (2 games traced).
+
+2. **Leading carriers lose their bags, and banking is vetoed exactly when they are in danger.**
+   - Evidence:
+     - Of the 12 mirror games in which anyone lost gems, the loser lost more in 10. The exceptions are corners (160/168) and interlock (154/204).
+     - interlock A and packs A *led* at r500 (352 to 286 and 552 to 432) and still lost. packs A's Varg lost 92 gems at r588 (v18 research).
+     - eval_v17 losses: 140.8 gems lost against 91.9; 275.8 submitted by r500 against 461.8.
+     - First submit in losses is r172.7 against r215.7, so v17 does not bank later. It banks less.
+   - Cause in code:
+     - `ball_decide` handles skirmishes before any bank check (`bots/v17/src/ball.py:420-423`).
+     - `ball_want_bank` returns False while the champion has a task and live income (`ball.py:500`). It also returns False under `threat_near`: an enemy within 3, or within 6 when it is off its spawn (`ball.py:482-489`, `ball.py:502`).
+     - In a fight, the ratio needed rises by a factor of 1+gems/200 (`ball.py:937-938`).
+   - Maps it decides: interlock A, packs A, ambush A, swirl A and collision A (all bag-loss seats).
+   - Confidence: high on the data; medium on which veto dominates. v19 relaxed the threshold, not the veto.
+
+3. **The gold gap is a farming-time gap, not a gold-valuation gap.**
+   - Evidence:
+     - eval_v17 losses: gold earned 3,303 against 5,924, gems collected 708 against 1,176.
+     - Kill gold explains only (11.9-6.0)×50 = 295 of the 2,621 gap.
+     - Camp gold (3,003/5,329 = 0.56) moves with gems (0.60).
+     - Dead time: 720 against 366 champion-rounds (deaths × 60).
+     - (coord.) Capture took 5.9% of turns and bank 1.6%, against fight 25.4% and "retreat" 13.9%.
+   - **The 13.9% "retreat" (coordinator's question):**
+     - `exec_plan` appends "retreat" to *every* skirmish turn with go=False (`ball.py:973` → `ball.py:1416`), including turns that hit or hold.
+     - Only `bot.py:689` is a camp retreat, and camp retreats should be rare:
+       - `cap_inc` (`bot.py:1101`) caps a task group at 15% of max HP per turn. That keeps `maybe_retreat`'s need (`bot.py:675`) at or below about 0.36 max HP at 1 step.
+       - Below 60% HP the champion switches to M_HOME (l.684-685).
+       - Deaths to monsters are 0.1 per game.
+     - So the 13.9% is almost certainly enemy contact that v17 judged lost (hypothesis). Splitting the tally by prefix (hit/step/hold/dash) would confirm it.
+     - (coord.) The "idle forever" stall did not occur in those games: about 1% of turns, in 1-turn streaks.
+   - Idle bodies: average gold per game is Marcella 875, Tavi 923 and Ryth 1,104, against Varg 1,428 and Stellar 1,281 (eval_v17 candidate_champions). The cause is `cap_inc` (`bot.py:1101`).
+   - Kappa is already floored at KAPPA_MIN=0.05 (`bot.py:36`). Gold tracks gems, so there is no evidence of upside from re-weighting gold. **Refuted as a lever.**
+   - Confidence: high on the arithmetic; medium on the retreat split.
+
+4. **The seat tilt comes from code tie-breaks on absolute coordinates plus the engine's turn parity. It explains why seats are locked; it is not a B bonus to fix.**
+   - Evidence: contest and eight are locked to A, and collision and fragment to B, across v8, v9, v16, v17, v18 and v19. The shared opening code decides them by seat.
+   - Asymmetric code on a mirrored map (hypothesis on which part matters):
+     - `bot.py:177` (`g.v0 = vec[0]`): group distance is measured to the engine's first camp, not the nearest. `d_spawn`, `d_enemy`, the contest lean (`bot.py:189-194`) and `travel` (`bot.py:1134`) therefore differ by seat for multi-camp groups. If camps are listed in raster order, the low-y side measures to its near camp and rates contested groups as safer. That fits A's r44 death on B's half in collision.
+     - `bot.py:204`: the stable sort sends `d_spawn` ties to the lower engine index. That changes the NEAR_K cut (l.209) and the claim ranks used as shared-memory keys (l.1127).
+     - `bot.py:1146-1147`: exact `ub` ties go to the higher `g.i`.
+     - `bot.py:868-870` (`follow`): takes the first legal move in engine order, so paths are not mirror images.
+     - Engine (hypothesis): A acts first in odd rounds and B in even rounds (GameRules l.122-126). All cooldowns are 8, so the first striker keeps striking first on every recharge.
+   - Value for v20: symmetrising the tie-breaks re-rolls locked maps with no expected direction, so it is not an improvement on its own. Making the duel decision robust to arrival order (#1) is the general lever. A cheap check: log `g.v0`, `d_spawn` and `contest` for every group on turn 1 from both seats.
+   - Confidence: high on the corrected figures; low on which tie-break matters.
+
+Open threads, ranked by general upside:
+1. **Opening contact, grouped play and regrouping after respawn** (#1). These are the same lever: don't take contested ground alone. `SOLO=1` (`ball.py:97`) has never been re-tested on engine 2.2.3.
+2. **The threat veto on banking** (#2): bank when the altar is nearer than the threat, or inside the skirmish branch.
+3. **Idle bodies and `cap_inc`** (#3).
+4. **A "dominating" mode when ahead:** interlock A and packs A led at r500 and lost.
+5. **Lower priority:**
+   - Kappa floor: refuted (#3).
+   - Roster/Ren: no evidence.
+   - Fuel: (coord.) 154 `fuelExhausted` events over 34 games, mostly in r0-99. The collision A-Ryth and B-Varg buckets I checked were empty, so this is low.
+
+Old hypotheses:
+- **Refuted:**
+  - "B wins 73-80%": that is the candidate's seat-B rate.
+  - "v17 submits later in losses": it banks less, not later.
+  - A kappa floor as a lever.
+- **Confirmed and generalised:**
+  - Routs are decided before r100 (v17 research #1). Now: the first death decides 10 of 13 mirror games.
+  - Carrier bag losses (v18 research #1): the loser lost more gems in 10 of 12 games.
