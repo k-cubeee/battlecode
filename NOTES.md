@@ -1608,3 +1608,143 @@ Old hypotheses:
 - **Confirmed and generalised:**
   - Routs are decided before r100 (v17 research #1). Now: the first death decides 10 of 13 mirror games.
   - Carrier bag losses (v18 research #1): the loser lost more gems in 10 of 12 games.
+
+### Design for v20 — 2026-10-17 (based on v17; general-only)
+Idea: **never stand off.** Once v20 judges a fight lost, it leaves with a destination instead of hovering at the edge of the enemy's reach:
+- free to go: it re-tasks to a camp away from the threat;
+- pressed: it backs off toward its spawn, or toward the altar when it carries a bag, and banks there if the channel is survivable.
+- It also stops losing turns to the SOLO state machine.
+
+The aim is fewer pick-offs and lost bags, with the stand-off time (about 10% of all turns) turned into farming.
+
+**Why this and not a fight-threshold change.** v17 calls `plan_fight(rel, retreat=True)` every turn that a visible enemy sits within 4 tiles or a 7-step path (`ball.py:918-924`) and the ratio is below need.
+- A soft retreat (not hard, not alone) has **no destination term** in `evaluate` (`ball.py:1166-1170`). The champion only minimises risk, so it steps to the first tile out of reach or holds.
+- The hold breaker (`ball.py:979-982`) counts only "hold" turns, and every "step" resets it (`ball.py:984`). The step-retreat loop (1,290 turns, 7.5% of all turns, coord.) therefore never breaks.
+- The task is kept. Once the enemy drops out of `rel`, `work()` walks back toward the same camp and the loop restarts.
+- Typical case: a v17 farmer that is committed ignores us until we are within reach+3 (`ball.py:959-970`). It farms on while our champion pins itself.
+- Breaking this is a **relative** gain against v17 in every game with contact. It is not a coin flip at R_GO. I left R_GO, R_STAY and GEM_CAUTION alone on purpose: v12 (death-scaled ratio) and v19 (bank thresholds) failed by tuning when fights or banks are taken. This plan changes what happens *after* a fight is refused, which nothing in the lineage has touched.
+
+Target maps (general situations first):
+- **A lone champion approaching a camp that a stronger enemy is farming.** v17 hovers until the enemy leaves; v20 takes another group at once. This should fire many times in every game.
+- **A champion chased after refusing a fight**, especially one with allies nearby. That case has no spawn pull today. It now backs off toward the spawn (healing, enemy ratio ×3 on our spawn) or toward the altar, instead of drifting sideways into walls.
+- **A carrier in a lost fight beside an altar.** Today it is never allowed to bank, because skirmish returns before `ball_want_bank` is reached. Now it starts the tribute when its HP covers the channel; damage doesn't interrupt a tribute (GameRules l.223).
+- **Lost turns:** the post-heal "wait-leader" (14-89 per game), the off-spawn S_GATHER stall, and teammates walking to groups another teammate has just captured (bug #3).
+- **Dev seats where v17 lost the mirror after dying first or losing its bag** (secondary, noisy):
+  - collision A: died r44, lost 176 gems
+  - corners A: 160 gems lost
+  - packs A: led at r500, lost 136
+  - lanes A: first death r99
+  - elkring B: 216 gems lost
+  - eight B and contest B: first deaths r56 and r31
+  - Judge by the aggregates in the test plan, not by these seats.
+
+Risk maps:
+- **monolith:** a stronger enemy at a half-cleared monolith now makes v20 drop it.
+  - Limits: `cap_since > 0` keeps captures under way, and the mark expires after 25 rounds.
+  - If monolith-type groups bleed, see Fallback 2.
+- **contest and eight (A seats):** v17-A wins these through early contact; ceding central camps could flip them.
+  - Limit: marks fire only on fights already judged lost (go=False). Fights v20 would take are unchanged.
+- **rushbait-v2 and expanse:** many enemy sightings near camps could push v20 onto long walks.
+  - Limits: the threat radius is 6 tiles and the mark lasts 25 rounds. Groups are only skipped, never penalised for longer.
+- **The altar run** could lead a carrier toward enemies.
+  - Limit: it applies only when we are nearer the altar than the nearest pressing enemy.
+
+Changes (implement all of them):
+
+1. **Stand-off breaker with a threat map.**
+   - **Files and functions:**
+     - `ball.py` `skirmish`, plus a new `BallMixin.mark_threat(rel)`
+     - `bot.py` `best_group`, and group init near `bot.py:196`
+     - `ball.py` `leader_idle`
+   - **New constants (ball.py):**
+     - `THREAT_R = 6`: Chebyshev distance from a group centre `(int(g.cx), int(g.cy))` to the enemy
+     - `THREAT_T = 25`: rounds a mark lasts
+     - `STANDOFF_SKIP = 3`
+     - `DASHERS = (T.VENDETTA, T.ISSAC, T.REN, T.VESPER)`
+   - **Group init:** add `g.threat_until = 0` next to `g.block_until = 0` (`bot.py:196`).
+   - **`mark_threat(rel)`:**
+     - `pts` = the positions `(e[0], e[1])` of every `e` in `rel` with `not self.at_home(e)`. Return if `pts` is empty.
+     - For each `g` in `self.groups`: if any point is within `THREAT_R` of the group centre, set `g.threat_until = max(g.threat_until, self.rnd + THREAT_T)`.
+     - Then, if `self.task is not None and self.task.threat_until > self.rnd and self.cap_since == 0`, drop the task: `self.task = None; self.cstate = 0; self.done_rank = -1`. This is the same reset `follower_turn` uses at `ball.py:657-659`. The ball byte releases the claim on the next write.
+   - **In `skirmish`:** insert after the committed early-return block (after `ball.py:970`) and before the fuel fallback (`ball.py:971`):
+     ```
+     if not go:
+         self.mark_threat(rel)
+         hit_next = any(cheb(px, py, e[0], e[1]) <= (2 if e[6] <= 1 else e[6]) + 1 + (2 if e[8] in DASHERS else 0) for e in rel)
+         if not hit_next:
+             self.skip_fight_until = self.rnd + STANDOFF_SKIP
+             self.hold_fights = 0
+             return None        # nobody can hit us next turn: leave and get on with (new) work
+     ```
+     - The existing skip gate (`ball.py:928-930`) then makes skirmish react only to enemies able to hit us.
+     - `ball_decide` falls through to `maybe_retreat`, `need_home_ball`, `ball_want_bank` and `leader_turn` → `work()` → `pick_task`, which now avoids the marked area.
+     - Spawn hold (`ball.py:440`) still applies, because it comes after skirmish.
+   - **`best_group`:** directly after the `block_until` test (`bot.py:1121-1122`), add `if g.threat_until > rnd: continue`. It sits before the claims test, so marked joins are skipped too.
+   - **`leader_idle`:** add `or g.threat_until > rnd` to the skip test at `ball.py:601`.
+   - **DEBUG counters:**
+     - `standoff-break`: the return None above
+     - `threat-drop`: a task dropped in `mark_threat`
+   - **Why:**
+     - (coord.) 77% of the 2,386 retreat-ending turns have no camp in view, and 1,290 are "step retreat".
+     - Research #3: the gold gap is farming time (3,303 against 5,924), and only 295 of it is kill gold.
+     - The breaker turns refused fights into farming. Leaving instead of hovering within one step of the enemy's reach also cuts exposure to pick-offs (research #1: first death decides 10 of 13).
+
+2. **Retreat with a destination, and bank under pressure** (`ball.py` `plan_fight` and `skirmish`).
+   - **Altar run for carriers** (`ball.py:1129-1131`): replace the condition with
+     `retreat and self.gems >= BANK_RUN_ANY and self.df_altar.get(self.pos) < df_spawn.get(self.pos) and self.df_altar.get(self.pos) < min(self.df_altar.get(e[5]) for e in near)`.
+     - New constant `BANK_RUN_ANY = 25`.
+     - This drops the `self.mode == 2` requirement. The rule now also covers champions on a bank trip with 25-39 gems, which the old ≥40 rule missed.
+     - `df_spawn` is then the altar field for both the hard flee and the regroup pull.
+   - **Soft-retreat pull for everyone** (`ball.py:1139`): `regroup = retreat and not hard and close_enemy` (drop `alone`).
+     - In `evaluate`, the regroup weight is `REGROUP_W` (3.0) when `alone`, else the new `REGROUP_W_BALL = 2.0`.
+     - Each ally's planner computes its own retreat, and `CO_W` (5 per tile beyond 3 of the centre) keeps them together, so the group falls back as a body.
+   - **Bank under pressure.** In `skirmish`, after change 1's block (still inside `if not go`, reached only when `hit_next` is true) and before `plan_fight`:
+     - Condition:
+       - `self.gems >= BANK_NEAR_GEMS` (20)
+       - some altar within `cambc.constants.SUBMIT_GEMS_RANGE` (same test as `do_bank`, `bot.py:1029-1030`)
+       - `eff > PRESS_BANK_MARGIN * T * inc`, where:
+         - `T = max(1, (self.gems + 9) // 10)`
+         - `inc` = `self.inc` + the sum of `unit_dps(e[8], e[3], e[7])` over `rel` enemies passing the `hit_next` test
+         - `eff = self.hp + self.shield_value()`
+         - `PRESS_BANK_MARGIN = 2.0`
+     - Action: `act = self.do_bank()`. If `act == "submit"`, return `"submit-press"`; otherwise fall through to `plan_fight`.
+     - Once the channel runs, `turn()` lets it continue (`bot.py:426`).
+   - **DEBUG counters:** `submit-press`, and turns where the altar field replaced the spawn field.
+   - **Why:**
+     - Research #2: the loser lost more gems in 10 of 12 mirror games, and eval_v17 losses lost 140.8 gems against 91.9.
+     - Banking is vetoed exactly in the danger zone. `BANK_NEAR` (`ball.py:502`) is effectively dead, because skirmish returns before `ball_want_bank`.
+     - With change 1, a carrier that outruns the threat reaches `ball_want_bank`. There the existing `d <= BANK_NEAR and gems >= 20` exception and `d <= 2` rule bank it with no veto change: the task was dropped, so `committed()` is False. A carrier still being pressed banks only if it can survive the channel.
+     - Stuns cancel a tribute (GameRules l.223). That costs a turn, not the bag, and the 2.0 margin covers the extra damage.
+
+3. **Reclaim lost SOLO turns** (`ball.py` `ball_decide`, `ball_byte`, init; `bot.py` `finish_group`).
+   - **(a) Bug #2:** right after `self.bstate = S_READY` (`ball.py:443`), add `if SOLO: self.elect()`. The SOLO branch of `elect` (`ball.py:291-301`) is cheap; it makes the champion S_LEAD and `is_leader` this turn, so it no longer returns "wait-leader".
+   - **(b) Bug #1:** right after that, add `if SOLO and self.bstate == S_GATHER and not on_spawn and self.mode != 1: self.mode = 1`. The champion that began heading home resumes `go_home` (`ball.py:447-449`) instead of idling as a leaderless follower after a bank detour reset its mode.
+   - **(c) Bug #3, capture broadcast:**
+     - Init: `self.done_b_rank = -1; self.done_b_until = -1` next to `ball.py:210`.
+     - `finish_group` capture branch (`bot.py:1316-1319`): set `self.done_b_rank = g.rank; self.done_b_until = self.rnd + 1`.
+     - `ball_byte`: after the `if not alive` return, add `if self.bstate != S_GATHER and self.rnd <= self.done_b_until and 0 <= self.done_b_rank < 61: return (S_DONE << 6) | (self.done_b_rank + 1)`.
+     - The 2-round window guarantees every teammate's `ball_read` (`ball.py:255-263`) sees it, setting that group's `ready_at` and resetting `hpleft`. The cost is that our new task's claim is hidden for 2 rounds.
+   - **DEBUG counters:** "wait-leader" turns (expect about 0), and S_DONE broadcasts against CAPTURED log lines (expect about equal).
+   - **Why:** walking is 50.1% of turns (coord.). Teammates currently re-pick just-captured groups with stale `ready_at` and learn it only within 8 tiles (`peek_respawn`). The two state bugs are traced in the code review (`2_code_review_v17.md` bugs 1-3). These are pure time gains for v20 in every game.
+
+**Test plan for the implementer** (dev maps only: collision, contest, corners, eight, elkring, expanse, lanes, monolith, packs, rows, rushbait-v2).
+
+The noise floor is ±2 games per 34 (null-variant result 16-18, 9 of 28 seats re-rolled), so judge by aggregates and mechanism, not seats.
+1. **Smoke:** `cambc run v20 v17 --map lanes` and `--map monolith`, with no ERR lines. Check that `standoff-break`, `threat-drop`, `submit-press` and S_DONE all appear in the DEBUG log.
+2. **DEBUG tally**, v20 as A against v17 on lanes, eight, contest, collision and rows (the coordinator's set, so it compares with the 17,215-turn baseline):
+   - "step retreat" + "hold retreat" falls from about 10% of turns to ≤ 5%
+   - `standoff-break` ≥ 15 per game
+   - "wait-leader" about 0
+   - `submit-press` ≥ 1 per game on at least 3 of the 5 maps, with fewer than 1 in 4 followed by that champion's death within 10 rounds
+3. **Aggregate over all 22 dev games** (`python run_matches.py v20 v17 --tag v20-dev` restricted to dev maps, or the 22 `cambc run` games), compared with the v17-vs-v17 mirror figures in the research section. All three must hold:
+   - mean v20 deaths before r300 below v17's in the same games
+   - gems lost per game down at least 20% against the mirror
+   - v20 submitted by r500 up
+4. **Results:** ≥ 13/22 dev games against v17, and ≥ 12/22 against each re-rolled v17 (no-op-loop variants) the coordinator supplies. One run at 11/22 with the step 2 and 3 aggregates improved is not a reason to tune constants per seat.
+
+Fallback (in this order; change constants only):
+1. **If v20 turns passive** (gold earned or gems collected per game fall against the mirror while deaths fall): `THREAT_T` 25→12 and `THREAT_R` 6→4, then drop tasks in `mark_threat` only when `not self.committed()`.
+2. **If monolith-type big groups get abandoned** (`threat-drop` while `g.hpsum < 0.5 * g.hp_total`): keep the task when the group is more than half cleared and only mark the other groups. This is a general investment rule, not a map rule.
+3. **If `submit-press` loses bags** (carrier deaths during a channel): `PRESS_BANK_MARGIN` 2.0→3.0, and skip the rule when a `hit_next` enemy is a stunner (`T.RYTH, T.MARCELLA, T.TAVI, T.PRISM, T.REN, T.CASSI`).
+4. **If the group splits under the all-retreat pull:** go back to `regroup` only when `alone` (v17 behaviour), keeping the altar-run change.
+5. **If claim collisions show** (two teammates on one group after a capture): drop 3(c) and keep 3(a) and 3(b).
