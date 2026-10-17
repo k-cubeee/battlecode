@@ -9,9 +9,10 @@
     "v8",
     "v9"
   ],
-  "next_version": 10,
-  "total_cost": 4.433139499999999,
+  "next_version": 11,
+  "total_cost": 4.814304599999999,
   "last_results": [
-    "eval_v9"
+    "eval_v9",
+    "eval_v10"
   ]
 }
