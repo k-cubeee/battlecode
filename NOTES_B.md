@@ -151,3 +151,39 @@ I expect fewer deaths and more kills, since the 9.1 deaths per match and the 143
 **Smoke test:** `cambc run b3 b2 --map stampede` finished with b3 at 0 crashes.
 - Evaluation (results/evalB_b3): b2 44%, b1 85%, v1 85%; overall 72%
 - Status: rejected, moved to rejected/b3. Lesson: these changes did not beat b2.
+
+### Analysis of b2 (second pass, with b3 data) — 2026-10-17 (results/arena_2, results/evalB_b2, results/evalB_b3)
+Record: evalB_b2 30-4 (all 4 losses on fragment, 0-4); evalB_b3 (b3 vs b2) 15-19 for b3, so b2 beat b3 19-15, and b3 was 0-6 on fragment; arena vs Team A (v9): **0-34**, all "reached 1000 gems" for Team A. Weakest maps/side: fragment (every b2 game vs b1/v1 lost), stampede and swirl in the arena. In evalB_b3 the B side won 82% (42-9) vs 61% for side A, partly because ties go to team B (4 games "tied on gems, gold and kills; team B wins ties", evalB_b3/summary.json end_reasons).
+
+1. **b2 has no answer to enemy champions: it collects a quarter of Team A's gems and loses 9.1 champions per match**
+   - Evidence: results/arena_2/summary.json side_stats (b2 = opponent): deaths 9.1 vs 0.6, kills 0.4 vs 8.6, champion damage taken 14341 vs 2596, gems collected 276 vs 1098, submitted 185 vs 1036 (67% vs 94%), earned gold 1650 vs 5645. b3's attempted fix (retreat + one ability cast + bank at >=30 gems) went 15-19 vs b2 (evalB_b3/summary.json by_opponent b2), so retreat/bank heuristics alone are not enough.
+   - Cause in code: `bots/b2/src/bot.py:146-149` (play_turn) basic-attacks only the first enemy already in range and never moves toward enemies or focuses. `bot.py:134` reacts only below 35% HP. No ability is ever cast (`me.abilities()` is never called). `bot.py:110` buys Strength or Health at random (`below(2)`, line 118), with no role logic.
+   - Suggested fix: make champions fight as a group. If an enemy champion is visible, move to a tile within attack range of the lowest-HP visible enemy and near allies instead of farming, and cast ready damage abilities on it. Don't retreat on HP alone (b3's retreat was rejected). Check arena deaths < 5 and kills > 3 per match.
+   - Confidence: medium-high for the diagnosis (the damage/kill split is large); low for how much untried fight logic would recover.
+
+2. **Champions all go for the nearest camp group and bank after every gem; gem income is the main reason Team A wins by round ~670**
+   - Evidence: arena_2 gems 276 vs 1098 (above). evalB_b2/summary.json L2788-2917 (fragment, b2 cand-A vs b1): b2 collects 742 gems vs b1's 1034 even though b1 had 29 deaths to 1 kill (Vesper Vale 11, Prism 9, Marcella 9). b2's three champions are very unequal: Varg 513 gems, Marcella 178, Ryth 51. b2's monster damage taken is 30460 vs 64940 for b1, i.e. b2 farms camps less.
+   - Cause in code: `bots/b2/src/bot.py:79-98` (farm_camps) builds one Bitboard from every group's spawn tiles and calls `move_towards_closest(goals)` (bot.py:30-51), so champions leaving spawn together choose the same nearest group. There is no per-champion group assignment. `bot.py:151-163` also sends a champion to the altar for any `gem_count() > 0`, costing a round trip per few gems.
+   - Suggested fix: assign each champion a camp group by index (groups sorted by distance from spawn, champion i takes group i mod n) and bank only at >= 25 gems or low HP. Test with collectedGems per match on a bench run (target > 600) before judging.
+   - Confidence: medium (per-champion gems are solid; clustering is inferred from code and Ryth's 51 gems, not from position traces).
+
+3. **Fragment is lost every time (0-4 b2, 0-6 b3) and runs to the 2000-round limit**
+   - Evidence: evalB_b2 by_map fragment 0-4; evalB_b3 fragment 0-6 (e.g. results/evalB_b3/b2/fragment__cand-A.txt: b3 284 gems vs b2 706). In the b2 vs b1 game b2 had the better kills/deaths (4/1 vs 1/29) but lost on gems 684 vs 976 at the round limit. Fragment drafts only 3 champions per team (Ryth, Marcella, Varg), so per-champion farming matters more.
+   - Cause in code: hypothesis. Same clustering as #2 with only 3 champions, plus `move_towards_closest` (bot.py:37-40) returns False when `goals &= ~blocked | camp_tiles` is empty, and farm_camps then does nothing. `Camp.state()` (ASLEEP/DEAD, new in 2.2) is not used.
+   - Suggested fix: first log each champion's position and the `move_towards_closest` result every 100 rounds (`cambc run b2 b1 --map fragment`), then add a fallback when it returns False (toward the least-visited camp group or the map centre). Target: 2 of 4 fragment wins.
+   - Confidence: low-medium (outcome solid, cause not traced).
+
+Fix first: #2 (camp-group assignment and banking threshold). It's the smallest change, it targets the 4x gem gap and the fragment losses, and b3 showed a heavier fight/retreat rewrite (#1) did not beat b2. Do the fight logic (#1) as a separate version so the effects can be measured separately.
+
+### b4 — rejected (24% vs b2)
+- Based on: b2
+- Changes: I made `b4` and it beat `b2` on fragment in the smoke test, with 0 crashes. `b4` reached 1000 gems at round 1131 and finished with 1008 gems to `b2`'s 102. It is a single deterministic match, so it only shows the bot runs and doesn't measure strength.
+
+The changes are in `bots/b4/src/bot.py` and implement analyst finding #2:
+- **`farm_camps(slot)`:** each champion now heads for its own camp group (group `slot mod n`) instead of the nearest of all groups combined. If that group is empty or respawning, it falls back to every group. Before, champions leaving spawn together all went to the same group.
+- **`Bot.__init__` and `play_turn`:** each champion gets a `slot` on its first turn, computed as `p.x*7 + p.y*3 + below(3)` from its spawn position plus a small random offset. This is a hash, not a guaranteed distinct index, so two champions can still pick the same group. I couldn't find a champion id in the API docs, which is why I used the position. I didn't find `x` and `y` documented for the position type, but the run didn't crash.
+- **`play_turn`:** a champion now banks gems only at 25 or more, or when it carries any gems and is below 50% HP. Before, it left for the altar after a single gem, which cut farming time.
+
+Why it should win: the aim is to raise gem income, which was about a quarter of Team A's, by spreading champions across camp groups and cutting altar trips. The fight logic from finding #1 is left for a separate version so its effect can be measured on its own.
+- Evaluation (results/evalB_b4): b2 24%, b1 56%, v1 56%; overall 45%
+- Status: rejected, moved to rejected/b4. Lesson: these changes did not beat b2.
