@@ -187,3 +187,41 @@ The changes are in `bots/b4/src/bot.py` and implement analyst finding #2:
 Why it should win: the aim is to raise gem income, which was about a quarter of Team A's, by spreading champions across camp groups and cutting altar trips. The fight logic from finding #1 is left for a separate version so its effect can be measured on its own.
 - Evaluation (results/evalB_b4): b2 24%, b1 56%, v1 56%; overall 45%
 - Status: rejected, moved to rejected/b4. Lesson: these changes did not beat b2.
+
+### Analysis of b2 (third pass, with b3 and b4 data) — 2026-10-17 (results/arena_2, results/evalB_b3, results/evalB_b4)
+Record: evalB_b3 (b3 vs b2) b2 won 19-15; evalB_b4 (b4 vs b2) b4 won 24%, so b2 beat b4 about 76%; arena vs Team A (v9): **0-34**, every game "reached 1000 gems" for v9 (average round 679). Weakest: stampede (b2 21 and 23 deaths, 0 gems on both sides, results/arena_2/summary.json L5374-5620), swirl, corners. By side: no difference (17-0 each side for Team A).
+Two heuristic rewrites (b3: retreat, one cast, bank at 30 gems; b4: per-champion camp group, bank at 25 gems) both lost to b2. So b2's weakness is probably not in the farm or bank heuristics. It is that it cannot contest the enemy.
+
+1. **b2 walks repeatedly into an enemy it cannot beat, and never uses abilities or fighting builds**
+   - Evidence: arena_2 stampede cand-B (summary.json L5557-5620): b2 has 23 deaths, 1 kill, 0 gems, 0 monster damage taken, 61788 champion damage taken, 3150 gold spent. Cand-A: 21 deaths, 0 kills, 43920 damage taken. So on stampede b2 never reaches a camp: it dies to Team A's champions over and over (where is a hypothesis; I read no traces). Arena average: deaths 9.1 vs 0.6, champion damage done 2596 vs 14341. Team A drafts Varg, Ryth, Stellar, Marcella, Tavi; b2 drafts Ryth, Marcella, Varg, Vendetta, Vesper Vale (arena_2/b2/corners__cand-A.txt:6-7).
+   - Cause in code: `bots/b2/src/bot.py:146-149` (play_turn) only basic-attacks the first enemy already in range. `me.abilities()` is never called, there is no focus fire, and above 35% HP (bot.py:134) there is no reaction to enemies at all. Stat choice is random per champion (bot.py:118, `below(2)`).
+   - Suggested fix: one narrow change in play_turn: if an enemy champion is visible, cast each ready ability at it (one per turn) and attack the lowest-HP visible enemy in range instead of the first. No retreat change (b3 showed that did not help). First confirm in a smoke run that the cast actually fires (b3 wrapped it in try/except and it was never shown to fire). Target: arena deaths < 5 on stampede.
+   - Confidence: medium (damage and death numbers are solid; what exactly kills b2 is not traced).
+
+2. **b2 earns a quarter of Team A's gold, and champions don't shop while dead or away from spawn**
+   - Evidence: arena_2 side_stats opponent: collectedGems 276 vs 1098, submittedGems 185 vs 1036 (67% vs 94%), earnedGold 1650 vs 5645, spentGold 1300 vs 5034. Corners cand-A: b2 earns 1218 gold vs 4752 and has 80 gems. Gems carried are lost on death (GameRules.md:365), and b2 has 9.1 deaths per match.
+   - Cause in code: `bots/b2/src/bot.py:129-131` shops only when standing in the spawn region, and `bot.py:124` returns early when dead, although shopping while dead is allowed (GameRules.md:361). `bot.py:151-163` sends a champion with even 1 gem to the altar without checking `danger_tiles()` on the way. Neither b3 nor b4 changed the shopping path.
+   - Suggested fix: shop every turn including while dead (move the buy call before the alive check), and measure spentGold / earnedGold in a bench run (target > 90%).
+   - Confidence: low-medium (the ratio is solid; the win-rate effect is a hypothesis, since low gold mostly follows from low gems).
+
+3. **Fragment and other 2000-round maps are lost on gems; cause untraced**
+   - Evidence: evalB_b2 fragment 0-4; evalB_b3 fragment 0-6 (results/evalB_b3/b2/fragment__cand-A.txt: b3 284 gems vs b2 706); evalB_b4 by_map has several maps at 0.0 (summary.json L93, L141, L157, L173). The b4 smoke test beat b2 on fragment (1008 vs 102 gems) but b4 lost the full evaluation (24%), so one match said little. Fragment drafts only 3 champions.
+   - Cause in code: hypothesis. `bots/b2/src/bot.py:37-40` (move_towards_closest) returns False when no goal tile is free, and farm_camps (bot.py:79-98) then does nothing. The respawn check (bot.py:89-91) applies only to groups whose spawn tiles are visible, so a champion can wait at a group that is respawning. `Camp.state()` is unused.
+   - Suggested fix: log each champion's position and the move_towards_closest result every 100 rounds on `cambc run b2 b1 --map fragment` to confirm idling, then add a fallback (nearest non-respawning group, else map centre).
+   - Confidence: low.
+
+Fix first: #1 as a single narrow change (ability cast plus lowest-HP target, no retreat or banking changes). b3 and b4 each changed several things at once and neither beat b2. Judge it on arena kills and deaths, not only on win rate against b1 and v1.
+
+### b5 — rejected (50% vs b2)
+- Based on: b2
+- Changes: I changed `bots/b5/src/bot.py` so champions use their abilities and focus fire on enemy champions. The smoke test ran clean, but it can't show whether the change helps.
+
+**Changes**
+- **New `cast_abilities(enemies)`:** it loops over `me.abilities()`. For each slot that is ready and can target enemies, it casts at the lowest-HP enemy inside `valid_tiles()`. At most one cast succeeds per turn, and any API error just skips that slot.
+- **`Bot.play_turn`:** the old "attack the first enemy in range" loop now builds a list of visible, living enemy champions sorted by health. It casts abilities first, then basic-attacks the lowest-HP enemy in range. I made no retreat, banking or stat-choice changes.
+
+**Why it should win:** b2 never cast a spell and spread its basic attacks over whichever enemy it happened to see first. Casting on cooldown adds damage and stuns. Focusing the lowest-HP enemy should turn lost fights into kills. This is analyst finding #1 only, so arena kills and deaths measure it directly.
+
+**Smoke test:** `cambc run b5 b2 --map stampede` ended 0 crashes for both bots, 0 kills, 0 deaths, and b5 won on gold earned (8071 vs 8008). That map shows no fights in this match, so the new combat code probably never ran.
+- Evaluation (results/evalB_b5): b2 50%, b1 79%, v1 79%; overall 70%
+- Status: rejected, moved to rejected/b5. Lesson: these changes did not beat b2.
