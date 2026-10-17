@@ -4,9 +4,10 @@
     "b1",
     "b2"
   ],
-  "next_version": 3,
-  "total_cost": 1.2800352,
+  "next_version": 4,
+  "total_cost": 1.5519563,
   "last_results": [
-    "evalB_b2"
+    "evalB_b2",
+    "evalB_b3"
   ]
 }

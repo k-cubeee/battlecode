@@ -113,3 +113,41 @@ lineups.
 Contest still ends with 0 gems for both sides, so banking gems on that map remains a problem for a later version. Casting abilities (the rest of #3) is still not done.
 - Evaluation (results/evalB_b2): b1 88%, v1 88%; overall 88%
 - Status: promoted, new champion.
+
+### Analysis of b2 — 2026-10-17 (results/evalB_b2, results/arena_2)
+Record: evalB_b2 30-4 (88%; b1 88%, v1 88%); all 4 losses are fragment (0-4). Arena vs Team A (v9): **0-34**, every game "reached 1000 gems" for v9 (about 436-1076 rounds, corners cand-A 517). Per match (results/arena_2/summary.json side_stats, b2 = opponent): deaths 9.1 vs 0.6, kills 0.4 vs 8.6, gems collected 276 vs 1098 (submitted 185 vs 1036), earned gold 1650 vs 5645, champion damage done 2596 vs 14341, champion damage taken 14341 vs 2596, monster damage taken 8460 vs 18523. Worst maps: stampede (b2 21 and 23 deaths, 0 gems on the side with those deaths), swirl (15 and 10 deaths), rushbait-v2 (5 deaths, 286 gems).
+
+1. **b2 now dies to enemy champions and neither fights back nor avoids them**
+   - Evidence: b2 takes 14341 champion damage per match vs 8460 monster damage (arena_1 b1 deaths were mostly camps; the problem has moved). Stampede cand-A (arena_2 summary.json ~L5481): 21 deaths, 43920 champion damage taken, 0 monster damage, 0 gems, 0 kills. v9 loses only 0.6 champions per match, so b2 has no deterrent. Corners cand-A: Ryth, Marcella, Vendetta, Vesper Vale 2 deaths each, Varg 1, 0 kills; Vendetta and Vesper Vale collect 35 gems and submit 0 (lost on death).
+   - Cause in code: `bots/b2/src/bot.py:134-144` and `:146-149` (play_turn). The danger-aware retreat only triggers below 35% HP. Above that, the bot walks into enemy range, basic-attacks the first enemy already in range, and otherwise banks or farms. `danger_tiles()` (bot.py:54-66) is not used while banking (`move_towards_closest(goals)`, bot.py:162) or farming. There is no retreat when outnumbered, no focus fire, and no ability use (`me.abilities()` is never called).
+   - Suggested fix: when a visible enemy champion is within about 6 tiles and enemies outnumber nearby allies (or carried gems > ~50), step to non-danger tiles / toward the altar instead of farming. Add one ability cast per turn (the unfinished half of old finding #3). Measure b2 deaths per match on stampede and swirl in an arena run (target < 5).
+   - Confidence: medium-high (damage split is clear; no individual fight traces were read).
+
+2. **Gem income is a quarter of Team A's; champions cluster and bank inefficiently**
+   - Evidence: b2 collects 276.4 and submits 185.3 (67%) vs 1097.7 and 1035.8 (94%) for v9. Earned gold 1650 vs 5645, so b2 spent 1300 vs 5034 on shards. In corners cand-A Varg has 0 gems, 0 gold, 0 items bought and still died once; Ryth 108 and Marcella 144 submitted, the other three about 0-35.
+   - Cause in code: `bots/b2/src/bot.py:151-163` sends any champion carrying even 1 gem to the altar, ignoring `danger_tiles()` on the way. `farm_camps` (bot.py:79-98) targets the union of all camp spawn tiles, so all five champions head for the same nearest camp group, ignoring camp strength and allies' positions; priority is random (bot.py:167). Stat choice is `below(2)` per champion regardless of role (bot.py:118).
+   - Suggested fix: spread champions across camp groups (exclude groups an ally within ~5 tiles already targets) and bank only above ~40 gems or when HP is low. Compare collectedGems per match in a bench run (goal > 600).
+   - Confidence: medium (rates are solid; causes inferred from code, not traced).
+
+3. **Fragment is a total loss and several maps run to the 2000-round limit**
+   - Evidence: evalB_b2/summary.json by_map fragment 0-4 (rounds 2000 in both b1 and v1 games, L2919/L3058 for b1); other 2000-round games: contest, pilgrimage cand-B, rows cand-A, stampede, swirl cand-A. b2 also banked 0 gems on contest in its own smoke test (above).
+   - Cause in code: hypothesis only. `bots/b2/src/bot.py:79-98` (farm_camps) just moves toward camp spawn tiles. If they are unreachable or `blocked_tiles()` (bot.py:21-27, includes altars and enemy spawn) blocks the route, `move_towards_closest` returns False and the champion idles with no fallback. Camp ASLEEP/DEAD `Camp.state()` (new in 2.2) is not used.
+   - Suggested fix: run `cambc run b2 b1 --map fragment`, log each champion's position every 100 rounds to confirm they are stuck, then add a fallback (move toward the nearest altar or map centre) when `move_towards_closest` returns False. Target: fragment 2/4 wins.
+   - Confidence: low (cause not traced).
+
+Fix first: #1. Arena games are decided by deaths: b2 loses 9.1 champions per match, which destroys its carried gems and gold, so much of #2 follows from it.
+
+### b3 — rejected (44% vs b2)
+- Based on: b2
+- Changes: I've changed `bots/b3/src/bot.py`. The smoke test on stampede ran with 0 crashes, but it doesn't show the change helps. It was a 2000-round draw on gems, 0 kills and 0 deaths for both sides. b3 won only on the gold tiebreak, 8071 to 8008.
+
+**What changed** (finding #1, plus the banking part of #2):
+- **Ability cast:** the new `Bot.cast_ability` uses one ready damage, crowd-control or area-damage ability per turn on the nearest enemy champion. It only fires if the ability can target enemies and the target is within `info().range`. The whole call is wrapped in `try/except` because I couldn't confirm which abilities the draft gives each champion.
+- **Retreat:** `Bot.play_turn` now counts visible enemy champions and allies within 7 tiles. If enemies outnumber us, or we're below 60% HP and not ahead, it walks toward the ally spawn region. If it can't move and is below 60% HP, it casts and recalls.
+- **Banking:** a champion now goes to the altar only with 30 or more gems, or with any gems when below 60% HP. Before, any single gem sent it to the altar, even through enemy fire.
+
+I expect fewer deaths and more kills, since the 9.1 deaths per match and the 14341 champion damage taken were the biggest problems in the analysis. I did not touch finding #3 (fragment). I also did not spread the champions across camp groups, which was the other half of #2.
+
+**Smoke test:** `cambc run b3 b2 --map stampede` finished with b3 at 0 crashes.
+- Evaluation (results/evalB_b3): b2 44%, b1 85%, v1 85%; overall 72%
+- Status: rejected, moved to rejected/b3. Lesson: these changes did not beat b2.
