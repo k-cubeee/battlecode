@@ -1,6 +1,6 @@
 # Bot version notes
 
-**Current champion: v8**
+**Current champion: v9**
 
 Baseline: v1. Chronological log below: version entries and analyses are appended
 at the end. Promotion gate: >= 55% head-to-head vs the current champion over a full
@@ -239,4 +239,60 @@ Fix first: #1 (a one-line PREFS[5] change; 12 deterministic losses point the sam
 - Based on: v6
 - Changes: draft.py PREFS[5]: Tavi picked 5th again instead of Willow (fix #1 of the bench_v6 analysis). Built by the strategist in the run that crashed in the smoke test; evaluated by hand with run_matches.py.
 - Evaluation (results/eval_v8): v6 68%, v5 50%, v3 71%; overall 63%
+- Status: promoted, new champion.
+
+### Analysis of v8 — 2026-10-17 (results/eval_v8, results/arena_1)
+Record: eval_v8 64-38 (v3 24-10, v5 17-17, v6 23-11), 0 crashes, 0 bot faults. Arena_1 vs b1: 34-0, avg winning round 669; v8 died 0.5 times per game against b1's 18.0. Weakest in eval: ten maps went 3-3 (ambush, collision, contest, eight, expanse, fragment, interlock, packs, rushbait-v2, swirl). Side A went 28-23 and side B 36-15. v8 differs from v5 only in the expanse draft, so vs v5 it is a pure mirror. On every map the same side won both swaps, which gives exactly 17-17 (summary.json `matches[]`, identical rounds per pair, e.g. contest r1577/r1577, stampede r1409/r1409). So the gate vs v8 will also be a mirror. A change has to win from both sides on some maps to pass 55%. The slowest arena wins are contest r1367/r1400, stampede r1075/r1356, ambush r811/r826 and pilgrimage r778/r829. In eval they are contest r1577-2000 and stampede r1409-1588. The bot was read only; Bash was not used. Numbers come from the two summary.json files and the named stats.json timelines.
+
+1. **On big-camp maps (contest, stampede) no gems arrive for the first 590-760 rounds: big camps are taken solo or not at all**
+   - Evidence: on contest every capture is exactly 200 gems (monolith) and is never split. `results/arena_1/b1/contest__cand-A.stats.json` per-champion `gems` timelines: first capture is Varg at r757, then Ryth r858, Varg ~r1043, Ryth ~r1160 and ~r1330. b1 scored 0 gems in that game, so nobody contested it, and v8 still needed 1367 rounds. Stellar, Marcella and Tavi collected 0 gems (summary.json). On stampede every capture is exactly 360 gems. In `stampede__cand-A.stats.json` the first capture is Varg at r586 and the second at r790. In `stampede__cand-B.stats.json` the first is Tavi at r722, then Varg at r952 and r1233. Ryth, Stellar and Marcella collected 0 gems on both sides. Each 360-gem bag was carried 71-130 rounds before it was banked (Varg B: 360 held from r952 to r1075; the tribute alone is 36 turns). These 4 games are the 4 slowest of the 34 arena wins (1075-1400 vs the 669 average). The pattern repeats in eval: stampede vs v3 A had Stellar, Marcella and Tavi at 0 gems with 1722-4430 gold each (r1588), and contest vs v3 B ended at the round limit with 600 of v8's 800 collected gems lost.
+   - Cause in code: `bots/v8/src/bot.py:1084,1110` (`best_group`): `cap_inc = 0.15 * maxhp / mult` skips any group with `stsum > cap_inc`. A monolith (strength 200, tables.py:6) needs 1333 effective HP, or 952 with the Jungle emblem. Stellar and Tavi (750 base HP) and anyone who hasn't shopped never qualify. With SOLO (ball.py:89) every champion is a leader (`pick_task`, ball.py:681). It is limited to `BALL_PARTY = 2` (ball.py:65), and a join is only taken when the time saved beats 1.15x its cost (bot.py:1181-1184). That test ignores the 100+ gems the joiner would share, which is why every 200- and 360-gem capture went to a single champion. I don't know which monsters make up the 360-gem stampede group (map not parsed). That it is gated the same way is a hypothesis.
+   - Suggested fix: for groups with `g.gems >= 150`, (a) allow party 3 (`party = 3 if g.gems >= 150 else party`) and (b) in the join loop, add the joiner's share to the join score (e.g. `score = max(score, (g.gems + kappa*g.gold) / (n0+1) / cost)`). That way the champions that currently farm gold clusters help clear the monolith or herd. Leave `cap_inc` unchanged for solo picks. To test, check the round of first capture and the winning round on contest and stampede vs b1 and vs v8 (both sides). The mirror-pair rounds should drop from both sides.
+   - Confidence: medium on the pattern (deterministic capture timelines, 4 arena + 4 eval games). Low-medium on which line dominates, cap_inc or the join test.
+
+2. **Champions that don't die never shop: gold is wasted in exactly the games we dominate**
+   - Evidence: in the arena, where v8 dies 0.5 times per game, it leaves 1,112 gold unspent per game (5,881 earned, 4,769 spent, 19%). In eval, where it dies 7.4 times per game (dead champions can shop, GameRules l.129/361), only 453 is left (5,041 vs 4,587, 9%). Extreme case: `results/arena_1/b1/stampede__cand-B.stats.json` Stellar `gold` timeline rises +70 every 23-31 rounds from r28 to r1356 and ends at 3,640. That is two 35-gold clusters cycled all game, with 0 spent, 0 items, 0 gems, 0 damage taken and 0 deaths. Arena stampede A: Marcella earned 2,040, spent 0, 0 items. Arena pilgrimage A (r778, 0 deaths): Varg 1,035 earned, 190 spent; team 4,318 earned, 2,780 spent. Since nobody shops, maxHP stays low, which keeps the big camps of #1 blocked by `cap_inc`. The two problems feed each other.
+   - Cause in code: `bots/v8/src/ball.py:488-494` (`need_home_ball`) only sends a champion home to shop when `df_spawn <= 18`. Low HP (`HOME_HP`) is the only other trigger. A healthy champion farming gold clusters further than 18 steps out never goes home. This has been flagged in the v3, v4 and v6 analyses and was never tried. I repeat it because the stampede timeline now shows the worst case directly.
+   - Suggested fix: in `need_home_ball` add `if self.gold >= 450 and not self.field_shop and not self.enemies and not self.committed() and self.task is None: return True` (no ball to split, SOLO = 1). To test, check unspent gold per game in the arena (target < 10%) and that stampede B's Stellar buys items. Then check the winning rounds on stampede, pilgrimage and ambush.
+   - Confidence: high that the gold sits unspent. Medium that fixing it shortens games.
+
+3. **Marcella does almost nothing on ambush (4 of 4 games)**
+   - Evidence: v8's Marcella on ambush. Arena A (r826): 0 gems, 140 gold, 0 deaths, 0 champion damage taken. Arena B (r811): 36 gems, 160 gold, 0 deaths. Eval A vs v3/v6 (r908, a loss 226-1068): 0 gems, 100 gold. Eval B vs v3 (r1027): 0 gems, 0 gold, 3 deaths (summary.json). Other maps give her 130-490 gems. `results/arena_1/b1/ambush__cand-A.stats.json`: her `earnedGold` stays at 140 from r113 to r827 (714 rounds with no reward). Yet `monsterDamageDone` climbs in bursts of ~10-30 turns about every 80 rounds, to more than 4,470. `monsterDamageTaken` starts at r185 at ~80 per turn. So she keeps attacking a camp, leaves, comes back, and never captures anything.
+   - Cause in code: not isolated (hypothesis). The ~80-round cycle at ~80 damage per turn fits a camp she can't clear before HP < 45% (`HOME_HP`, ball.py:29 -> `need_home_ball`). After the recall she goes back to the same group, because `best_group` (bot.py:1145-1150) costs the extra trips with `cycles_for` and still ranks it best. Either the group is reset or captured by someone else meanwhile, or the damage estimate (`group_estimate`, bot.py:1032) is wrong for that group's layout. A DEBUG run of `cambc run v8 v8 --map ambush` that prints Marcella's `task` and its `est` would settle it.
+   - Suggested fix: after a champion leaves a group for a recall without capturing it twice in a row, block that group for that champion for ~150 rounds (`g.block_until`, as in bot.py:1143) so it farms elsewhere. To test, check Marcella's gems on ambush (both sides) and the ambush mirror pair vs v8.
+   - Confidence: high that Marcella is idle (4 of 4 games, deterministic). Low on the mechanism.
+
+Not ranked: the eval losses are still mirror games decided by first contact and lost bags (contest B vs v3 lost 600 of 800 collected gems; ambush A collected 438 and submitted 226). The analyses above already cover this (`ball_want_bank`, ball.py:468-475), and it is still untried.
+
+Fix first: #1. It targets the slowest games in both the arena and the eval, it shows up from both sides (so it can beat the v8 mirror on contest and stampede), and it is a contained change in `best_group`. #2 is a one-liner that helps #1, so it can go into the same version if the strategist wants. Otherwise do it next.
+
+### v9 — promoted (59% vs v8)
+- Based on: v8
+- Changes: I've built v9 from v8 with two focused changes. In smoke tests it never crashed, beat v8 on stampede from both sides, and split contest and monolith 1–1 by side, which is no worse than v8 against itself. These are single matches, so they show it runs, not that it's stronger.
+
+**Finding #1, as one part of the fix.** The first version did what the analyst suggested and let champions start big camps hoping teammates would join, including monoliths. It was clearly worse: it lost contest 600–800 and lost stampede from both sides (v9 earned about a third of v8's gold). Leaving out the monolith and the early-start part is what made it work:
+- **`bot.py:best_group` (joining a teammate):** groups worth 150+ gems with 2 or more monsters can now take 3 champions instead of 2 (`BIG_PARTY`, new `is_big()` helper). For these groups the join math treats the party's health as shared, since camps hit the nearest champion. The join score also counts the joiner's own share of the gems. A champion only joins if the party doesn't waste much champion-time (at most 1.25× the time it saves).
+- **`bot.py:work_once`:** the "too many champions on one camp, the extras leave" check uses the same limit of 3 for these groups.
+- **Not changed:** the 15%-health solo gate on starting a camp. Lone monoliths are excluded, because three champions sitting on one for a long fight just got caught by enemies on contest.
+
+**Finding #2:** `ball.py:need_home_ball` now also sends a champion home to shop when it has 450+ gold (`GOLD_HOME_FAR`), no enemy in view, and no camp fight or capture in progress. The analyst's "has no task" test almost never fires, because a new task is picked in the same turn a capture ends, so I used "not in a fight" instead. On its own this change flipped contest side A from a loss to a 1000–0 win.
+
+**Why it should win:** the v8 mirror games go to whichever side has the edge on the map, so v9 needs wins from both sides. Stampede now gives that (side A 1080–0, side B 1080–360), and contest and monolith are no worse than v8's split.
+
+**Smoke tests** (crashes 0 for v9 in every match):
+
+| Match | Result |
+|---|---|
+| v9 vs v8, contest | v9 wins 1000–0 (round 1549) |
+| v8 vs v9, contest | v8 wins 1000–0 (side split, as with v8 against itself) |
+| v9 vs v8, stampede | v9 wins 1080–0 |
+| v8 vs v9, stampede | v9 wins 1080–360 |
+| v9 vs v8, monolith | v8 wins 1010–652 |
+| v8 vs v9, monolith | v9 wins 1032–908 (side split) |
+| v9 vs v1, ambush | v9 wins 1034–108 |
+
+I couldn't run `diff` or `py_compile` because the shell only allows cambc, ls and wc, so the matches served as the compile check. The only edited files are `bots/v9/src/bot.py` (new constants `BIG_GEMS`, `BIG_PARTY`, `BIG_EFF`, plus the `is_big()` helper) and `bots/v9/src/ball.py` (new `GOLD_HOME_FAR`). Finding #3 (Marcella idle on ambush) isn't addressed.
+
+**Next step:** `python run_matches.py v9 v8 v1 --tag v9-eval`
+- Evaluation (results/eval_v9): v8 59%, v6 68%, v5 59%; overall 62%
 - Status: promoted, new champion.
