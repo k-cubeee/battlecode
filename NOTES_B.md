@@ -225,3 +225,43 @@ Fix first: #1 as a single narrow change (ability cast plus lowest-HP target, no 
 **Smoke test:** `cambc run b5 b2 --map stampede` ended 0 crashes for both bots, 0 kills, 0 deaths, and b5 won on gold earned (8071 vs 8008). That map shows no fights in this match, so the new combat code probably never ran.
 - Evaluation (results/evalB_b5): b2 50%, b1 79%, v1 79%; overall 70%
 - Status: rejected, moved to rejected/b5. Lesson: these changes did not beat b2.
+
+### Analysis of b2 (fourth pass, with b3/b4/b5 data) — 2026-10-17 (results/arena_2, results/evalB_b4, results/evalB_b5)
+Record: evalB_b4 (b4 vs b2) b2 won 26-8; evalB_b5 (b5 vs b2) 17-17 (50%); arena vs Team A (v9): **0-34**, all "reached 1000 gems", average round 679. Weakest maps/side: stampede (b2 21 deaths, 0 kills, 0 gems; results/arena_2/summary.json L5374-5500), corners cand-A (b2 80 gems, round 517), contest (evalB_b5 by_map contest 1-5). No side effect in the arena (17-0 each).
+Three rewrites (b3 retreat+cast, b4 camp-group split, b5 cast+focus) each failed to beat b2 (44%, 24%, 50%). In evalB_b4 b4 went 0-6 on corners and lanes against b2. This suggests b2's tendency to cluster at one camp group may be a mild strength (hypothesis: the five champions defend each other). So don't break the clustering. The fix has to add something b2 lacks.
+
+1. **b2 loses fights on items, not tactics: Team A buys 2-5x more stat shards per champion and out-trades it**
+   - Evidence: stampede cand-A (summary.json L5416-5500): Team A itemsBought Varg 175, Ryth 116, Stellar 70, Tavi 38, Marcella 32; earnedGold 11712 vs b2's 4319 (b2 spent 3450). b2 does 7224 champion damage to Team A's 43920 and gets 0 kills; Team A has 0 deaths, so b2's damage is spread and never finishes one target. Arena average: kills 0.4 vs 8.6. b5 added focus fire and casts and still only reached 50% vs b2 (evalB_b5/summary.json by_opponent b2 17-17), so focus alone does not close the gap.
+   - Cause in code: `bots/b2/src/bot.py:118` and `:110` (play_turn, buy_items): each champion randomly picks Strength or Health (`below(2)`) and buys only that. Half the team has no damage investment and half no HP. Shopping happens only in the spawn region (`bot.py:129-131`), after the alive check at `bot.py:124`.
+   - Suggested fix: in buy_items alternate Strength and Health per purchase instead of a random single stat, and call buy_items before the alive/recall early-return so gold never sits idle (dead shopping is allowed, GameRules.md:361). Measure itemsBought per champion and championDamageDone in an arena run.
+   - Confidence: medium-low (the item-count gap is solid; the gain from a different mix is a hypothesis).
+
+2. **b2 spends only about two thirds of its gold and earns a quarter of Team A's, so the gap compounds**
+   - Evidence: evalB_b5 side_stats opponent (b2 side): earnedGold 3580.6, spentGold 2289.4 (64%); arena_2 b2 earned 1650, spent 1300 (79%); stampede cand-A 4319 earned, 3450 spent (80%). Team A's ratio is 89% (5034/5645) in the arena and 93% on stampede. Corners cand-A: Team A 4752 earned vs 1218 (results/arena_2/b2/corners__cand-A.txt:6-7).
+   - Cause in code: `bots/b2/src/bot.py:124-131`. Shopping only occurs on a turn where the champion is alive, not busy, and standing in spawn. Gold earned away from spawn is spent only after a return trip (hypothesis; I did not trace buy timing).
+   - Suggested fix: as in #1, buy first, before the early return, whenever gold >= item cost and `can_buy` is true. Check spentGold/earnedGold > 90%.
+   - Confidence: low-medium.
+
+3. **b2 has no reaction to enemies above 35% HP and walks out of spawn piecemeal, so it feeds kills on maps with a fast enemy push**
+   - Evidence: stampede cand-A and cand-B: 21 and 23 deaths, 0 monster damage taken (b2 never reached a camp), so every death is to Team A champions near spawn or on the route. Arena swirl 15 and 10 deaths. Team A deaths are 0.6 per match. Deaths are even across champions (corners cand-A: 2 each for four champions), so it is not a single bad pick.
+   - Cause in code: `bots/b2/src/bot.py:146-149` (basic attack then return, standing in place) and `bot.py:134` (react only below 35% HP). Respawned champions walk out one at a time via `farm_camps` (bot.py:79-98) without waiting for allies. b3's HP retreat was rejected, so don't retreat on HP; this is about not leaving spawn alone.
+   - Suggested fix: a narrow gate: a champion in the spawn region with a visible enemy champion within ~8 tiles holds there and attacks instead of walking out. Test on stampede in an arena run: deaths < 10, kills > 2.
+   - Confidence: low (inferred; I read no positional traces).
+
+Fix first: #1 (stat mix plus buying before the early return, a small change). It's the one area b3, b4 and b5 never touched. Judge it by itemsBought and spent/earned gold in the arena, not only win rate against b1/v1.
+
+### b6 — rejected (47% vs b2)
+- Based on: b2
+- Changes: I made b6 alternate Strength and Health shards on every purchase, and let it shop while dead. The smoke test on stampede shows 0 crashes, but it doesn't show whether b6 is stronger.
+
+**Changes, both in `bots/b6/src/bot.py`:**
+- **`Bot.buy_items`:** It used to buy only the one stat each champion picked at random, all in one batch. Now it buys one shard at a time, up to 6 per turn, flipping `chosen_stat` after each buy. This covers findings #1 and #2 from the analysis.
+- **`Bot.play_turn`:** A dead champion now calls `buy_items()` before returning. Previously it skipped shopping unless it was alive and in the spawn region. `GameRules.md:361` allows buying while dead, but I didn't test whether `can_buy` works for a dead champion.
+
+I left finding #3 (holding at spawn near enemy champions) for a later version, so this one change can be measured on its own.
+
+**Smoke test:** `cambc run b6 b2 --map stampede` ended at the 2000-round limit with 0 gems each and no kills or deaths. b6 won only on the tiebreak, gold earned 8071 vs 8008. Crashes were 0 for both bots.
+
+The analysis said to judge this by items bought and gold spent in the arena, not only win rate. This smoke test doesn't measure either.
+- Evaluation (results/evalB_b6): b2 47%, b1 91%, v1 91%; overall 76%
+- Status: rejected, moved to rejected/b6. Lesson: these changes did not beat b2.
