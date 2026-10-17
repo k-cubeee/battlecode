@@ -1,0 +1,12 @@
+{
+  "champion": "b2",
+  "history": [
+    "b1",
+    "b2"
+  ],
+  "next_version": 3,
+  "total_cost": 1.2800352,
+  "last_results": [
+    "evalB_b2"
+  ]
+}
