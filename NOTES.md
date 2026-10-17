@@ -371,3 +371,43 @@ I did not add the fight-ratio scaling by gems from #3. I kept it to the veto cha
 The expanse result is one deterministic match and shows only the crash check and the expanse fix. It says nothing about the bag-loss change on other maps.
 - Evaluation (results/eval_v11): v9 50%, v8 59%, v6 68%; overall 59%
 - Status: rejected, moved to rejected/v11. Lesson: these changes did not beat v9.
+
+### Analysis of v9 — 2026-10-17 (results/eval_v11, results/arena_2)
+Record: eval_v11 (v11 = v9 + expanse gate off + relaxed bank veto) 60-42: v6 23-11, v8 20-14, v9 17-17; arena_2 v9 34-0 vs b2 (avg win r679). Weakest maps: swirl 2-4 (v11 loses both sides to v9, r521), every other map is a same-side mirror split (3-3); expanse 6-0. Side A 30-21, side B 30-21. 0 crashes. Limit: no Bash, so I counted with Grep over summary.json (`"collectedGems": 0` champion records) and did not open any stats.json. New angles only; the old bank-veto, unspent-gold and Willow items are not repeated.
+
+1. **No death memory anywhere: a side that loses the opening keeps walking back into the fight and never farms (contest, ambush)**
+   - Evidence: results/eval_v11/summary.json line 6911 (contest B vs v8, r1577): v11 gets 0 gems, 9 kills, 55 deaths, 2,280 gold vs 11,409. All five champions died 8-14 times each (lines 6849-6893 and 7042-7077, same on the v9 mirror at 12563). The winner took 9 deaths for 55 kills and 81,873 champion damage. Aggregated: `candidate_in_losses` has 10.9 deaths vs 4.1 in wins, and 4.6 kills vs 9.2 (side_stats, lines 254-295). A champion respawns after 60 rounds (GameRules l.361) on its own spawn tiles. The 60 champion records with 0 gems and 0 submitted that I counted in the file include whole teams: e.g. lines 1135-1170 (4 champions, 7-12 deaths each, 0 gems) and 5700-5735. In these games the winner needs r1250-1577 to finish, because it is farming against respawning defenders.
+   - Cause in code: `grep -i "death|died|respawn"` over `bots/v9/src` finds no logic that reads our own or the enemy's recent deaths. Respawn appears only for camp timers (`bot.py:580,1145,1285`). `ball.py:874-944` (`skirmish`) uses the same `R_GO = 1.05` (line 46) after 0 or 10 deaths. A champion that respawns picks its first task with `best_group` as if the game were fresh, and with SOLO the five arrive one at a time into whoever is camping its spawn. `hard_retreat` (line 920) only triggers on the local ratio.
+   - Suggested fix: add a per-team death counter (`cambc` team deaths or the champion's own history, kept in the shared Team A memory if used, else per bot). When our deaths in the last 150 rounds >= 4 and >= enemy deaths + 3, then (a) raise `need` in `skirmish` to about 2.0, and (b) for a champion that just respawned, wait on the spawn until at least 2 allies are alive and within 6 tiles, then leave as a group (the old ball code in `ball.py` does the gather and march already; use it only in this "losing" state). Test on contest A/B vs v8/v9, ambush A, collision, pilgrimage: deaths in losses should fall from 10.9 and the contest 55-death game should turn into one with gems.
+   - Confidence: medium on the pattern (deterministic; the same shape in every collapsed game I read). Low on the exact first-contact mechanism: I have no round-level data.
+
+2. **Marcella and Stellar produce nothing on ambush (and sometimes elsewhere): 0 gems, 0 gold, 0 items, 2-3 deaths**
+   - Evidence: results/eval_v11/summary.json line 11840-11905 (ambush A vs v9, loss 510-1010 at r795): Stellar 0 gems, 245 gold earned, 0 spent, 0 items, 3 deaths; Marcella 0 gems, 0 gold, 0 items, 2 deaths. The B-side opponent running the same code has Marcella 106 gems, 300 gold, 10 items, and Stellar 106 gems. Same picture at lines 6160-6240 (v8 ambush A), 6343-6358, 12057-12072 (same game), 639-644 (v6 ambush B: Marcella 0 gems, 0 gold, 3 deaths), 521-526, 456-461 (Marcella 0 gems, 100 gold, ambush A vs v6, loss 226-1068 with equal 7-7 kills, gold 1,655 vs 4,482). Compared with the same two champions' normal 197 gems and 922-1,037 gold per game (`candidate_champions`, lines 310-343). Kills are equal in the ambush A vs v6 game (7-7) so the 840-gem gap there is economy, not fighting. v8 analysis #3 saw the same in the arena (Marcella idle 4 of 4 ambush games); it is still true in v9/v11.
+   - Cause in code: not isolated. `bots/v9/src/bot.py` `best_group` (around lines 1144-1150, `peek_respawn`/`cap_inc`) and `work_once` are the candidates: she may have no group that passes the `cap_inc` HP gate (small HP, no items because she earns no gold), so she keeps walking or waiting. Items come from gold, so zero gold means zero items, which keeps her below the gate: a loop. This is a hypothesis; a `cambc run v9 v9 --map ambush` with `self.log` of `task`/`est` for Marcella would settle it.
+   - Suggested fix: if a champion has earned < 150 gold after 250 rounds, ignore `cap_inc` for the best-value group with the lowest `stsum` (or send her to the nearest small gold cluster) so she starts earning. Test on ambush A and B vs v9/v8/v6: Marcella gems and gold, and the ambush mirror pair (r795/r766 for v9).
+   - Confidence: medium that it is the cause of the ambush losses (4 of 4 games, identical shape); low on the mechanism.
+
+3. **The relaxed bank veto (v11) did not help and lost swirl: banking is not what decides the mirror losses; stop trying it**
+   - Evidence: v11's change (`ball_want_bank` veto only while gems < 80 and no enemy) gives 17-17 vs v9 and swirl 0-2 vs v9 at r521 from both sides, while v9 beats v6/v8 on swirl from side B in eval_v9 (summary.json lines 17190-17360). In v11's losses it collected 723.5 and submitted 501.8 (69%, `candidate_in_losses`) versus v9's 712.6/505.9 (71%) in eval_v9: no change in bag loss. In wins it submits 1,033.6 of 1,138 (91%). So the 30% bag loss in losses stays with the relaxed veto, i.e. it comes from dying (10.9 deaths per loss), not from refusing to bank. Contest B vs v8 lost 0 of 0 collected: the bag-loss story does not even apply to the worst loss.
+   - Cause in code: `bots/v9/src/ball.py:469-470` was the earlier suspect. The result says the champions die before the 80-gem threshold matters, or that banking trips walk them into enemies. Deaths come from `skirmish` (874-944) and camp work near enemy spawns, see #1.
+   - Suggested fix: do not re-test the bank veto alone. Treat bag loss as a symptom of deaths and work on #1 (fewer deaths when behind) and #2 (idle bodies). If banking is revisited, bank only at an altar that is closer than any enemy champion, not by lowering the threshold.
+   - Confidence: medium (one eval, deterministic, but swirl has a gap I cannot explain by diff; earlier notes already flagged it).
+
+Fix first: #1 (largest effect: contest and any game decided by the opening, which is where all mirror losses come from; it is also why the winner needs 1,250-1,577 rounds). #2 second: one map-specific loop that costs 6+ games and is cheap to try.
+
+### v12 — rejected (47% vs v9)
+- Based on: v9
+- Changes: **v12** is built, but the one smoke test on swirl was a loss to v9. It's a crash check only, and the result is the same one the analysis flagged on that map.
+
+**Smoke test:** `cambc run v12 v9 --map swirl` finished with 0 crashes. v9 won at round 521 with 1014 gems to v12's 776, kills 7–3, deaths 4 vs 7. I didn't run a second match and didn't compile-check separately: the combined compile-and-run command wasn't allowed, so the match ran directly.
+
+**What I changed (finding #1, death memory):**
+- **`bots/v12/src/bot.py` `dead_turn`:** each champion now records the round of each of its own deaths, keeping the last 6.
+- **`bots/v12/src/ball.py` `skirmish`:** if a champion has died 2 or more times in the last 200 rounds, the strength ratio it needs to start or keep a fight is raised. The multiplier is ×1.4 at 2 deaths, ×1.8 at 3, and ×2.2 at 4 or more. This stacks with the existing gem-caution scaling.
+- **Why it should win:** the side that loses the opening should stop re-entering fights it keeps losing and go back to farming. That is the death spiral the analysis found in the mirror losses, where v11 averaged 10.9 deaths in losses against 4.1 in wins.
+
+**Left out:** I did not add the "regroup at spawn after respawn" part of the fix, to keep this a single measurable change. Death memory is per champion, not shared across the team.
+
+**Evaluation command:** `python run_matches.py v12 v9 v6 v1 --tag v12-eval`
+- Evaluation (results/eval_v12): v9 47%, v8 56%, v6 65%; overall 56%
+- Status: rejected, moved to rejected/v12. Lesson: these changes did not beat v9.
