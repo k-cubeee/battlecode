@@ -465,9 +465,8 @@ class BallMixin:
             return False
         if self.endgame_bank(d):
             return True
-        if gems >= 60 and (self.enemies or self.threat_near()):
-            return True                       # v7: do not carry big bags into contact fights
-        if self.task is not None and self.camps and self.inc > 0.0:
+        if self.task is not None and self.camps and self.inc > 0.0 \
+                and (gems < 60 and not self.enemies):
             return False
         if self.threat_near() and not (d <= BANK_NEAR and gems >= BANK_NEAR_GEMS):
             return False
