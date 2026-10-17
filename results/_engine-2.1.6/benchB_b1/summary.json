@@ -1,0 +1,1022 @@
+{
+  "tag": "benchB_b1",
+  "candidate": "b1",
+  "opponents": [
+    "v1"
+  ],
+  "maps": [
+    "collision",
+    "corners",
+    "elkring",
+    "expanse",
+    "interlock",
+    "lanes",
+    "monolith",
+    "packs",
+    "rows"
+  ],
+  "overall": {
+    "wins": 9,
+    "losses": 9,
+    "draws": 0,
+    "errors": 0,
+    "played": 18,
+    "win_rate": 0.5
+  },
+  "by_opponent": {
+    "v1": {
+      "wins": 9,
+      "losses": 9,
+      "draws": 0,
+      "errors": 0,
+      "played": 18,
+      "win_rate": 0.5
+    }
+  },
+  "by_map": {
+    "collision": {
+      "wins": 1,
+      "losses": 1,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 0.5
+    },
+    "corners": {
+      "wins": 1,
+      "losses": 1,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 0.5
+    },
+    "elkring": {
+      "wins": 1,
+      "losses": 1,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 0.5
+    },
+    "expanse": {
+      "wins": 1,
+      "losses": 1,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 0.5
+    },
+    "interlock": {
+      "wins": 1,
+      "losses": 1,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 0.5
+    },
+    "lanes": {
+      "wins": 1,
+      "losses": 1,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 0.5
+    },
+    "monolith": {
+      "wins": 1,
+      "losses": 1,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 0.5
+    },
+    "packs": {
+      "wins": 1,
+      "losses": 1,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 0.5
+    },
+    "rows": {
+      "wins": 1,
+      "losses": 1,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 0.5
+    }
+  },
+  "by_side": {
+    "A": {
+      "wins": 3,
+      "losses": 6,
+      "draws": 0,
+      "errors": 0,
+      "played": 9,
+      "win_rate": 0.3333
+    },
+    "B": {
+      "wins": 6,
+      "losses": 3,
+      "draws": 0,
+      "errors": 0,
+      "played": 9,
+      "win_rate": 0.6667
+    }
+  },
+  "avg_round_of_wins": 915.7,
+  "avg_round_of_losses": 915.7,
+  "end_reasons": {
+    "reached 1000 gems": 18
+  },
+  "candidate_crashes": 0,
+  "matches": [
+    {
+      "opponent": "v1",
+      "map": "collision",
+      "candidate_side": "A",
+      "team_a": "b1",
+      "team_b": "v1",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 36.8,
+      "reason": "reached 1000 gems in round 1206",
+      "teams": {
+        "A": {
+          "bot": "b1",
+          "gems": 1004,
+          "kills": 13,
+          "deaths": 26,
+          "gold_earned": 5575,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Tavi",
+            "Cassi & Issac"
+          ]
+        },
+        "B": {
+          "bot": "v1",
+          "gems": 704,
+          "kills": 12,
+          "deaths": 22,
+          "gold_earned": 4568,
+          "crashes": 0,
+          "draft": [
+            "Vesper Vale",
+            "Ryth",
+            "Ren"
+          ]
+        }
+      },
+      "outcome": "teamA",
+      "round": 1206,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "b1"
+    },
+    {
+      "opponent": "v1",
+      "map": "collision",
+      "candidate_side": "B",
+      "team_a": "v1",
+      "team_b": "b1",
+      "result": "loss",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 36.1,
+      "reason": "reached 1000 gems in round 1206",
+      "teams": {
+        "A": {
+          "bot": "v1",
+          "gems": 1004,
+          "kills": 13,
+          "deaths": 26,
+          "gold_earned": 5575,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Tavi",
+            "Cassi & Issac"
+          ]
+        },
+        "B": {
+          "bot": "b1",
+          "gems": 704,
+          "kills": 12,
+          "deaths": 22,
+          "gold_earned": 4568,
+          "crashes": 0,
+          "draft": [
+            "Vesper Vale",
+            "Ryth",
+            "Ren"
+          ]
+        }
+      },
+      "outcome": "teamA",
+      "round": 1206,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "v1"
+    },
+    {
+      "opponent": "v1",
+      "map": "corners",
+      "candidate_side": "A",
+      "team_a": "b1",
+      "team_b": "v1",
+      "result": "loss",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 37.1,
+      "reason": "reached 1000 gems in round 760",
+      "teams": {
+        "A": {
+          "bot": "b1",
+          "gems": 966,
+          "kills": 8,
+          "deaths": 31,
+          "gold_earned": 1870,
+          "crashes": 0,
+          "draft": [
+            "Cassi & Issac",
+            "Ren",
+            "Tavi",
+            "Ryth",
+            "Prism"
+          ]
+        },
+        "B": {
+          "bot": "v1",
+          "gems": 1030,
+          "kills": 7,
+          "deaths": 20,
+          "gold_earned": 1570,
+          "crashes": 0,
+          "draft": [
+            "Willow",
+            "Marcella",
+            "Varg",
+            "Ryth",
+            "Tavi"
+          ]
+        }
+      },
+      "outcome": "teamB",
+      "round": 760,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "v1"
+    },
+    {
+      "opponent": "v1",
+      "map": "corners",
+      "candidate_side": "B",
+      "team_a": "v1",
+      "team_b": "b1",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 42.5,
+      "reason": "reached 1000 gems in round 760",
+      "teams": {
+        "A": {
+          "bot": "v1",
+          "gems": 966,
+          "kills": 8,
+          "deaths": 31,
+          "gold_earned": 1870,
+          "crashes": 0,
+          "draft": [
+            "Cassi & Issac",
+            "Ren",
+            "Tavi",
+            "Ryth",
+            "Prism"
+          ]
+        },
+        "B": {
+          "bot": "b1",
+          "gems": 1030,
+          "kills": 7,
+          "deaths": 20,
+          "gold_earned": 1570,
+          "crashes": 0,
+          "draft": [
+            "Willow",
+            "Marcella",
+            "Varg",
+            "Ryth",
+            "Tavi"
+          ]
+        }
+      },
+      "outcome": "teamB",
+      "round": 760,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "b1"
+    },
+    {
+      "opponent": "v1",
+      "map": "elkring",
+      "candidate_side": "A",
+      "team_a": "b1",
+      "team_b": "v1",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 38.8,
+      "reason": "reached 1000 gems in round 1229",
+      "teams": {
+        "A": {
+          "bot": "b1",
+          "gems": 1044,
+          "kills": 11,
+          "deaths": 37,
+          "gold_earned": 6400,
+          "crashes": 0,
+          "draft": [
+            "Vendetta",
+            "Varg",
+            "Tavi",
+            "Willow",
+            "Ryth"
+          ]
+        },
+        "B": {
+          "bot": "v1",
+          "gems": 810,
+          "kills": 4,
+          "deaths": 53,
+          "gold_earned": 4783,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Vesper Vale",
+            "Willow",
+            "Marcella",
+            "Tavi"
+          ]
+        }
+      },
+      "outcome": "teamA",
+      "round": 1229,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "b1"
+    },
+    {
+      "opponent": "v1",
+      "map": "elkring",
+      "candidate_side": "B",
+      "team_a": "v1",
+      "team_b": "b1",
+      "result": "loss",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 42.0,
+      "reason": "reached 1000 gems in round 1229",
+      "teams": {
+        "A": {
+          "bot": "v1",
+          "gems": 1044,
+          "kills": 11,
+          "deaths": 37,
+          "gold_earned": 6400,
+          "crashes": 0,
+          "draft": [
+            "Vendetta",
+            "Varg",
+            "Tavi",
+            "Willow",
+            "Ryth"
+          ]
+        },
+        "B": {
+          "bot": "b1",
+          "gems": 810,
+          "kills": 4,
+          "deaths": 53,
+          "gold_earned": 4783,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Vesper Vale",
+            "Willow",
+            "Marcella",
+            "Tavi"
+          ]
+        }
+      },
+      "outcome": "teamA",
+      "round": 1229,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "v1"
+    },
+    {
+      "opponent": "v1",
+      "map": "expanse",
+      "candidate_side": "A",
+      "team_a": "b1",
+      "team_b": "v1",
+      "result": "loss",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 40.3,
+      "reason": "reached 1000 gems in round 784",
+      "teams": {
+        "A": {
+          "bot": "b1",
+          "gems": 692,
+          "kills": 0,
+          "deaths": 8,
+          "gold_earned": 1260,
+          "crashes": 0,
+          "draft": [
+            "Tavi",
+            "Prism",
+            "Marcella"
+          ]
+        },
+        "B": {
+          "bot": "v1",
+          "gems": 1016,
+          "kills": 0,
+          "deaths": 5,
+          "gold_earned": 1940,
+          "crashes": 0,
+          "draft": [
+            "Ren",
+            "Stellar",
+            "Willow"
+          ]
+        }
+      },
+      "outcome": "teamB",
+      "round": 784,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "v1"
+    },
+    {
+      "opponent": "v1",
+      "map": "expanse",
+      "candidate_side": "B",
+      "team_a": "v1",
+      "team_b": "b1",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 40.1,
+      "reason": "reached 1000 gems in round 784",
+      "teams": {
+        "A": {
+          "bot": "v1",
+          "gems": 692,
+          "kills": 0,
+          "deaths": 8,
+          "gold_earned": 1260,
+          "crashes": 0,
+          "draft": [
+            "Tavi",
+            "Prism",
+            "Marcella"
+          ]
+        },
+        "B": {
+          "bot": "b1",
+          "gems": 1016,
+          "kills": 0,
+          "deaths": 5,
+          "gold_earned": 1940,
+          "crashes": 0,
+          "draft": [
+            "Ren",
+            "Stellar",
+            "Willow"
+          ]
+        }
+      },
+      "outcome": "teamB",
+      "round": 784,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "b1"
+    },
+    {
+      "opponent": "v1",
+      "map": "interlock",
+      "candidate_side": "A",
+      "team_a": "b1",
+      "team_b": "v1",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 43.3,
+      "reason": "reached 1000 gems in round 775",
+      "teams": {
+        "A": {
+          "bot": "b1",
+          "gems": 1034,
+          "kills": 15,
+          "deaths": 16,
+          "gold_earned": 2104,
+          "crashes": 0,
+          "draft": [
+            "Prism",
+            "Cassi & Issac",
+            "Vesper Vale",
+            "Ren"
+          ]
+        },
+        "B": {
+          "bot": "v1",
+          "gems": 570,
+          "kills": 3,
+          "deaths": 25,
+          "gold_earned": 1860,
+          "crashes": 0,
+          "draft": [
+            "Cassi & Issac",
+            "Ren",
+            "Willow",
+            "Marcella"
+          ]
+        }
+      },
+      "outcome": "teamA",
+      "round": 775,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "b1"
+    },
+    {
+      "opponent": "v1",
+      "map": "interlock",
+      "candidate_side": "B",
+      "team_a": "v1",
+      "team_b": "b1",
+      "result": "loss",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 44.8,
+      "reason": "reached 1000 gems in round 775",
+      "teams": {
+        "A": {
+          "bot": "v1",
+          "gems": 1034,
+          "kills": 15,
+          "deaths": 16,
+          "gold_earned": 2104,
+          "crashes": 0,
+          "draft": [
+            "Prism",
+            "Cassi & Issac",
+            "Vesper Vale",
+            "Ren"
+          ]
+        },
+        "B": {
+          "bot": "b1",
+          "gems": 570,
+          "kills": 3,
+          "deaths": 25,
+          "gold_earned": 1860,
+          "crashes": 0,
+          "draft": [
+            "Cassi & Issac",
+            "Ren",
+            "Willow",
+            "Marcella"
+          ]
+        }
+      },
+      "outcome": "teamA",
+      "round": 775,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "v1"
+    },
+    {
+      "opponent": "v1",
+      "map": "lanes",
+      "candidate_side": "A",
+      "team_a": "b1",
+      "team_b": "v1",
+      "result": "loss",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 44.0,
+      "reason": "reached 1000 gems in round 755",
+      "teams": {
+        "A": {
+          "bot": "b1",
+          "gems": 924,
+          "kills": 0,
+          "deaths": 22,
+          "gold_earned": 480,
+          "crashes": 0,
+          "draft": [
+            "Cassi & Issac",
+            "Tavi",
+            "Ren",
+            "Ryth",
+            "Stellar"
+          ]
+        },
+        "B": {
+          "bot": "v1",
+          "gems": 1002,
+          "kills": 0,
+          "deaths": 16,
+          "gold_earned": 1018,
+          "crashes": 0,
+          "draft": [
+            "Ren",
+            "Vesper Vale",
+            "Vendetta",
+            "Stellar",
+            "Varg"
+          ]
+        }
+      },
+      "outcome": "teamB",
+      "round": 755,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "v1"
+    },
+    {
+      "opponent": "v1",
+      "map": "lanes",
+      "candidate_side": "B",
+      "team_a": "v1",
+      "team_b": "b1",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 43.8,
+      "reason": "reached 1000 gems in round 755",
+      "teams": {
+        "A": {
+          "bot": "v1",
+          "gems": 924,
+          "kills": 0,
+          "deaths": 22,
+          "gold_earned": 480,
+          "crashes": 0,
+          "draft": [
+            "Cassi & Issac",
+            "Tavi",
+            "Ren",
+            "Ryth",
+            "Stellar"
+          ]
+        },
+        "B": {
+          "bot": "b1",
+          "gems": 1002,
+          "kills": 0,
+          "deaths": 16,
+          "gold_earned": 1018,
+          "crashes": 0,
+          "draft": [
+            "Ren",
+            "Vesper Vale",
+            "Vendetta",
+            "Stellar",
+            "Varg"
+          ]
+        }
+      },
+      "outcome": "teamB",
+      "round": 755,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "b1"
+    },
+    {
+      "opponent": "v1",
+      "map": "monolith",
+      "candidate_side": "A",
+      "team_a": "b1",
+      "team_b": "v1",
+      "result": "loss",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 43.1,
+      "reason": "reached 1000 gems in round 915",
+      "teams": {
+        "A": {
+          "bot": "b1",
+          "gems": 454,
+          "kills": 6,
+          "deaths": 13,
+          "gold_earned": 3025,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Vesper Vale",
+            "Varg",
+            "Tavi",
+            "Marcella"
+          ]
+        },
+        "B": {
+          "bot": "v1",
+          "gems": 1018,
+          "kills": 2,
+          "deaths": 31,
+          "gold_earned": 5835,
+          "crashes": 0,
+          "draft": [
+            "Tavi",
+            "Ren",
+            "Vendetta",
+            "Cassi & Issac",
+            "Prism"
+          ]
+        }
+      },
+      "outcome": "teamB",
+      "round": 915,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "v1"
+    },
+    {
+      "opponent": "v1",
+      "map": "monolith",
+      "candidate_side": "B",
+      "team_a": "v1",
+      "team_b": "b1",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 42.9,
+      "reason": "reached 1000 gems in round 915",
+      "teams": {
+        "A": {
+          "bot": "v1",
+          "gems": 454,
+          "kills": 6,
+          "deaths": 13,
+          "gold_earned": 3025,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Vesper Vale",
+            "Varg",
+            "Tavi",
+            "Marcella"
+          ]
+        },
+        "B": {
+          "bot": "b1",
+          "gems": 1018,
+          "kills": 2,
+          "deaths": 31,
+          "gold_earned": 5835,
+          "crashes": 0,
+          "draft": [
+            "Tavi",
+            "Ren",
+            "Vendetta",
+            "Cassi & Issac",
+            "Prism"
+          ]
+        }
+      },
+      "outcome": "teamB",
+      "round": 915,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "b1"
+    },
+    {
+      "opponent": "v1",
+      "map": "packs",
+      "candidate_side": "A",
+      "team_a": "b1",
+      "team_b": "v1",
+      "result": "loss",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 41.6,
+      "reason": "reached 1000 gems in round 790",
+      "teams": {
+        "A": {
+          "bot": "b1",
+          "gems": 548,
+          "kills": 3,
+          "deaths": 11,
+          "gold_earned": 1940,
+          "crashes": 0,
+          "draft": [
+            "Ren",
+            "Prism",
+            "Stellar"
+          ]
+        },
+        "B": {
+          "bot": "v1",
+          "gems": 1000,
+          "kills": 2,
+          "deaths": 10,
+          "gold_earned": 3000,
+          "crashes": 0,
+          "draft": [
+            "Ren",
+            "Vendetta",
+            "Varg"
+          ]
+        }
+      },
+      "outcome": "teamB",
+      "round": 790,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "v1"
+    },
+    {
+      "opponent": "v1",
+      "map": "packs",
+      "candidate_side": "B",
+      "team_a": "v1",
+      "team_b": "b1",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.9,
+      "reason": "reached 1000 gems in round 790",
+      "teams": {
+        "A": {
+          "bot": "v1",
+          "gems": 548,
+          "kills": 3,
+          "deaths": 11,
+          "gold_earned": 1940,
+          "crashes": 0,
+          "draft": [
+            "Ren",
+            "Prism",
+            "Stellar"
+          ]
+        },
+        "B": {
+          "bot": "b1",
+          "gems": 1000,
+          "kills": 2,
+          "deaths": 10,
+          "gold_earned": 3000,
+          "crashes": 0,
+          "draft": [
+            "Ren",
+            "Vendetta",
+            "Varg"
+          ]
+        }
+      },
+      "outcome": "teamB",
+      "round": 790,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "b1"
+    },
+    {
+      "opponent": "v1",
+      "map": "rows",
+      "candidate_side": "A",
+      "team_a": "b1",
+      "team_b": "v1",
+      "result": "loss",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 31.8,
+      "reason": "reached 1000 gems in round 1027",
+      "teams": {
+        "A": {
+          "bot": "b1",
+          "gems": 792,
+          "kills": 0,
+          "deaths": 10,
+          "gold_earned": 3240,
+          "crashes": 0,
+          "draft": [
+            "Willow",
+            "Marcella",
+            "Tavi",
+            "Prism"
+          ]
+        },
+        "B": {
+          "bot": "v1",
+          "gems": 1012,
+          "kills": 0,
+          "deaths": 15,
+          "gold_earned": 4320,
+          "crashes": 0,
+          "draft": [
+            "Prism",
+            "Vendetta",
+            "Cassi & Issac",
+            "Ryth"
+          ]
+        }
+      },
+      "outcome": "teamB",
+      "round": 1027,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "v1"
+    },
+    {
+      "opponent": "v1",
+      "map": "rows",
+      "candidate_side": "B",
+      "team_a": "v1",
+      "team_b": "b1",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 31.8,
+      "reason": "reached 1000 gems in round 1027",
+      "teams": {
+        "A": {
+          "bot": "v1",
+          "gems": 792,
+          "kills": 0,
+          "deaths": 10,
+          "gold_earned": 3240,
+          "crashes": 0,
+          "draft": [
+            "Willow",
+            "Marcella",
+            "Tavi",
+            "Prism"
+          ]
+        },
+        "B": {
+          "bot": "b1",
+          "gems": 1012,
+          "kills": 0,
+          "deaths": 15,
+          "gold_earned": 4320,
+          "crashes": 0,
+          "draft": [
+            "Prism",
+            "Vendetta",
+            "Cassi & Issac",
+            "Ryth"
+          ]
+        }
+      },
+      "outcome": "teamB",
+      "round": 1027,
+      "bot_faults": [
+        0,
+        0
+      ],
+      "winner": "b1"
+    }
+  ]
+}

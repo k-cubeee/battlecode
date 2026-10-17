@@ -21,14 +21,24 @@ to diagnose why a bot loses or wins slowly. You do not fix it.
   a results tag. If no tag is given, use the newest `results/*/summary.json` that
   involves that bot.
 - `results/<tag>/summary.json` has the overall, per-opponent, per-map and per-side
-  win rates, how each game ended, and a record for every match.
+  win rates, how each game ended, and a record for every match. Start here:
+  - `side_stats` holds averages per match for our side (`candidate`) and the
+    opponent's side (`opponent`), also split into `*_in_wins` and `*_in_losses`:
+    kills, deaths, assists, collectedGems, submittedGems, earnedGold, spentGold,
+    championDamageDone/Taken, monsterDamageTaken, healingDone.
+    `candidate_champions` gives the same per champion (kills, deaths, gems, gold,
+    damage taken, itemsBought).
+  - Each record in `matches[]` has `sides.A` / `sides.B` with that match's totals
+    and a `champions` line for each champion. Our side is `candidate_side`.
 - `results/<tag>/<opponent>/<map>__cand-<A|B>.txt` is the cambc output. Its final
   table shows each team's gems, kills, deaths, gold earned, crashes and draft.
-- `results/<tag>/<opponent>/<map>__cand-<A|B>.stats.json` is the detailed export:
-  `outcome`, `round`, `botFaults`, `teams[].submittedGems`/`draftPicks`, and
-  per-champion `champions[]` (team, type, kills, deaths, assists, collectedGems,
-  submittedGems, earnedGold/spentGold, itemsBought, damage done/taken, healing).
-  `team` 0 = Team A, 1 = Team B; use `candidate_side` to find our bot's side.
+- `results/<tag>/<opponent>/<map>__cand-<A|B>.stats.json` is the full export (cambc 2.2,
+  large). `match.outcome` ("teamA"/"teamB"), `match.roundsStarted`, `diagnostics.botFaults`,
+  `teams[].submittedGems`, `roster.champions[]` (draftPick, name, team), and
+  `champions[]` with `name`, `team` ("teamA"/"teamB"), `items`, `itemsBought` and
+  `metrics` (the numbers above as strings). It also has per-champion
+  `championTimelines`, `teamTimelines` and `events` (deaths, kills) for when things
+  happened. Open it only for what summary.json can't tell you.
 - Bot source: `bots/<bot>/src/*.py`. Rules and API: `GameRules.md`, `BotAPIPython.md`.
 - `NOTES.md`: read it fully first so you don't re-report known issues or suggest
   ideas that were already tried and rejected.
@@ -36,11 +46,12 @@ to diagnose why a bot loses or wins slowly. You do not fix it.
 ## Method
 1. Read NOTES.md, then summary.json. Find the losses, the slow wins, and the maps
    and sides where the bot is weakest.
-2. Use Bash with `python3 -c` (jq is not installed) to aggregate stats.json across matches, for
-   example deaths per champion type, gems collected vs tributed (gems lost when a
-   carrier dies), gold earned vs spent, unused gold, damage taken from monsters vs
-   champions, crashes and bot faults, and draft picks in losses vs wins.
-   Compare our numbers with the opponent's in the same games.
+2. Use `side_stats` and the per-match `sides` in summary.json, for example deaths
+   per champion, gems collected vs submitted (gems lost when a carrier dies), gold
+   earned vs spent, damage taken from monsters vs champions, crashes and bot faults,
+   and draft picks in losses vs wins. Compare our numbers with the opponent's in the
+   same games. If you have Bash, `python3 -c` (jq is not installed) can aggregate
+   further; if not, work from summary.json.
 3. Trace each pattern to the code responsible: the function or decision logic in
    `bots/<bot>/src/` that produces it. Check GameRules.md to confirm the mechanic
    behaves the way you think it does.

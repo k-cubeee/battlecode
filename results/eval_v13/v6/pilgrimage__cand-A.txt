@@ -1,0 +1,24 @@
+cambc run v13 v6 --map pilgrimage -o /home/kcube/battlecode/results/eval_v13/v6/.pilgrimage__cand-A.replay --statistics /home/kcube/battlecode/results/eval_v13/v6/pilgrimage__cand-A.stats.json --json
+
+v13 vs v6 on /home/kcube/battlecode/maps/pilgrimage.map26a
+Team A (v13) wins: reached 1000 gems in round 1068
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v13  1066    11      8        4005        0  Varg, Ryth, Stellar, Marcella, Tavi
+  B    v6    694     8     11        3484        0  Varg, Ryth, Stellar, Marcella, Willow
+replay bundle: /home/kcube/battlecode/results/eval_v13/v6/.pilgrimage__cand-A.replay/v13-vs-v6-1792208937965.repl26a
+match summary: /home/kcube/battlecode/results/eval_v13/v6/pilgrimage__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+running: round 800/2000
+running: round 900/2000
+running: round 1000/2000
+finished: round 1068/2000 — teamA

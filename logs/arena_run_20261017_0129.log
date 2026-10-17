@@ -1,0 +1,1369 @@
+[01:29:41] Team A: champion v9 | history ['v1', 'v2', 'v3', 'v5', 'v6', 'v8', 'v9']
+[01:29:41] Team B: champion b2 | history ['b1', 'b2']
+[01:29:41] ===== Arena 2: Team A v9 vs Team B b2 =====
+[01:29:41] Running matches: run_matches.py v9 b2 --tag arena_2 -j 2 --resume
+v9 vs b2: 34 matches, 17 maps, 2 parallel -> results/arena_2
+[  1/34] vs b2               ambush       cand=A  WIN   reached 1000 gems in round 704
+[  2/34] vs b2               ambush       cand=B  WIN   reached 1000 gems in round 837
+[  3/34] vs b2               collision    cand=B  WIN   reached 1000 gems in round 721
+[  4/34] vs b2               collision    cand=A  WIN   reached 1000 gems in round 698
+[  5/34] vs b2               contest      cand=B  WIN   reached 1000 gems in round 1498
+[  6/34] vs b2               contest      cand=A  WIN   reached 1000 gems in round 1257
+[  7/34] vs b2               corners      cand=B  WIN   reached 1000 gems in round 465
+[  8/34] vs b2               corners      cand=A  WIN   reached 1000 gems in round 517
+[  9/34] vs b2               eight        cand=A  WIN   reached 1000 gems in round 448
+[ 10/34] vs b2               eight        cand=B  WIN   reached 1000 gems in round 474
+[ 11/34] vs b2               elkring      cand=B  WIN   reached 1000 gems in round 496
+[ 12/34] vs b2               elkring      cand=A  WIN   reached 1000 gems in round 695
+[ 13/34] vs b2               expanse      cand=B  WIN   reached 1000 gems in round 651
+[ 14/34] vs b2               expanse      cand=A  WIN   reached 1000 gems in round 689
+[ 15/34] vs b2               fragment     cand=B  WIN   reached 1000 gems in round 602
+[ 16/34] vs b2               fragment     cand=A  WIN   reached 1000 gems in round 645
+[ 17/34] vs b2               interlock    cand=B  WIN   reached 1000 gems in round 687
+[ 18/34] vs b2               interlock    cand=A  WIN   reached 1000 gems in round 747
+[ 19/34] vs b2               lanes        cand=A  WIN   reached 1000 gems in round 499
+[ 20/34] vs b2               lanes        cand=B  WIN   reached 1000 gems in round 487
+[ 21/34] vs b2               monolith     cand=B  WIN   reached 1000 gems in round 487
+[ 22/34] vs b2               monolith     cand=A  WIN   reached 1000 gems in round 459
+[ 23/34] vs b2               packs        cand=B  WIN   reached 1000 gems in round 552
+[ 24/34] vs b2               packs        cand=A  WIN   reached 1000 gems in round 501
+[ 25/34] vs b2               pilgrimage   cand=A  WIN   reached 1000 gems in round 722
+[ 26/34] vs b2               pilgrimage   cand=B  WIN   reached 1000 gems in round 730
+[ 27/34] vs b2               rows         cand=A  WIN   reached 1000 gems in round 694
+[ 28/34] vs b2               rows         cand=B  WIN   reached 1000 gems in round 678
+[ 29/34] vs b2               rushbait-v2  cand=B  WIN   reached 1000 gems in round 798
+[ 30/34] vs b2               rushbait-v2  cand=A  WIN   reached 1000 gems in round 595
+[ 31/34] vs b2               stampede     cand=A  WIN   reached 1000 gems in round 1076
+[ 32/34] vs b2               stampede     cand=B  WIN   reached 1000 gems in round 1065
+[ 33/34] vs b2               swirl        cand=A  WIN   reached 1000 gems in round 436
+[ 34/34] vs b2               swirl        cand=B  WIN   reached 1000 gems in round 485
+
+v9: 34W 0L 0D (0 errors)  win rate 1.0
+  vs b2               34-0  win rate 1.0
+summary: results/arena_2/summary.json
+[01:38:16] Arena 2: Team A 34-0 Team B (Team A win rate 100%)
+   [referee] ### Arena 2 — v9 (Team A) vs b2 (Team B) — 2026-10-17
+Score: Team A 34-0 Team B (100%); draws/errors: 0. Previous arena: Team A 34-0 (v8 vs b1).
+Per map: A won both sides on all 17 maps (ambush, colli
+[01:38:41] referee finished (cost $0.07)
+
+### Arena 2 — v9 (Team A) vs b2 (Team B) — 2026-10-17
+Score: Team A 34-0 Team B (100%); draws/errors: 0. Previous arena: Team A 34-0 (v8 vs b1).
+Per map: A won both sides on all 17 maps (ambush, collision, contest, corners, eight, elkring, expanse, fragment, interlock, lanes, monolith, packs, pilgrimage, rows, rushbait-v2, stampede, swirl). Average winning round: A 679.3, B n/a (no wins). That is a little slower than arena 1's 669 (`summary.json: avg_round_of_wins`).
+
+**Why the winner wins**
+- **Team B's draft is now sensible, but v9 farms more and fights better.** `bots/b2/src/draft.py:play` uses a fixed priority list: Ryth, Marcella, Varg, Vendetta, Vesper Vale, then Ren, Tavi and the rest. `bots/v9/src/draft.py` fields Varg, Ryth, Marcella, Stellar and Tavi (Cassi & Issac on only 2 maps). Per match, v9 collects 1097.7 gems and submits 1035.8. b2 collects 276.4 and submits 185.3 (`side_stats`). Varg averages 332.9 gems collected and Ryth 302.6 (`candidate_champions`).
+- **v9 wins the fights.** v9 averages 8.6 kills against 0.6 deaths. b2 averages 0.4 kills against 9.1 deaths. Champion damage is 14341 dealt by v9 against 2596 dealt by b2. b2's fix for dying while recalling (`danger_tiles` and the low-HP branch in `bots/b2/src/bot.py:play_turn`) cut its deaths from about 18 per match to 9.1. It is still a basic-attack-only bot with no spells, and v9 beats it in every fight. v9's `assess_enemies`/`flee` logic and spellcasting are described in the arena 1 report and in `NOTES.md`. Hypothesis: they are still the main edge, because b2 has no equivalent, but I did not re-read v9's source this round.
+- **v9 has a large economy lead.** Earned gold is 5645 against 1650, and spent gold is 5034 against 1300 (`side_stats`). v9 spends 89% of what it earns, while b2 spends 79%. v9 buys about 40–58 items per champion in sets that follow a build order. b2 buys fewer, with no set-bonus logic that I could find.
+- **Every game ended at 1000 gems.** The fastest were swirl (436 and 485), eight (448 and 474) and monolith (459 and 487). The slowest were contest (1257 and 1498) and stampede (1076 and 1065).
+
+**Where the loser is competitive**
+- Contest and stampede take v9 about twice as long as other maps. These are the same two maps that were slow in arena 1, so the weakness has persisted across both opponents. The cause is not visible in the summary. Hypothesis: map geometry forces champion contact and slows farming, so v9 wins on kills rather than on gem speed.
+- b2's gems per match are 276 against about 199 for b1 in arena 1. Its submit rate is 67%, up from b1's 58%. The improvement is real but small. It has no wins and no close games, since the game always ended on v9's gem total. I did not look at the final gem gap between the teams, so I can't call any match close.
+
+**Advice to the lead**
+- **Team B:** copy v9's banking and farming rules, which are readable from `results/arena_*`. b2 loses about 91 gems per match (276.4 collected, 185.3 submitted), and each death costs 60 rounds out of play. Next, add real retreat logic: simulate the fight and flee if it would be lost, instead of a fixed 35% HP rule. Then add spell use and shop for set bonuses. b2 has no cast calls and no purchase order.
+- **Team A:** the gap is large enough that b2 gives little useful signal. Keep tuning against Team A's own pool. The remaining target is contest and stampede (1000–1500 rounds). Look at what slows farming on those two maps, not only at the retreat thresholds.
+- **Harness:** there were no crashes, errors or fuel problems (`candidate_crashes` 0, all 34 ended on gems). Arena 1's note still applies: caught exceptions don't show in the crash counters. Team B has fixed the draft crash, so this no longer matters for b2.
+
+[01:38:41] ########## Round 1/5 ##########
+[01:38:41] ===== Team A: building v10 (champion: v9) =====
+   [A:analyst] Checking the expanse losses in eval_v9, since they're 0-6, then reading the drafts and the losing-side details.
+   [A:analyst] Status: I've read the NOTES and the eval_v9 and arena_2 summaries, and I'm now appending the analysis to NOTES.md.
+   [A:analyst] I appended the v9 analysis to the end of `NOTES.md`. Bash was disabled, so I worked from the two summary.json files by hand and did not open any stats.json. The mechanisms below are hypotheses rather 
+[01:40:02] A:analyst finished (cost $0.35)
+   [A:strategist] I created `v10` from `v9` with one change, which targets finding #1 (expanse is 0-6).
+
+- **Change:** in `bots/v10/src/draft.py`, `FAR_SPAWN_DIST` goes from 60 to 10000. No map reaches that distance, s
+[01:40:31] A:strategist finished (cost $0.04)
+[01:40:49] Running matches: run_matches.py v10 v9 v8 v6 --tag eval_v10 -j 2 --resume
+v10 vs v9, v8, v6: 102 matches, 17 maps, 2 parallel -> results/eval_v10
+[  1/102] vs v9               ambush       cand=B  WIN   reached 1000 gems in round 795
+[  2/102] vs v9               ambush       cand=A  LOSS  reached 1000 gems in round 795
+[  3/102] vs v9               collision    cand=A  LOSS  reached 1000 gems in round 921
+[  4/102] vs v9               collision    cand=B  WIN   reached 1000 gems in round 921
+[  5/102] vs v9               contest      cand=A  WIN   reached 1000 gems in round 1549
+[  6/102] vs v9               contest      cand=B  LOSS  reached 1000 gems in round 1549
+[  7/102] vs v9               corners      cand=A  LOSS  reached 1000 gems in round 535
+[  8/102] vs v9               corners      cand=B  WIN   reached 1000 gems in round 535
+[  9/102] vs v9               eight        cand=A  WIN   reached 1000 gems in round 515
+[ 10/102] vs v9               eight        cand=B  LOSS  reached 1000 gems in round 515
+[ 11/102] vs v9               elkring      cand=A  WIN   reached 1000 gems in round 692
+[ 12/102] vs v9               elkring      cand=B  LOSS  reached 1000 gems in round 692
+[ 13/102] vs v9               expanse      cand=A  WIN   reached 1000 gems in round 631
+[ 14/102] vs v9               expanse      cand=B  WIN   reached 1000 gems in round 719
+[ 15/102] vs v9               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 16/102] vs v9               fragment     cand=B  WIN   reached 1000 gems in round 599
+[ 17/102] vs v9               interlock    cand=A  LOSS  reached 1000 gems in round 825
+[ 18/102] vs v9               interlock    cand=B  WIN   reached 1000 gems in round 825
+[ 19/102] vs v9               lanes        cand=A  LOSS  reached 1000 gems in round 583
+[ 20/102] vs v9               lanes        cand=B  WIN   reached 1000 gems in round 583
+[ 21/102] vs v9               monolith     cand=A  LOSS  reached 1000 gems in round 498
+[ 22/102] vs v9               monolith     cand=B  WIN   reached 1000 gems in round 498
+[ 23/102] vs v9               packs        cand=A  WIN   reached 1000 gems in round 658
+[ 24/102] vs v9               packs        cand=B  LOSS  reached 1000 gems in round 658
+[ 25/102] vs v9               pilgrimage   cand=A  WIN   reached 1000 gems in round 1011
+[ 26/102] vs v9               pilgrimage   cand=B  LOSS  reached 1000 gems in round 1011
+[ 27/102] vs v9               rows         cand=A  WIN   reached 1000 gems in round 620
+[ 28/102] vs v9               rows         cand=B  LOSS  reached 1000 gems in round 620
+[ 29/102] vs v9               rushbait-v2  cand=A  WIN   reached 1000 gems in round 819
+[ 30/102] vs v9               rushbait-v2  cand=B  LOSS  reached 1000 gems in round 819
+[ 31/102] vs v9               stampede     cand=A  WIN   reached 1000 gems in round 1294
+[ 32/102] vs v9               stampede     cand=B  LOSS  reached 1000 gems in round 1294
+[ 33/102] vs v9               swirl        cand=A  LOSS  reached 1000 gems in round 521
+[ 34/102] vs v9               swirl        cand=B  LOSS  reached 1000 gems in round 521
+[ 35/102] vs v8               ambush       cand=A  LOSS  reached 1000 gems in round 766
+[ 36/102] vs v8               ambush       cand=B  WIN   reached 1000 gems in round 795
+[ 37/102] vs v8               collision    cand=A  LOSS  reached 1000 gems in round 955
+[ 38/102] vs v8               collision    cand=B  WIN   reached 1000 gems in round 921
+[ 39/102] vs v8               contest      cand=A  WIN   reached 1000 gems in round 1549
+[ 40/102] vs v8               contest      cand=B  LOSS  reached 1000 gems in round 1577
+[ 41/102] vs v8               corners      cand=A  LOSS  reached 1000 gems in round 535
+[ 42/102] vs v8               corners      cand=B  WIN   reached 1000 gems in round 535
+[ 43/102] vs v8               eight        cand=A  WIN   reached 1000 gems in round 515
+[ 44/102] vs v8               eight        cand=B  LOSS  reached 1000 gems in round 515
+[ 45/102] vs v8               elkring      cand=A  LOSS  reached 1000 gems in round 741
+[ 46/102] vs v8               elkring      cand=B  WIN   reached 1000 gems in round 654
+[ 47/102] vs v8               expanse      cand=A  WIN   reached 1000 gems in round 669
+[ 48/102] vs v8               expanse      cand=B  WIN   reached 1000 gems in round 708
+[ 49/102] vs v8               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 50/102] vs v8               fragment     cand=B  WIN   reached 1000 gems in round 599
+[ 51/102] vs v8               interlock    cand=A  WIN   reached 1000 gems in round 906
+[ 52/102] vs v8               interlock    cand=B  WIN   reached 1000 gems in round 825
+[ 53/102] vs v8               lanes        cand=A  LOSS  reached 1000 gems in round 545
+[ 54/102] vs v8               lanes        cand=B  WIN   reached 1000 gems in round 531
+[ 55/102] vs v8               monolith     cand=A  LOSS  reached 1000 gems in round 498
+[ 56/102] vs v8               monolith     cand=B  WIN   reached 1000 gems in round 579
+[ 57/102] vs v8               packs        cand=A  WIN   reached 1000 gems in round 658
+[ 58/102] vs v8               packs        cand=B  LOSS  reached 1000 gems in round 658
+[ 59/102] vs v8               pilgrimage   cand=A  WIN   reached 1000 gems in round 1083
+[ 60/102] vs v8               pilgrimage   cand=B  LOSS  reached 1000 gems in round 1011
+[ 61/102] vs v8               rows         cand=A  WIN   reached 1000 gems in round 620
+[ 62/102] vs v8               rows         cand=B  LOSS  reached 1000 gems in round 620
+[ 63/102] vs v8               rushbait-v2  cand=A  WIN   reached 1000 gems in round 797
+[ 64/102] vs v8               rushbait-v2  cand=B  WIN   reached 1000 gems in round 753
+[ 65/102] vs v8               stampede     cand=A  WIN   reached 1000 gems in round 956
+[ 66/102] vs v8               stampede     cand=B  WIN   reached 1000 gems in round 1220
+[ 67/102] vs v8               swirl        cand=A  WIN   reached 1000 gems in round 608
+[ 68/102] vs v8               swirl        cand=B  LOSS  reached 1000 gems in round 521
+[ 69/102] vs v6               ambush       cand=A  LOSS  reached 1000 gems in round 908
+[ 70/102] vs v6               ambush       cand=B  WIN   reached 1000 gems in round 1027
+[ 71/102] vs v6               collision    cand=A  LOSS  reached 1000 gems in round 955
+[ 72/102] vs v6               collision    cand=B  WIN   reached 1000 gems in round 921
+[ 73/102] vs v6               contest      cand=A  WIN   reached 1000 gems in round 1363
+[ 74/102] vs v6               contest      cand=B  LOSS  round limit (2000) reached with more gems
+[ 75/102] vs v6               corners      cand=A  WIN   reached 1000 gems in round 628
+[ 76/102] vs v6               corners      cand=B  WIN   reached 1000 gems in round 788
+[ 77/102] vs v6               eight        cand=A  LOSS  reached 1000 gems in round 808
+[ 78/102] vs v6               eight        cand=B  WIN   reached 1000 gems in round 756
+[ 79/102] vs v6               elkring      cand=A  WIN   reached 1000 gems in round 616
+[ 80/102] vs v6               elkring      cand=B  LOSS  reached 1000 gems in round 841
+[ 81/102] vs v6               expanse      cand=A  WIN   reached 1000 gems in round 669
+[ 82/102] vs v6               expanse      cand=B  WIN   reached 1000 gems in round 708
+[ 83/102] vs v6               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 84/102] vs v6               fragment     cand=B  WIN   reached 1000 gems in round 599
+[ 85/102] vs v6               interlock    cand=A  WIN   reached 1000 gems in round 906
+[ 86/102] vs v6               interlock    cand=B  WIN   reached 1000 gems in round 825
+[ 87/102] vs v6               lanes        cand=A  WIN   reached 1000 gems in round 501
+[ 88/102] vs v6               lanes        cand=B  WIN   reached 1000 gems in round 625
+[ 89/102] vs v6               monolith     cand=A  WIN   reached 1000 gems in round 536
+[ 90/102] vs v6               monolith     cand=B  WIN   reached 1000 gems in round 632
+[ 91/102] vs v6               packs        cand=A  WIN   reached 1000 gems in round 658
+[ 92/102] vs v6               packs        cand=B  LOSS  reached 1000 gems in round 658
+[ 93/102] vs v6               pilgrimage   cand=A  WIN   reached 1000 gems in round 1034
+[ 94/102] vs v6               pilgrimage   cand=B  LOSS  reached 1000 gems in round 928
+[ 95/102] vs v6               rows         cand=A  WIN   reached 1000 gems in round 620
+[ 96/102] vs v6               rows         cand=B  LOSS  reached 1000 gems in round 620
+[ 97/102] vs v6               rushbait-v2  cand=A  WIN   reached 1000 gems in round 797
+[ 98/102] vs v6               rushbait-v2  cand=B  WIN   reached 1000 gems in round 753
+[ 99/102] vs v6               stampede     cand=A  WIN   reached 1000 gems in round 1127
+[100/102] vs v6               stampede     cand=B  WIN   reached 1000 gems in round 1010
+[101/102] vs v6               swirl        cand=A  WIN   reached 1000 gems in round 608
+[102/102] vs v6               swirl        cand=B  LOSS  reached 1000 gems in round 521
+
+v10: 62W 40L 0D (0 errors)  win rate 0.6078
+  vs v6               24-10  win rate 0.7059
+  vs v8               21-13  win rate 0.6176
+  vs v9               17-17  win rate 0.5
+summary: results/eval_v10/summary.json
+[02:05:57] Team A: v10 vs champion v9: 50% | v9 50%, v8 62%, v6 71% | overall 61%
+[02:05:57] Team A: REJECTED v10. Champion stays v9.
+[02:05:57] Team A: archived v4 (bots/v4 -> archive/v4).
+[02:05:57] ===== Team B: building b3 (champion: b2) =====
+   [B:analyst] I'm reading the arena_2 per-champion numbers for b2 now. Then I'll check the eval losses and the draft code.
+   [B:analyst] I've appended the analysis of b2 to the end of `NOTES_B.md`. b2 lost the arena 0-34 to Team A's v9, and every game ended when v9 reached 1000 gems. In `evalB_b2` b2 went 30-4, with all four losses on 
+[02:07:02] B:analyst finished (cost $0.19)
+   [B:strategist] I've changed `bots/b3/src/bot.py`. The smoke test on stampede ran with 0 crashes, but it doesn't show the change helps. It was a 2000-round draw on gems, 0 kills and 0 deaths for both sides. b3 won on
+[02:07:45] B:strategist finished (cost $0.08)
+[02:08:05] Running matches: run_matches.py b3 b2 b1 v1 --tag evalB_b3 -j 2 --resume
+b3 vs b2, b1, v1: 102 matches, 17 maps, 2 parallel -> results/evalB_b3
+[  1/102] vs b2               ambush       cand=A  LOSS  reached 1000 gems in round 1155
+[  2/102] vs b2               ambush       cand=B  WIN   reached 1000 gems in round 1121
+[  3/102] vs b2               collision    cand=A  LOSS  reached 1000 gems in round 953
+[  4/102] vs b2               collision    cand=B  WIN   reached 1000 gems in round 923
+[  5/102] vs b2               contest      cand=A  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[  6/102] vs b2               contest      cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[  7/102] vs b2               corners      cand=A  LOSS  reached 1000 gems in round 742
+[  8/102] vs b2               corners      cand=B  LOSS  reached 1000 gems in round 831
+[  9/102] vs b2               eight        cand=A  WIN   reached 1000 gems in round 898
+[ 10/102] vs b2               eight        cand=B  LOSS  reached 1000 gems in round 818
+[ 11/102] vs b2               elkring      cand=A  LOSS  reached 1000 gems in round 674
+[ 12/102] vs b2               elkring      cand=B  WIN   reached 1000 gems in round 643
+[ 13/102] vs b2               expanse      cand=A  LOSS  reached 1000 gems in round 1088
+[ 14/102] vs b2               expanse      cand=B  WIN   reached 1000 gems in round 1144
+[ 15/102] vs b2               fragment     cand=A  LOSS  round limit (2000) reached with more gems
+[ 16/102] vs b2               fragment     cand=B  LOSS  round limit (2000) reached with more gems
+[ 17/102] vs b2               interlock    cand=A  LOSS  reached 1000 gems in round 840
+[ 18/102] vs b2               interlock    cand=B  WIN   reached 1000 gems in round 772
+[ 19/102] vs b2               lanes        cand=A  LOSS  reached 1000 gems in round 743
+[ 20/102] vs b2               lanes        cand=B  WIN   reached 1000 gems in round 804
+[ 21/102] vs b2               monolith     cand=A  LOSS  reached 1000 gems in round 999
+[ 22/102] vs b2               monolith     cand=B  WIN   reached 1000 gems in round 862
+[ 23/102] vs b2               packs        cand=A  WIN   reached 1000 gems in round 699
+[ 24/102] vs b2               packs        cand=B  LOSS  reached 1000 gems in round 691
+[ 25/102] vs b2               pilgrimage   cand=A  LOSS  round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[ 26/102] vs b2               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[ 27/102] vs b2               rows         cand=A  LOSS  reached 1000 gems in round 872
+[ 28/102] vs b2               rows         cand=B  WIN   reached 1000 gems in round 911
+[ 29/102] vs b2               rushbait-v2  cand=A  LOSS  round limit (2000) reached with more gems
+[ 30/102] vs b2               rushbait-v2  cand=B  WIN   round limit (2000) reached with more gems
+[ 31/102] vs b2               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 32/102] vs b2               stampede     cand=B  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 33/102] vs b2               swirl        cand=A  LOSS  reached 1000 gems in round 824
+[ 34/102] vs b2               swirl        cand=B  WIN   reached 1000 gems in round 922
+[ 35/102] vs b1               ambush       cand=A  WIN   reached 1000 gems in round 1527
+[ 36/102] vs b1               ambush       cand=B  WIN   reached 1000 gems in round 1121
+[ 37/102] vs b1               collision    cand=A  WIN   reached 1000 gems in round 822
+[ 38/102] vs b1               collision    cand=B  WIN   reached 1000 gems in round 729
+[ 39/102] vs b1               contest      cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 40/102] vs b1               contest      cand=B  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 41/102] vs b1               corners      cand=A  WIN   reached 1000 gems in round 969
+[ 42/102] vs b1               corners      cand=B  WIN   reached 1000 gems in round 748
+[ 43/102] vs b1               eight        cand=A  WIN   reached 1000 gems in round 818
+[ 44/102] vs b1               eight        cand=B  WIN   reached 1000 gems in round 654
+[ 45/102] vs b1               elkring      cand=A  WIN   reached 1000 gems in round 766
+[ 46/102] vs b1               elkring      cand=B  WIN   reached 1000 gems in round 664
+[ 47/102] vs b1               expanse      cand=A  WIN   reached 1000 gems in round 1303
+[ 48/102] vs b1               expanse      cand=B  WIN   reached 1000 gems in round 1144
+[ 49/102] vs b1               fragment     cand=A  LOSS  reached 1000 gems in round 1885
+[ 50/102] vs b1               fragment     cand=B  LOSS  round limit (2000) reached with more gems
+[ 51/102] vs b1               interlock    cand=A  WIN   reached 1000 gems in round 919
+[ 52/102] vs b1               interlock    cand=B  WIN   reached 1000 gems in round 772
+[ 53/102] vs b1               lanes        cand=A  WIN   reached 1000 gems in round 775
+[ 54/102] vs b1               lanes        cand=B  WIN   reached 1000 gems in round 832
+[ 55/102] vs b1               monolith     cand=A  LOSS  reached 1000 gems in round 1064
+[ 56/102] vs b1               monolith     cand=B  WIN   reached 1000 gems in round 956
+[ 57/102] vs b1               packs        cand=A  WIN   reached 1000 gems in round 751
+[ 58/102] vs b1               packs        cand=B  WIN   reached 1000 gems in round 662
+[ 59/102] vs b1               pilgrimage   cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 60/102] vs b1               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 61/102] vs b1               rows         cand=A  WIN   reached 1000 gems in round 1050
+[ 62/102] vs b1               rows         cand=B  WIN   reached 1000 gems in round 911
+[ 63/102] vs b1               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 1762
+[ 64/102] vs b1               rushbait-v2  cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 65/102] vs b1               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 66/102] vs b1               stampede     cand=B  WIN   round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[ 67/102] vs b1               swirl        cand=A  WIN   reached 1000 gems in round 1459
+[ 68/102] vs b1               swirl        cand=B  WIN   reached 1000 gems in round 1026
+[ 69/102] vs v1               ambush       cand=A  WIN   reached 1000 gems in round 1527
+[ 70/102] vs v1               ambush       cand=B  WIN   reached 1000 gems in round 1121
+[ 71/102] vs v1               collision    cand=A  WIN   reached 1000 gems in round 822
+[ 72/102] vs v1               collision    cand=B  WIN   reached 1000 gems in round 729
+[ 73/102] vs v1               contest      cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 74/102] vs v1               contest      cand=B  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 75/102] vs v1               corners      cand=A  WIN   reached 1000 gems in round 969
+[ 76/102] vs v1               corners      cand=B  WIN   reached 1000 gems in round 748
+[ 77/102] vs v1               eight        cand=A  WIN   reached 1000 gems in round 818
+[ 78/102] vs v1               eight        cand=B  WIN   reached 1000 gems in round 654
+[ 79/102] vs v1               elkring      cand=A  WIN   reached 1000 gems in round 766
+[ 80/102] vs v1               elkring      cand=B  WIN   reached 1000 gems in round 664
+[ 81/102] vs v1               expanse      cand=A  WIN   reached 1000 gems in round 1303
+[ 82/102] vs v1               expanse      cand=B  WIN   reached 1000 gems in round 1144
+[ 83/102] vs v1               fragment     cand=A  LOSS  reached 1000 gems in round 1885
+[ 84/102] vs v1               fragment     cand=B  LOSS  round limit (2000) reached with more gems
+[ 85/102] vs v1               interlock    cand=A  WIN   reached 1000 gems in round 919
+[ 86/102] vs v1               interlock    cand=B  WIN   reached 1000 gems in round 772
+[ 87/102] vs v1               lanes        cand=A  WIN   reached 1000 gems in round 775
+[ 88/102] vs v1               lanes        cand=B  WIN   reached 1000 gems in round 832
+[ 89/102] vs v1               monolith     cand=A  LOSS  reached 1000 gems in round 1064
+[ 90/102] vs v1               monolith     cand=B  WIN   reached 1000 gems in round 956
+[ 91/102] vs v1               packs        cand=A  WIN   reached 1000 gems in round 751
+[ 92/102] vs v1               packs        cand=B  WIN   reached 1000 gems in round 662
+[ 93/102] vs v1               pilgrimage   cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 94/102] vs v1               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 95/102] vs v1               rows         cand=A  WIN   reached 1000 gems in round 1050
+[ 96/102] vs v1               rows         cand=B  WIN   reached 1000 gems in round 911
+[ 97/102] vs v1               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 1762
+[ 98/102] vs v1               rushbait-v2  cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 99/102] vs v1               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[100/102] vs v1               stampede     cand=B  WIN   round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[101/102] vs v1               swirl        cand=A  WIN   reached 1000 gems in round 1459
+[102/102] vs v1               swirl        cand=B  WIN   reached 1000 gems in round 1026
+
+b3: 73W 29L 0D (0 errors)  win rate 0.7157
+  vs b1               29-5  win rate 0.8529
+  vs b2               15-19  win rate 0.4412
+  vs v1               29-5  win rate 0.8529
+summary: results/evalB_b3/summary.json
+[02:33:45] Team B: b3 vs champion b2: 44% | b2 44%, b1 85%, v1 85% | overall 72%
+[02:33:45] Team B: REJECTED b3. Champion stays b2.
+[02:33:45] Arena: v9 vs b2 already played (arena_2); no new champions, skipping.
+[02:33:45] API cost this run so far: $0.72
+[02:33:45] ########## Round 2/5 ##########
+[02:33:45] ===== Team A: building v11 (champion: v9) =====
+   [A:analyst] I've read NOTES.md and the arena_2 totals. Next I'm finding which maps are slow in the arena and which maps v9 loses in eval_v9, so I can pick new findings that earlier analyses didn't cover.
+   [A:analyst] Status: I've pulled the contest and stampede arena records and the v10 eval comparison. Next I'm checking the banking and fight code in v9 so I can cite line numbers.
+   [A:analyst] Now I'll append the analysis.
+   [A:analyst] I appended the v9 analysis to the end of `NOTES.md`. I had no Bash, so I worked from `summary.json` by hand. I did not open any `stats.json` files or diff the bots, and I did not touch `bots/`.
+
+1. **
+[02:35:22] A:analyst finished (cost $0.40)
+   [A:strategist] I made `v11` from `v9` with two changes. It compiles and the smoke test passes. The single match was `cambc run v11 v9 --map expanse`: v11 won at round 631 with 1086 gems to 810, and v11 had 0 crashes
+[02:35:51] A:strategist finished (cost $0.05)
+[02:36:09] Running matches: run_matches.py v11 v9 v8 v6 --tag eval_v11 -j 2 --resume
+v11 vs v9, v8, v6: 102 matches, 17 maps, 2 parallel -> results/eval_v11
+[  1/102] vs v9               ambush       cand=A  LOSS  reached 1000 gems in round 795
+[  2/102] vs v9               ambush       cand=B  WIN   reached 1000 gems in round 795
+[  3/102] vs v9               collision    cand=A  LOSS  reached 1000 gems in round 1020
+[  4/102] vs v9               collision    cand=B  WIN   reached 1000 gems in round 921
+[  5/102] vs v9               contest      cand=A  WIN   reached 1000 gems in round 1549
+[  6/102] vs v9               contest      cand=B  LOSS  reached 1000 gems in round 1549
+[  7/102] vs v9               corners      cand=A  LOSS  reached 1000 gems in round 535
+[  8/102] vs v9               corners      cand=B  WIN   reached 1000 gems in round 535
+[  9/102] vs v9               eight        cand=A  WIN   reached 1000 gems in round 515
+[ 10/102] vs v9               eight        cand=B  LOSS  reached 1000 gems in round 515
+[ 11/102] vs v9               elkring      cand=A  WIN   reached 1000 gems in round 692
+[ 12/102] vs v9               elkring      cand=B  LOSS  reached 1000 gems in round 692
+[ 13/102] vs v9               expanse      cand=A  WIN   reached 1000 gems in round 631
+[ 14/102] vs v9               expanse      cand=B  WIN   reached 1000 gems in round 719
+[ 15/102] vs v9               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 16/102] vs v9               fragment     cand=B  WIN   reached 1000 gems in round 599
+[ 17/102] vs v9               interlock    cand=A  LOSS  reached 1000 gems in round 825
+[ 18/102] vs v9               interlock    cand=B  WIN   reached 1000 gems in round 825
+[ 19/102] vs v9               lanes        cand=A  LOSS  reached 1000 gems in round 583
+[ 20/102] vs v9               lanes        cand=B  WIN   reached 1000 gems in round 583
+[ 21/102] vs v9               monolith     cand=A  LOSS  reached 1000 gems in round 498
+[ 22/102] vs v9               monolith     cand=B  WIN   reached 1000 gems in round 498
+[ 23/102] vs v9               packs        cand=A  WIN   reached 1000 gems in round 658
+[ 24/102] vs v9               packs        cand=B  LOSS  reached 1000 gems in round 658
+[ 25/102] vs v9               pilgrimage   cand=A  WIN   reached 1000 gems in round 1011
+[ 26/102] vs v9               pilgrimage   cand=B  LOSS  reached 1000 gems in round 1011
+[ 27/102] vs v9               rows         cand=A  WIN   reached 1000 gems in round 620
+[ 28/102] vs v9               rows         cand=B  LOSS  reached 1000 gems in round 620
+[ 29/102] vs v9               rushbait-v2  cand=A  WIN   reached 1000 gems in round 786
+[ 30/102] vs v9               rushbait-v2  cand=B  LOSS  reached 1000 gems in round 819
+[ 31/102] vs v9               stampede     cand=A  WIN   reached 1000 gems in round 1294
+[ 32/102] vs v9               stampede     cand=B  LOSS  reached 1000 gems in round 1294
+[ 33/102] vs v9               swirl        cand=A  LOSS  reached 1000 gems in round 521
+[ 34/102] vs v9               swirl        cand=B  LOSS  reached 1000 gems in round 521
+[ 35/102] vs v8               ambush       cand=A  LOSS  reached 1000 gems in round 766
+[ 36/102] vs v8               ambush       cand=B  WIN   reached 1000 gems in round 795
+[ 37/102] vs v8               collision    cand=A  LOSS  reached 1000 gems in round 927
+[ 38/102] vs v8               collision    cand=B  WIN   reached 1000 gems in round 921
+[ 39/102] vs v8               contest      cand=A  WIN   reached 1000 gems in round 1549
+[ 40/102] vs v8               contest      cand=B  LOSS  reached 1000 gems in round 1577
+[ 41/102] vs v8               corners      cand=A  LOSS  reached 1000 gems in round 535
+[ 42/102] vs v8               corners      cand=B  WIN   reached 1000 gems in round 535
+[ 43/102] vs v8               eight        cand=A  WIN   reached 1000 gems in round 515
+[ 44/102] vs v8               eight        cand=B  LOSS  reached 1000 gems in round 515
+[ 45/102] vs v8               elkring      cand=A  LOSS  reached 1000 gems in round 741
+[ 46/102] vs v8               elkring      cand=B  WIN   reached 1000 gems in round 654
+[ 47/102] vs v8               expanse      cand=A  WIN   reached 1000 gems in round 669
+[ 48/102] vs v8               expanse      cand=B  WIN   reached 1000 gems in round 708
+[ 49/102] vs v8               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 50/102] vs v8               fragment     cand=B  WIN   reached 1000 gems in round 599
+[ 51/102] vs v8               interlock    cand=A  WIN   reached 1000 gems in round 906
+[ 52/102] vs v8               interlock    cand=B  WIN   reached 1000 gems in round 825
+[ 53/102] vs v8               lanes        cand=A  LOSS  reached 1000 gems in round 545
+[ 54/102] vs v8               lanes        cand=B  WIN   reached 1000 gems in round 531
+[ 55/102] vs v8               monolith     cand=A  LOSS  reached 1000 gems in round 498
+[ 56/102] vs v8               monolith     cand=B  WIN   reached 1000 gems in round 579
+[ 57/102] vs v8               packs        cand=A  WIN   reached 1000 gems in round 658
+[ 58/102] vs v8               packs        cand=B  LOSS  reached 1000 gems in round 658
+[ 59/102] vs v8               pilgrimage   cand=A  WIN   reached 1000 gems in round 1083
+[ 60/102] vs v8               pilgrimage   cand=B  LOSS  reached 1000 gems in round 1011
+[ 61/102] vs v8               rows         cand=A  WIN   reached 1000 gems in round 620
+[ 62/102] vs v8               rows         cand=B  LOSS  reached 1000 gems in round 620
+[ 63/102] vs v8               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 785
+[ 64/102] vs v8               rushbait-v2  cand=B  WIN   reached 1000 gems in round 745
+[ 65/102] vs v8               stampede     cand=A  WIN   reached 1000 gems in round 956
+[ 66/102] vs v8               stampede     cand=B  WIN   reached 1000 gems in round 1220
+[ 67/102] vs v8               swirl        cand=A  WIN   reached 1000 gems in round 608
+[ 68/102] vs v8               swirl        cand=B  LOSS  reached 1000 gems in round 521
+[ 69/102] vs v6               ambush       cand=A  LOSS  reached 1000 gems in round 908
+[ 70/102] vs v6               ambush       cand=B  WIN   reached 1000 gems in round 1027
+[ 71/102] vs v6               collision    cand=A  LOSS  reached 1000 gems in round 927
+[ 72/102] vs v6               collision    cand=B  WIN   reached 1000 gems in round 921
+[ 73/102] vs v6               contest      cand=A  WIN   reached 1000 gems in round 1363
+[ 74/102] vs v6               contest      cand=B  LOSS  round limit (2000) reached with more gems
+[ 75/102] vs v6               corners      cand=A  WIN   reached 1000 gems in round 605
+[ 76/102] vs v6               corners      cand=B  WIN   reached 1000 gems in round 750
+[ 77/102] vs v6               eight        cand=A  LOSS  reached 1000 gems in round 808
+[ 78/102] vs v6               eight        cand=B  WIN   reached 1000 gems in round 762
+[ 79/102] vs v6               elkring      cand=A  WIN   reached 1000 gems in round 616
+[ 80/102] vs v6               elkring      cand=B  LOSS  reached 1000 gems in round 841
+[ 81/102] vs v6               expanse      cand=A  WIN   reached 1000 gems in round 669
+[ 82/102] vs v6               expanse      cand=B  WIN   reached 1000 gems in round 708
+[ 83/102] vs v6               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 84/102] vs v6               fragment     cand=B  WIN   reached 1000 gems in round 599
+[ 85/102] vs v6               interlock    cand=A  WIN   reached 1000 gems in round 906
+[ 86/102] vs v6               interlock    cand=B  WIN   reached 1000 gems in round 825
+[ 87/102] vs v6               lanes        cand=A  WIN   reached 1000 gems in round 522
+[ 88/102] vs v6               lanes        cand=B  WIN   reached 1000 gems in round 625
+[ 89/102] vs v6               monolith     cand=A  WIN   reached 1000 gems in round 536
+[ 90/102] vs v6               monolith     cand=B  WIN   reached 1000 gems in round 632
+[ 91/102] vs v6               packs        cand=A  WIN   reached 1000 gems in round 658
+[ 92/102] vs v6               packs        cand=B  LOSS  reached 1000 gems in round 658
+[ 93/102] vs v6               pilgrimage   cand=A  WIN   reached 1000 gems in round 1060
+[ 94/102] vs v6               pilgrimage   cand=B  LOSS  reached 1000 gems in round 928
+[ 95/102] vs v6               rows         cand=A  WIN   reached 1000 gems in round 620
+[ 96/102] vs v6               rows         cand=B  LOSS  reached 1000 gems in round 620
+[ 97/102] vs v6               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 785
+[ 98/102] vs v6               rushbait-v2  cand=B  WIN   reached 1000 gems in round 745
+[ 99/102] vs v6               stampede     cand=A  WIN   reached 1000 gems in round 1127
+[100/102] vs v6               stampede     cand=B  WIN   reached 1000 gems in round 1010
+[101/102] vs v6               swirl        cand=A  WIN   reached 1000 gems in round 608
+[102/102] vs v6               swirl        cand=B  LOSS  reached 1000 gems in round 521
+
+v11: 60W 42L 0D (0 errors)  win rate 0.5882
+  vs v6               23-11  win rate 0.6765
+  vs v8               20-14  win rate 0.5882
+  vs v9               17-17  win rate 0.5
+summary: results/eval_v11/summary.json
+[03:01:07] Team A: v11 vs champion v9: 50% | v9 50%, v8 59%, v6 68% | overall 59%
+[03:01:07] Team A: REJECTED v11. Champion stays v9.
+[03:01:07] Team A: archived v5 (bots/v5 -> archive/v5).
+[03:01:07] ===== Team B: building b4 (champion: b2) =====
+   [B:analyst] I'm checking the arena_2 aggregates and then writing the analysis. The b2 fragment data is already read.
+   [B:analyst] I appended the analysis to the end of `NOTES_B.md`. Nothing under `bots/` was touched. I didn't trace any individual fights or champion positions, and I didn't run any matches.
+
+Record: b2 went 30-4 i
+[03:02:01] B:analyst finished (cost $0.16)
+   [B:strategist] I'm checking how positions expose coordinates in the docs, since my slot calculation uses `p.x` and `p.y`.
+   [B:strategist] I made `b4` and it beat `b2` on fragment in the smoke test, with 0 crashes. `b4` reached 1000 gems at round 1131 and finished with 1008 gems to `b2`'s 102. It is a single deterministic match, so it on
+[03:02:45] B:strategist finished (cost $0.08)
+[03:03:06] Running matches: run_matches.py b4 b2 b1 v1 --tag evalB_b4 -j 2 --resume
+b4 vs b2, b1, v1: 102 matches, 17 maps, 2 parallel -> results/evalB_b4
+[  1/102] vs b2               ambush       cand=A  LOSS  reached 1000 gems in round 1147
+[  2/102] vs b2               ambush       cand=B  LOSS  reached 1000 gems in round 1527
+[  3/102] vs b2               collision    cand=A  LOSS  reached 1000 gems in round 816
+[  4/102] vs b2               collision    cand=B  LOSS  reached 1000 gems in round 1033
+[  5/102] vs b2               contest      cand=A  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[  6/102] vs b2               contest      cand=B  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[  7/102] vs b2               corners      cand=A  LOSS  reached 1000 gems in round 708
+[  8/102] vs b2               corners      cand=B  LOSS  reached 1000 gems in round 858
+[  9/102] vs b2               eight        cand=A  LOSS  reached 1000 gems in round 779
+[ 10/102] vs b2               eight        cand=B  LOSS  reached 1000 gems in round 722
+[ 11/102] vs b2               elkring      cand=A  LOSS  reached 1000 gems in round 629
+[ 12/102] vs b2               elkring      cand=B  LOSS  reached 1000 gems in round 769
+[ 13/102] vs b2               expanse      cand=A  LOSS  reached 1000 gems in round 1088
+[ 14/102] vs b2               expanse      cand=B  WIN   reached 1000 gems in round 1192
+[ 15/102] vs b2               fragment     cand=A  WIN   reached 1000 gems in round 1131
+[ 16/102] vs b2               fragment     cand=B  WIN   reached 1000 gems in round 1214
+[ 17/102] vs b2               interlock    cand=A  LOSS  reached 1000 gems in round 837
+[ 18/102] vs b2               interlock    cand=B  LOSS  reached 1000 gems in round 898
+[ 19/102] vs b2               lanes        cand=A  LOSS  reached 1000 gems in round 708
+[ 20/102] vs b2               lanes        cand=B  LOSS  reached 1000 gems in round 724
+[ 21/102] vs b2               monolith     cand=A  LOSS  reached 1000 gems in round 940
+[ 22/102] vs b2               monolith     cand=B  WIN   reached 1000 gems in round 1210
+[ 23/102] vs b2               packs        cand=A  LOSS  reached 1000 gems in round 580
+[ 24/102] vs b2               packs        cand=B  LOSS  reached 1000 gems in round 749
+[ 25/102] vs b2               pilgrimage   cand=A  WIN   reached 1000 gems in round 1728
+[ 26/102] vs b2               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 27/102] vs b2               rows         cand=A  LOSS  reached 1000 gems in round 890
+[ 28/102] vs b2               rows         cand=B  LOSS  reached 1000 gems in round 1195
+[ 29/102] vs b2               rushbait-v2  cand=A  LOSS  round limit (2000) reached with more gems
+[ 30/102] vs b2               rushbait-v2  cand=B  WIN   reached 1000 gems in round 1855
+[ 31/102] vs b2               stampede     cand=A  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 32/102] vs b2               stampede     cand=B  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 33/102] vs b2               swirl        cand=A  LOSS  reached 1000 gems in round 619
+[ 34/102] vs b2               swirl        cand=B  WIN   reached 1000 gems in round 1399
+[ 35/102] vs b1               ambush       cand=A  LOSS  round limit (2000) reached with more gems
+[ 36/102] vs b1               ambush       cand=B  WIN   round limit (2000) reached with more gems
+[ 37/102] vs b1               collision    cand=A  WIN   reached 1000 gems in round 1184
+[ 38/102] vs b1               collision    cand=B  WIN   reached 1000 gems in round 1169
+[ 39/102] vs b1               contest      cand=A  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 40/102] vs b1               contest      cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 41/102] vs b1               corners      cand=A  LOSS  reached 1000 gems in round 1378
+[ 42/102] vs b1               corners      cand=B  LOSS  reached 1000 gems in round 1161
+[ 43/102] vs b1               eight        cand=A  WIN   reached 1000 gems in round 1001
+[ 44/102] vs b1               eight        cand=B  LOSS  reached 1000 gems in round 1511
+[ 45/102] vs b1               elkring      cand=A  WIN   reached 1000 gems in round 1029
+[ 46/102] vs b1               elkring      cand=B  WIN   reached 1000 gems in round 1136
+[ 47/102] vs b1               expanse      cand=A  LOSS  reached 1000 gems in round 1628
+[ 48/102] vs b1               expanse      cand=B  WIN   reached 1000 gems in round 1192
+[ 49/102] vs b1               fragment     cand=A  LOSS  reached 1000 gems in round 1878
+[ 50/102] vs b1               fragment     cand=B  WIN   reached 1000 gems in round 1303
+[ 51/102] vs b1               interlock    cand=A  WIN   reached 1000 gems in round 1122
+[ 52/102] vs b1               interlock    cand=B  WIN   reached 1000 gems in round 1236
+[ 53/102] vs b1               lanes        cand=A  LOSS  reached 1000 gems in round 1032
+[ 54/102] vs b1               lanes        cand=B  LOSS  reached 1000 gems in round 1161
+[ 55/102] vs b1               monolith     cand=A  LOSS  reached 1000 gems in round 1208
+[ 56/102] vs b1               monolith     cand=B  WIN   reached 1000 gems in round 1198
+[ 57/102] vs b1               packs        cand=A  LOSS  reached 1000 gems in round 989
+[ 58/102] vs b1               packs        cand=B  LOSS  reached 1000 gems in round 946
+[ 59/102] vs b1               pilgrimage   cand=A  WIN   reached 1000 gems in round 1728
+[ 60/102] vs b1               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 61/102] vs b1               rows         cand=A  LOSS  reached 1000 gems in round 1369
+[ 62/102] vs b1               rows         cand=B  LOSS  reached 1000 gems in round 1249
+[ 63/102] vs b1               rushbait-v2  cand=A  WIN   round limit (2000) reached with more gems
+[ 64/102] vs b1               rushbait-v2  cand=B  WIN   reached 1000 gems in round 1788
+[ 65/102] vs b1               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 66/102] vs b1               stampede     cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 67/102] vs b1               swirl        cand=A  LOSS  reached 1000 gems in round 1225
+[ 68/102] vs b1               swirl        cand=B  WIN   reached 1000 gems in round 1312
+[ 69/102] vs v1               ambush       cand=A  LOSS  round limit (2000) reached with more gems
+[ 70/102] vs v1               ambush       cand=B  WIN   round limit (2000) reached with more gems
+[ 71/102] vs v1               collision    cand=A  WIN   reached 1000 gems in round 1184
+[ 72/102] vs v1               collision    cand=B  WIN   reached 1000 gems in round 1169
+[ 73/102] vs v1               contest      cand=A  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 74/102] vs v1               contest      cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 75/102] vs v1               corners      cand=A  LOSS  reached 1000 gems in round 1378
+[ 76/102] vs v1               corners      cand=B  LOSS  reached 1000 gems in round 1161
+[ 77/102] vs v1               eight        cand=A  WIN   reached 1000 gems in round 1001
+[ 78/102] vs v1               eight        cand=B  LOSS  reached 1000 gems in round 1511
+[ 79/102] vs v1               elkring      cand=A  WIN   reached 1000 gems in round 1029
+[ 80/102] vs v1               elkring      cand=B  WIN   reached 1000 gems in round 1136
+[ 81/102] vs v1               expanse      cand=A  LOSS  reached 1000 gems in round 1628
+[ 82/102] vs v1               expanse      cand=B  WIN   reached 1000 gems in round 1192
+[ 83/102] vs v1               fragment     cand=A  LOSS  reached 1000 gems in round 1878
+[ 84/102] vs v1               fragment     cand=B  WIN   reached 1000 gems in round 1303
+[ 85/102] vs v1               interlock    cand=A  WIN   reached 1000 gems in round 1122
+[ 86/102] vs v1               interlock    cand=B  WIN   reached 1000 gems in round 1236
+[ 87/102] vs v1               lanes        cand=A  LOSS  reached 1000 gems in round 1032
+[ 88/102] vs v1               lanes        cand=B  LOSS  reached 1000 gems in round 1161
+[ 89/102] vs v1               monolith     cand=A  LOSS  reached 1000 gems in round 1208
+[ 90/102] vs v1               monolith     cand=B  WIN   reached 1000 gems in round 1198
+[ 91/102] vs v1               packs        cand=A  LOSS  reached 1000 gems in round 989
+[ 92/102] vs v1               packs        cand=B  LOSS  reached 1000 gems in round 946
+[ 93/102] vs v1               pilgrimage   cand=A  WIN   reached 1000 gems in round 1728
+[ 94/102] vs v1               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 95/102] vs v1               rows         cand=A  LOSS  reached 1000 gems in round 1369
+[ 96/102] vs v1               rows         cand=B  LOSS  reached 1000 gems in round 1249
+[ 97/102] vs v1               rushbait-v2  cand=A  WIN   round limit (2000) reached with more gems
+[ 98/102] vs v1               rushbait-v2  cand=B  WIN   reached 1000 gems in round 1788
+[ 99/102] vs v1               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[100/102] vs v1               stampede     cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[101/102] vs v1               swirl        cand=A  LOSS  reached 1000 gems in round 1225
+[102/102] vs v1               swirl        cand=B  WIN   reached 1000 gems in round 1312
+
+b4: 46W 56L 0D (0 errors)  win rate 0.451
+  vs b1               19-15  win rate 0.5588
+  vs b2               8-26  win rate 0.2353
+  vs v1               19-15  win rate 0.5588
+summary: results/evalB_b4/summary.json
+[03:28:51] Team B: b4 vs champion b2: 24% | b2 24%, b1 56%, v1 56% | overall 45%
+[03:28:51] Team B: REJECTED b4. Champion stays b2.
+[03:28:51] Arena: v9 vs b2 already played (arena_2); no new champions, skipping.
+[03:28:51] API cost this run so far: $1.41
+[03:28:51] ########## Round 3/5 ##########
+[03:28:51] ===== Team A: building v12 (champion: v9) =====
+   [A:analyst] I've appended the analysis to the end of `NOTES.md`. I only counted with Grep over `summary.json` and didn't open any `stats.json`, so the causes in code are hypotheses from reading the source.
+
+**Rec
+[03:30:16] A:analyst finished (cost $0.36)
+   [A:strategist] Adding death memory is done. Next I'm compiling and running the smoke test on swirl.
+   [A:strategist] **v12** is built, but the one smoke test on swirl was a loss to v9. It's a crash check only, and the result is the same one the analysis flagged on that map.
+
+**Smoke test:** `cambc run v12 v9 --map s
+[03:30:56] A:strategist finished (cost $0.08)
+[03:31:14] Running matches: run_matches.py v12 v9 v8 v6 --tag eval_v12 -j 2 --resume
+v12 vs v9, v8, v6: 102 matches, 17 maps, 2 parallel -> results/eval_v12
+[  1/102] vs v9               ambush       cand=A  LOSS  reached 1000 gems in round 795
+[  2/102] vs v9               ambush       cand=B  WIN   reached 1000 gems in round 795
+[  3/102] vs v9               collision    cand=A  LOSS  reached 1000 gems in round 921
+[  4/102] vs v9               collision    cand=B  WIN   reached 1000 gems in round 921
+[  5/102] vs v9               contest      cand=A  WIN   reached 1000 gems in round 1549
+[  6/102] vs v9               contest      cand=B  LOSS  reached 1000 gems in round 1511
+[  7/102] vs v9               corners      cand=A  LOSS  reached 1000 gems in round 535
+[  8/102] vs v9               corners      cand=B  WIN   reached 1000 gems in round 535
+[  9/102] vs v9               eight        cand=A  WIN   reached 1000 gems in round 515
+[ 10/102] vs v9               eight        cand=B  LOSS  reached 1000 gems in round 531
+[ 11/102] vs v9               elkring      cand=A  WIN   reached 1000 gems in round 692
+[ 12/102] vs v9               elkring      cand=B  LOSS  reached 1000 gems in round 692
+[ 13/102] vs v9               expanse      cand=A  WIN   reached 1000 gems in round 807
+[ 14/102] vs v9               expanse      cand=B  LOSS  reached 1000 gems in round 807
+[ 15/102] vs v9               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 16/102] vs v9               fragment     cand=B  WIN   reached 1000 gems in round 599
+[ 17/102] vs v9               interlock    cand=A  LOSS  reached 1000 gems in round 825
+[ 18/102] vs v9               interlock    cand=B  WIN   reached 1000 gems in round 825
+[ 19/102] vs v9               lanes        cand=A  LOSS  reached 1000 gems in round 583
+[ 20/102] vs v9               lanes        cand=B  WIN   reached 1000 gems in round 583
+[ 21/102] vs v9               monolith     cand=B  WIN   reached 1000 gems in round 498
+[ 22/102] vs v9               monolith     cand=A  LOSS  reached 1000 gems in round 498
+[ 23/102] vs v9               packs        cand=B  LOSS  reached 1000 gems in round 658
+[ 24/102] vs v9               packs        cand=A  WIN   reached 1000 gems in round 658
+[ 25/102] vs v9               pilgrimage   cand=A  WIN   reached 1000 gems in round 1011
+[ 26/102] vs v9               pilgrimage   cand=B  LOSS  reached 1000 gems in round 1011
+[ 27/102] vs v9               rows         cand=A  WIN   reached 1000 gems in round 620
+[ 28/102] vs v9               rows         cand=B  LOSS  reached 1000 gems in round 620
+[ 29/102] vs v9               rushbait-v2  cand=A  WIN   reached 1000 gems in round 819
+[ 30/102] vs v9               rushbait-v2  cand=B  LOSS  reached 1000 gems in round 819
+[ 31/102] vs v9               stampede     cand=A  WIN   reached 1000 gems in round 1294
+[ 32/102] vs v9               stampede     cand=B  LOSS  reached 1000 gems in round 1294
+[ 33/102] vs v9               swirl        cand=A  LOSS  reached 1000 gems in round 521
+[ 34/102] vs v9               swirl        cand=B  LOSS  reached 1000 gems in round 521
+[ 35/102] vs v8               ambush       cand=A  LOSS  reached 1000 gems in round 766
+[ 36/102] vs v8               ambush       cand=B  WIN   reached 1000 gems in round 795
+[ 37/102] vs v8               collision    cand=A  LOSS  reached 1000 gems in round 955
+[ 38/102] vs v8               collision    cand=B  WIN   reached 1000 gems in round 921
+[ 39/102] vs v8               contest      cand=A  WIN   reached 1000 gems in round 1549
+[ 40/102] vs v8               contest      cand=B  LOSS  reached 1000 gems in round 1452
+[ 41/102] vs v8               corners      cand=A  LOSS  reached 1000 gems in round 535
+[ 42/102] vs v8               corners      cand=B  WIN   reached 1000 gems in round 535
+[ 43/102] vs v8               eight        cand=A  WIN   reached 1000 gems in round 515
+[ 44/102] vs v8               eight        cand=B  LOSS  reached 1000 gems in round 531
+[ 45/102] vs v8               elkring      cand=A  LOSS  reached 1000 gems in round 741
+[ 46/102] vs v8               elkring      cand=B  WIN   reached 1000 gems in round 654
+[ 47/102] vs v8               expanse      cand=A  LOSS  reached 1000 gems in round 756
+[ 48/102] vs v8               expanse      cand=B  LOSS  reached 1000 gems in round 853
+[ 49/102] vs v8               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 50/102] vs v8               fragment     cand=B  WIN   reached 1000 gems in round 599
+[ 51/102] vs v8               interlock    cand=A  WIN   reached 1000 gems in round 906
+[ 52/102] vs v8               interlock    cand=B  WIN   reached 1000 gems in round 825
+[ 53/102] vs v8               lanes        cand=A  LOSS  reached 1000 gems in round 545
+[ 54/102] vs v8               lanes        cand=B  WIN   reached 1000 gems in round 531
+[ 55/102] vs v8               monolith     cand=A  LOSS  reached 1000 gems in round 498
+[ 56/102] vs v8               monolith     cand=B  WIN   reached 1000 gems in round 579
+[ 57/102] vs v8               packs        cand=A  WIN   reached 1000 gems in round 658
+[ 58/102] vs v8               packs        cand=B  LOSS  reached 1000 gems in round 658
+[ 59/102] vs v8               pilgrimage   cand=A  WIN   reached 1000 gems in round 1083
+[ 60/102] vs v8               pilgrimage   cand=B  LOSS  reached 1000 gems in round 1011
+[ 61/102] vs v8               rows         cand=A  WIN   reached 1000 gems in round 620
+[ 62/102] vs v8               rows         cand=B  LOSS  reached 1000 gems in round 620
+[ 63/102] vs v8               rushbait-v2  cand=A  WIN   reached 1000 gems in round 797
+[ 64/102] vs v8               rushbait-v2  cand=B  WIN   reached 1000 gems in round 753
+[ 65/102] vs v8               stampede     cand=A  WIN   reached 1000 gems in round 956
+[ 66/102] vs v8               stampede     cand=B  WIN   reached 1000 gems in round 1220
+[ 67/102] vs v8               swirl        cand=A  WIN   reached 1000 gems in round 608
+[ 68/102] vs v8               swirl        cand=B  LOSS  reached 1000 gems in round 521
+[ 69/102] vs v6               ambush       cand=A  LOSS  reached 1000 gems in round 908
+[ 70/102] vs v6               ambush       cand=B  WIN   reached 1000 gems in round 1027
+[ 71/102] vs v6               collision    cand=A  LOSS  reached 1000 gems in round 955
+[ 72/102] vs v6               collision    cand=B  WIN   reached 1000 gems in round 921
+[ 73/102] vs v6               contest      cand=A  WIN   reached 1000 gems in round 1363
+[ 74/102] vs v6               contest      cand=B  LOSS  round limit (2000) reached with more gems
+[ 75/102] vs v6               corners      cand=A  WIN   reached 1000 gems in round 628
+[ 76/102] vs v6               corners      cand=B  WIN   reached 1000 gems in round 788
+[ 77/102] vs v6               eight        cand=A  LOSS  reached 1000 gems in round 810
+[ 78/102] vs v6               eight        cand=B  WIN   reached 1000 gems in round 756
+[ 79/102] vs v6               elkring      cand=A  WIN   reached 1000 gems in round 616
+[ 80/102] vs v6               elkring      cand=B  LOSS  reached 1000 gems in round 841
+[ 81/102] vs v6               expanse      cand=A  LOSS  reached 1000 gems in round 756
+[ 82/102] vs v6               expanse      cand=B  LOSS  reached 1000 gems in round 853
+[ 83/102] vs v6               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 84/102] vs v6               fragment     cand=B  WIN   reached 1000 gems in round 599
+[ 85/102] vs v6               interlock    cand=A  WIN   reached 1000 gems in round 906
+[ 86/102] vs v6               interlock    cand=B  WIN   reached 1000 gems in round 825
+[ 87/102] vs v6               lanes        cand=A  WIN   reached 1000 gems in round 501
+[ 88/102] vs v6               lanes        cand=B  WIN   reached 1000 gems in round 625
+[ 89/102] vs v6               monolith     cand=A  WIN   reached 1000 gems in round 536
+[ 90/102] vs v6               monolith     cand=B  WIN   reached 1000 gems in round 632
+[ 91/102] vs v6               packs        cand=A  WIN   reached 1000 gems in round 658
+[ 92/102] vs v6               packs        cand=B  LOSS  reached 1000 gems in round 658
+[ 93/102] vs v6               pilgrimage   cand=A  WIN   reached 1000 gems in round 1034
+[ 94/102] vs v6               pilgrimage   cand=B  LOSS  reached 1000 gems in round 928
+[ 95/102] vs v6               rows         cand=A  WIN   reached 1000 gems in round 620
+[ 96/102] vs v6               rows         cand=B  LOSS  reached 1000 gems in round 620
+[ 97/102] vs v6               rushbait-v2  cand=A  WIN   reached 1000 gems in round 797
+[ 98/102] vs v6               rushbait-v2  cand=B  WIN   reached 1000 gems in round 753
+[ 99/102] vs v6               stampede     cand=A  WIN   reached 1000 gems in round 1127
+[100/102] vs v6               stampede     cand=B  WIN   reached 1000 gems in round 1010
+[101/102] vs v6               swirl        cand=A  WIN   reached 1000 gems in round 608
+[102/102] vs v6               swirl        cand=B  LOSS  reached 1000 gems in round 521
+
+v12: 57W 45L 0D (0 errors)  win rate 0.5588
+  vs v6               22-12  win rate 0.6471
+  vs v8               19-15  win rate 0.5588
+  vs v9               16-18  win rate 0.4706
+summary: results/eval_v12/summary.json
+[03:56:13] Team A: v12 vs champion v9: 47% | v9 47%, v8 56%, v6 65% | overall 56%
+[03:56:13] Team A: REJECTED v12. Champion stays v9.
+[03:56:13] Team A: archived v7 (bots/v7 -> archive/v7).
+[03:56:13] ===== Team B: building b5 (champion: b2) =====
+   [B:analyst] Status: I've read the notes, the arena and b4 summaries, and b2's code. I'm now appending the analysis to NOTES_B.md.
+   [B:analyst] I've appended the analysis to the end of `NOTES_B.md`. It rests on summary numbers and b2's code, not on any fight traces.
+
+**Context:** b2 lost the arena 0-34 against Team A. b3 lost to b2 and b4 los
+[03:57:05] B:analyst finished (cost $0.17)
+   [B:strategist] I changed `bots/b5/src/bot.py` so champions use their abilities and focus fire on enemy champions. The smoke test ran clean, but it can't show whether the change helps.
+
+**Changes**
+- **New `cast_abil
+[03:57:49] B:strategist finished (cost $0.09)
+[03:58:10] Running matches: run_matches.py b5 b2 b1 v1 --tag evalB_b5 -j 2 --resume
+b5 vs b2, b1, v1: 102 matches, 17 maps, 2 parallel -> results/evalB_b5
+[  1/102] vs b2               ambush       cand=A  LOSS  reached 1000 gems in round 1155
+[  2/102] vs b2               ambush       cand=B  WIN   reached 1000 gems in round 1155
+[  3/102] vs b2               collision    cand=B  WIN   reached 1000 gems in round 788
+[  4/102] vs b2               collision    cand=A  LOSS  reached 1000 gems in round 1027
+[  5/102] vs b2               contest      cand=A  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[  6/102] vs b2               contest      cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[  7/102] vs b2               corners      cand=A  LOSS  reached 1000 gems in round 779
+[  8/102] vs b2               corners      cand=B  WIN   reached 1000 gems in round 808
+[  9/102] vs b2               eight        cand=A  WIN   reached 1000 gems in round 797
+[ 10/102] vs b2               eight        cand=B  WIN   reached 1000 gems in round 901
+[ 11/102] vs b2               elkring      cand=A  LOSS  reached 1000 gems in round 742
+[ 12/102] vs b2               elkring      cand=B  WIN   reached 1000 gems in round 786
+[ 13/102] vs b2               expanse      cand=A  LOSS  reached 1000 gems in round 1088
+[ 14/102] vs b2               expanse      cand=B  WIN   reached 1000 gems in round 1088
+[ 15/102] vs b2               fragment     cand=A  LOSS  reached 1000 gems in round 1031
+[ 16/102] vs b2               fragment     cand=B  LOSS  round limit (2000) reached with more gems
+[ 17/102] vs b2               interlock    cand=A  LOSS  reached 1000 gems in round 807
+[ 18/102] vs b2               interlock    cand=B  WIN   reached 1000 gems in round 807
+[ 19/102] vs b2               lanes        cand=A  LOSS  reached 1000 gems in round 743
+[ 20/102] vs b2               lanes        cand=B  WIN   reached 1000 gems in round 743
+[ 21/102] vs b2               monolith     cand=A  LOSS  reached 1000 gems in round 859
+[ 22/102] vs b2               monolith     cand=B  WIN   reached 1000 gems in round 856
+[ 23/102] vs b2               packs        cand=A  LOSS  reached 1000 gems in round 569
+[ 24/102] vs b2               packs        cand=B  WIN   reached 1000 gems in round 615
+[ 25/102] vs b2               pilgrimage   cand=A  LOSS  round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[ 26/102] vs b2               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[ 27/102] vs b2               rows         cand=A  LOSS  reached 1000 gems in round 872
+[ 28/102] vs b2               rows         cand=B  WIN   reached 1000 gems in round 872
+[ 29/102] vs b2               rushbait-v2  cand=A  LOSS  round limit (2000) reached with more gems
+[ 30/102] vs b2               rushbait-v2  cand=B  WIN   round limit (2000) reached with more gems
+[ 31/102] vs b2               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 32/102] vs b2               stampede     cand=B  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 33/102] vs b2               swirl        cand=A  LOSS  reached 1000 gems in round 1232
+[ 34/102] vs b2               swirl        cand=B  WIN   reached 1000 gems in round 1053
+[ 35/102] vs b1               ambush       cand=A  WIN   reached 1000 gems in round 1527
+[ 36/102] vs b1               ambush       cand=B  WIN   reached 1000 gems in round 1155
+[ 37/102] vs b1               collision    cand=A  WIN   reached 1000 gems in round 851
+[ 38/102] vs b1               collision    cand=B  WIN   reached 1000 gems in round 667
+[ 39/102] vs b1               contest      cand=A  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 40/102] vs b1               contest      cand=B  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 41/102] vs b1               corners      cand=A  WIN   reached 1000 gems in round 885
+[ 42/102] vs b1               corners      cand=B  WIN   reached 1000 gems in round 706
+[ 43/102] vs b1               eight        cand=A  WIN   reached 1000 gems in round 758
+[ 44/102] vs b1               eight        cand=B  WIN   reached 1000 gems in round 797
+[ 45/102] vs b1               elkring      cand=A  WIN   reached 1000 gems in round 644
+[ 46/102] vs b1               elkring      cand=B  WIN   reached 1000 gems in round 589
+[ 47/102] vs b1               expanse      cand=A  WIN   reached 1000 gems in round 1194
+[ 48/102] vs b1               expanse      cand=B  WIN   reached 1000 gems in round 1088
+[ 49/102] vs b1               fragment     cand=A  LOSS  reached 1000 gems in round 1912
+[ 50/102] vs b1               fragment     cand=B  LOSS  reached 1000 gems in round 1880
+[ 51/102] vs b1               interlock    cand=A  WIN   reached 1000 gems in round 999
+[ 52/102] vs b1               interlock    cand=B  WIN   reached 1000 gems in round 780
+[ 53/102] vs b1               lanes        cand=A  WIN   reached 1000 gems in round 787
+[ 54/102] vs b1               lanes        cand=B  WIN   reached 1000 gems in round 743
+[ 55/102] vs b1               monolith     cand=A  LOSS  reached 1000 gems in round 1186
+[ 56/102] vs b1               monolith     cand=B  WIN   reached 1000 gems in round 1062
+[ 57/102] vs b1               packs        cand=A  WIN   reached 1000 gems in round 656
+[ 58/102] vs b1               packs        cand=B  WIN   reached 1000 gems in round 610
+[ 59/102] vs b1               pilgrimage   cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 60/102] vs b1               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 61/102] vs b1               rows         cand=A  WIN   reached 1000 gems in round 1132
+[ 62/102] vs b1               rows         cand=B  WIN   reached 1000 gems in round 872
+[ 63/102] vs b1               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 1762
+[ 64/102] vs b1               rushbait-v2  cand=B  LOSS  round limit (2000) reached with more gems
+[ 65/102] vs b1               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 66/102] vs b1               stampede     cand=B  WIN   round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[ 67/102] vs b1               swirl        cand=B  WIN   reached 1000 gems in round 813
+[ 68/102] vs b1               swirl        cand=A  WIN   reached 1000 gems in round 1292
+[ 69/102] vs v1               ambush       cand=B  WIN   reached 1000 gems in round 1155
+[ 70/102] vs v1               ambush       cand=A  WIN   reached 1000 gems in round 1527
+[ 71/102] vs v1               collision    cand=A  WIN   reached 1000 gems in round 851
+[ 72/102] vs v1               collision    cand=B  WIN   reached 1000 gems in round 667
+[ 73/102] vs v1               contest      cand=A  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 74/102] vs v1               contest      cand=B  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 75/102] vs v1               corners      cand=A  WIN   reached 1000 gems in round 885
+[ 76/102] vs v1               corners      cand=B  WIN   reached 1000 gems in round 706
+[ 77/102] vs v1               eight        cand=A  WIN   reached 1000 gems in round 758
+[ 78/102] vs v1               eight        cand=B  WIN   reached 1000 gems in round 797
+[ 79/102] vs v1               elkring      cand=A  WIN   reached 1000 gems in round 644
+[ 80/102] vs v1               elkring      cand=B  WIN   reached 1000 gems in round 589
+[ 81/102] vs v1               expanse      cand=A  WIN   reached 1000 gems in round 1194
+[ 82/102] vs v1               expanse      cand=B  WIN   reached 1000 gems in round 1088
+[ 83/102] vs v1               fragment     cand=A  LOSS  reached 1000 gems in round 1912
+[ 84/102] vs v1               fragment     cand=B  LOSS  reached 1000 gems in round 1880
+[ 85/102] vs v1               interlock    cand=A  WIN   reached 1000 gems in round 999
+[ 86/102] vs v1               interlock    cand=B  WIN   reached 1000 gems in round 780
+[ 87/102] vs v1               lanes        cand=A  WIN   reached 1000 gems in round 787
+[ 88/102] vs v1               lanes        cand=B  WIN   reached 1000 gems in round 743
+[ 89/102] vs v1               monolith     cand=A  LOSS  reached 1000 gems in round 1186
+[ 90/102] vs v1               monolith     cand=B  WIN   reached 1000 gems in round 1062
+[ 91/102] vs v1               packs        cand=A  WIN   reached 1000 gems in round 656
+[ 92/102] vs v1               packs        cand=B  WIN   reached 1000 gems in round 610
+[ 93/102] vs v1               pilgrimage   cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 94/102] vs v1               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 95/102] vs v1               rows         cand=A  WIN   reached 1000 gems in round 1132
+[ 96/102] vs v1               rows         cand=B  WIN   reached 1000 gems in round 872
+[ 97/102] vs v1               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 1762
+[ 98/102] vs v1               rushbait-v2  cand=B  LOSS  round limit (2000) reached with more gems
+[ 99/102] vs v1               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[100/102] vs v1               stampede     cand=B  WIN   round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[101/102] vs v1               swirl        cand=B  WIN   reached 1000 gems in round 813
+[102/102] vs v1               swirl        cand=A  WIN   reached 1000 gems in round 1292
+
+b5: 71W 31L 0D (0 errors)  win rate 0.6961
+  vs b1               27-7  win rate 0.7941
+  vs b2               17-17  win rate 0.5
+  vs v1               27-7  win rate 0.7941
+summary: results/evalB_b5/summary.json
+[04:23:53] Team B: b5 vs champion b2: 50% | b2 50%, b1 79%, v1 79% | overall 70%
+[04:23:53] Team B: REJECTED b5. Champion stays b2.
+[04:23:53] Arena: v9 vs b2 already played (arena_2); no new champions, skipping.
+[04:23:53] API cost this run so far: $2.11
+[04:23:53] ########## Round 4/5 ##########
+[04:23:53] ===== Team A: building v13 (champion: v9) =====
+   [A:analyst] I'm reading the arena_2 summary for round counts per map. After that I'll check how b2 loses and which of our champions sit idle.
+   [A:analyst] I'm checking rushbait A against rushbait B, because B finished 200 rounds slower. Then I'll write up.
+   [A:analyst] I appended the analysis to the end of `NOTES.md`. I read `summary.json` by hand and did not open any `stats.json`, so the mechanisms below are partly hypotheses.
+
+v9 beat b2 34-0 in `results/arena_2`,
+[04:24:59] A:analyst finished (cost $0.33)
+   [A:strategist] Checking the shared memory size and the nslots/SOLO values so I can pick free bytes for each champion's carried gems.
+   [A:strategist] I made `v13` from `v9` with two changes. The smoke test on expanse passed with 0 crashes. I did not run the full evaluation.
+
+**Changes**
+- **Team-wide bank check (finding #1)**
+  - `bot.py:write_shar
+[04:25:54] A:strategist finished (cost $0.11)
+[04:26:13] Running matches: run_matches.py v13 v9 v8 v6 --tag eval_v13 -j 2 --resume
+v13 vs v9, v8, v6: 102 matches, 17 maps, 2 parallel -> results/eval_v13
+[  1/102] vs v9               ambush       cand=A  LOSS  reached 1000 gems in round 795
+[  2/102] vs v9               ambush       cand=B  WIN   reached 1000 gems in round 795
+[  3/102] vs v9               collision    cand=B  WIN   reached 1000 gems in round 921
+[  4/102] vs v9               collision    cand=A  LOSS  reached 1000 gems in round 921
+[  5/102] vs v9               contest      cand=A  WIN   reached 1000 gems in round 1549
+[  6/102] vs v9               contest      cand=B  LOSS  reached 1000 gems in round 1549
+[  7/102] vs v9               corners      cand=A  LOSS  reached 1000 gems in round 535
+[  8/102] vs v9               corners      cand=B  WIN   reached 1000 gems in round 556
+[  9/102] vs v9               eight        cand=A  WIN   reached 1000 gems in round 529
+[ 10/102] vs v9               eight        cand=B  LOSS  reached 1000 gems in round 515
+[ 11/102] vs v9               elkring      cand=A  WIN   reached 1000 gems in round 682
+[ 12/102] vs v9               elkring      cand=B  LOSS  reached 1000 gems in round 692
+[ 13/102] vs v9               expanse      cand=A  WIN   reached 1000 gems in round 631
+[ 14/102] vs v9               expanse      cand=B  WIN   reached 1000 gems in round 719
+[ 15/102] vs v9               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 16/102] vs v9               fragment     cand=B  WIN   reached 1000 gems in round 599
+[ 17/102] vs v9               interlock    cand=A  LOSS  reached 1000 gems in round 825
+[ 18/102] vs v9               interlock    cand=B  WIN   reached 1000 gems in round 828
+[ 19/102] vs v9               lanes        cand=A  LOSS  reached 1000 gems in round 583
+[ 20/102] vs v9               lanes        cand=B  WIN   reached 1000 gems in round 572
+[ 21/102] vs v9               monolith     cand=A  LOSS  reached 1000 gems in round 498
+[ 22/102] vs v9               monolith     cand=B  WIN   reached 1000 gems in round 534
+[ 23/102] vs v9               packs        cand=A  WIN   reached 1000 gems in round 630
+[ 24/102] vs v9               packs        cand=B  LOSS  reached 1000 gems in round 658
+[ 25/102] vs v9               pilgrimage   cand=A  WIN   reached 1000 gems in round 1011
+[ 26/102] vs v9               pilgrimage   cand=B  LOSS  reached 1000 gems in round 1011
+[ 27/102] vs v9               rows         cand=A  WIN   reached 1000 gems in round 620
+[ 28/102] vs v9               rows         cand=B  LOSS  reached 1000 gems in round 620
+[ 29/102] vs v9               rushbait-v2  cand=A  WIN   reached 1000 gems in round 827
+[ 30/102] vs v9               rushbait-v2  cand=B  LOSS  reached 1000 gems in round 812
+[ 31/102] vs v9               stampede     cand=A  WIN   reached 1000 gems in round 1294
+[ 32/102] vs v9               stampede     cand=B  LOSS  reached 1000 gems in round 1294
+[ 33/102] vs v9               swirl        cand=A  LOSS  reached 1000 gems in round 521
+[ 34/102] vs v9               swirl        cand=B  LOSS  reached 1000 gems in round 521
+[ 35/102] vs v8               ambush       cand=A  LOSS  reached 1000 gems in round 766
+[ 36/102] vs v8               ambush       cand=B  WIN   reached 1000 gems in round 795
+[ 37/102] vs v8               collision    cand=A  LOSS  reached 1000 gems in round 955
+[ 38/102] vs v8               collision    cand=B  WIN   reached 1000 gems in round 921
+[ 39/102] vs v8               contest      cand=A  WIN   reached 1000 gems in round 1549
+[ 40/102] vs v8               contest      cand=B  LOSS  reached 1000 gems in round 1577
+[ 41/102] vs v8               corners      cand=A  LOSS  reached 1000 gems in round 535
+[ 42/102] vs v8               corners      cand=B  WIN   reached 1000 gems in round 556
+[ 43/102] vs v8               eight        cand=A  WIN   reached 1000 gems in round 529
+[ 44/102] vs v8               eight        cand=B  LOSS  reached 1000 gems in round 515
+[ 45/102] vs v8               elkring      cand=A  LOSS  reached 1000 gems in round 741
+[ 46/102] vs v8               elkring      cand=B  WIN   reached 1000 gems in round 711
+[ 47/102] vs v8               expanse      cand=A  WIN   reached 1000 gems in round 669
+[ 48/102] vs v8               expanse      cand=B  WIN   reached 1000 gems in round 708
+[ 49/102] vs v8               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 50/102] vs v8               fragment     cand=B  WIN   reached 1000 gems in round 599
+[ 51/102] vs v8               interlock    cand=A  WIN   reached 1000 gems in round 906
+[ 52/102] vs v8               interlock    cand=B  WIN   reached 1000 gems in round 828
+[ 53/102] vs v8               lanes        cand=A  LOSS  reached 1000 gems in round 545
+[ 54/102] vs v8               lanes        cand=B  WIN   reached 1000 gems in round 536
+[ 55/102] vs v8               monolith     cand=A  LOSS  reached 1000 gems in round 498
+[ 56/102] vs v8               monolith     cand=B  LOSS  reached 1000 gems in round 577
+[ 57/102] vs v8               packs        cand=A  WIN   reached 1000 gems in round 630
+[ 58/102] vs v8               packs        cand=B  LOSS  reached 1000 gems in round 658
+[ 59/102] vs v8               pilgrimage   cand=A  WIN   reached 1000 gems in round 1042
+[ 60/102] vs v8               pilgrimage   cand=B  LOSS  reached 1000 gems in round 1011
+[ 61/102] vs v8               rows         cand=A  WIN   reached 1000 gems in round 620
+[ 62/102] vs v8               rows         cand=B  LOSS  reached 1000 gems in round 620
+[ 63/102] vs v8               rushbait-v2  cand=A  WIN   reached 1000 gems in round 750
+[ 64/102] vs v8               rushbait-v2  cand=B  LOSS  reached 1000 gems in round 756
+[ 65/102] vs v8               stampede     cand=A  WIN   reached 1000 gems in round 956
+[ 66/102] vs v8               stampede     cand=B  WIN   reached 1000 gems in round 1220
+[ 67/102] vs v8               swirl        cand=A  WIN   reached 1000 gems in round 608
+[ 68/102] vs v8               swirl        cand=B  LOSS  reached 1000 gems in round 521
+[ 69/102] vs v6               ambush       cand=A  LOSS  reached 1000 gems in round 908
+[ 70/102] vs v6               ambush       cand=B  WIN   reached 1000 gems in round 1038
+[ 71/102] vs v6               collision    cand=A  LOSS  reached 1000 gems in round 955
+[ 72/102] vs v6               collision    cand=B  WIN   reached 1000 gems in round 921
+[ 73/102] vs v6               contest      cand=A  WIN   reached 1000 gems in round 1363
+[ 74/102] vs v6               contest      cand=B  LOSS  round limit (2000) reached with more gems
+[ 75/102] vs v6               corners      cand=A  WIN   reached 1000 gems in round 636
+[ 76/102] vs v6               corners      cand=B  WIN   reached 1000 gems in round 757
+[ 77/102] vs v6               eight        cand=A  LOSS  reached 1000 gems in round 808
+[ 78/102] vs v6               eight        cand=B  WIN   reached 1000 gems in round 757
+[ 79/102] vs v6               elkring      cand=A  WIN   reached 1000 gems in round 613
+[ 80/102] vs v6               elkring      cand=B  LOSS  reached 1000 gems in round 856
+[ 81/102] vs v6               expanse      cand=A  WIN   reached 1000 gems in round 669
+[ 82/102] vs v6               expanse      cand=B  WIN   reached 1000 gems in round 708
+[ 83/102] vs v6               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 84/102] vs v6               fragment     cand=B  WIN   reached 1000 gems in round 599
+[ 85/102] vs v6               interlock    cand=A  WIN   reached 1000 gems in round 906
+[ 86/102] vs v6               interlock    cand=B  WIN   reached 1000 gems in round 828
+[ 87/102] vs v6               lanes        cand=A  WIN   reached 1000 gems in round 517
+[ 88/102] vs v6               lanes        cand=B  WIN   reached 1000 gems in round 618
+[ 89/102] vs v6               monolith     cand=A  WIN   reached 1000 gems in round 577
+[ 90/102] vs v6               monolith     cand=B  WIN   reached 1000 gems in round 638
+[ 91/102] vs v6               packs        cand=A  WIN   reached 1000 gems in round 630
+[ 92/102] vs v6               packs        cand=B  LOSS  reached 1000 gems in round 658
+[ 93/102] vs v6               pilgrimage   cand=A  WIN   reached 1000 gems in round 1068
+[ 94/102] vs v6               pilgrimage   cand=B  LOSS  reached 1000 gems in round 928
+[ 95/102] vs v6               rows         cand=A  WIN   reached 1000 gems in round 620
+[ 96/102] vs v6               rows         cand=B  LOSS  reached 1000 gems in round 620
+[ 97/102] vs v6               rushbait-v2  cand=A  WIN   reached 1000 gems in round 750
+[ 98/102] vs v6               rushbait-v2  cand=B  LOSS  reached 1000 gems in round 756
+[ 99/102] vs v6               stampede     cand=A  WIN   reached 1000 gems in round 1127
+[100/102] vs v6               stampede     cand=B  WIN   reached 1000 gems in round 1010
+[101/102] vs v6               swirl        cand=A  WIN   reached 1000 gems in round 608
+[102/102] vs v6               swirl        cand=B  LOSS  reached 1000 gems in round 521
+
+v13: 59W 43L 0D (0 errors)  win rate 0.5784
+  vs v6               23-11  win rate 0.6765
+  vs v8               19-15  win rate 0.5588
+  vs v9               17-17  win rate 0.5
+summary: results/eval_v13/summary.json
+[04:50:52] Team A: v13 vs champion v9: 50% | v9 50%, v8 56%, v6 68% | overall 58%
+[04:50:52] Team A: REJECTED v13. Champion stays v9.
+[04:50:52] ===== Team B: building b6 (champion: b2) =====
+   [B:analyst] I'm checking which b2 champions die on stampede and whether they die early. Then I'll write the analysis.
+   [B:analyst] I appended the analysis to the end of `NOTES_B.md`. b2 went 0-34 against Team A in `results/arena_2`, and every game ended with Team A reaching 1000 gems, on average in round 679. I only read `summary
+[04:51:53] B:analyst finished (cost $0.19)
+   [B:strategist] Use Edit instead.
+   [B:strategist] I made b6 alternate Strength and Health shards on every purchase, and let it shop while dead. The smoke test on stampede shows 0 crashes, but it doesn't show whether b6 is stronger.
+
+**Changes, both i
+[04:52:27] B:strategist finished (cost $0.05)
+[04:52:48] Running matches: run_matches.py b6 b2 b1 v1 --tag evalB_b6 -j 2 --resume
+b6 vs b2, b1, v1: 102 matches, 17 maps, 2 parallel -> results/evalB_b6
+[  1/102] vs b2               ambush       cand=B  WIN   reached 1000 gems in round 1049
+[  2/102] vs b2               ambush       cand=A  LOSS  reached 1000 gems in round 1155
+[  3/102] vs b2               collision    cand=A  LOSS  reached 1000 gems in round 977
+[  4/102] vs b2               collision    cand=B  WIN   reached 1000 gems in round 785
+[  5/102] vs b2               contest      cand=A  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[  6/102] vs b2               contest      cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[  7/102] vs b2               corners      cand=A  LOSS  reached 1000 gems in round 874
+[  8/102] vs b2               corners      cand=B  WIN   reached 1000 gems in round 679
+[  9/102] vs b2               eight        cand=A  LOSS  reached 1000 gems in round 787
+[ 10/102] vs b2               eight        cand=B  LOSS  reached 1000 gems in round 842
+[ 11/102] vs b2               elkring      cand=A  LOSS  reached 1000 gems in round 642
+[ 12/102] vs b2               elkring      cand=B  WIN   reached 1000 gems in round 675
+[ 13/102] vs b2               expanse      cand=A  LOSS  reached 1000 gems in round 1088
+[ 14/102] vs b2               expanse      cand=B  WIN   reached 1000 gems in round 1043
+[ 15/102] vs b2               fragment     cand=A  LOSS  reached 1000 gems in round 870
+[ 16/102] vs b2               fragment     cand=B  LOSS  round limit (2000) reached with more gems
+[ 17/102] vs b2               interlock    cand=A  LOSS  reached 1000 gems in round 818
+[ 18/102] vs b2               interlock    cand=B  WIN   reached 1000 gems in round 747
+[ 19/102] vs b2               lanes        cand=A  WIN   reached 1000 gems in round 669
+[ 20/102] vs b2               lanes        cand=B  WIN   reached 1000 gems in round 655
+[ 21/102] vs b2               monolith     cand=A  LOSS  reached 1000 gems in round 788
+[ 22/102] vs b2               monolith     cand=B  WIN   reached 1000 gems in round 840
+[ 23/102] vs b2               packs        cand=A  LOSS  reached 1000 gems in round 640
+[ 24/102] vs b2               packs        cand=B  WIN   reached 1000 gems in round 668
+[ 25/102] vs b2               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[ 26/102] vs b2               pilgrimage   cand=A  LOSS  round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[ 27/102] vs b2               rows         cand=B  WIN   reached 1000 gems in round 890
+[ 28/102] vs b2               rows         cand=A  LOSS  reached 1000 gems in round 872
+[ 29/102] vs b2               rushbait-v2  cand=A  LOSS  round limit (2000) reached with more gems
+[ 30/102] vs b2               rushbait-v2  cand=B  WIN   reached 1000 gems in round 1972
+[ 31/102] vs b2               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 32/102] vs b2               stampede     cand=B  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 33/102] vs b2               swirl        cand=A  LOSS  reached 1000 gems in round 1111
+[ 34/102] vs b2               swirl        cand=B  WIN   reached 1000 gems in round 933
+[ 35/102] vs b1               ambush       cand=A  WIN   reached 1000 gems in round 1262
+[ 36/102] vs b1               ambush       cand=B  WIN   reached 1000 gems in round 1049
+[ 37/102] vs b1               collision    cand=B  WIN   reached 1000 gems in round 721
+[ 38/102] vs b1               collision    cand=A  WIN   reached 1000 gems in round 829
+[ 39/102] vs b1               contest      cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 40/102] vs b1               contest      cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 41/102] vs b1               corners      cand=A  WIN   reached 1000 gems in round 909
+[ 42/102] vs b1               corners      cand=B  WIN   reached 1000 gems in round 672
+[ 43/102] vs b1               eight        cand=A  WIN   reached 1000 gems in round 871
+[ 44/102] vs b1               eight        cand=B  WIN   reached 1000 gems in round 765
+[ 45/102] vs b1               elkring      cand=A  WIN   reached 1000 gems in round 552
+[ 46/102] vs b1               elkring      cand=B  WIN   reached 1000 gems in round 615
+[ 47/102] vs b1               expanse      cand=A  WIN   reached 1000 gems in round 1164
+[ 48/102] vs b1               expanse      cand=B  WIN   reached 1000 gems in round 1043
+[ 49/102] vs b1               fragment     cand=A  LOSS  reached 1000 gems in round 1769
+[ 50/102] vs b1               fragment     cand=B  LOSS  round limit (2000) reached with more gems
+[ 51/102] vs b1               interlock    cand=A  WIN   reached 1000 gems in round 890
+[ 52/102] vs b1               interlock    cand=B  WIN   reached 1000 gems in round 784
+[ 53/102] vs b1               lanes        cand=A  WIN   reached 1000 gems in round 674
+[ 54/102] vs b1               lanes        cand=B  WIN   reached 1000 gems in round 655
+[ 55/102] vs b1               monolith     cand=B  WIN   reached 1000 gems in round 688
+[ 56/102] vs b1               monolith     cand=A  WIN   reached 1000 gems in round 1163
+[ 57/102] vs b1               packs        cand=A  WIN   reached 1000 gems in round 608
+[ 58/102] vs b1               packs        cand=B  WIN   reached 1000 gems in round 598
+[ 59/102] vs b1               pilgrimage   cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 60/102] vs b1               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 61/102] vs b1               rows         cand=A  WIN   reached 1000 gems in round 961
+[ 62/102] vs b1               rows         cand=B  WIN   reached 1000 gems in round 890
+[ 63/102] vs b1               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 1897
+[ 64/102] vs b1               rushbait-v2  cand=B  WIN   reached 1000 gems in round 1972
+[ 65/102] vs b1               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 66/102] vs b1               stampede     cand=B  WIN   round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[ 67/102] vs b1               swirl        cand=A  WIN   reached 1000 gems in round 1132
+[ 68/102] vs b1               swirl        cand=B  WIN   reached 1000 gems in round 786
+[ 69/102] vs v1               ambush       cand=A  WIN   reached 1000 gems in round 1262
+[ 70/102] vs v1               ambush       cand=B  WIN   reached 1000 gems in round 1049
+[ 71/102] vs v1               collision    cand=A  WIN   reached 1000 gems in round 829
+[ 72/102] vs v1               collision    cand=B  WIN   reached 1000 gems in round 721
+[ 73/102] vs v1               contest      cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 74/102] vs v1               contest      cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 75/102] vs v1               corners      cand=A  WIN   reached 1000 gems in round 909
+[ 76/102] vs v1               corners      cand=B  WIN   reached 1000 gems in round 672
+[ 77/102] vs v1               eight        cand=A  WIN   reached 1000 gems in round 871
+[ 78/102] vs v1               eight        cand=B  WIN   reached 1000 gems in round 765
+[ 79/102] vs v1               elkring      cand=A  WIN   reached 1000 gems in round 552
+[ 80/102] vs v1               elkring      cand=B  WIN   reached 1000 gems in round 615
+[ 81/102] vs v1               expanse      cand=B  WIN   reached 1000 gems in round 1043
+[ 82/102] vs v1               expanse      cand=A  WIN   reached 1000 gems in round 1164
+[ 83/102] vs v1               fragment     cand=A  LOSS  reached 1000 gems in round 1769
+[ 84/102] vs v1               fragment     cand=B  LOSS  round limit (2000) reached with more gems
+[ 85/102] vs v1               interlock    cand=A  WIN   reached 1000 gems in round 890
+[ 86/102] vs v1               interlock    cand=B  WIN   reached 1000 gems in round 784
+[ 87/102] vs v1               lanes        cand=A  WIN   reached 1000 gems in round 674
+[ 88/102] vs v1               lanes        cand=B  WIN   reached 1000 gems in round 655
+[ 89/102] vs v1               monolith     cand=B  WIN   reached 1000 gems in round 688
+[ 90/102] vs v1               monolith     cand=A  WIN   reached 1000 gems in round 1163
+[ 91/102] vs v1               packs        cand=A  WIN   reached 1000 gems in round 608
+[ 92/102] vs v1               packs        cand=B  WIN   reached 1000 gems in round 598
+[ 93/102] vs v1               pilgrimage   cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 94/102] vs v1               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 95/102] vs v1               rows         cand=A  WIN   reached 1000 gems in round 961
+[ 96/102] vs v1               rows         cand=B  WIN   reached 1000 gems in round 890
+[ 97/102] vs v1               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 1897
+[ 98/102] vs v1               rushbait-v2  cand=B  WIN   reached 1000 gems in round 1972
+[ 99/102] vs v1               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[100/102] vs v1               stampede     cand=B  WIN   round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[101/102] vs v1               swirl        cand=A  WIN   reached 1000 gems in round 1132
+[102/102] vs v1               swirl        cand=B  WIN   reached 1000 gems in round 786
+
+b6: 78W 24L 0D (0 errors)  win rate 0.7647
+  vs b1               31-3  win rate 0.9118
+  vs b2               16-18  win rate 0.4706
+  vs v1               31-3  win rate 0.9118
+summary: results/evalB_b6/summary.json
+[05:18:36] Team B: b6 vs champion b2: 47% | b2 47%, b1 91%, v1 91% | overall 76%
+[05:18:36] Team B: REJECTED b6. Champion stays b2.
+[05:18:36] Arena: v9 vs b2 already played (arena_2); no new champions, skipping.
+[05:18:36] API cost this run so far: $2.79
+[05:18:36] ########## Round 5/5 ##########
+[05:18:36] ===== Team A: building v14 (champion: v9) =====
+   [A:analyst] I appended the analysis for v9 to the end of `NOTES.md`. These are the three findings, and I'd fix #1 first.
+
+I couldn't run Bash, so I read the summaries by hand. For timing I opened one stats file, 
+[05:20:55] A:analyst finished (cost $0.57)
+   [A:strategist] Implement: kappa=0 when items≥20 (set_pos*5+set_cnt) or rnd≥400; GOLD_HOME_FAR 250; FAR_SPAWN_DIST off.
+   [A:strategist] I created `v14` from `v9` with three small changes. It ran without crashing on contest, but it lost that match. The 600–600 gem tie went to `v9` on gold earned, 11,627 to 3,450.
+
+The one smoke match i
+[05:21:32] A:strategist finished (cost $0.07)
+[05:21:50] Running matches: run_matches.py v14 v9 v8 v6 --tag eval_v14 -j 2 --resume
+v14 vs v9, v8, v6: 102 matches, 17 maps, 2 parallel -> results/eval_v14
+[  1/102] vs v9               ambush       cand=B  WIN   reached 1000 gems in round 895
+[  2/102] vs v9               ambush       cand=A  LOSS  reached 1000 gems in round 864
+[  3/102] vs v9               collision    cand=A  LOSS  reached 1000 gems in round 1017
+[  4/102] vs v9               collision    cand=B  WIN   reached 1000 gems in round 1007
+[  5/102] vs v9               contest      cand=B  LOSS  reached 1000 gems in round 1358
+[  6/102] vs v9               contest      cand=A  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[  7/102] vs v9               corners      cand=A  LOSS  reached 1000 gems in round 541
+[  8/102] vs v9               corners      cand=B  WIN   reached 1000 gems in round 728
+[  9/102] vs v9               eight        cand=A  WIN   reached 1000 gems in round 521
+[ 10/102] vs v9               eight        cand=B  LOSS  reached 1000 gems in round 515
+[ 11/102] vs v9               elkring      cand=A  WIN   reached 1000 gems in round 890
+[ 12/102] vs v9               elkring      cand=B  LOSS  reached 1000 gems in round 692
+[ 13/102] vs v9               expanse      cand=A  WIN   reached 1000 gems in round 683
+[ 14/102] vs v9               expanse      cand=B  WIN   reached 1000 gems in round 725
+[ 15/102] vs v9               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 16/102] vs v9               fragment     cand=B  WIN   reached 1000 gems in round 616
+[ 17/102] vs v9               interlock    cand=A  WIN   reached 1000 gems in round 874
+[ 18/102] vs v9               interlock    cand=B  LOSS  reached 1000 gems in round 966
+[ 19/102] vs v9               lanes        cand=A  LOSS  reached 1000 gems in round 618
+[ 20/102] vs v9               lanes        cand=B  LOSS  reached 1000 gems in round 576
+[ 21/102] vs v9               monolith     cand=A  LOSS  reached 1000 gems in round 532
+[ 22/102] vs v9               monolith     cand=B  WIN   reached 1000 gems in round 538
+[ 23/102] vs v9               packs        cand=A  WIN   reached 1000 gems in round 665
+[ 24/102] vs v9               packs        cand=B  LOSS  reached 1000 gems in round 652
+[ 25/102] vs v9               pilgrimage   cand=A  WIN   reached 1000 gems in round 1011
+[ 26/102] vs v9               pilgrimage   cand=B  LOSS  reached 1000 gems in round 1099
+[ 27/102] vs v9               rows         cand=A  WIN   reached 1000 gems in round 614
+[ 28/102] vs v9               rows         cand=B  WIN   reached 1000 gems in round 689
+[ 29/102] vs v9               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 654
+[ 30/102] vs v9               rushbait-v2  cand=B  LOSS  reached 1000 gems in round 764
+[ 31/102] vs v9               stampede     cand=A  LOSS  reached 1000 gems in round 1052
+[ 32/102] vs v9               stampede     cand=B  LOSS  reached 1000 gems in round 869
+[ 33/102] vs v9               swirl        cand=A  LOSS  reached 1000 gems in round 547
+[ 34/102] vs v9               swirl        cand=B  LOSS  reached 1000 gems in round 557
+[ 35/102] vs v8               ambush       cand=A  LOSS  reached 1000 gems in round 766
+[ 36/102] vs v8               ambush       cand=B  WIN   reached 1000 gems in round 895
+[ 37/102] vs v8               collision    cand=A  LOSS  reached 1000 gems in round 1289
+[ 38/102] vs v8               collision    cand=B  WIN   reached 1000 gems in round 1007
+[ 39/102] vs v8               contest      cand=B  LOSS  reached 1000 gems in round 1437
+[ 40/102] vs v8               contest      cand=A  LOSS  reached 1000 gems in round 1814
+[ 41/102] vs v8               corners      cand=A  LOSS  reached 1000 gems in round 541
+[ 42/102] vs v8               corners      cand=B  WIN   reached 1000 gems in round 728
+[ 43/102] vs v8               eight        cand=A  WIN   reached 1000 gems in round 521
+[ 44/102] vs v8               eight        cand=B  LOSS  reached 1000 gems in round 515
+[ 45/102] vs v8               elkring      cand=A  LOSS  reached 1000 gems in round 742
+[ 46/102] vs v8               elkring      cand=B  WIN   reached 1000 gems in round 654
+[ 47/102] vs v8               expanse      cand=A  WIN   reached 1000 gems in round 728
+[ 48/102] vs v8               expanse      cand=B  WIN   reached 1000 gems in round 761
+[ 49/102] vs v8               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 50/102] vs v8               fragment     cand=B  WIN   reached 1000 gems in round 616
+[ 51/102] vs v8               interlock    cand=A  WIN   reached 1000 gems in round 874
+[ 52/102] vs v8               interlock    cand=B  LOSS  reached 1000 gems in round 1001
+[ 53/102] vs v8               lanes        cand=A  LOSS  reached 1000 gems in round 542
+[ 54/102] vs v8               lanes        cand=B  WIN   reached 1000 gems in round 615
+[ 55/102] vs v8               monolith     cand=A  LOSS  reached 1000 gems in round 594
+[ 56/102] vs v8               monolith     cand=B  WIN   reached 1000 gems in round 546
+[ 57/102] vs v8               packs        cand=A  WIN   reached 1000 gems in round 665
+[ 58/102] vs v8               packs        cand=B  LOSS  reached 1000 gems in round 681
+[ 59/102] vs v8               pilgrimage   cand=A  WIN   reached 1000 gems in round 1081
+[ 60/102] vs v8               pilgrimage   cand=B  LOSS  reached 1000 gems in round 1099
+[ 61/102] vs v8               rows         cand=A  WIN   reached 1000 gems in round 614
+[ 62/102] vs v8               rows         cand=B  LOSS  reached 1000 gems in round 638
+[ 63/102] vs v8               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 803
+[ 64/102] vs v8               rushbait-v2  cand=B  LOSS  reached 1000 gems in round 739
+[ 65/102] vs v8               stampede     cand=A  WIN   reached 1000 gems in round 973
+[ 66/102] vs v8               stampede     cand=B  WIN   reached 1000 gems in round 1168
+[ 67/102] vs v8               swirl        cand=A  WIN   reached 1000 gems in round 541
+[ 68/102] vs v8               swirl        cand=B  LOSS  reached 1000 gems in round 564
+[ 69/102] vs v6               ambush       cand=A  LOSS  reached 1000 gems in round 921
+[ 70/102] vs v6               ambush       cand=B  WIN   reached 1000 gems in round 813
+[ 71/102] vs v6               collision    cand=A  LOSS  reached 1000 gems in round 1289
+[ 72/102] vs v6               collision    cand=B  WIN   reached 1000 gems in round 1007
+[ 73/102] vs v6               contest      cand=A  LOSS  reached 1000 gems in round 1791
+[ 74/102] vs v6               contest      cand=B  LOSS  reached 1000 gems in round 1677
+[ 75/102] vs v6               corners      cand=A  WIN   reached 1000 gems in round 544
+[ 76/102] vs v6               corners      cand=B  WIN   reached 1000 gems in round 712
+[ 77/102] vs v6               eight        cand=A  LOSS  reached 1000 gems in round 804
+[ 78/102] vs v6               eight        cand=B  WIN   reached 1000 gems in round 863
+[ 79/102] vs v6               elkring      cand=A  WIN   reached 1000 gems in round 659
+[ 80/102] vs v6               elkring      cand=B  LOSS  reached 1000 gems in round 841
+[ 81/102] vs v6               expanse      cand=A  WIN   reached 1000 gems in round 728
+[ 82/102] vs v6               expanse      cand=B  WIN   reached 1000 gems in round 761
+[ 83/102] vs v6               fragment     cand=A  LOSS  reached 1000 gems in round 599
+[ 84/102] vs v6               fragment     cand=B  WIN   reached 1000 gems in round 616
+[ 85/102] vs v6               interlock    cand=A  WIN   reached 1000 gems in round 874
+[ 86/102] vs v6               interlock    cand=B  LOSS  reached 1000 gems in round 1001
+[ 87/102] vs v6               lanes        cand=A  WIN   reached 1000 gems in round 540
+[ 88/102] vs v6               lanes        cand=B  WIN   reached 1000 gems in round 680
+[ 89/102] vs v6               monolith     cand=A  WIN   reached 1000 gems in round 506
+[ 90/102] vs v6               monolith     cand=B  LOSS  reached 1000 gems in round 592
+[ 91/102] vs v6               packs        cand=A  WIN   reached 1000 gems in round 665
+[ 92/102] vs v6               packs        cand=B  LOSS  reached 1000 gems in round 681
+[ 93/102] vs v6               pilgrimage   cand=A  WIN   reached 1000 gems in round 1028
+[ 94/102] vs v6               pilgrimage   cand=B  LOSS  reached 1000 gems in round 1195
+[ 95/102] vs v6               rows         cand=A  WIN   reached 1000 gems in round 614
+[ 96/102] vs v6               rows         cand=B  LOSS  reached 1000 gems in round 638
+[ 97/102] vs v6               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 803
+[ 98/102] vs v6               rushbait-v2  cand=B  LOSS  reached 1000 gems in round 739
+[ 99/102] vs v6               stampede     cand=A  WIN   reached 1000 gems in round 1166
+[100/102] vs v6               stampede     cand=B  WIN   reached 1000 gems in round 1288
+[101/102] vs v6               swirl        cand=A  WIN   reached 1000 gems in round 541
+[102/102] vs v6               swirl        cand=B  LOSS  reached 1000 gems in round 564
+
+v14: 50W 52L 0D (0 errors)  win rate 0.4902
+  vs v6               19-15  win rate 0.5588
+  vs v8               17-17  win rate 0.5
+  vs v9               14-20  win rate 0.4118
+summary: results/eval_v14/summary.json
+[05:46:46] Team A: v14 vs champion v9: 41% | v9 41%, v8 50%, v6 56% | overall 49%
+[05:46:46] Team A: REJECTED v14. Champion stays v9.
+[05:46:46] ===== Team B: building b7 (champion: b2) =====
+   [B:analyst] I'm checking the stampede stats export to see when and where b2's champions die. After that I'll write the analysis.
+   [B:analyst] Now I'll append the analysis.
+   [B:analyst] I appended the analysis to the end of `NOTES_B.md`. The record in it: b2 is 0-34 in the arena against Team A. In `evalB_b5` and `evalB_b6`, b5 and b6 went 17-17 and 16-18 against b2.
+
+The three findin
+[05:47:54] B:analyst finished (cost $0.23)
+   [B:strategist] I changed `buy_items` in `bots/b7/src/bot.py` (line 110) to buy passive-emblem shards instead of Power shards. This is finding #1 only. Strength champions now buy `Item.TREASURE_SHARD_OF_STRENGTH` (+2
+[05:48:28] B:strategist finished (cost $0.05)
+[05:48:48] Running matches: run_matches.py b7 b2 b1 v1 --tag evalB_b7 -j 2 --resume
+b7 vs b2, b1, v1: 102 matches, 17 maps, 2 parallel -> results/evalB_b7
+[  1/102] vs b2               ambush       cand=B  WIN   reached 1000 gems in round 1163
+[  2/102] vs b2               ambush       cand=A  LOSS  reached 1000 gems in round 1155
+[  3/102] vs b2               collision    cand=A  LOSS  reached 1000 gems in round 894
+[  4/102] vs b2               collision    cand=B  WIN   reached 1000 gems in round 883
+[  5/102] vs b2               contest      cand=A  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[  6/102] vs b2               contest      cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[  7/102] vs b2               corners      cand=A  LOSS  reached 1000 gems in round 817
+[  8/102] vs b2               corners      cand=B  WIN   reached 1000 gems in round 817
+[  9/102] vs b2               eight        cand=A  WIN   reached 1000 gems in round 701
+[ 10/102] vs b2               eight        cand=B  LOSS  reached 1000 gems in round 731
+[ 11/102] vs b2               elkring      cand=A  LOSS  reached 1000 gems in round 673
+[ 12/102] vs b2               elkring      cand=B  WIN   reached 1000 gems in round 678
+[ 13/102] vs b2               expanse      cand=A  LOSS  reached 1000 gems in round 1088
+[ 14/102] vs b2               expanse      cand=B  WIN   reached 1000 gems in round 1102
+[ 15/102] vs b2               fragment     cand=A  WIN   round limit (2000) reached with more gems
+[ 16/102] vs b2               fragment     cand=B  WIN   reached 1000 gems in round 1124
+[ 17/102] vs b2               interlock    cand=A  LOSS  reached 1000 gems in round 780
+[ 18/102] vs b2               interlock    cand=B  WIN   reached 1000 gems in round 848
+[ 19/102] vs b2               lanes        cand=A  LOSS  reached 1000 gems in round 743
+[ 20/102] vs b2               lanes        cand=B  WIN   reached 1000 gems in round 717
+[ 21/102] vs b2               monolith     cand=A  LOSS  reached 1000 gems in round 929
+[ 22/102] vs b2               monolith     cand=B  WIN   reached 1000 gems in round 821
+[ 23/102] vs b2               packs        cand=A  WIN   reached 1000 gems in round 665
+[ 24/102] vs b2               packs        cand=B  WIN   reached 1000 gems in round 638
+[ 25/102] vs b2               pilgrimage   cand=A  LOSS  round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[ 26/102] vs b2               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[ 27/102] vs b2               rows         cand=A  LOSS  reached 1000 gems in round 872
+[ 28/102] vs b2               rows         cand=B  WIN   reached 1000 gems in round 893
+[ 29/102] vs b2               rushbait-v2  cand=A  LOSS  round limit (2000) reached with more gems
+[ 30/102] vs b2               rushbait-v2  cand=B  WIN   round limit (2000) reached with more gems
+[ 31/102] vs b2               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 32/102] vs b2               stampede     cand=B  LOSS  round limit (2000) reached; tied on gems, more gold earned
+[ 33/102] vs b2               swirl        cand=A  LOSS  reached 1000 gems in round 923
+[ 34/102] vs b2               swirl        cand=B  WIN   reached 1000 gems in round 929
+[ 35/102] vs b1               ambush       cand=A  WIN   reached 1000 gems in round 1223
+[ 36/102] vs b1               ambush       cand=B  WIN   reached 1000 gems in round 1163
+[ 37/102] vs b1               collision    cand=A  WIN   reached 1000 gems in round 1039
+[ 38/102] vs b1               collision    cand=B  WIN   reached 1000 gems in round 710
+[ 39/102] vs b1               contest      cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 40/102] vs b1               contest      cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 41/102] vs b1               corners      cand=A  WIN   reached 1000 gems in round 934
+[ 42/102] vs b1               corners      cand=B  WIN   reached 1000 gems in round 751
+[ 43/102] vs b1               eight        cand=A  WIN   reached 1000 gems in round 766
+[ 44/102] vs b1               eight        cand=B  WIN   reached 1000 gems in round 770
+[ 45/102] vs b1               elkring      cand=A  WIN   reached 1000 gems in round 667
+[ 46/102] vs b1               elkring      cand=B  WIN   reached 1000 gems in round 626
+[ 47/102] vs b1               expanse      cand=A  WIN   reached 1000 gems in round 1158
+[ 48/102] vs b1               expanse      cand=B  WIN   reached 1000 gems in round 1102
+[ 49/102] vs b1               fragment     cand=A  WIN   reached 1000 gems in round 1615
+[ 50/102] vs b1               fragment     cand=B  LOSS  round limit (2000) reached with more gems
+[ 51/102] vs b1               interlock    cand=A  WIN   reached 1000 gems in round 958
+[ 52/102] vs b1               interlock    cand=B  WIN   reached 1000 gems in round 824
+[ 53/102] vs b1               lanes        cand=A  WIN   reached 1000 gems in round 789
+[ 54/102] vs b1               lanes        cand=B  WIN   reached 1000 gems in round 717
+[ 55/102] vs b1               monolith     cand=A  LOSS  reached 1000 gems in round 977
+[ 56/102] vs b1               monolith     cand=B  WIN   reached 1000 gems in round 1088
+[ 57/102] vs b1               packs        cand=A  WIN   reached 1000 gems in round 712
+[ 58/102] vs b1               packs        cand=B  WIN   reached 1000 gems in round 581
+[ 59/102] vs b1               pilgrimage   cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 60/102] vs b1               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 61/102] vs b1               rows         cand=A  WIN   reached 1000 gems in round 1086
+[ 62/102] vs b1               rows         cand=B  WIN   reached 1000 gems in round 893
+[ 63/102] vs b1               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 1897
+[ 64/102] vs b1               rushbait-v2  cand=B  WIN   round limit (2000) reached with more gems
+[ 65/102] vs b1               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 66/102] vs b1               stampede     cand=B  WIN   round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[ 67/102] vs b1               swirl        cand=A  WIN   reached 1000 gems in round 1030
+[ 68/102] vs b1               swirl        cand=B  WIN   reached 1000 gems in round 752
+[ 69/102] vs v1               ambush       cand=A  WIN   reached 1000 gems in round 1223
+[ 70/102] vs v1               ambush       cand=B  WIN   reached 1000 gems in round 1163
+[ 71/102] vs v1               collision    cand=B  WIN   reached 1000 gems in round 710
+[ 72/102] vs v1               collision    cand=A  WIN   reached 1000 gems in round 1039
+[ 73/102] vs v1               contest      cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 74/102] vs v1               contest      cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 75/102] vs v1               corners      cand=A  WIN   reached 1000 gems in round 934
+[ 76/102] vs v1               corners      cand=B  WIN   reached 1000 gems in round 751
+[ 77/102] vs v1               eight        cand=B  WIN   reached 1000 gems in round 770
+[ 78/102] vs v1               eight        cand=A  WIN   reached 1000 gems in round 766
+[ 79/102] vs v1               elkring      cand=B  WIN   reached 1000 gems in round 626
+[ 80/102] vs v1               elkring      cand=A  WIN   reached 1000 gems in round 667
+[ 81/102] vs v1               expanse      cand=A  WIN   reached 1000 gems in round 1158
+[ 82/102] vs v1               expanse      cand=B  WIN   reached 1000 gems in round 1102
+[ 83/102] vs v1               fragment     cand=A  WIN   reached 1000 gems in round 1615
+[ 84/102] vs v1               fragment     cand=B  LOSS  round limit (2000) reached with more gems
+[ 85/102] vs v1               interlock    cand=A  WIN   reached 1000 gems in round 958
+[ 86/102] vs v1               interlock    cand=B  WIN   reached 1000 gems in round 824
+[ 87/102] vs v1               lanes        cand=B  WIN   reached 1000 gems in round 717
+[ 88/102] vs v1               lanes        cand=A  WIN   reached 1000 gems in round 789
+[ 89/102] vs v1               monolith     cand=A  LOSS  reached 1000 gems in round 977
+[ 90/102] vs v1               monolith     cand=B  WIN   reached 1000 gems in round 1088
+[ 91/102] vs v1               packs        cand=B  WIN   reached 1000 gems in round 581
+[ 92/102] vs v1               packs        cand=A  WIN   reached 1000 gems in round 712
+[ 93/102] vs v1               pilgrimage   cand=B  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 94/102] vs v1               pilgrimage   cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[ 95/102] vs v1               rows         cand=A  WIN   reached 1000 gems in round 1086
+[ 96/102] vs v1               rows         cand=B  WIN   reached 1000 gems in round 893
+[ 97/102] vs v1               rushbait-v2  cand=A  LOSS  reached 1000 gems in round 1897
+[ 98/102] vs v1               rushbait-v2  cand=B  WIN   round limit (2000) reached with more gems
+[ 99/102] vs v1               stampede     cand=A  WIN   round limit (2000) reached; tied on gems, more gold earned
+[100/102] vs v1               stampede     cand=B  WIN   round limit (2000) reached; tied on gems, gold and kills; team B wins ties
+[101/102] vs v1               swirl        cand=A  WIN   reached 1000 gems in round 1030
+[102/102] vs v1               swirl        cand=B  WIN   reached 1000 gems in round 752
+
+b7: 81W 21L 0D (0 errors)  win rate 0.7941
+  vs b1               31-3  win rate 0.9118
+  vs b2               19-15  win rate 0.5588
+  vs v1               31-3  win rate 0.9118
+summary: results/evalB_b7/summary.json
+[06:14:20] Team B: b7 vs champion b2: 56% | b2 56%, b1 91%, v1 91% | overall 79%
+[06:14:20] Team B: PROMOTED b7.
+[06:14:20] ===== Arena 3: Team A v9 vs Team B b7 =====
+[06:14:20] Running matches: run_matches.py v9 b7 --tag arena_3 -j 2 --resume
+v9 vs b7: 34 matches, 17 maps, 2 parallel -> results/arena_3
+[  1/34] vs b7               ambush       cand=B  WIN   reached 1000 gems in round 862
+[  2/34] vs b7               ambush       cand=A  WIN   reached 1000 gems in round 733
+[  3/34] vs b7               collision    cand=B  WIN   reached 1000 gems in round 722
+[  4/34] vs b7               collision    cand=A  WIN   reached 1000 gems in round 663
+[  5/34] vs b7               contest      cand=A  WIN   reached 1000 gems in round 1242
+[  6/34] vs b7               contest      cand=B  WIN   reached 1000 gems in round 1506
+[  7/34] vs b7               corners      cand=A  WIN   reached 1000 gems in round 458
+[  8/34] vs b7               corners      cand=B  WIN   reached 1000 gems in round 465
+[  9/34] vs b7               eight        cand=A  WIN   reached 1000 gems in round 416
+[ 10/34] vs b7               eight        cand=B  WIN   reached 1000 gems in round 500
+[ 11/34] vs b7               elkring      cand=A  WIN   reached 1000 gems in round 654
+[ 12/34] vs b7               elkring      cand=B  WIN   reached 1000 gems in round 555
+[ 13/34] vs b7               expanse      cand=A  WIN   reached 1000 gems in round 702
+[ 14/34] vs b7               expanse      cand=B  WIN   reached 1000 gems in round 651
+[ 15/34] vs b7               fragment     cand=A  WIN   reached 1000 gems in round 677
+[ 16/34] vs b7               fragment     cand=B  WIN   reached 1000 gems in round 675
+[ 17/34] vs b7               interlock    cand=A  WIN   reached 1000 gems in round 618
+[ 18/34] vs b7               interlock    cand=B  WIN   reached 1000 gems in round 702
+[ 19/34] vs b7               lanes        cand=A  WIN   reached 1000 gems in round 500
+[ 20/34] vs b7               lanes        cand=B  WIN   reached 1000 gems in round 586
+[ 21/34] vs b7               monolith     cand=A  WIN   reached 1000 gems in round 450
+[ 22/34] vs b7               monolith     cand=B  WIN   reached 1000 gems in round 475
+[ 23/34] vs b7               packs        cand=A  WIN   reached 1000 gems in round 506
+[ 24/34] vs b7               packs        cand=B  WIN   reached 1000 gems in round 475
+[ 25/34] vs b7               pilgrimage   cand=A  WIN   reached 1000 gems in round 722
+[ 26/34] vs b7               pilgrimage   cand=B  WIN   reached 1000 gems in round 730
+[ 27/34] vs b7               rows         cand=A  WIN   reached 1000 gems in round 696
+[ 28/34] vs b7               rows         cand=B  WIN   reached 1000 gems in round 710
+[ 29/34] vs b7               rushbait-v2  cand=A  WIN   reached 1000 gems in round 591
+[ 30/34] vs b7               rushbait-v2  cand=B  WIN   reached 1000 gems in round 798
+[ 31/34] vs b7               stampede     cand=A  WIN   reached 1000 gems in round 1013
+[ 32/34] vs b7               stampede     cand=B  WIN   reached 1000 gems in round 1204
+[ 33/34] vs b7               swirl        cand=A  WIN   reached 1000 gems in round 439
+[ 34/34] vs b7               swirl        cand=B  WIN   reached 1000 gems in round 450
+
+v9: 34W 0L 0D (0 errors)  win rate 1.0
+  vs b7               34-0  win rate 1.0
+summary: results/arena_3/summary.json
+[06:22:40] Arena 3: Team A 34-0 Team B (Team A win rate 100%)
+   [referee] ### Arena 3 — v9 (Team A) vs b7 (Team B) — 2026-10-17
+Score: Team A 34-0 Team B (100%); draws/errors: 0. Previous arena: Team A 34-0 (v9 vs b2).
+Per map: A won both sides on all 17 maps (ambush, colli
+[06:23:00] referee finished (cost $0.06)
+
+### Arena 3 — v9 (Team A) vs b7 (Team B) — 2026-10-17
+Score: Team A 34-0 Team B (100%); draws/errors: 0. Previous arena: Team A 34-0 (v9 vs b2).
+Per map: A won both sides on all 17 maps (ambush, collision, contest, corners, eight, elkring, expanse, fragment, interlock, lanes, monolith, packs, pilgrimage, rows, rushbait-v2, stampede, swirl). Average winning round: A 680.8, B n/a (no wins). Arena 2 was 679.3 (`summary.json: avg_round_of_wins`).
+
+**Why the winner wins**
+- **v9 farms about four times as much and banks more of it.** Per match, v9 collects 1077.5 gems and submits 1039.4 (96%). b7 collects 266.2 and submits 172.4 (65%) (`side_stats`). Arena 2's b2 was at 276.4 collected and 185.3 submitted, so b7 has not improved on farming. Ryth (301 collected) and Varg (339) lead v9's gem income (`candidate_champions`). All 34 games ended at "reached 1000 gems" (`end_reasons`).
+- **v9 wins every fight.** Kills and deaths are 8.2 and 0.5 for v9 against 0.3 and 8.5 for b7. Champion damage is 13178 for v9 against 2340 for b7. v9's champions barely take damage (Stellar 264, Tavi 339), so its retreat and spell logic is working. b7's `bot.py` still has no spell casting and no fight simulation. The only fighting changes I found in `NOTES_B.md` are b2's `danger_tiles` and its low-HP retreat. b7 did not touch fighting. I did not re-read the source of either bot for this report.
+- **v9 has a much larger economy.** Earned gold is 5567 against 1716, and spent gold is 4947 against 1337. v9 buys 33–54 items per champion (Ryth 53.5, Varg similar). b7's only change, in `buy_items` (`bots/b7/src/bot.py`, ~line 110), swaps Power shards for passive-emblem shards (`Item.TREASURE_SHARD_OF_STRENGTH` / `JUNGLE_SHARD_OF_HEALTH`) (`NOTES_B.md:293-300`). That raises b7's income per gem a little. It can't close a 4× gap in gems farmed.
+
+**Where the loser is competitive**
+- b7 is not competitive in any match. It has no wins, and the game always ended on v9 reaching 1000 gems.
+- b7 beat b2 only 56% in Team B's own evaluation, and its smoke test on stampede was a tiebreak at 8071 gold to 8008 (`NOTES_B.md`). Its improvements are marginal in its own pool and don't register against v9.
+- The slow maps are still v9's weakness: contest ended at rounds 1242 and 1506, and stampede at 1013 and 1204. Every other map ended between 416 and 862. This is the third arena in a row with the same two slow maps.
+
+**Advice to the lead**
+- **Team B:** stop tuning shard choices. The gap is in farming and fighting. b7 loses 94 gems per match between collecting and submitting (266 against 172). It also loses 8.5 champions per match, and each death costs about 60 rounds. First fix recall and banking so gems are submitted before engaging. Then add a fight-outcome check before engaging, and use spells.
+- **Team A:** b7 gives no useful signal, because v9 wins 34-0 for the third arena running. Spend the effort on contest and stampede, which take 1000–1500 rounds. Compare v9's gem rate on those maps with the rest through the `.stats.json` timelines. The cause is not visible in the summary. Hypothesis: geometry or monsters slow farming.
+- **Harness:** `candidate_crashes` is 0 and all 34 games ended on gems, so I saw no rules or fuel problem. `healingDone` is 0.0 for both teams, so nobody uses healing.
+
+[06:23:00] API cost this run so far: $3.77
+[06:23:00] Done. Team A champion v9, Team B champion b7. Latest arena: Team A 34-0 Team B (arena_3). Cost this run: $3.77. Reports: ARENA.md

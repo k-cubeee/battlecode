@@ -1,0 +1,21 @@
+cambc run v6 b1 --map monolith -o /home/kcube/battlecode/results/arena_1/b1/.monolith__cand-A.replay --statistics /home/kcube/battlecode/results/arena_1/b1/monolith__cand-A.stats.json
+
+v6 vs b1 on /home/kcube/battlecode/maps/monolith.map26a
+Team A (v6) wins: reached 1000 gems in round 501
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v6   1026    14      0        4702        0  Varg, Ryth, Stellar, Marcella, Willow
+  B    b1    132     0     19        1695        0  Ryth, Tavi, Vesper Vale, Ren, Varg
+replay bundle: /home/kcube/battlecode/results/arena_1/b1/.monolith__cand-A.replay/v6-vs-b1-1792174943850.repl26a
+match summary: /home/kcube/battlecode/results/arena_1/b1/monolith__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+warning: this project's sdk/ was installed by cambc 2.1.6; run `cambc init` to refresh it to 2.2.3
+drafting: round 0/2000
+team B draft bot yielded without picking; its remaining picks are random
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+finished: round 501/2000 — teamA

@@ -23,7 +23,7 @@ analyst's findings into a new bot version.
 1. Read `CLAUDE.md` and `NOTES.md`. Note the "Current champion" (call it vC), the
    most recent "Analysis of vC" section, and any ideas marked rejected.
    If there's no analysis for vC, stop and tell the caller to run the analyst first.
-2. Pick the next free number: one more than the highest `v*` number in `bots/` or `rejected/`.
+2. Pick the next free number: one more than the highest `v*` number in `bots/`, `rejected/` or `archive/`.
    Copy the champion's source, without build or cache folders:
    `mkdir -p bots/vN && cp -r bots/vC/src bots/vN/src` and copy
    `bots/vC/pyrightconfig.json` too if it exists.

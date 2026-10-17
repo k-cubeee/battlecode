@@ -1,0 +1,19 @@
+cambc run v9 v15 --map swirl -o /home/kcube/battlecode/results/eval_v15/v9/.swirl__cand-B.replay --statistics /home/kcube/battlecode/results/eval_v15/v9/swirl__cand-B.stats.json --json
+
+v9 vs v15 on /home/kcube/battlecode/maps/swirl.map26a
+Team B (v15) wins: reached 1000 gems in round 534
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v9    680     3      8        4104        0  Varg, Ryth, Stellar, Marcella
+  B    v15  1014     6      5        5103        0  Varg, Ryth, Stellar, Marcella
+replay bundle: /home/kcube/battlecode/results/eval_v15/v9/.swirl__cand-B.replay/v9-vs-v15-1792234097665.repl26a
+match summary: /home/kcube/battlecode/results/eval_v15/v9/swirl__cand-B.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+finished: round 534/2000 — teamB

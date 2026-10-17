@@ -1,0 +1,23 @@
+cambc run v6 v1 --map ambush -o /home/kcube/battlecode/results/smoke_2.2.3/v1/.ambush__cand-A.replay --statistics /home/kcube/battlecode/results/smoke_2.2.3/v1/ambush__cand-A.stats.json
+
+v6 vs v1 on /home/kcube/battlecode/maps/ambush.map26a
+Team A (v6) wins: reached 1000 gems in round 806
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v6   1070     6      1        5317        0  Varg, Ryth, Stellar, Marcella, Willow
+  B    v1     72     0     33         992        0  Ryth, Marcella, Cassi & Issac, Vesper Vale, Prism
+replay bundle: /home/kcube/battlecode/results/smoke_2.2.3/v1/.ambush__cand-A.replay/v6-vs-v1-1792175371745.repl26a
+match summary: /home/kcube/battlecode/results/smoke_2.2.3/v1/ambush__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+team B draft bot yielded without picking; its remaining picks are random
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+running: round 800/2000
+finished: round 806/2000 — teamA

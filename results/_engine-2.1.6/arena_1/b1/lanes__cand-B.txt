@@ -1,0 +1,20 @@
+cambc run b1 v6 --map lanes -o /home/kcube/battlecode/results/arena_1/b1/.lanes__cand-B.replay --statistics /home/kcube/battlecode/results/arena_1/b1/lanes__cand-B.stats.json
+
+b1 vs v6 on /home/kcube/battlecode/maps/lanes.map26a
+Team B (v6) wins: reached 1000 gems in round 458
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    b1    432     0     12         352        0  Cassi & Issac, Ren, Tavi, Vesper Vale, Willow
+  B    v6   1008     2      0        2260        0  Varg, Ryth, Stellar, Marcella, Willow
+replay bundle: /home/kcube/battlecode/results/arena_1/b1/.lanes__cand-B.replay/b1-vs-v6-1792174945226.repl26a
+match summary: /home/kcube/battlecode/results/arena_1/b1/lanes__cand-B.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+warning: this project's sdk/ was installed by cambc 2.1.6; run `cambc init` to refresh it to 2.2.3
+drafting: round 0/2000
+team A draft bot yielded without picking; its remaining picks are random
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+finished: round 458/2000 — teamB

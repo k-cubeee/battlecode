@@ -1,0 +1,25 @@
+cambc run b7 b1 --map collision -o /home/kcube/battlecode/results/evalB_b7/b1/.collision__cand-A.replay --statistics /home/kcube/battlecode/results/evalB_b7/b1/collision__cand-A.stats.json --json
+
+b7 vs b1 on /home/kcube/battlecode/maps/collision.map26a
+Team A (b7) wins: reached 1000 gems in round 1039
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    b7   1012    15      0        5701        0  Ryth, Marcella, Varg
+  B    b1    572     0     22        3315        0  Willow, Vendetta, Varg
+replay bundle: /home/kcube/battlecode/results/evalB_b7/b1/.collision__cand-A.replay/b7-vs-b1-1792213091255.repl26a
+match summary: /home/kcube/battlecode/results/evalB_b7/b1/collision__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+team B draft bot yielded without picking; its remaining picks are random
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+running: round 800/2000
+running: round 900/2000
+running: round 1000/2000
+finished: round 1039/2000 — teamA

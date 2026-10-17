@@ -1,0 +1,20 @@
+cambc run v17 v8 --map interlock -o /home/kcube/battlecode/results/eval_v17/v8/.interlock__cand-A.replay --statistics /home/kcube/battlecode/results/eval_v17/v8/interlock__cand-A.stats.json --json
+
+v17 vs v8 on /home/kcube/battlecode/maps/interlock.map26a
+Team A (v17) wins: reached 1000 gems in round 670
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v17  1070    11      2        5196        0  Varg, Ryth, Stellar, Marcella
+  B    v8    336     2     11        2290        0  Varg, Ryth, Stellar, Marcella
+replay bundle: /home/kcube/battlecode/results/eval_v17/v8/.interlock__cand-A.replay/v17-vs-v8-1792239943270.repl26a
+match summary: /home/kcube/battlecode/results/eval_v17/v8/interlock__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+finished: round 670/2000 — teamA

@@ -1,0 +1,21 @@
+cambc run b2 b3 --map interlock -o /home/kcube/battlecode/results/evalB_b3/b2/.interlock__cand-B.replay --statistics /home/kcube/battlecode/results/evalB_b3/b2/interlock__cand-B.stats.json --json
+
+b2 vs b3 on /home/kcube/battlecode/maps/interlock.map26a
+Team B (b3) wins: reached 1000 gems in round 772
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    b2    744     0      0        3820        0  Ryth, Marcella, Varg, Vendetta
+  B    b3   1014     0      2        4830        0  Ryth, Marcella, Varg, Vendetta
+replay bundle: /home/kcube/battlecode/results/evalB_b3/b2/.interlock__cand-B.replay/b2-vs-b3-1792199565336.repl26a
+match summary: /home/kcube/battlecode/results/evalB_b3/b2/interlock__cand-B.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+finished: round 772/2000 — teamB

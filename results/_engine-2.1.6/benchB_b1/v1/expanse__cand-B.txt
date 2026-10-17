@@ -1,0 +1,20 @@
+cambc run v1 b1 --map expanse -o /home/kcube/battlecode/results/benchB_b1/v1/.expanse__cand-B.replay --statistics /home/kcube/battlecode/results/benchB_b1/v1/expanse__cand-B.stats.json
+
+v1 vs b1 on /home/kcube/battlecode/maps/expanse.map26a
+Team B (b1) wins: reached 1000 gems in round 784
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v1    692     0      8        1260        0  Tavi, Prism, Marcella
+  B    b1   1016     0      5        1940        0  Ren, Stellar, Willow
+replay bundle: /home/kcube/battlecode/results/benchB_b1/v1/.expanse__cand-B.replay/v1-vs-b1-1792174670679.repl26a
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+finished: round 784/2000 — teamB

@@ -1,0 +1,35 @@
+cambc run b3 b1 --map pilgrimage -o /home/kcube/battlecode/results/evalB_b3/b1/.pilgrimage__cand-A.replay --statistics /home/kcube/battlecode/results/evalB_b3/b1/pilgrimage__cand-A.stats.json --json
+
+b3 vs b1 on /home/kcube/battlecode/maps/pilgrimage.map26a
+Team A (b3) wins: round limit (2000) reached; tied on gems, more gold earned
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    b3      0     0      0        3157        0  Ryth, Marcella, Varg, Vendetta, Vesper Vale
+  B    b1      0     0      0        3115        0  Willow, Prism, Stellar, Ryth, Tavi
+replay bundle: /home/kcube/battlecode/results/evalB_b3/b1/.pilgrimage__cand-A.replay/b3-vs-b1-1792200171854.repl26a
+match summary: /home/kcube/battlecode/results/evalB_b3/b1/pilgrimage__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+team B draft bot yielded without picking; its remaining picks are random
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+running: round 800/2000
+running: round 900/2000
+running: round 1000/2000
+running: round 1100/2000
+running: round 1200/2000
+running: round 1300/2000
+running: round 1400/2000
+running: round 1500/2000
+running: round 1600/2000
+running: round 1700/2000
+running: round 1800/2000
+running: round 1900/2000
+running: round 2000/2000
+finished: round 2000/2000 — teamA

@@ -1,0 +1,20 @@
+cambc run b1 v8 --map swirl -o /home/kcube/battlecode/results/arena_1/b1/.swirl__cand-B.replay --statistics /home/kcube/battlecode/results/arena_1/b1/swirl__cand-B.stats.json --json
+
+b1 vs v8 on /home/kcube/battlecode/maps/swirl.map26a
+Team B (v8) wins: reached 1000 gems in round 572
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    b1    255     0     25        1853        0  Vesper Vale, Ren, Prism, Cassi & Issac
+  B    v8   1066     7      1        6238        0  Varg, Ryth, Stellar, Marcella
+replay bundle: /home/kcube/battlecode/results/arena_1/b1/.swirl__cand-B.replay/b1-vs-v8-1792192948355.repl26a
+match summary: /home/kcube/battlecode/results/arena_1/b1/swirl__cand-B.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+team A draft bot yielded without picking; its remaining picks are random
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+finished: round 572/2000 — teamB

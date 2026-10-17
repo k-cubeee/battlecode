@@ -1,0 +1,20 @@
+cambc run v10 v6 --map swirl -o /home/kcube/battlecode/results/eval_v10/v6/.swirl__cand-A.replay --statistics /home/kcube/battlecode/results/eval_v10/v6/swirl__cand-A.stats.json --json
+
+v10 vs v6 on /home/kcube/battlecode/maps/swirl.map26a
+Team A (v10) wins: reached 1000 gems in round 608
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v10  1022     9      6        5317        0  Varg, Ryth, Stellar, Marcella
+  B    v6    636     6      9        4240        0  Varg, Ryth, Stellar, Marcella
+replay bundle: /home/kcube/battlecode/results/eval_v10/v6/.swirl__cand-A.replay/v10-vs-v6-1792199151675.repl26a
+match summary: /home/kcube/battlecode/results/eval_v10/v6/swirl__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+finished: round 608/2000 — teamA

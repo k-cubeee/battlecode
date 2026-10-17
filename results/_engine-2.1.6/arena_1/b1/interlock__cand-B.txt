@@ -1,0 +1,17 @@
+cambc run b1 v6 --map interlock -o /home/kcube/battlecode/results/arena_1/b1/.interlock__cand-B.replay --statistics /home/kcube/battlecode/results/arena_1/b1/interlock__cand-B.stats.json
+
+b1 vs v6 on /home/kcube/battlecode/maps/interlock.map26a
+Team B (v6) wins: reached 1000 gems in round 435
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    b1    160     0     15         810        0  Prism, Cassi & Issac, Stellar, Ren
+  B    v6   1000    10      0        1990        0  Varg, Ryth, Stellar, Marcella
+replay bundle: /home/kcube/battlecode/results/arena_1/b1/.interlock__cand-B.replay/b1-vs-v6-1792174851978.repl26a
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+finished: round 435/2000 — teamB

@@ -1,0 +1,7693 @@
+{
+  "championTimelines": [
+    {
+      "metric": "earnedGold",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 23,
+          "value": "0"
+        },
+        {
+          "duration": 1978,
+          "value": "63"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "spentGold",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 64,
+          "value": "0"
+        },
+        {
+          "duration": 1937,
+          "value": "60"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "gold",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 23,
+          "value": "0"
+        },
+        {
+          "duration": 41,
+          "value": "63"
+        },
+        {
+          "duration": 1937,
+          "value": "3"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "gems",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 23,
+          "value": "0"
+        },
+        {
+          "duration": 13,
+          "value": "11"
+        },
+        {
+          "duration": 1965,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "collectedGems",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 23,
+          "value": "0"
+        },
+        {
+          "duration": 1978,
+          "value": "11"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "submittedGems",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 36,
+          "value": "0"
+        },
+        {
+          "duration": 1965,
+          "value": "11"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "saleRefunds",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "kills",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "deaths",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "assists",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "monsterDamageDone",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 7,
+          "value": 0.0
+        },
+        {
+          "duration": 1,
+          "value": 50.0
+        },
+        {
+          "duration": 1,
+          "value": 100.0
+        },
+        {
+          "duration": 1,
+          "value": 150.0
+        },
+        {
+          "duration": 1,
+          "value": 200.0
+        },
+        {
+          "duration": 1,
+          "value": 250.0
+        },
+        {
+          "duration": 1,
+          "value": 300.0
+        },
+        {
+          "duration": 1,
+          "value": 350.0
+        },
+        {
+          "duration": 1,
+          "value": 400.0
+        },
+        {
+          "duration": 1,
+          "value": 450.0
+        },
+        {
+          "duration": 1,
+          "value": 500.0
+        },
+        {
+          "duration": 28,
+          "value": 540.0
+        },
+        {
+          "duration": 1,
+          "value": 590.0
+        },
+        {
+          "duration": 1,
+          "value": 640.0
+        },
+        {
+          "duration": 1,
+          "value": 690.0
+        },
+        {
+          "duration": 1,
+          "value": 740.0
+        },
+        {
+          "duration": 1,
+          "value": 790.0
+        },
+        {
+          "duration": 1,
+          "value": 840.0
+        },
+        {
+          "duration": 1,
+          "value": 890.0
+        },
+        {
+          "duration": 1,
+          "value": 940.0
+        },
+        {
+          "duration": 1,
+          "value": 990.0
+        },
+        {
+          "duration": 1,
+          "value": 1040.0
+        },
+        {
+          "duration": 1,
+          "value": 1090.0
+        },
+        {
+          "duration": 1945,
+          "value": 1140.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "monsterDamageTaken",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 8,
+          "value": 0.0
+        },
+        {
+          "duration": 1,
+          "value": 20.0
+        },
+        {
+          "duration": 2,
+          "value": 40.0
+        },
+        {
+          "duration": 1,
+          "value": 60.0
+        },
+        {
+          "duration": 2,
+          "value": 80.0
+        },
+        {
+          "duration": 2,
+          "value": 100.0
+        },
+        {
+          "duration": 30,
+          "value": 120.0
+        },
+        {
+          "duration": 2,
+          "value": 200.0
+        },
+        {
+          "duration": 1,
+          "value": 280.0
+        },
+        {
+          "duration": 2,
+          "value": 360.0
+        },
+        {
+          "duration": 1,
+          "value": 440.0
+        },
+        {
+          "duration": 1,
+          "value": 520.0
+        },
+        {
+          "duration": 1,
+          "value": 600.0
+        },
+        {
+          "duration": 1,
+          "value": 680.0
+        },
+        {
+          "duration": 2,
+          "value": 760.0
+        },
+        {
+          "duration": 1944,
+          "value": 840.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "championDamageDone",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "championDamageTaken",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "healingDone",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "healingReceived",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "shieldingDone",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "earnedGold",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 96,
+          "value": "0"
+        },
+        {
+          "duration": 31,
+          "value": "63"
+        },
+        {
+          "duration": 57,
+          "value": "188"
+        },
+        {
+          "duration": 1817,
+          "value": "251"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "spentGold",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 216,
+          "value": "0"
+        },
+        {
+          "duration": 1785,
+          "value": "240"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "gold",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 96,
+          "value": "0"
+        },
+        {
+          "duration": 31,
+          "value": "63"
+        },
+        {
+          "duration": 57,
+          "value": "188"
+        },
+        {
+          "duration": 32,
+          "value": "251"
+        },
+        {
+          "duration": 1785,
+          "value": "11"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "gems",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 96,
+          "value": "0"
+        },
+        {
+          "duration": 14,
+          "value": "11"
+        },
+        {
+          "duration": 17,
+          "value": "0"
+        },
+        {
+          "duration": 10,
+          "value": "29"
+        },
+        {
+          "duration": 47,
+          "value": "0"
+        },
+        {
+          "duration": 13,
+          "value": "11"
+        },
+        {
+          "duration": 1804,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "collectedGems",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 96,
+          "value": "0"
+        },
+        {
+          "duration": 31,
+          "value": "11"
+        },
+        {
+          "duration": 57,
+          "value": "40"
+        },
+        {
+          "duration": 1817,
+          "value": "51"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "submittedGems",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 110,
+          "value": "0"
+        },
+        {
+          "duration": 27,
+          "value": "11"
+        },
+        {
+          "duration": 60,
+          "value": "40"
+        },
+        {
+          "duration": 1804,
+          "value": "51"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "saleRefunds",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "kills",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "deaths",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "assists",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "monsterDamageDone",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 6,
+          "value": 0.0
+        },
+        {
+          "duration": 1,
+          "value": 45.0
+        },
+        {
+          "duration": 1,
+          "value": 90.0
+        },
+        {
+          "duration": 1,
+          "value": 135.0
+        },
+        {
+          "duration": 1,
+          "value": 180.0
+        },
+        {
+          "duration": 1,
+          "value": 225.0
+        },
+        {
+          "duration": 1,
+          "value": 270.0
+        },
+        {
+          "duration": 1,
+          "value": 315.0
+        },
+        {
+          "duration": 1,
+          "value": 360.0
+        },
+        {
+          "duration": 1,
+          "value": 405.0
+        },
+        {
+          "duration": 1,
+          "value": 450.0
+        },
+        {
+          "duration": 1,
+          "value": 495.0
+        },
+        {
+          "duration": 6,
+          "value": 540.0
+        },
+        {
+          "duration": 1,
+          "value": 585.0
+        },
+        {
+          "duration": 1,
+          "value": 630.0
+        },
+        {
+          "duration": 1,
+          "value": 675.0
+        },
+        {
+          "duration": 1,
+          "value": 720.0
+        },
+        {
+          "duration": 1,
+          "value": 765.0
+        },
+        {
+          "duration": 1,
+          "value": 810.0
+        },
+        {
+          "duration": 1,
+          "value": 855.0
+        },
+        {
+          "duration": 1,
+          "value": 900.0
+        },
+        {
+          "duration": 1,
+          "value": 945.0
+        },
+        {
+          "duration": 1,
+          "value": 990.0
+        },
+        {
+          "duration": 1,
+          "value": 1035.0
+        },
+        {
+          "duration": 1,
+          "value": 1040.0
+        },
+        {
+          "duration": 1,
+          "value": 1085.0
+        },
+        {
+          "duration": 1,
+          "value": 1130.0
+        },
+        {
+          "duration": 1,
+          "value": 1175.0
+        },
+        {
+          "duration": 1,
+          "value": 1220.0
+        },
+        {
+          "duration": 1,
+          "value": 1265.0
+        },
+        {
+          "duration": 1,
+          "value": 1310.0
+        },
+        {
+          "duration": 1,
+          "value": 1355.0
+        },
+        {
+          "duration": 1,
+          "value": 1400.0
+        },
+        {
+          "duration": 1,
+          "value": 1445.0
+        },
+        {
+          "duration": 1,
+          "value": 1490.0
+        },
+        {
+          "duration": 1,
+          "value": 1535.0
+        },
+        {
+          "duration": 1,
+          "value": 1580.0
+        },
+        {
+          "duration": 1,
+          "value": 1625.0
+        },
+        {
+          "duration": 1,
+          "value": 1670.0
+        },
+        {
+          "duration": 1,
+          "value": 1715.0
+        },
+        {
+          "duration": 1,
+          "value": 1760.0
+        },
+        {
+          "duration": 1,
+          "value": 1805.0
+        },
+        {
+          "duration": 1,
+          "value": 1850.0
+        },
+        {
+          "duration": 1,
+          "value": 1895.0
+        },
+        {
+          "duration": 1,
+          "value": 1940.0
+        },
+        {
+          "duration": 1,
+          "value": 1985.0
+        },
+        {
+          "duration": 1,
+          "value": 2030.0
+        },
+        {
+          "duration": 1,
+          "value": 2075.0
+        },
+        {
+          "duration": 18,
+          "value": 2120.0
+        },
+        {
+          "duration": 1,
+          "value": 2165.0
+        },
+        {
+          "duration": 1,
+          "value": 2210.0
+        },
+        {
+          "duration": 1,
+          "value": 2255.0
+        },
+        {
+          "duration": 1,
+          "value": 2300.0
+        },
+        {
+          "duration": 1,
+          "value": 2345.0
+        },
+        {
+          "duration": 1,
+          "value": 2390.0
+        },
+        {
+          "duration": 1,
+          "value": 2435.0
+        },
+        {
+          "duration": 1,
+          "value": 2480.0
+        },
+        {
+          "duration": 1,
+          "value": 2525.0
+        },
+        {
+          "duration": 1,
+          "value": 2570.0
+        },
+        {
+          "duration": 1,
+          "value": 2615.0
+        },
+        {
+          "duration": 1,
+          "value": 2660.0
+        },
+        {
+          "duration": 1,
+          "value": 2705.0
+        },
+        {
+          "duration": 1,
+          "value": 2750.0
+        },
+        {
+          "duration": 30,
+          "value": 2770.0
+        },
+        {
+          "duration": 1,
+          "value": 2815.0
+        },
+        {
+          "duration": 29,
+          "value": 2860.0
+        },
+        {
+          "duration": 1,
+          "value": 2905.0
+        },
+        {
+          "duration": 1,
+          "value": 2950.0
+        },
+        {
+          "duration": 1,
+          "value": 2995.0
+        },
+        {
+          "duration": 1,
+          "value": 3040.0
+        },
+        {
+          "duration": 1,
+          "value": 3085.0
+        },
+        {
+          "duration": 1,
+          "value": 3130.0
+        },
+        {
+          "duration": 1,
+          "value": 3175.0
+        },
+        {
+          "duration": 1,
+          "value": 3220.0
+        },
+        {
+          "duration": 1,
+          "value": 3265.0
+        },
+        {
+          "duration": 1,
+          "value": 3310.0
+        },
+        {
+          "duration": 1,
+          "value": 3355.0
+        },
+        {
+          "duration": 1,
+          "value": 3400.0
+        },
+        {
+          "duration": 1,
+          "value": 3445.0
+        },
+        {
+          "duration": 1,
+          "value": 3490.0
+        },
+        {
+          "duration": 1,
+          "value": 3535.0
+        },
+        {
+          "duration": 1,
+          "value": 3580.0
+        },
+        {
+          "duration": 1,
+          "value": 3625.0
+        },
+        {
+          "duration": 1,
+          "value": 3670.0
+        },
+        {
+          "duration": 1,
+          "value": 3715.0
+        },
+        {
+          "duration": 1,
+          "value": 3760.0
+        },
+        {
+          "duration": 1,
+          "value": 3805.0
+        },
+        {
+          "duration": 1,
+          "value": 3850.0
+        },
+        {
+          "duration": 1,
+          "value": 3895.0
+        },
+        {
+          "duration": 1,
+          "value": 3940.0
+        },
+        {
+          "duration": 1,
+          "value": 3985.0
+        },
+        {
+          "duration": 1,
+          "value": 4030.0
+        },
+        {
+          "duration": 1,
+          "value": 4075.0
+        },
+        {
+          "duration": 1,
+          "value": 4120.0
+        },
+        {
+          "duration": 29,
+          "value": 4135.0
+        },
+        {
+          "duration": 1,
+          "value": 4180.0
+        },
+        {
+          "duration": 17,
+          "value": 4225.0
+        },
+        {
+          "duration": 1,
+          "value": 4270.0
+        },
+        {
+          "duration": 1,
+          "value": 4315.0
+        },
+        {
+          "duration": 1,
+          "value": 4360.0
+        },
+        {
+          "duration": 1,
+          "value": 4405.0
+        },
+        {
+          "duration": 1,
+          "value": 4450.0
+        },
+        {
+          "duration": 1,
+          "value": 4495.0
+        },
+        {
+          "duration": 1,
+          "value": 4540.0
+        },
+        {
+          "duration": 1,
+          "value": 4585.0
+        },
+        {
+          "duration": 1,
+          "value": 4630.0
+        },
+        {
+          "duration": 1,
+          "value": 4675.0
+        },
+        {
+          "duration": 1,
+          "value": 4720.0
+        },
+        {
+          "duration": 1,
+          "value": 4765.0
+        },
+        {
+          "duration": 1,
+          "value": 4810.0
+        },
+        {
+          "duration": 1,
+          "value": 4825.0
+        },
+        {
+          "duration": 1,
+          "value": 4870.0
+        },
+        {
+          "duration": 1,
+          "value": 4915.0
+        },
+        {
+          "duration": 1,
+          "value": 4960.0
+        },
+        {
+          "duration": 1,
+          "value": 5005.0
+        },
+        {
+          "duration": 1,
+          "value": 5050.0
+        },
+        {
+          "duration": 1,
+          "value": 5095.0
+        },
+        {
+          "duration": 1,
+          "value": 5140.0
+        },
+        {
+          "duration": 1,
+          "value": 5185.0
+        },
+        {
+          "duration": 1,
+          "value": 5230.0
+        },
+        {
+          "duration": 1,
+          "value": 5275.0
+        },
+        {
+          "duration": 1,
+          "value": 5320.0
+        },
+        {
+          "duration": 1751,
+          "value": 5365.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "monsterDamageTaken",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 7,
+          "value": 0.0
+        },
+        {
+          "duration": 3,
+          "value": 20.0
+        },
+        {
+          "duration": 3,
+          "value": 40.0
+        },
+        {
+          "duration": 4,
+          "value": 60.0
+        },
+        {
+          "duration": 7,
+          "value": 80.0
+        },
+        {
+          "duration": 1,
+          "value": 100.0
+        },
+        {
+          "duration": 1,
+          "value": 120.0
+        },
+        {
+          "duration": 1,
+          "value": 140.0
+        },
+        {
+          "duration": 1,
+          "value": 160.0
+        },
+        {
+          "duration": 1,
+          "value": 180.0
+        },
+        {
+          "duration": 1,
+          "value": 200.0
+        },
+        {
+          "duration": 1,
+          "value": 220.0
+        },
+        {
+          "duration": 1,
+          "value": 240.0
+        },
+        {
+          "duration": 1,
+          "value": 260.0
+        },
+        {
+          "duration": 1,
+          "value": 280.0
+        },
+        {
+          "duration": 1,
+          "value": 300.0
+        },
+        {
+          "duration": 1,
+          "value": 320.0
+        },
+        {
+          "duration": 1,
+          "value": 340.0
+        },
+        {
+          "duration": 1,
+          "value": 360.0
+        },
+        {
+          "duration": 1,
+          "value": 380.0
+        },
+        {
+          "duration": 1,
+          "value": 400.0
+        },
+        {
+          "duration": 1,
+          "value": 420.0
+        },
+        {
+          "duration": 1,
+          "value": 440.0
+        },
+        {
+          "duration": 1,
+          "value": 460.0
+        },
+        {
+          "duration": 1,
+          "value": 480.0
+        },
+        {
+          "duration": 1,
+          "value": 500.0
+        },
+        {
+          "duration": 1,
+          "value": 520.0
+        },
+        {
+          "duration": 1,
+          "value": 540.0
+        },
+        {
+          "duration": 1,
+          "value": 560.0
+        },
+        {
+          "duration": 1,
+          "value": 580.0
+        },
+        {
+          "duration": 1,
+          "value": 600.0
+        },
+        {
+          "duration": 1,
+          "value": 620.0
+        },
+        {
+          "duration": 1,
+          "value": 640.0
+        },
+        {
+          "duration": 1,
+          "value": 660.0
+        },
+        {
+          "duration": 1,
+          "value": 680.0
+        },
+        {
+          "duration": 1,
+          "value": 700.0
+        },
+        {
+          "duration": 1,
+          "value": 720.0
+        },
+        {
+          "duration": 1,
+          "value": 740.0
+        },
+        {
+          "duration": 1,
+          "value": 760.0
+        },
+        {
+          "duration": 1,
+          "value": 780.0
+        },
+        {
+          "duration": 1,
+          "value": 800.0
+        },
+        {
+          "duration": 1,
+          "value": 820.0
+        },
+        {
+          "duration": 1,
+          "value": 840.0
+        },
+        {
+          "duration": 16,
+          "value": 860.0
+        },
+        {
+          "duration": 2,
+          "value": 880.0
+        },
+        {
+          "duration": 2,
+          "value": 900.0
+        },
+        {
+          "duration": 5,
+          "value": 920.0
+        },
+        {
+          "duration": 3,
+          "value": 940.0
+        },
+        {
+          "duration": 31,
+          "value": 960.0
+        },
+        {
+          "duration": 30,
+          "value": 1020.0
+        },
+        {
+          "duration": 1,
+          "value": 1040.0
+        },
+        {
+          "duration": 1,
+          "value": 1060.0
+        },
+        {
+          "duration": 1,
+          "value": 1080.0
+        },
+        {
+          "duration": 1,
+          "value": 1100.0
+        },
+        {
+          "duration": 1,
+          "value": 1120.0
+        },
+        {
+          "duration": 1,
+          "value": 1140.0
+        },
+        {
+          "duration": 1,
+          "value": 1160.0
+        },
+        {
+          "duration": 1,
+          "value": 1180.0
+        },
+        {
+          "duration": 1,
+          "value": 1200.0
+        },
+        {
+          "duration": 1,
+          "value": 1220.0
+        },
+        {
+          "duration": 1,
+          "value": 1240.0
+        },
+        {
+          "duration": 1,
+          "value": 1260.0
+        },
+        {
+          "duration": 1,
+          "value": 1280.0
+        },
+        {
+          "duration": 1,
+          "value": 1300.0
+        },
+        {
+          "duration": 1,
+          "value": 1320.0
+        },
+        {
+          "duration": 1,
+          "value": 1340.0
+        },
+        {
+          "duration": 1,
+          "value": 1360.0
+        },
+        {
+          "duration": 1,
+          "value": 1380.0
+        },
+        {
+          "duration": 1,
+          "value": 1400.0
+        },
+        {
+          "duration": 1,
+          "value": 1420.0
+        },
+        {
+          "duration": 1,
+          "value": 1440.0
+        },
+        {
+          "duration": 1,
+          "value": 1460.0
+        },
+        {
+          "duration": 1,
+          "value": 1480.0
+        },
+        {
+          "duration": 1,
+          "value": 1500.0
+        },
+        {
+          "duration": 33,
+          "value": 1520.0
+        },
+        {
+          "duration": 1,
+          "value": 1600.0
+        },
+        {
+          "duration": 1,
+          "value": 1680.0
+        },
+        {
+          "duration": 1,
+          "value": 1760.0
+        },
+        {
+          "duration": 15,
+          "value": 1820.0
+        },
+        {
+          "duration": 1,
+          "value": 1880.0
+        },
+        {
+          "duration": 1,
+          "value": 1940.0
+        },
+        {
+          "duration": 1,
+          "value": 2000.0
+        },
+        {
+          "duration": 1,
+          "value": 2060.0
+        },
+        {
+          "duration": 1,
+          "value": 2140.0
+        },
+        {
+          "duration": 1,
+          "value": 2220.0
+        },
+        {
+          "duration": 1,
+          "value": 2280.0
+        },
+        {
+          "duration": 1,
+          "value": 2360.0
+        },
+        {
+          "duration": 1,
+          "value": 2420.0
+        },
+        {
+          "duration": 1,
+          "value": 2500.0
+        },
+        {
+          "duration": 1,
+          "value": 2580.0
+        },
+        {
+          "duration": 1,
+          "value": 2640.0
+        },
+        {
+          "duration": 3,
+          "value": 2720.0
+        },
+        {
+          "duration": 1,
+          "value": 2780.0
+        },
+        {
+          "duration": 2,
+          "value": 2840.0
+        },
+        {
+          "duration": 1,
+          "value": 2900.0
+        },
+        {
+          "duration": 3,
+          "value": 2960.0
+        },
+        {
+          "duration": 1,
+          "value": 3020.0
+        },
+        {
+          "duration": 1,
+          "value": 3080.0
+        },
+        {
+          "duration": 1,
+          "value": 3140.0
+        },
+        {
+          "duration": 1750,
+          "value": 3200.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "championDamageDone",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "championDamageTaken",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "healingDone",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "healingReceived",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 67,
+          "value": 0.0
+        },
+        {
+          "duration": 149,
+          "value": 860.0
+        },
+        {
+          "duration": 1785,
+          "value": 2720.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "shieldingDone",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "earnedGold",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 23,
+          "value": "0"
+        },
+        {
+          "duration": 73,
+          "value": "62"
+        },
+        {
+          "duration": 31,
+          "value": "124"
+        },
+        {
+          "duration": 57,
+          "value": "249"
+        },
+        {
+          "duration": 82,
+          "value": "311"
+        },
+        {
+          "duration": 1735,
+          "value": "561"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "spentGold",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 67,
+          "value": "0"
+        },
+        {
+          "duration": 99,
+          "value": "60"
+        },
+        {
+          "duration": 48,
+          "value": "240"
+        },
+        {
+          "duration": 84,
+          "value": "300"
+        },
+        {
+          "duration": 1703,
+          "value": "540"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "gold",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 23,
+          "value": "0"
+        },
+        {
+          "duration": 44,
+          "value": "62"
+        },
+        {
+          "duration": 29,
+          "value": "2"
+        },
+        {
+          "duration": 31,
+          "value": "64"
+        },
+        {
+          "duration": 39,
+          "value": "189"
+        },
+        {
+          "duration": 18,
+          "value": "9"
+        },
+        {
+          "duration": 30,
+          "value": "71"
+        },
+        {
+          "duration": 52,
+          "value": "11"
+        },
+        {
+          "duration": 32,
+          "value": "261"
+        },
+        {
+          "duration": 1703,
+          "value": "21"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "gems",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 23,
+          "value": "0"
+        },
+        {
+          "duration": 14,
+          "value": "11"
+        },
+        {
+          "duration": 59,
+          "value": "0"
+        },
+        {
+          "duration": 13,
+          "value": "11"
+        },
+        {
+          "duration": 18,
+          "value": "0"
+        },
+        {
+          "duration": 11,
+          "value": "29"
+        },
+        {
+          "duration": 46,
+          "value": "0"
+        },
+        {
+          "duration": 14,
+          "value": "11"
+        },
+        {
+          "duration": 68,
+          "value": "0"
+        },
+        {
+          "duration": 14,
+          "value": "58"
+        },
+        {
+          "duration": 1721,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "collectedGems",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 23,
+          "value": "0"
+        },
+        {
+          "duration": 73,
+          "value": "11"
+        },
+        {
+          "duration": 31,
+          "value": "22"
+        },
+        {
+          "duration": 57,
+          "value": "51"
+        },
+        {
+          "duration": 82,
+          "value": "62"
+        },
+        {
+          "duration": 1735,
+          "value": "120"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "submittedGems",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 37,
+          "value": "0"
+        },
+        {
+          "duration": 72,
+          "value": "11"
+        },
+        {
+          "duration": 29,
+          "value": "22"
+        },
+        {
+          "duration": 60,
+          "value": "51"
+        },
+        {
+          "duration": 82,
+          "value": "62"
+        },
+        {
+          "duration": 1721,
+          "value": "120"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "saleRefunds",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "kills",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "deaths",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "assists",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "monsterDamageDone",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 6,
+          "value": 0.0
+        },
+        {
+          "duration": 1,
+          "value": 100.0
+        },
+        {
+          "duration": 1,
+          "value": 200.0
+        },
+        {
+          "duration": 1,
+          "value": 300.0
+        },
+        {
+          "duration": 1,
+          "value": 370.0
+        },
+        {
+          "duration": 1,
+          "value": 420.0
+        },
+        {
+          "duration": 1,
+          "value": 470.0
+        },
+        {
+          "duration": 1,
+          "value": 520.0
+        },
+        {
+          "duration": 1,
+          "value": 570.0
+        },
+        {
+          "duration": 1,
+          "value": 620.0
+        },
+        {
+          "duration": 1,
+          "value": 670.0
+        },
+        {
+          "duration": 1,
+          "value": 720.0
+        },
+        {
+          "duration": 26,
+          "value": 770.0
+        },
+        {
+          "duration": 1,
+          "value": 870.0
+        },
+        {
+          "duration": 1,
+          "value": 970.0
+        },
+        {
+          "duration": 1,
+          "value": 1070.0
+        },
+        {
+          "duration": 1,
+          "value": 1170.0
+        },
+        {
+          "duration": 1,
+          "value": 1270.0
+        },
+        {
+          "duration": 1,
+          "value": 1370.0
+        },
+        {
+          "duration": 1,
+          "value": 1470.0
+        },
+        {
+          "duration": 1,
+          "value": 1570.0
+        },
+        {
+          "duration": 1,
+          "value": 1670.0
+        },
+        {
+          "duration": 1,
+          "value": 1770.0
+        },
+        {
+          "duration": 1,
+          "value": 1870.0
+        },
+        {
+          "duration": 1,
+          "value": 1970.0
+        },
+        {
+          "duration": 1,
+          "value": 2070.0
+        },
+        {
+          "duration": 1,
+          "value": 2170.0
+        },
+        {
+          "duration": 1,
+          "value": 2270.0
+        },
+        {
+          "duration": 1,
+          "value": 2370.0
+        },
+        {
+          "duration": 17,
+          "value": 2470.0
+        },
+        {
+          "duration": 1,
+          "value": 2570.0
+        },
+        {
+          "duration": 1,
+          "value": 2670.0
+        },
+        {
+          "duration": 1,
+          "value": 2770.0
+        },
+        {
+          "duration": 1,
+          "value": 2870.0
+        },
+        {
+          "duration": 1,
+          "value": 2970.0
+        },
+        {
+          "duration": 1,
+          "value": 3070.0
+        },
+        {
+          "duration": 1,
+          "value": 3170.0
+        },
+        {
+          "duration": 1,
+          "value": 3270.0
+        },
+        {
+          "duration": 1,
+          "value": 3370.0
+        },
+        {
+          "duration": 1,
+          "value": 3470.0
+        },
+        {
+          "duration": 1,
+          "value": 3520.0
+        },
+        {
+          "duration": 1,
+          "value": 3570.0
+        },
+        {
+          "duration": 1,
+          "value": 3620.0
+        },
+        {
+          "duration": 30,
+          "value": 3670.0
+        },
+        {
+          "duration": 1,
+          "value": 3720.0
+        },
+        {
+          "duration": 1,
+          "value": 3770.0
+        },
+        {
+          "duration": 31,
+          "value": 3810.0
+        },
+        {
+          "duration": 1,
+          "value": 3910.0
+        },
+        {
+          "duration": 1,
+          "value": 4010.0
+        },
+        {
+          "duration": 1,
+          "value": 4110.0
+        },
+        {
+          "duration": 1,
+          "value": 4210.0
+        },
+        {
+          "duration": 1,
+          "value": 4310.0
+        },
+        {
+          "duration": 1,
+          "value": 4410.0
+        },
+        {
+          "duration": 13,
+          "value": 4510.0
+        },
+        {
+          "duration": 1,
+          "value": 4610.0
+        },
+        {
+          "duration": 1,
+          "value": 4710.0
+        },
+        {
+          "duration": 1,
+          "value": 4810.0
+        },
+        {
+          "duration": 1,
+          "value": 4910.0
+        },
+        {
+          "duration": 1,
+          "value": 4985.0
+        },
+        {
+          "duration": 1,
+          "value": 5035.0
+        },
+        {
+          "duration": 27,
+          "value": 5085.0
+        },
+        {
+          "duration": 1,
+          "value": 5185.0
+        },
+        {
+          "duration": 1,
+          "value": 5285.0
+        },
+        {
+          "duration": 17,
+          "value": 5385.0
+        },
+        {
+          "duration": 1,
+          "value": 5485.0
+        },
+        {
+          "duration": 1,
+          "value": 5585.0
+        },
+        {
+          "duration": 1,
+          "value": 5685.0
+        },
+        {
+          "duration": 1,
+          "value": 5785.0
+        },
+        {
+          "duration": 1,
+          "value": 5885.0
+        },
+        {
+          "duration": 1,
+          "value": 5985.0
+        },
+        {
+          "duration": 1,
+          "value": 6085.0
+        },
+        {
+          "duration": 1,
+          "value": 6185.0
+        },
+        {
+          "duration": 1,
+          "value": 6285.0
+        },
+        {
+          "duration": 1,
+          "value": 6385.0
+        },
+        {
+          "duration": 1,
+          "value": 6485.0
+        },
+        {
+          "duration": 1,
+          "value": 6585.0
+        },
+        {
+          "duration": 1,
+          "value": 6685.0
+        },
+        {
+          "duration": 1,
+          "value": 6785.0
+        },
+        {
+          "duration": 1,
+          "value": 6885.0
+        },
+        {
+          "duration": 1,
+          "value": 6935.0
+        },
+        {
+          "duration": 1,
+          "value": 6985.0
+        },
+        {
+          "duration": 1,
+          "value": 7035.0
+        },
+        {
+          "duration": 1,
+          "value": 7085.0
+        },
+        {
+          "duration": 1,
+          "value": 7135.0
+        },
+        {
+          "duration": 1,
+          "value": 7185.0
+        },
+        {
+          "duration": 1,
+          "value": 7235.0
+        },
+        {
+          "duration": 1,
+          "value": 7285.0
+        },
+        {
+          "duration": 1,
+          "value": 7335.0
+        },
+        {
+          "duration": 1,
+          "value": 7385.0
+        },
+        {
+          "duration": 1,
+          "value": 7435.0
+        },
+        {
+          "duration": 1,
+          "value": 7485.0
+        },
+        {
+          "duration": 1,
+          "value": 7535.0
+        },
+        {
+          "duration": 1,
+          "value": 7585.0
+        },
+        {
+          "duration": 1,
+          "value": 7635.0
+        },
+        {
+          "duration": 1,
+          "value": 7685.0
+        },
+        {
+          "duration": 1,
+          "value": 7735.0
+        },
+        {
+          "duration": 1,
+          "value": 7785.0
+        },
+        {
+          "duration": 1,
+          "value": 7835.0
+        },
+        {
+          "duration": 1,
+          "value": 7885.0
+        },
+        {
+          "duration": 1,
+          "value": 7935.0
+        },
+        {
+          "duration": 1,
+          "value": 7985.0
+        },
+        {
+          "duration": 27,
+          "value": 7995.0
+        },
+        {
+          "duration": 1,
+          "value": 8095.0
+        },
+        {
+          "duration": 1,
+          "value": 8195.0
+        },
+        {
+          "duration": 1,
+          "value": 8295.0
+        },
+        {
+          "duration": 13,
+          "value": 8395.0
+        },
+        {
+          "duration": 1,
+          "value": 8495.0
+        },
+        {
+          "duration": 1,
+          "value": 8595.0
+        },
+        {
+          "duration": 1,
+          "value": 8695.0
+        },
+        {
+          "duration": 1,
+          "value": 8795.0
+        },
+        {
+          "duration": 1,
+          "value": 8895.0
+        },
+        {
+          "duration": 1,
+          "value": 8995.0
+        },
+        {
+          "duration": 1,
+          "value": 9095.0
+        },
+        {
+          "duration": 1,
+          "value": 9195.0
+        },
+        {
+          "duration": 1,
+          "value": 9295.0
+        },
+        {
+          "duration": 1,
+          "value": 9395.0
+        },
+        {
+          "duration": 1,
+          "value": 9445.0
+        },
+        {
+          "duration": 1,
+          "value": 9495.0
+        },
+        {
+          "duration": 1,
+          "value": 9545.0
+        },
+        {
+          "duration": 1,
+          "value": 9595.0
+        },
+        {
+          "duration": 1,
+          "value": 9645.0
+        },
+        {
+          "duration": 1,
+          "value": 9695.0
+        },
+        {
+          "duration": 1,
+          "value": 9745.0
+        },
+        {
+          "duration": 1,
+          "value": 9795.0
+        },
+        {
+          "duration": 1,
+          "value": 9845.0
+        },
+        {
+          "duration": 1679,
+          "value": 9895.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "monsterDamageTaken",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 15,
+          "value": 0.0
+        },
+        {
+          "duration": 29,
+          "value": 20.0
+        },
+        {
+          "duration": 1,
+          "value": 100.0
+        },
+        {
+          "duration": 2,
+          "value": 180.0
+        },
+        {
+          "duration": 3,
+          "value": 260.0
+        },
+        {
+          "duration": 6,
+          "value": 340.0
+        },
+        {
+          "duration": 2,
+          "value": 420.0
+        },
+        {
+          "duration": 1,
+          "value": 500.0
+        },
+        {
+          "duration": 1,
+          "value": 580.0
+        },
+        {
+          "duration": 1,
+          "value": 660.0
+        },
+        {
+          "duration": 1,
+          "value": 740.0
+        },
+        {
+          "duration": 15,
+          "value": 800.0
+        },
+        {
+          "duration": 2,
+          "value": 820.0
+        },
+        {
+          "duration": 2,
+          "value": 840.0
+        },
+        {
+          "duration": 2,
+          "value": 860.0
+        },
+        {
+          "duration": 1,
+          "value": 880.0
+        },
+        {
+          "duration": 1,
+          "value": 900.0
+        },
+        {
+          "duration": 1,
+          "value": 920.0
+        },
+        {
+          "duration": 2,
+          "value": 940.0
+        },
+        {
+          "duration": 1,
+          "value": 960.0
+        },
+        {
+          "duration": 30,
+          "value": 980.0
+        },
+        {
+          "duration": 1,
+          "value": 1040.0
+        },
+        {
+          "duration": 33,
+          "value": 1100.0
+        },
+        {
+          "duration": 1,
+          "value": 1180.0
+        },
+        {
+          "duration": 1,
+          "value": 1260.0
+        },
+        {
+          "duration": 1,
+          "value": 1340.0
+        },
+        {
+          "duration": 1,
+          "value": 1420.0
+        },
+        {
+          "duration": 1,
+          "value": 1500.0
+        },
+        {
+          "duration": 1,
+          "value": 1580.0
+        },
+        {
+          "duration": 1,
+          "value": 1660.0
+        },
+        {
+          "duration": 1,
+          "value": 1740.0
+        },
+        {
+          "duration": 44,
+          "value": 1800.0
+        },
+        {
+          "duration": 1,
+          "value": 1880.0
+        },
+        {
+          "duration": 1,
+          "value": 1960.0
+        },
+        {
+          "duration": 17,
+          "value": 2040.0
+        },
+        {
+          "duration": 1,
+          "value": 2120.0
+        },
+        {
+          "duration": 1,
+          "value": 2200.0
+        },
+        {
+          "duration": 1,
+          "value": 2220.0
+        },
+        {
+          "duration": 1,
+          "value": 2240.0
+        },
+        {
+          "duration": 1,
+          "value": 2260.0
+        },
+        {
+          "duration": 3,
+          "value": 2280.0
+        },
+        {
+          "duration": 2,
+          "value": 2300.0
+        },
+        {
+          "duration": 3,
+          "value": 2320.0
+        },
+        {
+          "duration": 2,
+          "value": 2340.0
+        },
+        {
+          "duration": 1,
+          "value": 2400.0
+        },
+        {
+          "duration": 3,
+          "value": 2460.0
+        },
+        {
+          "duration": 3,
+          "value": 2520.0
+        },
+        {
+          "duration": 1,
+          "value": 2580.0
+        },
+        {
+          "duration": 5,
+          "value": 2640.0
+        },
+        {
+          "duration": 1,
+          "value": 2700.0
+        },
+        {
+          "duration": 1,
+          "value": 2760.0
+        },
+        {
+          "duration": 1,
+          "value": 2820.0
+        },
+        {
+          "duration": 1,
+          "value": 2880.0
+        },
+        {
+          "duration": 1,
+          "value": 2940.0
+        },
+        {
+          "duration": 1,
+          "value": 3000.0
+        },
+        {
+          "duration": 1,
+          "value": 3060.0
+        },
+        {
+          "duration": 1,
+          "value": 3120.0
+        },
+        {
+          "duration": 28,
+          "value": 3180.0
+        },
+        {
+          "duration": 1,
+          "value": 3260.0
+        },
+        {
+          "duration": 1,
+          "value": 3340.0
+        },
+        {
+          "duration": 1,
+          "value": 3420.0
+        },
+        {
+          "duration": 1,
+          "value": 3500.0
+        },
+        {
+          "duration": 1,
+          "value": 3580.0
+        },
+        {
+          "duration": 11,
+          "value": 3660.0
+        },
+        {
+          "duration": 1,
+          "value": 3680.0
+        },
+        {
+          "duration": 1,
+          "value": 3700.0
+        },
+        {
+          "duration": 1,
+          "value": 3720.0
+        },
+        {
+          "duration": 1,
+          "value": 3740.0
+        },
+        {
+          "duration": 1,
+          "value": 3760.0
+        },
+        {
+          "duration": 1,
+          "value": 3780.0
+        },
+        {
+          "duration": 1,
+          "value": 3800.0
+        },
+        {
+          "duration": 1,
+          "value": 3820.0
+        },
+        {
+          "duration": 1,
+          "value": 3840.0
+        },
+        {
+          "duration": 1,
+          "value": 3860.0
+        },
+        {
+          "duration": 1,
+          "value": 3880.0
+        },
+        {
+          "duration": 1,
+          "value": 3900.0
+        },
+        {
+          "duration": 1,
+          "value": 3920.0
+        },
+        {
+          "duration": 1,
+          "value": 3940.0
+        },
+        {
+          "duration": 1,
+          "value": 3960.0
+        },
+        {
+          "duration": 1,
+          "value": 3980.0
+        },
+        {
+          "duration": 1,
+          "value": 4000.0
+        },
+        {
+          "duration": 1,
+          "value": 4020.0
+        },
+        {
+          "duration": 1,
+          "value": 4040.0
+        },
+        {
+          "duration": 1,
+          "value": 4060.0
+        },
+        {
+          "duration": 1,
+          "value": 4080.0
+        },
+        {
+          "duration": 1,
+          "value": 4100.0
+        },
+        {
+          "duration": 1675,
+          "value": 4120.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "championDamageDone",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "championDamageTaken",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "healingDone",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "healingReceived",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 67,
+          "value": 0.0
+        },
+        {
+          "duration": 99,
+          "value": 1000.0
+        },
+        {
+          "duration": 48,
+          "value": 1700.0
+        },
+        {
+          "duration": 84,
+          "value": 3240.0
+        },
+        {
+          "duration": 1703,
+          "value": 4140.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "shieldingDone",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "earnedGold",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 65,
+          "value": "0"
+        },
+        {
+          "duration": 1936,
+          "value": "125"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "spentGold",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 93,
+          "value": "0"
+        },
+        {
+          "duration": 1908,
+          "value": "120"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "gold",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 65,
+          "value": "0"
+        },
+        {
+          "duration": 28,
+          "value": "125"
+        },
+        {
+          "duration": 1908,
+          "value": "5"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "gems",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 65,
+          "value": "0"
+        },
+        {
+          "duration": 14,
+          "value": "22"
+        },
+        {
+          "duration": 1922,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "collectedGems",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 65,
+          "value": "0"
+        },
+        {
+          "duration": 1936,
+          "value": "22"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "submittedGems",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 79,
+          "value": "0"
+        },
+        {
+          "duration": 1922,
+          "value": "22"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "saleRefunds",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "kills",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "deaths",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "assists",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "monsterDamageDone",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 6,
+          "value": 0.0
+        },
+        {
+          "duration": 1,
+          "value": 50.0
+        },
+        {
+          "duration": 1,
+          "value": 100.0
+        },
+        {
+          "duration": 1,
+          "value": 150.0
+        },
+        {
+          "duration": 1,
+          "value": 200.0
+        },
+        {
+          "duration": 1,
+          "value": 250.0
+        },
+        {
+          "duration": 1,
+          "value": 300.0
+        },
+        {
+          "duration": 1,
+          "value": 350.0
+        },
+        {
+          "duration": 1,
+          "value": 400.0
+        },
+        {
+          "duration": 1,
+          "value": 450.0
+        },
+        {
+          "duration": 8,
+          "value": 500.0
+        },
+        {
+          "duration": 1,
+          "value": 550.0
+        },
+        {
+          "duration": 1,
+          "value": 600.0
+        },
+        {
+          "duration": 1,
+          "value": 650.0
+        },
+        {
+          "duration": 1,
+          "value": 700.0
+        },
+        {
+          "duration": 1,
+          "value": 750.0
+        },
+        {
+          "duration": 1,
+          "value": 800.0
+        },
+        {
+          "duration": 1,
+          "value": 850.0
+        },
+        {
+          "duration": 1,
+          "value": 900.0
+        },
+        {
+          "duration": 1,
+          "value": 950.0
+        },
+        {
+          "duration": 1,
+          "value": 1000.0
+        },
+        {
+          "duration": 1,
+          "value": 1050.0
+        },
+        {
+          "duration": 1,
+          "value": 1100.0
+        },
+        {
+          "duration": 1,
+          "value": 1150.0
+        },
+        {
+          "duration": 1,
+          "value": 1200.0
+        },
+        {
+          "duration": 1,
+          "value": 1250.0
+        },
+        {
+          "duration": 1,
+          "value": 1300.0
+        },
+        {
+          "duration": 1,
+          "value": 1350.0
+        },
+        {
+          "duration": 1,
+          "value": 1400.0
+        },
+        {
+          "duration": 1,
+          "value": 1450.0
+        },
+        {
+          "duration": 1,
+          "value": 1500.0
+        },
+        {
+          "duration": 1,
+          "value": 1550.0
+        },
+        {
+          "duration": 1,
+          "value": 1600.0
+        },
+        {
+          "duration": 1,
+          "value": 1650.0
+        },
+        {
+          "duration": 1,
+          "value": 1700.0
+        },
+        {
+          "duration": 1,
+          "value": 1750.0
+        },
+        {
+          "duration": 1,
+          "value": 1800.0
+        },
+        {
+          "duration": 1,
+          "value": 1850.0
+        },
+        {
+          "duration": 1,
+          "value": 1900.0
+        },
+        {
+          "duration": 1,
+          "value": 1950.0
+        },
+        {
+          "duration": 1,
+          "value": 2000.0
+        },
+        {
+          "duration": 1,
+          "value": 2050.0
+        },
+        {
+          "duration": 1,
+          "value": 2100.0
+        },
+        {
+          "duration": 1,
+          "value": 2150.0
+        },
+        {
+          "duration": 1,
+          "value": 2200.0
+        },
+        {
+          "duration": 1,
+          "value": 2250.0
+        },
+        {
+          "duration": 1,
+          "value": 2300.0
+        },
+        {
+          "duration": 25,
+          "value": 2350.0
+        },
+        {
+          "duration": 1,
+          "value": 2400.0
+        },
+        {
+          "duration": 1916,
+          "value": 2450.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "monsterDamageTaken",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 7,
+          "value": 0.0
+        },
+        {
+          "duration": 1,
+          "value": 20.0
+        },
+        {
+          "duration": 2,
+          "value": 40.0
+        },
+        {
+          "duration": 2,
+          "value": 60.0
+        },
+        {
+          "duration": 1,
+          "value": 80.0
+        },
+        {
+          "duration": 1,
+          "value": 100.0
+        },
+        {
+          "duration": 10,
+          "value": 120.0
+        },
+        {
+          "duration": 1,
+          "value": 140.0
+        },
+        {
+          "duration": 1,
+          "value": 160.0
+        },
+        {
+          "duration": 1,
+          "value": 180.0
+        },
+        {
+          "duration": 1,
+          "value": 200.0
+        },
+        {
+          "duration": 1,
+          "value": 220.0
+        },
+        {
+          "duration": 1,
+          "value": 240.0
+        },
+        {
+          "duration": 1,
+          "value": 260.0
+        },
+        {
+          "duration": 1,
+          "value": 280.0
+        },
+        {
+          "duration": 1,
+          "value": 300.0
+        },
+        {
+          "duration": 1,
+          "value": 320.0
+        },
+        {
+          "duration": 1,
+          "value": 340.0
+        },
+        {
+          "duration": 1,
+          "value": 360.0
+        },
+        {
+          "duration": 1,
+          "value": 380.0
+        },
+        {
+          "duration": 1,
+          "value": 400.0
+        },
+        {
+          "duration": 1,
+          "value": 420.0
+        },
+        {
+          "duration": 1,
+          "value": 440.0
+        },
+        {
+          "duration": 1,
+          "value": 460.0
+        },
+        {
+          "duration": 1,
+          "value": 480.0
+        },
+        {
+          "duration": 1,
+          "value": 500.0
+        },
+        {
+          "duration": 1,
+          "value": 520.0
+        },
+        {
+          "duration": 1,
+          "value": 540.0
+        },
+        {
+          "duration": 1,
+          "value": 560.0
+        },
+        {
+          "duration": 1,
+          "value": 580.0
+        },
+        {
+          "duration": 1,
+          "value": 600.0
+        },
+        {
+          "duration": 1,
+          "value": 620.0
+        },
+        {
+          "duration": 36,
+          "value": 640.0
+        },
+        {
+          "duration": 1,
+          "value": 720.0
+        },
+        {
+          "duration": 1,
+          "value": 800.0
+        },
+        {
+          "duration": 1,
+          "value": 880.0
+        },
+        {
+          "duration": 1913,
+          "value": 960.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "championDamageDone",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "championDamageTaken",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "healingDone",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "healingReceived",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 93,
+          "value": 0.0
+        },
+        {
+          "duration": 1908,
+          "value": 200.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "shieldingDone",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "earnedGold",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 22,
+          "value": "0"
+        },
+        {
+          "duration": 67,
+          "value": "63"
+        },
+        {
+          "duration": 1912,
+          "value": "188"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "spentGold",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 63,
+          "value": "0"
+        },
+        {
+          "duration": 57,
+          "value": "60"
+        },
+        {
+          "duration": 1881,
+          "value": "180"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "gold",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 22,
+          "value": "0"
+        },
+        {
+          "duration": 41,
+          "value": "63"
+        },
+        {
+          "duration": 26,
+          "value": "3"
+        },
+        {
+          "duration": 31,
+          "value": "128"
+        },
+        {
+          "duration": 1881,
+          "value": "8"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "gems",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 22,
+          "value": "0"
+        },
+        {
+          "duration": 14,
+          "value": "11"
+        },
+        {
+          "duration": 53,
+          "value": "0"
+        },
+        {
+          "duration": 10,
+          "value": "29"
+        },
+        {
+          "duration": 1902,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "collectedGems",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 22,
+          "value": "0"
+        },
+        {
+          "duration": 67,
+          "value": "11"
+        },
+        {
+          "duration": 1912,
+          "value": "40"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "submittedGems",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 36,
+          "value": "0"
+        },
+        {
+          "duration": 63,
+          "value": "11"
+        },
+        {
+          "duration": 1902,
+          "value": "40"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "saleRefunds",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "kills",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "deaths",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "assists",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "monsterDamageDone",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 6,
+          "value": 0.0
+        },
+        {
+          "duration": 1,
+          "value": 45.0
+        },
+        {
+          "duration": 1,
+          "value": 90.0
+        },
+        {
+          "duration": 1,
+          "value": 135.0
+        },
+        {
+          "duration": 1,
+          "value": 180.0
+        },
+        {
+          "duration": 1,
+          "value": 225.0
+        },
+        {
+          "duration": 1,
+          "value": 270.0
+        },
+        {
+          "duration": 1,
+          "value": 315.0
+        },
+        {
+          "duration": 1,
+          "value": 360.0
+        },
+        {
+          "duration": 1,
+          "value": 405.0
+        },
+        {
+          "duration": 27,
+          "value": 450.0
+        },
+        {
+          "duration": 1,
+          "value": 495.0
+        },
+        {
+          "duration": 1,
+          "value": 540.0
+        },
+        {
+          "duration": 1,
+          "value": 585.0
+        },
+        {
+          "duration": 1,
+          "value": 630.0
+        },
+        {
+          "duration": 1,
+          "value": 675.0
+        },
+        {
+          "duration": 1,
+          "value": 720.0
+        },
+        {
+          "duration": 1,
+          "value": 765.0
+        },
+        {
+          "duration": 1,
+          "value": 810.0
+        },
+        {
+          "duration": 1,
+          "value": 855.0
+        },
+        {
+          "duration": 1,
+          "value": 900.0
+        },
+        {
+          "duration": 1,
+          "value": 945.0
+        },
+        {
+          "duration": 1,
+          "value": 990.0
+        },
+        {
+          "duration": 1,
+          "value": 1035.0
+        },
+        {
+          "duration": 17,
+          "value": 1080.0
+        },
+        {
+          "duration": 1,
+          "value": 1130.0
+        },
+        {
+          "duration": 1,
+          "value": 1180.0
+        },
+        {
+          "duration": 1,
+          "value": 1230.0
+        },
+        {
+          "duration": 1,
+          "value": 1280.0
+        },
+        {
+          "duration": 1,
+          "value": 1330.0
+        },
+        {
+          "duration": 1,
+          "value": 1380.0
+        },
+        {
+          "duration": 1,
+          "value": 1430.0
+        },
+        {
+          "duration": 1,
+          "value": 1480.0
+        },
+        {
+          "duration": 1,
+          "value": 1530.0
+        },
+        {
+          "duration": 1,
+          "value": 1580.0
+        },
+        {
+          "duration": 1,
+          "value": 1630.0
+        },
+        {
+          "duration": 23,
+          "value": 1635.0
+        },
+        {
+          "duration": 1,
+          "value": 1685.0
+        },
+        {
+          "duration": 1,
+          "value": 1735.0
+        },
+        {
+          "duration": 1,
+          "value": 1785.0
+        },
+        {
+          "duration": 1,
+          "value": 1835.0
+        },
+        {
+          "duration": 1,
+          "value": 1885.0
+        },
+        {
+          "duration": 14,
+          "value": 1935.0
+        },
+        {
+          "duration": 1,
+          "value": 1995.0
+        },
+        {
+          "duration": 1,
+          "value": 2055.0
+        },
+        {
+          "duration": 1,
+          "value": 2115.0
+        },
+        {
+          "duration": 1,
+          "value": 2175.0
+        },
+        {
+          "duration": 1,
+          "value": 2235.0
+        },
+        {
+          "duration": 1871,
+          "value": 2295.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "monsterDamageTaken",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 9,
+          "value": 0.0
+        },
+        {
+          "duration": 2,
+          "value": 20.0
+        },
+        {
+          "duration": 4,
+          "value": 40.0
+        },
+        {
+          "duration": 29,
+          "value": 60.0
+        },
+        {
+          "duration": 2,
+          "value": 140.0
+        },
+        {
+          "duration": 1,
+          "value": 220.0
+        },
+        {
+          "duration": 1,
+          "value": 300.0
+        },
+        {
+          "duration": 1,
+          "value": 380.0
+        },
+        {
+          "duration": 1,
+          "value": 460.0
+        },
+        {
+          "duration": 1,
+          "value": 540.0
+        },
+        {
+          "duration": 1,
+          "value": 620.0
+        },
+        {
+          "duration": 2,
+          "value": 700.0
+        },
+        {
+          "duration": 2,
+          "value": 780.0
+        },
+        {
+          "duration": 17,
+          "value": 860.0
+        },
+        {
+          "duration": 1,
+          "value": 940.0
+        },
+        {
+          "duration": 1,
+          "value": 1020.0
+        },
+        {
+          "duration": 2,
+          "value": 1100.0
+        },
+        {
+          "duration": 2,
+          "value": 1160.0
+        },
+        {
+          "duration": 2,
+          "value": 1220.0
+        },
+        {
+          "duration": 1,
+          "value": 1280.0
+        },
+        {
+          "duration": 25,
+          "value": 1340.0
+        },
+        {
+          "duration": 1,
+          "value": 1420.0
+        },
+        {
+          "duration": 1,
+          "value": 1500.0
+        },
+        {
+          "duration": 1,
+          "value": 1580.0
+        },
+        {
+          "duration": 2,
+          "value": 1660.0
+        },
+        {
+          "duration": 14,
+          "value": 1720.0
+        },
+        {
+          "duration": 1,
+          "value": 1740.0
+        },
+        {
+          "duration": 1,
+          "value": 1760.0
+        },
+        {
+          "duration": 1,
+          "value": 1780.0
+        },
+        {
+          "duration": 1,
+          "value": 1800.0
+        },
+        {
+          "duration": 1,
+          "value": 1820.0
+        },
+        {
+          "duration": 1870,
+          "value": 1840.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "championDamageDone",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "championDamageTaken",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "healingDone",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "healingReceived",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 63,
+          "value": 0.0
+        },
+        {
+          "duration": 57,
+          "value": 960.0
+        },
+        {
+          "duration": 1881,
+          "value": 1160.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "shieldingDone",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "earnedGold",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 22,
+          "value": "0"
+        },
+        {
+          "duration": 67,
+          "value": "62"
+        },
+        {
+          "duration": 1912,
+          "value": "187"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "spentGold",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 66,
+          "value": "0"
+        },
+        {
+          "duration": 60,
+          "value": "60"
+        },
+        {
+          "duration": 1875,
+          "value": "180"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "gold",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 22,
+          "value": "0"
+        },
+        {
+          "duration": 44,
+          "value": "62"
+        },
+        {
+          "duration": 23,
+          "value": "2"
+        },
+        {
+          "duration": 37,
+          "value": "127"
+        },
+        {
+          "duration": 1875,
+          "value": "7"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "gems",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 22,
+          "value": "0"
+        },
+        {
+          "duration": 13,
+          "value": "11"
+        },
+        {
+          "duration": 54,
+          "value": "0"
+        },
+        {
+          "duration": 12,
+          "value": "29"
+        },
+        {
+          "duration": 1900,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "collectedGems",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 22,
+          "value": "0"
+        },
+        {
+          "duration": 67,
+          "value": "11"
+        },
+        {
+          "duration": 1912,
+          "value": "40"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "submittedGems",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 35,
+          "value": "0"
+        },
+        {
+          "duration": 66,
+          "value": "11"
+        },
+        {
+          "duration": 1900,
+          "value": "40"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "saleRefunds",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "kills",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "deaths",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "assists",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": "0"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "monsterDamageDone",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 7,
+          "value": 0.0
+        },
+        {
+          "duration": 1,
+          "value": 100.0
+        },
+        {
+          "duration": 1,
+          "value": 200.0
+        },
+        {
+          "duration": 1,
+          "value": 300.0
+        },
+        {
+          "duration": 1,
+          "value": 400.0
+        },
+        {
+          "duration": 1,
+          "value": 500.0
+        },
+        {
+          "duration": 1,
+          "value": 600.0
+        },
+        {
+          "duration": 1,
+          "value": 700.0
+        },
+        {
+          "duration": 1,
+          "value": 800.0
+        },
+        {
+          "duration": 1,
+          "value": 850.0
+        },
+        {
+          "duration": 24,
+          "value": 900.0
+        },
+        {
+          "duration": 1,
+          "value": 1000.0
+        },
+        {
+          "duration": 1,
+          "value": 1100.0
+        },
+        {
+          "duration": 1,
+          "value": 1200.0
+        },
+        {
+          "duration": 1,
+          "value": 1300.0
+        },
+        {
+          "duration": 1,
+          "value": 1400.0
+        },
+        {
+          "duration": 1,
+          "value": 1500.0
+        },
+        {
+          "duration": 1,
+          "value": 1600.0
+        },
+        {
+          "duration": 1,
+          "value": 1700.0
+        },
+        {
+          "duration": 1,
+          "value": 1800.0
+        },
+        {
+          "duration": 1,
+          "value": 1900.0
+        },
+        {
+          "duration": 1,
+          "value": 2000.0
+        },
+        {
+          "duration": 1,
+          "value": 2100.0
+        },
+        {
+          "duration": 1,
+          "value": 2200.0
+        },
+        {
+          "duration": 1,
+          "value": 2300.0
+        },
+        {
+          "duration": 1,
+          "value": 2400.0
+        },
+        {
+          "duration": 1,
+          "value": 2500.0
+        },
+        {
+          "duration": 1,
+          "value": 2600.0
+        },
+        {
+          "duration": 1,
+          "value": 2700.0
+        },
+        {
+          "duration": 17,
+          "value": 2800.0
+        },
+        {
+          "duration": 1,
+          "value": 2910.0
+        },
+        {
+          "duration": 1,
+          "value": 3020.0
+        },
+        {
+          "duration": 1,
+          "value": 3130.0
+        },
+        {
+          "duration": 1,
+          "value": 3240.0
+        },
+        {
+          "duration": 1,
+          "value": 3350.0
+        },
+        {
+          "duration": 1,
+          "value": 3460.0
+        },
+        {
+          "duration": 1,
+          "value": 3570.0
+        },
+        {
+          "duration": 1,
+          "value": 3640.0
+        },
+        {
+          "duration": 26,
+          "value": 3695.0
+        },
+        {
+          "duration": 1,
+          "value": 3805.0
+        },
+        {
+          "duration": 1,
+          "value": 3915.0
+        },
+        {
+          "duration": 1,
+          "value": 4010.0
+        },
+        {
+          "duration": 1,
+          "value": 4065.0
+        },
+        {
+          "duration": 1,
+          "value": 4120.0
+        },
+        {
+          "duration": 1,
+          "value": 4175.0
+        },
+        {
+          "duration": 1,
+          "value": 4230.0
+        },
+        {
+          "duration": 15,
+          "value": 4285.0
+        },
+        {
+          "duration": 1,
+          "value": 4415.0
+        },
+        {
+          "duration": 1,
+          "value": 4545.0
+        },
+        {
+          "duration": 1,
+          "value": 4675.0
+        },
+        {
+          "duration": 1867,
+          "value": 4805.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "monsterDamageTaken",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 41,
+          "value": 0.0
+        },
+        {
+          "duration": 1,
+          "value": 80.0
+        },
+        {
+          "duration": 1,
+          "value": 160.0
+        },
+        {
+          "duration": 2,
+          "value": 240.0
+        },
+        {
+          "duration": 8,
+          "value": 320.0
+        },
+        {
+          "duration": 2,
+          "value": 400.0
+        },
+        {
+          "duration": 2,
+          "value": 480.0
+        },
+        {
+          "duration": 1,
+          "value": 560.0
+        },
+        {
+          "duration": 1,
+          "value": 640.0
+        },
+        {
+          "duration": 1,
+          "value": 720.0
+        },
+        {
+          "duration": 1,
+          "value": 800.0
+        },
+        {
+          "duration": 15,
+          "value": 880.0
+        },
+        {
+          "duration": 1,
+          "value": 960.0
+        },
+        {
+          "duration": 1,
+          "value": 980.0
+        },
+        {
+          "duration": 1,
+          "value": 1060.0
+        },
+        {
+          "duration": 1,
+          "value": 1080.0
+        },
+        {
+          "duration": 1,
+          "value": 1160.0
+        },
+        {
+          "duration": 1,
+          "value": 1180.0
+        },
+        {
+          "duration": 1,
+          "value": 1200.0
+        },
+        {
+          "duration": 28,
+          "value": 1220.0
+        },
+        {
+          "duration": 2,
+          "value": 1300.0
+        },
+        {
+          "duration": 1,
+          "value": 1360.0
+        },
+        {
+          "duration": 1,
+          "value": 1420.0
+        },
+        {
+          "duration": 1,
+          "value": 1480.0
+        },
+        {
+          "duration": 1,
+          "value": 1540.0
+        },
+        {
+          "duration": 1,
+          "value": 1600.0
+        },
+        {
+          "duration": 14,
+          "value": 1660.0
+        },
+        {
+          "duration": 1,
+          "value": 1680.0
+        },
+        {
+          "duration": 1,
+          "value": 1700.0
+        },
+        {
+          "duration": 1,
+          "value": 1720.0
+        },
+        {
+          "duration": 1,
+          "value": 1740.0
+        },
+        {
+          "duration": 1,
+          "value": 1760.0
+        },
+        {
+          "duration": 1864,
+          "value": 1780.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "championDamageDone",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "championDamageTaken",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "healingDone",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "healingReceived",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 66,
+          "value": 0.0
+        },
+        {
+          "duration": 60,
+          "value": 980.0
+        },
+        {
+          "duration": 1875,
+          "value": 1180.0
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "shieldingDone",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 2001,
+          "value": 0.0
+        }
+      ],
+      "sampleCount": 2001
+    }
+  ],
+  "champions": [
+    {
+      "consumables": [],
+      "consumablesBought": [],
+      "id": 0,
+      "items": [
+        {
+          "item": "Power Shard of Strength",
+          "quantity": "2"
+        }
+      ],
+      "itemsBought": [
+        {
+          "item": "Power Shard of Strength",
+          "quantity": "2"
+        }
+      ],
+      "metrics": {
+        "assists": "0",
+        "championDamageDone": 0.0,
+        "championDamageTaken": 0.0,
+        "collectedGems": "11",
+        "deaths": "0",
+        "earnedGold": "63",
+        "gems": "0",
+        "gold": "3",
+        "healingDone": 0.0,
+        "healingReceived": 0.0,
+        "kills": "0",
+        "monsterDamageDone": 1140.0,
+        "monsterDamageTaken": 840.0,
+        "saleRefunds": "0",
+        "shieldingDone": 0.0,
+        "spentGold": "60",
+        "submittedGems": "11"
+      },
+      "name": "Ryth",
+      "team": "teamA"
+    },
+    {
+      "consumables": [],
+      "consumablesBought": [],
+      "id": 1,
+      "items": [
+        {
+          "item": "Power Shard of Health",
+          "quantity": "3"
+        },
+        {
+          "item": "Power Emblem of Health",
+          "quantity": "1"
+        }
+      ],
+      "itemsBought": [
+        {
+          "item": "Power Shard of Health",
+          "quantity": "8"
+        },
+        {
+          "item": "Power Emblem of Health",
+          "quantity": "1"
+        }
+      ],
+      "metrics": {
+        "assists": "0",
+        "championDamageDone": 0.0,
+        "championDamageTaken": 0.0,
+        "collectedGems": "51",
+        "deaths": "0",
+        "earnedGold": "251",
+        "gems": "0",
+        "gold": "11",
+        "healingDone": 0.0,
+        "healingReceived": 2720.0,
+        "kills": "0",
+        "monsterDamageDone": 5365.0,
+        "monsterDamageTaken": 3200.0,
+        "saleRefunds": "0",
+        "shieldingDone": 0.0,
+        "spentGold": "240",
+        "submittedGems": "51"
+      },
+      "name": "Marcella",
+      "team": "teamA"
+    },
+    {
+      "consumables": [],
+      "consumablesBought": [],
+      "id": 2,
+      "items": [
+        {
+          "item": "Power Shard of Health",
+          "quantity": "3"
+        },
+        {
+          "item": "Power Emblem of Health",
+          "quantity": "3"
+        }
+      ],
+      "itemsBought": [
+        {
+          "item": "Power Shard of Health",
+          "quantity": "18"
+        },
+        {
+          "item": "Power Emblem of Health",
+          "quantity": "3"
+        }
+      ],
+      "metrics": {
+        "assists": "0",
+        "championDamageDone": 0.0,
+        "championDamageTaken": 0.0,
+        "collectedGems": "120",
+        "deaths": "0",
+        "earnedGold": "561",
+        "gems": "0",
+        "gold": "21",
+        "healingDone": 0.0,
+        "healingReceived": 4140.0,
+        "kills": "0",
+        "monsterDamageDone": 9895.0,
+        "monsterDamageTaken": 4120.0,
+        "saleRefunds": "0",
+        "shieldingDone": 0.0,
+        "spentGold": "540",
+        "submittedGems": "120"
+      },
+      "name": "Varg",
+      "team": "teamA"
+    },
+    {
+      "consumables": [],
+      "consumablesBought": [],
+      "id": 3,
+      "items": [
+        {
+          "item": "Power Shard of Strength",
+          "quantity": "2"
+        },
+        {
+          "item": "Power Shard of Health",
+          "quantity": "2"
+        }
+      ],
+      "itemsBought": [
+        {
+          "item": "Power Shard of Strength",
+          "quantity": "2"
+        },
+        {
+          "item": "Power Shard of Health",
+          "quantity": "2"
+        }
+      ],
+      "metrics": {
+        "assists": "0",
+        "championDamageDone": 0.0,
+        "championDamageTaken": 0.0,
+        "collectedGems": "22",
+        "deaths": "0",
+        "earnedGold": "125",
+        "gems": "0",
+        "gold": "5",
+        "healingDone": 0.0,
+        "healingReceived": 200.0,
+        "kills": "0",
+        "monsterDamageDone": 2450.0,
+        "monsterDamageTaken": 960.0,
+        "saleRefunds": "0",
+        "shieldingDone": 0.0,
+        "spentGold": "120",
+        "submittedGems": "22"
+      },
+      "name": "Ryth",
+      "team": "teamB"
+    },
+    {
+      "consumables": [],
+      "consumablesBought": [],
+      "id": 4,
+      "items": [
+        {
+          "item": "Power Shard of Strength",
+          "quantity": "3"
+        },
+        {
+          "item": "Power Shard of Health",
+          "quantity": "3"
+        }
+      ],
+      "itemsBought": [
+        {
+          "item": "Power Shard of Strength",
+          "quantity": "3"
+        },
+        {
+          "item": "Power Shard of Health",
+          "quantity": "3"
+        }
+      ],
+      "metrics": {
+        "assists": "0",
+        "championDamageDone": 0.0,
+        "championDamageTaken": 0.0,
+        "collectedGems": "40",
+        "deaths": "0",
+        "earnedGold": "188",
+        "gems": "0",
+        "gold": "8",
+        "healingDone": 0.0,
+        "healingReceived": 1160.0,
+        "kills": "0",
+        "monsterDamageDone": 2295.0,
+        "monsterDamageTaken": 1840.0,
+        "saleRefunds": "0",
+        "shieldingDone": 0.0,
+        "spentGold": "180",
+        "submittedGems": "40"
+      },
+      "name": "Marcella",
+      "team": "teamB"
+    },
+    {
+      "consumables": [],
+      "consumablesBought": [],
+      "id": 5,
+      "items": [
+        {
+          "item": "Power Shard of Strength",
+          "quantity": "3"
+        },
+        {
+          "item": "Power Shard of Health",
+          "quantity": "3"
+        }
+      ],
+      "itemsBought": [
+        {
+          "item": "Power Shard of Strength",
+          "quantity": "3"
+        },
+        {
+          "item": "Power Shard of Health",
+          "quantity": "3"
+        }
+      ],
+      "metrics": {
+        "assists": "0",
+        "championDamageDone": 0.0,
+        "championDamageTaken": 0.0,
+        "collectedGems": "40",
+        "deaths": "0",
+        "earnedGold": "187",
+        "gems": "0",
+        "gold": "7",
+        "healingDone": 0.0,
+        "healingReceived": 1180.0,
+        "kills": "0",
+        "monsterDamageDone": 4805.0,
+        "monsterDamageTaken": 1780.0,
+        "saleRefunds": "0",
+        "shieldingDone": 0.0,
+        "spentGold": "180",
+        "submittedGems": "40"
+      },
+      "name": "Varg",
+      "team": "teamB"
+    }
+  ],
+  "diagnostics": {
+    "botFaults": {
+      "teamA": 0,
+      "teamB": 0
+    },
+    "codes": [],
+    "detailedCaptureComplete": true
+  },
+  "events": [
+    {
+      "entries": [],
+      "kind": "death",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "kill",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "assist",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "wardPlacement",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 60.0,
+          "context": "63",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Strength"
+          },
+          "timestamp": {
+            "input": 1046,
+            "ordinal": 6669,
+            "phase": "champions",
+            "round": 64,
+            "substep": 0
+          },
+          "value": "2",
+          "x": 1,
+          "y": 18
+        }
+      ],
+      "kind": "buyItem",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "buyConsumable",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "sellItem",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "id": 4,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 314,
+            "ordinal": 1769,
+            "phase": "champions",
+            "round": 17,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 2,
+          "y": 11
+        }
+      ],
+      "kind": "campClear",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 575,
+            "ordinal": 3751,
+            "phase": "championStartTurn",
+            "round": 36,
+            "substep": 7
+          },
+          "value": "11",
+          "x": 14,
+          "y": 5
+        }
+      ],
+      "kind": "gemSubmission",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 4,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 389,
+            "ordinal": 2396,
+            "phase": "campCaptures",
+            "round": 23,
+            "substep": 11
+          },
+          "value": "11",
+          "x": 2,
+          "y": 11
+        }
+      ],
+      "kind": "gemCollection",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "gemLoss",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "itemCombination",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "botFault",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "fuelExhausted",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "resignation",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "death",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "kill",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "assist",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "wardPlacement",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 240.0,
+          "context": "251",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 2931,
+            "ordinal": 22519,
+            "phase": "champions",
+            "round": 216,
+            "substep": 0
+          },
+          "value": "8",
+          "x": 1,
+          "y": 18
+        }
+      ],
+      "kind": "buyItem",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "buyConsumable",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "sellItem",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "id": 4,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1438,
+            "ordinal": 9382,
+            "phase": "champions",
+            "round": 90,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 2,
+          "y": 11
+        },
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "id": 4,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 2521,
+            "ordinal": 18560,
+            "phase": "champions",
+            "round": 178,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 1,
+          "y": 11
+        }
+      ],
+      "kind": "campClear",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 1689,
+            "ordinal": 11472,
+            "phase": "championStartTurn",
+            "round": 110,
+            "substep": 7
+          },
+          "value": "11",
+          "x": 14,
+          "y": 5
+        },
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 2034,
+            "ordinal": 14292,
+            "phase": "championStartTurn",
+            "round": 137,
+            "substep": 28
+          },
+          "value": "29",
+          "x": 15,
+          "y": 24
+        },
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 2714,
+            "ordinal": 20539,
+            "phase": "championStartTurn",
+            "round": 197,
+            "substep": 7
+          },
+          "value": "11",
+          "x": 14,
+          "y": 5
+        }
+      ],
+      "kind": "gemSubmission",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 4,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1509,
+            "ordinal": 10011,
+            "phase": "campCaptures",
+            "round": 96,
+            "substep": 12
+          },
+          "value": "11",
+          "x": 1,
+          "y": 11
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1915,
+            "ordinal": 13250,
+            "phase": "campCaptures",
+            "round": 127,
+            "substep": 12
+          },
+          "value": "29",
+          "x": 12,
+          "y": 16
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 4,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 2579,
+            "ordinal": 19185,
+            "phase": "campCaptures",
+            "round": 184,
+            "substep": 11
+          },
+          "value": "11",
+          "x": 2,
+          "y": 11
+        }
+      ],
+      "kind": "gemCollection",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "gemLoss",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "kind": "item",
+            "name": "Power Emblem of Health"
+          },
+          "timestamp": {
+            "input": 2931,
+            "ordinal": 22520,
+            "phase": "champions",
+            "round": 216,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 1,
+          "y": 18
+        }
+      ],
+      "kind": "itemCombination",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "botFault",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "fuelExhausted",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "resignation",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "death",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "kill",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "assist",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "wardPlacement",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 60.0,
+          "context": "62",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 1078,
+            "ordinal": 6985,
+            "phase": "champions",
+            "round": 67,
+            "substep": 0
+          },
+          "value": "2",
+          "x": 1,
+          "y": 18
+        },
+        {
+          "amount": 180.0,
+          "context": "189",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 2383,
+            "ordinal": 17310,
+            "phase": "champions",
+            "round": 166,
+            "substep": 0
+          },
+          "value": "6",
+          "x": 1,
+          "y": 18
+        },
+        {
+          "amount": 60.0,
+          "context": "71",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 2900,
+            "ordinal": 22309,
+            "phase": "champions",
+            "round": 214,
+            "substep": 0
+          },
+          "value": "2",
+          "x": 1,
+          "y": 18
+        },
+        {
+          "amount": 240.0,
+          "context": "261",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 3808,
+            "ordinal": 31052,
+            "phase": "champions",
+            "round": 298,
+            "substep": 0
+          },
+          "value": "8",
+          "x": 1,
+          "y": 18
+        }
+      ],
+      "kind": "buyItem",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "buyConsumable",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "sellItem",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1848,
+            "ordinal": 12621,
+            "phase": "champions",
+            "round": 121,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 12,
+          "y": 16
+        },
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 3447,
+            "ordinal": 27097,
+            "phase": "champions",
+            "round": 260,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 12,
+          "y": 16
+        }
+      ],
+      "kind": "campClear",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 588,
+            "ordinal": 3857,
+            "phase": "championStartTurn",
+            "round": 37,
+            "substep": 28
+          },
+          "value": "11",
+          "x": 14,
+          "y": 5
+        },
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 1670,
+            "ordinal": 11367,
+            "phase": "championStartTurn",
+            "round": 109,
+            "substep": 7
+          },
+          "value": "11",
+          "x": 14,
+          "y": 5
+        },
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 2050,
+            "ordinal": 14397,
+            "phase": "championStartTurn",
+            "round": 138,
+            "substep": 7
+          },
+          "value": "29",
+          "x": 15,
+          "y": 24
+        },
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 2726,
+            "ordinal": 20644,
+            "phase": "championStartTurn",
+            "round": 198,
+            "substep": 7
+          },
+          "value": "11",
+          "x": 14,
+          "y": 5
+        },
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 3632,
+            "ordinal": 29179,
+            "phase": "championStartTurn",
+            "round": 280,
+            "substep": 7
+          },
+          "value": "58",
+          "x": 15,
+          "y": 24
+        }
+      ],
+      "kind": "gemSubmission",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 4,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 389,
+            "ordinal": 2397,
+            "phase": "campCaptures",
+            "round": 23,
+            "substep": 11
+          },
+          "value": "11",
+          "x": 1,
+          "y": 11
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 4,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1509,
+            "ordinal": 10012,
+            "phase": "campCaptures",
+            "round": 96,
+            "substep": 12
+          },
+          "value": "11",
+          "x": 2,
+          "y": 11
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1915,
+            "ordinal": 13251,
+            "phase": "campCaptures",
+            "round": 127,
+            "substep": 12
+          },
+          "value": "29",
+          "x": 12,
+          "y": 15
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 4,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 2579,
+            "ordinal": 19186,
+            "phase": "campCaptures",
+            "round": 184,
+            "substep": 11
+          },
+          "value": "11",
+          "x": 1,
+          "y": 11
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 3499,
+            "ordinal": 27722,
+            "phase": "campCaptures",
+            "round": 266,
+            "substep": 10
+          },
+          "value": "58",
+          "x": 12,
+          "y": 15
+        }
+      ],
+      "kind": "gemCollection",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "gemLoss",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "kind": "item",
+            "name": "Power Emblem of Health"
+          },
+          "timestamp": {
+            "input": 2383,
+            "ordinal": 17311,
+            "phase": "champions",
+            "round": 166,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 1,
+          "y": 18
+        },
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "kind": "item",
+            "name": "Power Emblem of Health"
+          },
+          "timestamp": {
+            "input": 2900,
+            "ordinal": 22310,
+            "phase": "champions",
+            "round": 214,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 1,
+          "y": 18
+        },
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "kind": "item",
+            "name": "Power Emblem of Health"
+          },
+          "timestamp": {
+            "input": 3808,
+            "ordinal": 31053,
+            "phase": "champions",
+            "round": 298,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 1,
+          "y": 18
+        }
+      ],
+      "kind": "itemCombination",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "botFault",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "fuelExhausted",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "resignation",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "death",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "kill",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "assist",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "wardPlacement",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 30.0,
+          "context": "125",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Strength"
+          },
+          "timestamp": {
+            "input": 1479,
+            "ordinal": 9695,
+            "phase": "champions",
+            "round": 93,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "95",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 1480,
+            "ordinal": 9696,
+            "phase": "champions",
+            "round": 93,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "65",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Strength"
+          },
+          "timestamp": {
+            "input": 1481,
+            "ordinal": 9697,
+            "phase": "champions",
+            "round": 93,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "35",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 1482,
+            "ordinal": 9698,
+            "phase": "champions",
+            "round": 93,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        }
+      ],
+      "kind": "buyItem",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "buyConsumable",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "sellItem",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "id": 3,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 989,
+            "ordinal": 6146,
+            "phase": "champions",
+            "round": 59,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 24
+        }
+      ],
+      "kind": "campClear",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 1269,
+            "ordinal": 8234,
+            "phase": "championStartTurn",
+            "round": 79,
+            "substep": 7
+          },
+          "value": "22",
+          "x": 15,
+          "y": 24
+        }
+      ],
+      "kind": "gemSubmission",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 3,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1054,
+            "ordinal": 6774,
+            "phase": "campCaptures",
+            "round": 65,
+            "substep": 12
+          },
+          "value": "22",
+          "x": 27,
+          "y": 24
+        }
+      ],
+      "kind": "gemCollection",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "gemLoss",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "itemCombination",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "botFault",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "fuelExhausted",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "resignation",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "death",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "kill",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "assist",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "wardPlacement",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 30.0,
+          "context": "63",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 1036,
+            "ordinal": 6563,
+            "phase": "champions",
+            "round": 63,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "33",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Strength"
+          },
+          "timestamp": {
+            "input": 1037,
+            "ordinal": 6564,
+            "phase": "champions",
+            "round": 63,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "128",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 1828,
+            "ordinal": 12513,
+            "phase": "champions",
+            "round": 120,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "98",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Strength"
+          },
+          "timestamp": {
+            "input": 1829,
+            "ordinal": 12514,
+            "phase": "champions",
+            "round": 120,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "68",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 1830,
+            "ordinal": 12515,
+            "phase": "champions",
+            "round": 120,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "38",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Strength"
+          },
+          "timestamp": {
+            "input": 1831,
+            "ordinal": 12516,
+            "phase": "champions",
+            "round": 120,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        }
+      ],
+      "kind": "buyItem",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "buyConsumable",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "sellItem",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1348,
+            "ordinal": 8651,
+            "phase": "champions",
+            "round": 83,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 17,
+          "y": 14
+        }
+      ],
+      "kind": "campClear",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 578,
+            "ordinal": 3752,
+            "phase": "championStartTurn",
+            "round": 36,
+            "substep": 7
+          },
+          "value": "11",
+          "x": 15,
+          "y": 24
+        },
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 1541,
+            "ordinal": 10325,
+            "phase": "championStartTurn",
+            "round": 99,
+            "substep": 7
+          },
+          "value": "29",
+          "x": 14,
+          "y": 5
+        }
+      ],
+      "kind": "gemSubmission",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 5,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 375,
+            "ordinal": 2290,
+            "phase": "campCaptures",
+            "round": 22,
+            "substep": 11
+          },
+          "value": "11",
+          "x": 28,
+          "y": 18
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1422,
+            "ordinal": 9276,
+            "phase": "campCaptures",
+            "round": 89,
+            "substep": 11
+          },
+          "value": "29",
+          "x": 17,
+          "y": 13
+        }
+      ],
+      "kind": "gemCollection",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "gemLoss",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "itemCombination",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "botFault",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "fuelExhausted",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "resignation",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "death",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "kill",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "assist",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "wardPlacement",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 30.0,
+          "context": "62",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 1068,
+            "ordinal": 6879,
+            "phase": "champions",
+            "round": 66,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "32",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Strength"
+          },
+          "timestamp": {
+            "input": 1069,
+            "ordinal": 6880,
+            "phase": "champions",
+            "round": 66,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "127",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 1900,
+            "ordinal": 13142,
+            "phase": "champions",
+            "round": 126,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "97",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Strength"
+          },
+          "timestamp": {
+            "input": 1901,
+            "ordinal": 13143,
+            "phase": "champions",
+            "round": 126,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "67",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 1902,
+            "ordinal": 13144,
+            "phase": "champions",
+            "round": 126,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        },
+        {
+          "amount": 30.0,
+          "context": "37",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Strength"
+          },
+          "timestamp": {
+            "input": 1903,
+            "ordinal": 13145,
+            "phase": "champions",
+            "round": 126,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 11
+        }
+      ],
+      "kind": "buyItem",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "buyConsumable",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "sellItem",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "id": 5,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 285,
+            "ordinal": 1664,
+            "phase": "champions",
+            "round": 16,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 28,
+          "y": 18
+        }
+      ],
+      "kind": "campClear",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 562,
+            "ordinal": 3646,
+            "phase": "championStartTurn",
+            "round": 35,
+            "substep": 7
+          },
+          "value": "11",
+          "x": 15,
+          "y": 24
+        },
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 1564,
+            "ordinal": 10534,
+            "phase": "championStartTurn",
+            "round": 101,
+            "substep": 7
+          },
+          "value": "29",
+          "x": 14,
+          "y": 5
+        }
+      ],
+      "kind": "gemSubmission",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 5,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 375,
+            "ordinal": 2291,
+            "phase": "campCaptures",
+            "round": 22,
+            "substep": 11
+          },
+          "value": "11",
+          "x": 27,
+          "y": 18
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1422,
+            "ordinal": 9277,
+            "phase": "campCaptures",
+            "round": 89,
+            "substep": 11
+          },
+          "value": "29",
+          "x": 17,
+          "y": 14
+        }
+      ],
+      "kind": "gemCollection",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "gemLoss",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "itemCombination",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "botFault",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "fuelExhausted",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    },
+    {
+      "entries": [],
+      "kind": "resignation",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      }
+    }
+  ],
+  "formatVersion": "1.0",
+  "heatmaps": [
+    {
+      "kind": "death",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "kill",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "wardPlacement",
+      "owner": {
+        "id": 0,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "death",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "kill",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "wardPlacement",
+      "owner": {
+        "id": 1,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "death",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "kill",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "wardPlacement",
+      "owner": {
+        "id": 2,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamA"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "death",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "kill",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "wardPlacement",
+      "owner": {
+        "id": 3,
+        "kind": "champion",
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "death",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "kill",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "wardPlacement",
+      "owner": {
+        "id": 4,
+        "kind": "champion",
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "death",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "kill",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "kind": "wardPlacement",
+      "owner": {
+        "id": 5,
+        "kind": "champion",
+        "name": "Varg",
+        "team": "teamB"
+      },
+      "runs": [
+        {
+          "duration": 900,
+          "value": "0"
+        }
+      ]
+    }
+  ],
+  "jsonFormatVersion": "1.0",
+  "match": {
+    "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+    "engineVersion": "0.0.2",
+    "finalInput": 19175,
+    "finalRoundPartial": false,
+    "finalSubstep": 6,
+    "height": 30,
+    "mapHash": "9696d12821252abe17668f012ad17d66eaaf6708b5abf39230463ae1eaaf603e",
+    "metricSemanticsVersion": 1,
+    "outcome": "teamA",
+    "roundsCompleted": 2000,
+    "roundsStarted": 2000,
+    "seed": "8285352372850623819",
+    "width": 30
+  },
+  "roster": {
+    "champions": [
+      {
+        "draftPick": 0,
+        "id": 0,
+        "name": "Ryth",
+        "team": "teamA"
+      },
+      {
+        "draftPick": 2,
+        "id": 1,
+        "name": "Marcella",
+        "team": "teamA"
+      },
+      {
+        "draftPick": 4,
+        "id": 2,
+        "name": "Varg",
+        "team": "teamA"
+      },
+      {
+        "draftPick": 1,
+        "id": 3,
+        "name": "Ryth",
+        "team": "teamB"
+      },
+      {
+        "draftPick": 3,
+        "id": 4,
+        "name": "Marcella",
+        "team": "teamB"
+      },
+      {
+        "draftPick": 5,
+        "id": 5,
+        "name": "Varg",
+        "team": "teamB"
+      }
+    ],
+    "draft": [
+      {
+        "champion": "Ryth",
+        "team": "teamA"
+      },
+      {
+        "champion": "Ryth",
+        "team": "teamB"
+      },
+      {
+        "champion": "Marcella",
+        "team": "teamA"
+      },
+      {
+        "champion": "Marcella",
+        "team": "teamB"
+      },
+      {
+        "champion": "Varg",
+        "team": "teamA"
+      },
+      {
+        "champion": "Varg",
+        "team": "teamB"
+      }
+    ]
+  },
+  "teamTimelines": [
+    {
+      "metric": "submittedGems",
+      "owner": "teamA",
+      "runs": [
+        {
+          "duration": 36,
+          "value": "0"
+        },
+        {
+          "duration": 1,
+          "value": "11"
+        },
+        {
+          "duration": 72,
+          "value": "22"
+        },
+        {
+          "duration": 1,
+          "value": "33"
+        },
+        {
+          "duration": 27,
+          "value": "44"
+        },
+        {
+          "duration": 1,
+          "value": "73"
+        },
+        {
+          "duration": 59,
+          "value": "102"
+        },
+        {
+          "duration": 1,
+          "value": "113"
+        },
+        {
+          "duration": 82,
+          "value": "124"
+        },
+        {
+          "duration": 1721,
+          "value": "182"
+        }
+      ],
+      "sampleCount": 2001
+    },
+    {
+      "metric": "submittedGems",
+      "owner": "teamB",
+      "runs": [
+        {
+          "duration": 35,
+          "value": "0"
+        },
+        {
+          "duration": 1,
+          "value": "11"
+        },
+        {
+          "duration": 43,
+          "value": "22"
+        },
+        {
+          "duration": 20,
+          "value": "44"
+        },
+        {
+          "duration": 2,
+          "value": "73"
+        },
+        {
+          "duration": 1900,
+          "value": "102"
+        }
+      ],
+      "sampleCount": 2001
+    }
+  ],
+  "teams": [
+    {
+      "submittedGems": "182",
+      "team": "teamA"
+    },
+    {
+      "submittedGems": "102",
+      "team": "teamB"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+cambc run v13 v9 --map contest -o /home/kcube/battlecode/results/eval_v13/v9/.contest__cand-A.replay --statistics /home/kcube/battlecode/results/eval_v13/v9/contest__cand-A.stats.json --json
+
+v13 vs v9 on /home/kcube/battlecode/maps/contest.map26a
+Team A (v13) wins: reached 1000 gems in round 1549
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v13  1000    54      5       12279        0  Varg, Ryth, Stellar, Marcella, Tavi
+  B    v9      0     5     54        1545        0  Varg, Ryth, Stellar, Marcella, Tavi
+replay bundle: /home/kcube/battlecode/results/eval_v13/v9/.contest__cand-A.replay/v13-vs-v9-1792207665191.repl26a
+match summary: /home/kcube/battlecode/results/eval_v13/v9/contest__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+running: round 800/2000
+running: round 900/2000
+running: round 1000/2000
+running: round 1100/2000
+running: round 1200/2000
+running: round 1300/2000
+running: round 1400/2000
+running: round 1500/2000
+finished: round 1549/2000 — teamA

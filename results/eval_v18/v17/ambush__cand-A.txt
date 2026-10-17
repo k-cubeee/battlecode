@@ -1,0 +1,21 @@
+cambc run v18 v17 --map ambush -o /home/kcube/battlecode/results/eval_v18/v17/.ambush__cand-A.replay --statistics /home/kcube/battlecode/results/eval_v18/v17/ambush__cand-A.stats.json --json
+
+v18 vs v17 on /home/kcube/battlecode/maps/ambush.map26a
+Team B (v17) wins: reached 1000 gems in round 712
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v18   298     4      9        2859        0  Varg, Ryth, Stellar, Marcella, Tavi
+  B    v17  1068     9      5        3423        0  Varg, Ryth, Stellar, Marcella, Tavi
+replay bundle: /home/kcube/battlecode/results/eval_v18/v17/.ambush__cand-A.replay/v18-vs-v17-1792242071818.repl26a
+match summary: /home/kcube/battlecode/results/eval_v18/v17/ambush__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+finished: round 712/2000 — teamB

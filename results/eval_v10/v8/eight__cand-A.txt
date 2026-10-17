@@ -1,0 +1,19 @@
+cambc run v10 v8 --map eight -o /home/kcube/battlecode/results/eval_v10/v8/.eight__cand-A.replay --statistics /home/kcube/battlecode/results/eval_v10/v8/eight__cand-A.stats.json --json
+
+v10 vs v8 on /home/kcube/battlecode/maps/eight.map26a
+Team A (v10) wins: reached 1000 gems in round 515
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v10  1022    12      1        4891        0  Varg, Ryth, Stellar, Marcella, Tavi
+  B    v8      0     1     12         680        0  Varg, Ryth, Stellar, Marcella, Tavi
+replay bundle: /home/kcube/battlecode/results/eval_v10/v8/.eight__cand-A.replay/v10-vs-v8-1792198299708.repl26a
+match summary: /home/kcube/battlecode/results/eval_v10/v8/eight__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+finished: round 515/2000 — teamA

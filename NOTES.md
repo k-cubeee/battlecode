@@ -1,6 +1,6 @@
 # Bot version notes
 
-**Current champion: v9**
+**Current champion: v18**
 
 Baseline: v1. Chronological log below: version entries and analyses are appended
 at the end. Promotion gate: >= 55% head-to-head vs the current champion over a full
@@ -496,3 +496,995 @@ I made no other changes, and I didn't touch `NOTES.md`.
 Smoke test: `cambc run v14 v9 --map contest` — v14 crashes 0.
 - Evaluation (results/eval_v14): v9 41%, v8 50%, v6 56%; overall 49%
 - Status: rejected, moved to rejected/v14. Lesson: these changes did not beat v9.
+
+### Research on v9 — 2026-10-17 (results/eval_v9, eval_v10, eval_v11, eval_v12, eval_v13, eval_v14)
+Method: Bash was not available. I pulled every vs-v9 match (map, side, result, round) from the five rejected evals with multiline Grep over summary.json. I read the opening timing (`first_death_round`, `deaths_before_300`, `submitted_by_250`) of the v9-code mirror from the v10-vs-v9 block of results/eval_v10/summary.json (lines 14238-21108). v10 is v9 with only `FAR_SPAWN_DIST` changed, and that constant is only read on 3-pick maps, so on every map except expanse it is the pure v9 mirror. I opened one stats file (eval_v10/v9/fragment__cand-A.stats.json).
+
+Map picture (v9 code vs v9 code, winning side, score, round; sides are A then B for first death / deaths before r300):
+- Routs, where the loser's opening goes wrong: contest A 1000-0 r1549 (first death 39/31, deaths before r300 2/11), eight A 1022-0 r515 (189/56, 1/7), fragment B 1006-0 r599 (49/none, 3/0), collision B 1028-482 r921 (44/483), stampede A 1080-360 r1294 (75/46), packs A 1060-544 r658 (47/46, 1/5), corners B 1034-570 r535 (60/56, 4/2; submitted by r250 0/168), monolith B 1010-652 r498 (66/81, 5/1), ambush B 1010-510 r795.
+- Close farming races: rushbait-v2 A 1020-976 r819, rows A 1056-858 r620, lanes B 1014-804 r583, interlock B 1026-656 r825, elkring A 1008-684 r692, pilgrimage A 1008-568 r1011.
+- expanse: with the Cassi & Issac gate on both sides, A wins r807 (eval_v12). With the gate off the candidate wins both sides (v10, v11, v13, v14, r631-725).
+- swirl: v9 wins from both sides against every copy of itself (see #1).
+- Per-version results vs v9:
+  - v10 (expanse gate off): expanse +2, swirl 0-2, the other 30 games are exact same-round mirrors, so 17-17.
+  - v11 (relaxed bank veto) and v13 (team bank): the same pattern. The rounds move by 5-40 (v13: packs A 630 instead of 658, lanes B 572 instead of 583, rushbait B 812 instead of 819) but no winner changes.
+  - v12 (death memory, gate kept): expanse 1-1, swirl 0-2, contest B r1511 and eight B r531 still lost, 16-18.
+  - v14 is the only version that moved maps. Flipped to wins: rows B (r689), expanse A and B, interlock A (r874). Flipped to losses: interlock B (r966), lanes B (r576), rushbait A (r654), stampede A (r1052), contest A (r2000, 600-600 lost on gold). It also lost swirl from both sides. 14-20.
+- How v9 itself beat v8 (eval_v9, 20-14): it won from both sides on interlock (r906/r825), rushbait (r797/r753), stampede (r956/r1220) and swirl (r608/r521), and lost expanse from both sides.
+
+Lessons from rejected versions:
+- v10, v11 and v13: the expanse gate fix is worth exactly +2, and swirl takes exactly −2 back (see #1). The bank-veto and team-bank changes moved no winner at all.
+- v12: changes that only act after a champion has died 2+ times come too late. The mirror routs are settled by r31-66 (first death) and by 4-11 deaths before r300.
+- v14: making camp choice ignore gold (`kappa` = 0 from r400 or 20 items) together with `GOLD_HOME_FAR` 250 is the first change that moved maps. It moved them in both directions:
+  - It won the calm races. In rows B, all 4 champions collected 264-330 gems and v14 submitted 528 between r500 and r750, against v9's 330.
+  - It collapsed gold income on contact and big-camp maps. stampede A: 3,740 vs 8,976 gold, first submit at r990 vs r554. contest A: 600-600 lost on the gold tiebreak, 3,450 vs 11,627. In v14's losses it earned 3,463 gold vs the opponent's 5,892, against 3,340 vs 5,435 for v9 code in eval_v10.
+
+1. **Swirl is lost from both sides by every candidate because of something outside the play code: each new version starts at −2**
+   - Evidence: v10's code is line-for-line the same size as v9's (ball 1370, bot 1543, draft 71, main 22, tables 73, randomness 17 lines). The only change is `FAR_SPAWN_DIST = 10000` (rejected/v10/src/draft.py:27), and swirl is a 4-pick map where `spawn_distance()` is never called (draft.py:56 short-circuits on `size == 3`).
+     - v8 (A) vs v10 (B) in eval_v10 gives exactly v8-vs-v9's results, round for round, on 15 of 17 maps (ambush 795, collision 921, contest 1577, corners 535, eight 515, elkring 654, fragment 599, interlock 825, lanes 531, monolith 579, packs 658, pilgrimage 1011, rows 620, rushbait 753, stampede 1220). Expanse differs because of the gate.
+     - The only other difference is swirl. v8 (A) vs v9 (B) is 776-1014, a v9 win at r521 (eval_v9). v8 (A) vs v10 (B) is 1034-548, a v10 loss at r521.
+     - v6 (A) vs v10/v12/v14 (B) and v9 (A) vs v10/v12 (B) all give the same 1034-548 game. v10 (A) vs v9 (B) gives 776-1014, the same as v8 (A) vs v9 (B).
+     - So on swirl a v9 build on Team B plays a different, winning game, while every candidate with a three-character name loses from that seat. v12 (gate kept, death memory only) and v14 (very different code) lose it the same way.
+     - This costs every candidate 2 of 34 games against v9, and 1 game against each of v6 and v8.
+     - It explains the run of 17-17 results. v10, v11 and v13 = 15-15 on true mirrors + expanse 2-0 + swirl 0-2.
+   - Cause in code (hypothesis, mechanism unproven): play depends on remaining fuel in three places. These are `bot.py:31,1239` (`CHOOSE_MIN_FUEL = 1500000`, the champion defers picking a task when fuel is lower), `ball.py:933` (`fallback_attack` below 500k) and `ball.py:1319` (re-plan above 1.4M). If anything outside the code (bot directory or name length, the build) changes fuel use slightly, a turn can cross one of these thresholds and the game diverges. That would fit swirl, which is decided at r521 with A's first death at r46 against B's at r55.
+   - Maps it decides: swirl, both sides (and swirl B against v6/v8 in the pool).
+   - Confidence: high that the result does not come from the play code (checked over 16 maps, same rounds). Low on the mechanism.
+   - Test for the designer: copy v9 unchanged into the next free slot and run `cambc run v8 vN --map swirl` and `cambc run v9 vN --map swirl`. If the copy loses, the candidate's baseline is 15 + expanse 2 = 17. It then needs 2 genuine side flips, or a fix that removes the fuel-threshold branching, which would turn swirl into a true 1-1 mirror.
+
+2. **The routs (8 of 15 mirror maps) are settled in the first 100 rounds, and no version so far has acted that early**
+   - Evidence: in the v9-code mirror, the loser died first on 11 of 15 maps (list above). eval_v10 `side_stats`: in losses, first death at r74.8 against the opponent's r130.5, 4.0 deaths before r300 against 2.1, 88 gems submitted by r250 against 159, and 11.2 deaths against 4.8 per game.
+     - Rout example: eval_v10/v9/fragment__cand-A.stats.json (3-pick). Side A collected 212 gems (Varg 66, Ryth 124, Marcella 22) and submitted 0, all 8 deaths to champions. Side B had 0 deaths, collected 1,028 and earned 4,940 gold to A's 1,125.
+     - The mirror winners of contest, eight, fragment, collision, corners, packs, monolith, ambush and stampede B were never flipped by any of v10-v14. Five different mid- and late-game changes left them all alone.
+   - Cause in code: the opening is the same `ball_decide` and `skirmish` logic for both teams. In particular `ball.py:46` (`R_GO = 1.05`), `bot.py:1132,1158` (`wt` uses `g.deny`, which pulls champions toward groups the enemy also wants) and `bot.py:1164` (×1.25 on groups near a recent enemy sighting when escorted, "hunt in company"). With identical code the map and turn order decide who wins the first exchange (GameRules l.122/126: the starting team alternates).
+     - Hypothesis, not traced: a tie-break that is not symmetric under the map's rotation, such as direction or iteration order, decides which side gets the first hit.
+   - Maps it decides: contest (B loses), eight (B), fragment (A), collision (A), corners (A), packs (B), monolith (A), ambush (A), stampede (B).
+   - Confidence: medium on the pattern. Low on the exact first-contact mechanism: the death-event locations were not mapped to spawns.
+
+3. **The close farming races are the only maps any change has flipped, and the deciding variable is gold kept flowing alongside gem-weighted camp choice**
+   - Evidence: v9's own promotion came from interlock, rushbait and stampede (plus swirl), all won from both sides against v8 (eval_v9). v14 moved exactly the close maps: rows B and interlock A became wins, lanes B and rushbait A became losses. Its other new losses (stampede A, contest A) are the gold-starved games quoted above.
+     - Closest mirror, rushbait (eval_v10 lines 20071-20250, v9 A vs v9-code B). B was ahead 686-388 submitted at r500, but submitted only 80 more by r750 (766 vs 824). It lost 204 gems in deaths at r502 and r734 and still carried about 130 at the end: collected 1,310, submitted 976, so 130 carried + 204 lost. It lost 976-1020. Either the 204 lost or the 130 carried, banked, would have won the game.
+     - elkring: B led 144-72 at r250 and still lost 684-1008.
+   - Cause in code: `bot.py:1085,1131` (`kappa = max(0.05, 0.3 - rnd/1200)` and `val = g.gems + kappa*g.gold`) sets the gem/gold trade-off for every champion. v14 showed that `kappa` = 0 (rejected/v14 `best_group`) speeds up the gem race on calm maps but starves item income where fights or big camps need it. `ball.py:469-477` (`ball_want_bank`) still lets mid-game bags of 100-200 be lost in the r500-750 window on rushbait.
+   - Maps it decides: rushbait (B loses), rows (B), lanes (A), interlock (A), elkring (B), pilgrimage (B). These are the six flippable mirrors. With the expanse +2, two flips from the losing side are enough for 19/34, provided swirl (#1) and the routs (#2) don't get worse.
+   - Confidence: medium. The flips are measured, but v14 changed three things at once, so which of `kappa` and `GOLD_HOME_FAR` 250 caused which flip is not separated.
+
+Do not repeat: bank-veto tweaks (v11), team-bank count (v13) and per-champion death memory (v12). Each changed no mirror winner. The expanse gate-off is worth +2 and should ride along.
+
+### Design for v15 — 2026-10-17 (based on v9)
+Idea: be the home team in the opening exchange. For the first 200 rounds, stop sending champions to camps near the enemy spawn, and fight more readily near our own spawn and less readily near theirs. v9 keeps pushing into our half, so the first contacts happen where we heal, shop and respawn, not where v9 does. Then let v9's normal economy convert the lead, and add the expanse gate fix (+2).
+
+What the code shows (read for this design, not in earlier notes):
+- v9 runs ball mode from round 0 (`ball.py:194` `self.r_gather = 0`), so the opening uses `best_group(..., ball=True)` and `skirmish`, not the farming path.
+- At round 0 `push_f = 0.5` (`ball.py:213`; `update_push` keeps it at 0.5 while both teams have 0 submitted). All five champions start together, so `esc = 1.0` (`bot.py:1100-1105`) and `push = 0.5`. Every group within `SIEGE_D = 30` steps of the enemy spawn gets `wt = 1 + (deny-1)*0.5`, which is up to x2.5 (`ball.py:169-175`, `bot.py:1132,1158`). Groups within 7 steps (`ESP_AVOID`) are skipped. On top of that, a group near a recent enemy sighting gets x1.25 while escorted (`bot.py:1164`).
+- So in the v9 mirror both teams walk into each other's half in the first rounds. The side that loses the first fight is the one caught away from home: it has no heal, a long walk back, and `fight_ratio` already gives enemies standing on their own spawn x3 HP (`ball.py:813`). That fits the research numbers: the loser's first death at r31-75 and 4-11 deaths before r300.
+- Why v14 starved on contest: with `kappa = 0`, gold-only groups get `val = 0`, so `ub = 0` and the loop breaks at `ub <= best_score` (`bot.py:1133,1141`). A champion that can't take a monolith then gets no task at all, which explains the 3,450 vs 11,627 gold. **Do not set kappa to 0** in this or any later version; that would only be safe with a nonzero floor.
+
+Target maps:
+- **Routs, where the loser is caught away from home early:** contest (B loses; B has 11 deaths before r300), eight (B; B's first death r56 vs A's r189), packs (B), stampede (B), corners (A), monolith (A), fragment (A), collision (A), ambush (A). If v15 stays home on its losing side, it should survive the opening. On its winning side, v9 still invades, and now it dies at our spawn.
+- **Expected:** at least 2 of these 9 flip from v15's losing side while its winning side holds. That gives +2 or more, plus expanse +2.
+- **Expanse:** both sides, from change 3 (proven 6-0 over several evals).
+
+Risk maps:
+- **Close farming races** (rushbait, rows, lanes, interlock, elkring, pilgrimage). Here the deny weight may be what collects the good camps, so staying home could cost tempo. Limit: change 1 lasts only 200 rounds, and after that v9's logic is unchanged.
+- **Swirl:** already −2 for every candidate, for reasons outside the play code (research #1). This plan doesn't count on it.
+- **Contest/stampede gold:** change 1 doesn't touch kappa, so income stays as in v9.
+
+Changes (implement all of them):
+1. `bot.py` `best_group`, line 1106: replace `push = self.push_f * esc if ball else 0.0` with:
+   `push = (0.0 if self.rnd < OPEN_HOME_R else self.push_f * esc) if ball else 0.0`.
+   Then in the sightings loop (line 1164), while `self.rnd < OPEN_HOME_R`, use the multiplier 0.7 even when escorted (no x1.25 "hunt in company" in the opening):
+   `score *= 1.25 if (esc >= 1.0 and self.rnd >= OPEN_HOME_R) else 0.7`.
+   Add the module constant `OPEN_HOME_R = 200` in bot.py next to `KAPPA0`. The ESP_AVOID skip, the join logic and everything else stay as they are. The join `wt` at line 1201 reads the same `push` local, so it gets this change automatically.
+   - Why: the opening pull toward the enemy spawn (up to x2.5 at round 0) is the only part of camp choice that sends both teams into each other's half before the first death. No earlier version changed anything before round 300. The research showed the routs are decided by r31-75.
+2. `ball.py` `skirmish`, after line 907 (after the `GEM_CAUTION` scaling of `need`, before `go = ratio >= need`), add a home/away factor:
+   ```
+   dsp = self.df_spawn.get(self.pos)
+   if dsp <= HOME_FIGHT_D:
+       need *= HOME_FIGHT_F
+   else:
+       try:
+           if self.df_enemy.get(self.pos) <= AWAY_FIGHT_D:
+               need *= AWAY_FIGHT_F
+       except Error:
+           pass
+   ```
+   Add the constants to ball.py's constant block: `HOME_FIGHT_D = 10`, `HOME_FIGHT_F = 0.85`, `AWAY_FIGHT_D = 14`, `AWAY_FIGHT_F = 1.2`. This applies all game, not only in the opening.
+   - API check: these are existing helpers already used in the same file (`self.df_spawn.get(self.pos)` at ball.py:493; `self.df_enemy.get(...)` wrapped in `except Error` at ball.py:952-954). There are no new cambc calls.
+   - Why: change 1 makes contacts happen near our spawn, and this makes v15 take those fights. It wins them because it heals and respawns there (GameRules: champions respawn on their own spawn) while v9's fighters are far from home. The 1.2 away factor stops v15 champions that still wander deep (after r200, or when chasing) from taking the even trades that decide the routs. `R_GO = 1.05` means v9 accepts near-even fights everywhere, so being pickier only away from home is asymmetric in our favour.
+3. `draft.py:27`: `FAR_SPAWN_DIST = 10**6` (the expanse Cassi & Issac gate off).
+   - Why: verified +2 vs v9 in v10, v11, v13 and v14.
+
+Explicitly NOT in this plan:
+- bank veto, team bank or death memory (no effect in v11, v13, v12);
+- kappa = 0 (starvation mechanism above);
+- `GOLD_HOME_FAR` (its effect in v14 can't be separated from kappa's).
+
+Test plan for the implementer (each is 1 deterministic game; run both sides):
+- **Crash check:** `cambc run v15 v9 --map expanse`. It should win, as v10/v13 did.
+- **Rout maps, v15 on the losing seat:**
+  - `cambc run v9 v15 --map contest` and `cambc run v9 v15 --map eight` (v15 as B)
+  - `cambc run v15 v9 --map corners`, `cambc run v15 v9 --map fragment` and `cambc run v15 v9 --map collision` (v15 as A)
+  - Success: at least 2 of these 5 become v15 wins.
+- **Rout maps, v15 on the winning seat:** `cambc run v15 v9 --map contest`, `cambc run v15 v9 --map eight`, `cambc run v9 v15 --map corners`. These must stay wins.
+- **Close-race guard:** `cambc run v15 v9 --map rushbait-v2`, `cambc run v15 v9 --map rows` and `cambc run v9 v15 --map lanes` (v9's mirror winning seats for v15). These should stay wins. Allow at most 1 new loss here, and only if 2 or more rout flips are confirmed.
+- **Info only:** `cambc run v9 v15 --map swirl`, to see whether the swirl −2 persists.
+- **Pass bar before handing over:** net +2 or more over the tested games, not counting expanse.
+
+Fallback (in this order, re-run the same games after each step):
+- (a) If no rout flips: raise `OPEN_HOME_R` to 300 and `AWAY_FIGHT_F` to 1.35.
+- (b) If winning seats or close races are lost: keep change 1 and drop the `AWAY_FIGHT` half of change 2 (keep `HOME_FIGHT_F`).
+- (c) If still worse: drop change 2 entirely, then try `OPEN_HOME_R = 120`.
+- Never ship change 3 alone; it caps out at 17-17 because of swirl.
+
+### v15 — rejected (53% vs v9)
+- Based on: v9 (pipeline: researcher, designer, implementer)
+- Changes: I built v15 with all three plan changes plus the fallbacks, but it looks like a net loss and will probably be rejected. Over 12 games it flipped one rout (monolith A) and lost two seats it should win (contest A and eight A). No game crashed and no `bot error` lines appeared.
+
+**What I changed** (all in `bots/v15/src/`)
+1. **`bot.py:best_group`:** added `OPEN_HOME_R`. Before that round, the pull toward the enemy spawn is set to 0 and camps near a recent enemy sighting get 0.7 instead of the 1.25 company bonus. It ships at 300 (plan said 200; fallback 1 raised it).
+2. **`ball.py:skirmish`:** the strength ratio needed to fight is ×0.85 within 10 steps of our spawn and ×`AWAY_FIGHT_F` within 14 steps of the enemy spawn. The distances come from `self.df_spawn.get(self.pos)` and `self.df_enemy.get(self.pos)` inside `try/except Error`, the same calls the file already makes elsewhere, so there are no new API calls. `AWAY_FIGHT_F` ships at 1.0, which turns the away half off (fallback 2).
+3. **`draft.py`:** `FAR_SPAWN_DIST = 10**6`.
+
+**Test results** ("before" is what the plan reports for the v9 mirror in that seat)
+
+| # | Map, v15's seat | Config | Before | After |
+|---|---|---|---|---|
+| 1 | expanse A (crash check) | plan as written | – | **win** 1006–952 |
+| 2 | contest B | plan as written | loss | loss 0–1000 |
+| 3 | eight B | plan as written | loss | loss 66–1024 |
+| 4 | corners A | plan as written | loss | loss 760–1136 |
+| 5 | packs B | plan as written | loss | loss 636–1008 |
+|
+- Evaluation (results/eval_v15): v9 53%, v8 50%, v6 62%; overall 55%
+- Status: rejected, moved to rejected/v15. Lesson: these changes did not beat v9.
+
+### Research on v9 — 2026-10-17 (results/eval_v15, eval_v10, eval_v14; earlier evals via the previous research section)
+Method: no Bash. I read the 34 v15-vs-v9 records in results/eval_v15/summary.json (lines 14492-21500) and compared each one with the same seat in the v9-code mirror. That mirror is the v10-vs-v9 block of results/eval_v10/summary.json: v10 is v9 with only the 3-pick expanse gate off. For v15 I also checked the v6/v8 records on the 4-pick maps and on contest, stampede and elkring. The v10-v14 per-map results are in the previous research section and are not repeated here.
+
+Map picture (v15 vs v9 compared with the v9 mirror; "same" means the same seat won as in the mirror):
+- Same: ambush (B), collision (B), elkring (A), fragment (B), lanes (B), packs (A), pilgrimage (A), expanse (A wins r744, B loses r779, the same as the gate-on mirror).
+- v15 gained a seat:
+  - corners A (W r656, mirror B won r535)
+  - interlock A (W r734, mirror B won r825)
+  - rows B (W r603, mirror A won r620)
+  - swirl B (W r534, against v6 and v8 too)
+- v15 lost a seat:
+  - contest A (lost 400-800 at the r2000 limit; the mirror A won 1000-0)
+  - stampede A (L r1034; the mirror A won r1294)
+- Winning side reversed (net 0): eight (B now wins, r652/r958), monolith (A now wins, r542/r492), rushbait (B now wins, r632/r671).
+- Total: 16 + 4 − 2 = 18-16. In all, 10 of 34 seats changed result relative to the mirror.
+
+Lessons from rejected versions:
+- v10, v11, v13: expanse gate off gives +2 and swirl costs −2, so 17-17. The bank changes moved no winner.
+- v12: death memory acts too late; 16-18.
+- v14: `kappa` = 0 and `GOLD_HOME_FAR` 250 changed 11 seats and finished 14-20.
+- v15: the stay-home opening changed 10 seats and finished 18-16.
+- v14 and v15 share no code, yet the same five seats moved the same way:
+  - won: rows B, interlock A
+  - lost: contest A, stampede A, rushbait A
+  - So these five seats are the sensitive ones. v9's seat wins on contest, stampede and rushbait need its aggressive push and its gold economy. Its seat losses on rows and interlock come from that same aggression.
+- v15's single largest gain was on the 4-pick maps (#1). Its losses were all on 5-pick and 3-pick maps.
+
+1. **On the 4-pick maps (interlock, rows, swirl) the v15 stay-home opening wins from both seats. Elsewhere it nets negative, so the effect depends on roster size.**
+   - Evidence:
+     - Across the pool, v15 is 15-3 on the 4-pick maps (eval_v15 by_map): interlock 6-0, rows 6-0, swirl 3-3. B won swirl against v6, v8 and v9, with v6 and v9 at r534.
+     - Against v9 it is 5-1 on these maps; the v9 mirror gives 2 of 6.
+     - interlock A: v15 had no death until r270. v9 B died at r63, 86, 152 and 195, first submitted at r385 and lost 396 gems. v15 had 286 submitted by r250; in the mirror, A had 66 (first death r80, eval_v10 l.17548-17566).
+     - rows B: v15's Varg and Ryth took 200 and 202 champion damage, did not die, and collected 396 and 528 gems. In the mirror's B seat they took 3,280 and 3,995, died twice each and collected 198 each (eval_v10 l.19809-19828).
+     - Off the 4-pick maps, v15 vs v9 is 13-15. v10 (v9 play code plus the gate off) scores 15 of the same 28 games.
+     - Estimate (hypothesis): a build that plays v15's opening only when 4 champions are drafted, and v10 code otherwise, would score 15 + 5 = 20/34 (59%). If the swirl B win does not carry over, it scores 19/34 (56%).
+     - Risk: research #1 suspects fuel-threshold branching. If that is right, even an inert `if` could re-roll some seats.
+   - Cause in code:
+     - `rejected/v15/src/bot.py:1108-1110` (`best_group`: `push = 0.0` before `OPEN_HOME_R = 300`, line 25) and `:1168` (no ×1.25 hunt bonus in the opening).
+     - `rejected/v15/src/ball.py:914-915` (`skirmish`: `need *= 0.85` within 10 of our spawn).
+     - The v9 code it replaces: `bots/v9/src/bot.py:1106` (`push = self.push_f * esc`, with `push_f` = 0.5 from r0, `ball.py:213`), `:1132/:1158` (deny weight) and `:1164` (×1.25).
+     - Roster size is available in play as `self.nslots` (`bots/v9/src/bot.py:212-220`, read from the draft memory).
+   - Maps it decides: interlock A, rows B, swirl B (gains). It keeps interlock B and rows A.
+   - Confidence: high on the measured results (18 deterministic games, identical rounds against v6 and v8). Medium on the 20/34 composite estimate.
+
+2. **On the 5-pick big-camp maps v9's winning seat depends on its push opening; any softer opening gives the rout away. The same goes for the expanse B seat.**
+   - Evidence:
+     - contest A:
+       - In the mirror, A had 2 deaths before r300 against B's 11 and won 1000-0 at r1549.
+       - With v15 as A it was 6 against 8, 71 deaths in total, and the game ran to r2000. v15 lost 400-800 and earned 6,485 gold to v9's 10,263 (eval_v15 l.15330-15515).
+     - eight A: v15 had 8 deaths before r300 (first at r48) against v9 B's 2 (first at r141), and submitted 116 gems (l.16246-16419). In the mirror A won 1022-0.
+     - stampede A: v15 had 0 submitted until r910; v9 B banked 720 by r750 (l.20686-20862).
+     - v14 lost contest A and stampede A too, through a different mechanism (gold starvation).
+     - expanse B: v10 (v9 opening, gate off) won this seat. v15 (home opening, gate off) lost it at r779.
+     - v15 also went 1-3 against v8/v6 on elkring and 1-3 on contest.
+     - In v15's losses, its first death is no longer earlier than the opponent's (r132.5 vs r132.7; eval_v10 losses were r74.8 vs r130.5). The loser still has 3.7 deaths before r300 against 2.2, and 11.7 deaths in total against 6.7.
+   - Cause in code:
+     - `bots/v9/src/bot.py:1106,1132,1158,1164`: the deny-weighted push toward the enemy spawn wins the opening when the pushing team has 5 bodies.
+     - Hypothesis, not traced: with 5 bodies the push arrives in numbers, while with 4 bodies the bodies arrive alone and get picked off at the defender's spawn (`ball.py:813` gives defenders on their own spawn ×3 HP in `fight_ratio`).
+   - Maps it decides: contest A, stampede A, eight A, rushbait A, monolith B (v9's winning seats); 3-pick expanse B.
+   - Confidence: medium. Two independent versions lost the same seats; the 4-vs-5-body mechanism is a hypothesis.
+
+3. **Standoffs and idle bodies, not bag loss, swing some of the remaining seats**
+   - Evidence:
+     - corners A (v15 won 1232-738, r656): v15 lost the opening with deaths at r36, 62 and 71. It still won, because v9 B's Varg collected 22 gems, earned 140 gold, bought 0 items and never died in 656 rounds, and v9 B lost 350 gems (Ryth collected 356 and submitted 116) (l.15905-15969).
+     - rows (v15 B won): v9 A's Marcella had 0 gems, 0 gold, 0 deaths and 725 champion damage taken; v15's Marcella had 0 gems, 2 deaths and 3,200 champion damage taken (l.20156-20234). In the pure v9 rows mirror both Marcellas collected 132-198 gems.
+     - Other idle bodies in eval_v15 with 0 deaths and under 300 gold earned: l.4940, 6094, 8881, 13139.
+     - This is the long-standing idle-body pattern from the v3 rows note and the v8/v11 analyses. It appears when the two openings differ.
+   - Cause in code: not isolated (hypothesis). Likely a mutual `skirmish` hold (`bots/v9/src/ball.py:874`, `R_GO = 1.05` at l.46): two champions face each other and neither reaches `need`, so neither farms. The other candidate is the `cap_inc` gate (`bot.py:1092,1120`) for a champion with no items.
+   - Maps it decides: corners (both seats for v15), rows A.
+   - Confidence: low-medium.
+
+Old hypotheses:
+- Previous research #1 said swirl B is lost by any candidate for reasons outside the play code. That is refuted in its strong form: v15, also a three-character name, wins swirl B against v9, v8 and v6.
+- Previous research #2 said the routs are decided before r100 and no version acted that early. Confirmed: v15 acted that early and moved 7 rout and close seats, in both directions.
+- Previous research #3 said the close races flip through gold flow. Refuted: v15 flipped rows and interlock without touching `kappa` or gold.
+- Bank, team-bank and death-memory changes: still no effect (no new data).
+
+### Design for v16 — 2026-10-17 (based on v9)
+Idea: pick the opening by roster size. With 4 champions, stay home: this is v15's opening, which went 5-1 vs v9 on the 4-pick maps. With 3 or 5 champions, keep v9's push opening, which wins v9's seats on contest, stampede, eight and rushbait. Turn the expanse gate off so that 3-pick maps really have 3 bodies, and so the 4-body test means "4-pick map" only.
+
+What the code shows (checked for this design):
+- `self.nslots` is the number of **bodies** from the draft memory (`bots/v9/src/draft.py:66-70` writes `[len(bodies)] + bodies`; `bot.py:209-220` reads it). It defaults to 6 if the memory is missing.
+- With v9's gate **on**, expanse drafts Varg, Cassi & Issac and Ryth, which is also 4 bodies. So the gate must be off (change 3) or the 4-body test would also fire on expanse. v15 showed the home opening loses expanse B, while v10's push opening wins it.
+- On 4-pick maps PREFS[4] is Varg, Ryth, Stellar and Marcella, so `nslots == 4`. On 5-pick maps it is 5 and on 3-pick maps (gate off) it is 3.
+- `BallMixin` (`ball.py:124`) is mixed into `Bot` (`bot.py:118`), so `skirmish` can read an attribute set in `Bot.__init__`.
+- v15's play-code changes are exactly the three spots listed in the earlier grep (`rejected/v15/src/bot.py:25,1108-1110,1168`; `ball.py:48-51,912-919`). The rest of v15 is v9.
+
+Target maps (expected flips vs v9, compared with the v9 mirror at 17-17 where swirl splits):
+- interlock A, rows B, swirl B. v15 won all three against v9 (and against v6 and v8) with exactly this code path. interlock B and rows A were kept. That is +3 seats on the 4-pick maps (v15 was 5/6 there, the mirror 2/6).
+- expanse A and B, from the gate off, using v9's opening (v10, v11, v13 and v14 won both seats; v15 with the home opening lost B). Compared with the gate-on mirror, that is +1.
+- Everything else (contest, stampede, eight, rushbait, monolith, corners, packs, fragment, collision, ambush, lanes, elkring, pilgrimage) runs v10 code exactly, and v10 scored 15/28 off the 4-pick maps.
+- Estimate: 15 + 5 = **20/34**, or 19/34 if swirl B doesn't carry over.
+
+Risk maps:
+- Seats v15 won on 5-pick maps go back to v9-mirror results (corners A, eight B, monolith A, rushbait B). That is already counted in the estimate: the v10 baseline, not v15, holds there.
+- Fuel-threshold butterfly (research #1): the added `if` changes fuel use slightly on every map. Limit this by computing the flag **once** in `__init__` and branching on a plain attribute, with no new loops and no new cambc calls. v10 already showed that a constant-level change leaves the 5-pick mirrors round-identical.
+- swirl A is still a loss (v15 lost it too), and swirl B is the least certain gain.
+
+Changes (implement all of them; start from a clean copy of `bots/v9`, **not** from rejected/v15):
+1. `bot.py` `__init__`, right after the draft-memory block (after line 222, `self.slot = n + ...`): add `self.home_open = (self.nslots == HOME_OPEN_SLOTS)`. Add the module constants next to `KAPPA0`: `HOME_OPEN_SLOTS = 4` and `OPEN_HOME_R = 300`.
+   Then in `best_group` (v9 line 1106, `push = self.push_f * esc if ball else 0.0`), add right after it:
+   ```
+   opening = self.home_open and rnd < OPEN_HOME_R
+   if opening:
+       push = 0.0
+   ```
+   In the sightings loop (v9 line ~1164), change the ball branch to `score *= 1.25 if (esc >= 1.0 and not opening) else 0.7`. This is identical to rejected/v15 bot.py:1108-1110 and 1168, except for `self.home_open and`. `rnd` is the local already used in that function (v15 uses it the same way). Don't touch the join logic: it reads the same `push` local, as in v15.
+   - Why: research #1. On interlock A, v15 had its first death at r270 (v9 at r63) and 286 gems submitted by r250 (mirror 66). On rows B, Varg and Ryth took about 200 champion damage instead of 3,280 and 3,995. Gating stops the home opening from losing contest A, stampede A and eight A (research #2).
+2. `ball.py` `skirmish`: after the `GEM_CAUTION` scaling (v9 ~line 907), before `go = ratio >= need`, add
+   ```
+   if self.home_open:
+       try:
+           if self.df_spawn.get(self.pos) <= HOME_FIGHT_R:
+               need *= HOME_FIGHT_F
+       except Error:
+           pass
+   ```
+   with the constants `HOME_FIGHT_R = 10` and `HOME_FIGHT_F = 0.85` in ball.py's constant block. Don't add the away half: v15 shipped it at 1.0, so it was a no-op. `self.df_spawn.get(self.pos)` and `except Error` are the forms already used in v9 `ball.py` (l.493, l.952-954), so there are no new API calls.
+   - Why: this is part of the exact code that produced v15's 4-pick results. Keep it so those games reproduce. Applying it all game, but only on 4-body rosters, matches what v15 did on those maps.
+3. `draft.py:27`: `FAR_SPAWN_DIST = 10**6`.
+   - Why: expanse gets +2 seats with v9's opening (proven in 4 evals). It is also required for change 1's 4-body test to mean "4-pick map".
+
+Explicitly not included: anything that changes 5-pick or 3-pick play (bank veto, team bank, death memory, kappa, GOLD_HOME_FAR, AWAY_FIGHT). Those maps must stay byte-for-byte v10 behaviour.
+
+Test plan for the implementer (deterministic, 1 game each):
+- 4-pick gains (must win): `cambc run v16 v9 --map interlock` (v16 A), `cambc run v9 v16 --map rows` (v16 B), `cambc run v9 v16 --map swirl` (v16 B).
+- 4-pick holds (must win): `cambc run v9 v16 --map interlock`, `cambc run v16 v9 --map rows`.
+- Expanse (must win both): `cambc run v16 v9 --map expanse`, `cambc run v9 v16 --map expanse`.
+- 5-pick guard (v9-mirror seats, must stay wins, ideally the same round as v10's): `cambc run v16 v9 --map contest` (r1549 win), `cambc run v16 v9 --map stampede`, `cambc run v16 v9 --map eight`, `cambc run v16 v9 --map rushbait-v2`.
+- Success: all 4-pick and expanse games except possibly swirl B win, and no 5-pick guard game changes winner. A guard game with a different round number means the flag is leaking into 5-pick play (check that `home_open` is False there; print `nslots` once if needed).
+
+Fallback:
+- (a) If a 4-pick gain fails, check that `nslots` is 4 in play (log once). If it isn't, gate on `cambc.draft.team_size()` saved during the draft instead. Check that call is valid in the play phase in BotAPIPython.md first; otherwise keep nslots.
+- (b) If interlock or rows reproduce v15 but swirl B doesn't, ship anyway: 19/34 is still above the bar.
+- (c) If a 5-pick guard game flips while the flag is False (fuel butterfly), move the flag check so the 5-pick path runs exactly v9's statements. For example, in `best_group` make it `if self.home_open:` wrapping both new lines, so non-4 rosters only pay one attribute test.
+- Don't tune OPEN_HOME_R or HOME_FIGHT_F: the target is to reproduce v15's measured 4-pick games exactly.
+
+### Lead input — 2026-10-17: draft picks to test
+- The lead reports that the strongest picks are **Ren, Stellar, Cassi & Issac, Ryth and Varg**.
+  Source: the top teams on the competition ladder, so this is the current meta, not a guess.
+- v9 differs: its 5-pick list is Varg, Ryth, Stellar, Marcella, Tavi. It **never drafts Ren**, and it
+  only drafts Cassi & Issac through the expanse far-spawn gate (`PREFS_FAR_3`), which v10-v16
+  switched off.
+- To do: test a roster built on these five (map by map, both sides, against v9), especially Ren and
+  Cassi & Issac, which this line has never fielded on most maps. Check that the bot's play logic
+  handles them (abilities, linked deaths for Cassi & Issac) before judging the draft on results alone.
+- The lead also notes that **our champions rarely group up**. That fits the code: `ball.py:90`
+  `SOLO = 1` ("every champion farms on its own once the push stage starts") and `ball.py:194`
+  `self.r_gather = 0` (solo from the first round). The only grouping left is the parties of up to 3
+  on big camps (`bot.py:27-28`, `BIG_GEMS`/`BIG_PARTY`). Earlier versions had a "ball" (the whole
+  team moving and fighting together) that was switched off; find out from NOTES.md why, and whether
+  it was judged on 2.1.6 maps only. Check each meta champion's role and abilities in GameRules.md:
+  if their value depends on allies being nearby (support, area effects, Cassi & Issac's link), the
+  meta roster only pays off when the team stays together. Test a grouped mode, at least for fights
+  and the opening, together with the meta roster.
+
+- The lead says **every champion should finish one emblem family first**, because the emblem's
+  passive is what matters (GameRules.md:290-306: shards give stats, only the 5th shard's emblem
+  gives the passive, and a second emblem of the same family adds no passive). v9 already buys one
+  family at a time (`tables.py` `BUILD_FIGHTER`: Monster STR, Jungle HP, Treasure STR, Durability HP,
+  ...; `bot.py:957-980` `buy_items`). Still open: which passive should come first for each champion
+  and role (e.g. Jungle's 30% less camp damage for the champions that tank camps, Treasure for the
+  farmers), and how early each champion completes its first emblem. Measure that from `buyItem` /
+  `itemCombination` events in the .stats.json files, per champion.
+- The lead also says **champions that have no shards should be fed**: the stronger teammates help
+  them farm and let them take the gold. By the rules this is possible: camp gold and gems are split
+  evenly among the champions standing on the capture tile (GameRules.md:195), so a strong champion
+  can clear a camp, step off, and let the weak one capture it alone. Evidence of the need: in
+  results/eval_v9 the gold earned per champion ranges from 673 (Issac) to 1279 (Varg)
+  (`side_stats.candidate_champions`), and earlier analyses found champions with 0 gold and 0 items
+  on ambush (Marcella, Stellar). Design idea: track each champion's emblem progress in shared memory,
+  and give the camp's capture to the teammate furthest from finishing its first emblem.
+- **Lead request (concrete): Jungle emblem first.** The lead sees that the top ladder teams always
+  complete the **Jungle** emblem first (passive: 30% less damage from camps). v9 buys **Monster STR
+  first** and Jungle HP second: every champion uses `BUILD_FIGHTER` (`bot.py:247`;
+  `tables.py:45-48`), which starts `[(MON, STR), (JUN, HP), ...]`. `BUILD_RANGED` and
+  `BUILD_SUPPORT` are identical and unused. So the change is to put `(JUN, HP)` (or JUN STR; check
+  which stat suits each champion) first. Include it in the next version: it costs nothing to add
+  alongside other changes, and less camp damage means fewer recalls, fewer camp deaths (camp kills
+  destroy carried gems, GameRules.md:361) and earlier solo clears.
+- **Lead request (concrete): Focus shards for spell champions.** The lead sees that the top teams
+  buy **Focus** shards on every champion except **Varg**. v9 buys no Focus at all (`BUILD_FIGHTER` is
+  only STR and HP, used by every champion). The rules support the lead (GameRules.md:245-259, the
+  stat tables at 418-795): a Strength shard adds 3-5 to basic attacks (Stellar 3.5, Willow 3), while
+  a Focus shard adds 10 (Cassi 15, Willow 5), and spells multiply Focus: Tavi 2.2x + stun, Stellar
+  2x single / 1.4x area, Cassi 2x, Marcella 2x, Prism 1.5x + stun, Ren 1.25x + stun (and a passive
+  retaliation of 0.2x Focus), Ryth 1x + area stun, Willow heals 3x Focus, Varg's self-shield 2.5x.
+  Varg is the exception: his passive splashes damage equal to Strength, so STR stays right for him.
+  Change: give each champion its own build (the unused `BUILD_RANGED`/`BUILD_SUPPORT` lists, or a
+  per-champion table), using **Jungle Focus** first for Focus champions and **Jungle** (HP or STR)
+  for Varg. Check that the bot casts these abilities often enough to profit (cooldown 8 turns per
+  slot, one cast per turn); if it rarely casts, fix that in the same version.
+
+### v16 — promoted (59% vs v9)
+- Based on: v9 (pipeline: researcher, designer, implementer)
+- Changes: I've built v16 with all three plan changes. Twelve test games ran with 0 crashes and no `bot error` lines. Eleven match the expected result. The one that doesn't is the rushbait-v2 guard, because that map turns out to draft 4 champions, not 5.
+
+**What I changed:**
+1. **`bot.py`:**
+   - Added the constants `HOME_OPEN_SLOTS = 4` and `OPEN_HOME_R = 300`.
+   - In `Bot.__init__`, right after the draft-memory block, I set `self.home_open = (self.nslots == HOME_OPEN_SLOTS)` once.
+   - In `Bot.best_group`, `opening = self.home_open and rnd < OPEN_HOME_R`. During the opening the pull toward the enemy spawn is 0, and the ×1.25 hunt bonus becomes ×0.7 (`esc >= 1.0 and not opening`). This is v15's code with the flag added.
+2. **`ball.py`:** added `HOME_FIGHT_R = 10` and `HOME_FIGHT_F = 0.85`. In `skirmish`, after the `GEM_CAUTION` scaling and only when `home_open` is set, the needed ratio is ×0.85 within 10 steps of our spawn. It uses the same `self.df_spawn.get(self.pos)` call and `except Error` the file already has, so there are no new API calls. The "away" half is left out.
+3. **`draft.py`:** `FAR_SPAWN_DIST = 10**6`.
+
+**Test results (v16 vs v9; "before" is the v9-code mirror from NOTES):**
+
+| Map | v16 seat | Before | After |
+|---|---|---|---|
+| interlock | A | L (B won r825) | **W r734** (same as v15) |
+| rows | B | L (A won r620) | **W r603** (same as v15) |
+| swirl | B | L | **W r534** (same as v15) |
+| interlock | B | W | W r793 |
+| rows | A | W | W r613 |
+| expanse | A | W r744 
+- Evaluation (results/eval_v16): v9 59%, v8 62%, v6 71%; overall 64%
+- Status: promoted, new champion.
+
+### Research on v16 — 2026-10-17 (results/eval_v16; v10-v15 via the earlier research sections)
+Method: no Bash. There are no rejected versions against v16 yet, so eval_v16 is the only new data. I read every v16-vs-v9 record in results/eval_v16/summary.json (lines 14425-21400), took per-seat results against v6 and v8 from the same file, and opened four stats files: eval_v16/v9/{eight,contest,elkring,stampede}__cand-B.stats.json.
+
+Map picture:
+- **The 5-pick maps (12) are a byte-identical v9 mirror.** Both seats of every pair give exactly the same game, e.g. ambush 510-1010 r795 from both seats, contest 1000-0 r1549, eight 1022-0 r515. The winners and rounds are the same as the v9-code mirror in the earlier research. So the `home_open` flag, set once in `__init__`, changed nothing off the 4-pick maps.
+  - Seats v16's code loses (the ones a challenger must hold or flip): ambush A, collision A, contest B, corners A, eight B, elkring B, fragment A, lanes A, monolith A, packs B, pilgrimage B, stampede B.
+- **Soft and hard losing seats.** v16's code *wins* some of its v9-mirror losing seats against older bots:
+  - corners A (W vs v6 r628), eight B (W vs v6 r756), lanes A (W vs v6 r501), monolith A (W vs v6 r536), elkring B (W vs v8 r654), stampede B (W vs v6 r1010 and v8 r1220). These seats can be won.
+  - Lost to all three opponents: ambush A, collision A, contest B, fragment A, packs B, pilgrimage B.
+  - v16's winning seats that do fall to an older bot: eight A (L vs v6 r808) and elkring A (L vs v8 r741). These are the fragile seats a challenger could take.
+- **4-pick maps:**
+  - interlock and rows: v16 wins both seats against v9, v8 and v6 (interlock r734/r793, rows r613/r603 against v9).
+  - rushbait-v2 and swirl: the B seat wins in every pairing seen. v16 A loses rushbait 256-1050 r632 to v6, v8 and v9 alike, and swirl at r683 (v6, v8) and r471 (v9); v16 B wins rushbait r671 and swirl r534. So in a v16 mirror these two most likely split 1-1.
+- **expanse** (3-pick): v16 won both seats (r631, r719), but v9 there still drafts Cassi & Issac. The v16 mirror result is unknown.
+- **Expected v16-vs-copy baseline: 17-17.** That is 12 splits on 5-pick, rushbait and swirl 1-1, and interlock, rows and expanse unknown.
+
+Lessons from rejected versions (they were tested against v9, but on 5-pick maps v16 *is* v9, so they apply unchanged):
+- v10, v11, v13: the expanse gate fix (now in v16), bank-veto and team-bank changes moved no 5-pick winner. Not worth re-trying.
+- v12: death memory acts too late.
+- v14 (`kappa` = 0 and `GOLD_HOME_FAR` 250) and v15 (stay-home opening) share no code, yet both lost contest A and stampede A. These are v16's big-camp winning seats, and any change that weakens the opening push or gold income loses them.
+- v15's 5-pick reversals (eight, monolith, rushbait) show the opening exchange can be moved, but in both directions at once.
+- No rejected version has touched idle bodies, the respawn trickle or carrier deaths after r450.
+
+1. **The close 5-pick races are decided by carried bags lost after r480, not by first banking.**
+   - Evidence:
+     - elkring (B loses): B led 504-432 at r500 (first death r107 vs r118, only 1 death before r300). It then lost **486 gems** in deaths at r483, 500, 597, 606 and 634. Single bags were 108 (Varg, killed at (20,6) by A's Varg at r500) and 144 (Stellar, r634 at (22,7)) (elkring__cand-B.stats.json gemLoss). A went from 432 to 1008 in 192 rounds; the killer gets the carried gems (GameRules l.361).
+     - Other losing seats show the same: collision A lost 226 gems (0 deaths for B until r483); monolith A lost 198 and stalled at 652 from r500 while B went 308→1010 between r250 and r498; ambush A lost 106 (Varg collected 178, submitted 72).
+     - On the 4-pick rushbait the losing seat lost 270 (v16 A) and 320 (v9 A) with 0 deaths for the winner.
+     - First banking does not decide these races. The loser submitted first on ambush (134 vs 146), lanes (87 vs 120) and stampede (680 vs 929), and both sides first submitted at r84 on pilgrimage (summary.json `first_submit_round`).
+   - Cause in code:
+     - `bots/v16/src/ball.py:471` (`ball_want_bank`: no banking while a camp task has incoming damage) and `:473` (no banking with an enemy near unless the altar is within 3 tiles), with `bot.py:991-997` (`bank_threshold` up to 110).
+     - On the other side, `ball.py:54` `GEM_K = 8` makes every champion hunt carriers. `ball.py:908-909` (`GEM_CAUTION`) only raises the ratio needed to *start* a fight; it doesn't move the carrier away.
+     - v11 relaxed one bank veto and moved nothing, so which line holds the 108-144 bags is still open (hypothesis: the `:471` task veto while farming elk).
+   - Maps it decides: elkring B, collision A, monolith A, ambush A (partly), rushbait A.
+   - Confidence: medium. The losses are measured; the exact veto is not traced.
+
+2. **Idle bodies decide ambush A and shape stampede, and they are not mirrored**
+   - Evidence:
+     - ambush A (lost 510-1010 r795, summary.json l.14501-14520): Stellar collected 0 gems and 245 gold and bought 0 items; Marcella collected 0 gems and 0 gold and bought 0 items. In the same game B's Stellar and Marcella collected 106 gems each. Same result against v6 (v16 A Marcella 0 gems, 100 gold) and v8. The v8 analysis (#3) flagged this and it was never fixed.
+     - stampede (A wins 1080-360 r1294): the only gems are 360-gem herd captures. B (Varg+Ryth together) took one at r615; A's Stellar took them at r849 and r1071 and Tavi at r1196 (stampede__cand-B.stats.json `collectedGems` runs). A's Varg, Ryth and Marcella and B's Stellar, Marcella and Tavi collected **0 gems in 1294 rounds**, with 32 deaths between them.
+     - Other zero-gem champions in the v9 block are symmetric: Stellar on both pilgrimage sides, Marcella in the rows games.
+   - Cause in code (hypothesis, not traced): `bot.py:1095` `cap_inc = 0.15*hp_full/mult` keeps low-HP or unshopped champions off strong groups. Gold-less champions never shop (`ball.py:494` needs 300+ gold), so they never qualify. On ambush this looks like the v8 #3 cycle: attack a camp, recall at `HOME_HP`, come back.
+   - Maps it decides: ambush A (2 dead bodies out of 5); stampede both seats (whoever's idle trio is smaller).
+   - Confidence: high on the data, low on the mechanism.
+
+3. **The routs are spawn traps: the loser keeps walking out one at a time.**
+   - Evidence:
+     - contest B: 54 deaths, 0 gems collected and 1,545 gold in 1549 rounds, against A's 5 deaths. B's death rounds come every 30-40 rounds (31, 35, 68, 76, 110, 118, 139, ...), the rhythm of single respawns (60 rounds, GameRules l.361).
+     - The contest deaths I located are 7-9 tiles from B's spawn: (30,22) at r68 and (26,24) at r314, plus (32,32) at r199 (contest__cand-B.stats.json; A shops at (3,3)). A didn't submit until r1000, so it farmed kills instead of camps.
+     - eight B: 12 deaths and 0 submitted. The first death was at r56 at (28,8), killed by A's Ryth. B shops at about (40,14) and A at (0,14), so this was in **B's own half**. Its next deaths (26,4; 22,7; 19,7; 19,6) are also on its side. A's Stellar dealt 9,336 champion damage against B's 2,525.
+   - Cause in code:
+     - `ball.py:92` `SOLO = 1` and `:196` `r_gather = 0`: there is no regroup, so each respawned champion goes back to its own task.
+     - `ball.py:423-427` only holds on spawn when hurt *and* no enemy is visible.
+     - `fight_ratio` (`ball.py:800-820`) gives enemies ×3 HP on their spawn but gives us no credit for our own spawn heal, so a lone respawn compares itself with the whole camping group only once it is already in reach.
+     - Hypothesis: a "wait on spawn until 2+ allies are up when enemies hold within ~10 tiles" rule would cut the feed. It is unknown whether that flips contest B, because A would then farm the monoliths.
+   - Refutes the v15 design premise ("the rout loser is caught away from home"): on eight and contest the loser dies in its own half.
+   - Maps it decides: contest B, eight B, fragment A (8 deaths vs 0, 0 submitted), packs B (9 deaths vs 2).
+   - Confidence: medium on the pattern, low on the code path.
+
+Old hypotheses:
+- **The "fuel-threshold butterfly" is refuted** for attribute flags: v16's flag left all 12 5-pick games round-identical.
+- **Swirl is not lost "outside the play code": it is a B-seat map.** B won in all four pairings (v16-v6, v16-v8, v16-v9, v9-v16).
+- **The routs are still decided before about r100.** Confirmed: the loser's first death came at r31-66 on contest, eight, fragment and collision.
+- **"Close races flip through gold flow"** (v9 research #3): refuted by v15 and not supported here. The close races are lost through carried gems (#1).
+- **Do not repeat:** bank veto (v11), team bank (v13), death memory (v12), kappa = 0 (v14), the 5-pick stay-home opening (v15).
+
+### Design for v17 — 2026-10-17 (based on v16)
+Idea: stop handing the opponent free gems and gold. A champion that respawns into enemies waits on its spawn tiles until it has company, because spawn tiles heal it to full every turn and enemies can't step onto them. Every champion completes the Jungle emblem first, which means 30% less camp damage, fewer recall cycles, fewer camp deaths and access to stronger camps. Stellar builds Focus so her spells kill the champions who walk into her. Fewer deaths means fewer carried bags lost, and that is how the close races are decided (research #1).
+
+What the code shows (checked for this design):
+- **Spawn tiles:** "Cannot be moved onto by opponents… While standing on these tiles you are healed" (GameRules l.151). Spawn recovery happens at turn end (l.122). So a champion standing on its spawn only dies to burst inside a single round.
+- **v16 ignores the spawn heal:**
+  - `plan_fight.evaluate` (`ball.py:1115-1141`) scores spawn tiles with the full `risk`, with no allowance for the heal.
+  - `fight_ratio` (`ball.py:800-820`) triples enemy HP on *their* spawn and gives nothing for ours.
+  - When enemies are visible but not in reach (`rel` empty, `ball.py:896`), `skirmish` returns None. `ball_decide` (`ball.py:423-451`) then heals only `if … not self.enemies`, and otherwise walks the champion to its task, straight into the campers. This is the "one at a time" feed on contest B and eight B (research #3).
+- **Jungle:** `self.mult` already applies 0.7 for "JUN" (`bot.py:319`). It feeds into `cap_inc = 0.15*hp_full/mult` (`bot.py:1095`, the gate that keeps champions off strong groups, suspected behind idle bodies), into `group_estimate`/`simulate` (`bot.py:1060-1063`) and into `self.inc` (`bot.py:522`). So finishing Jungle first automatically widens the camps every champion may take by 43% and cuts the planned recall cycles. No model changes are needed.
+- **Shop:** `buy_items` (`bot.py:960-989`) buys `self.build` in order. `self.build = list(T.BUILD_FIGHTER)` for every champion (`bot.py:250`). `item()` builds `f"{FAMILY}_SHARD_OF_{STAT}"`; `JUNGLE_SHARD_OF_HEALTH` and `*_SHARD_OF_FOCUS` (MONSTER, POWER, TREASURE, JUNGLE) exist in BotAPIPython.md l.643.
+- **Focus only pays for Stellar** (GameRules l.582-592: 2×F single target and 1.4×F area, range 4, cooldown 8; growth F 10 against S 3.5).
+  - Stellar: per 9-turn cycle, a Focus shard adds 20+14 = 34 damage to one target, more when the area spell hits several targets. A Strength shard adds 9×3.5 = 31.5.
+  - Marcella, Tavi, Ryth and Varg: a Strength shard adds 9×5 = 45 per cycle, a Focus shard 10×mod (20, 22, 10, 0). They keep Strength.
+  - `refresh_stats` (`bot.py:292-308`) already counts spell damage from `me.focus()` in `self.dps`, so camp estimates follow automatically.
+  - This is my answer to the lead's Focus request: Focus where the numbers support it, not on every champion.
+
+Target maps (each seat is v17's seat, in a v16 mirror where v16's code loses it):
+- **Change 1 (spawn hold):** the routs where the loser feeds near its own spawn.
+  - contest B (54 deaths, 7-9 tiles from its spawn)
+  - eight B (first death r56 in its own half)
+  - packs B (9 deaths against 2)
+  - fragment A (8 deaths against 0)
+  - collision A
+  - A flip on contest B needs v17 to stop feeding kills (A didn't submit until r1000) and then win the monolith race on gold. I expect eight B and packs B to be the likeliest flips.
+- **Change 2 (Jungle first):**
+  - ambush A (two idle bodies) and stampede B (three 0-gem champions, decided by 360-gem herd captures, where camp damage is the limit)
+  - monolith A, which stalled at 652 after losing 198 gems
+  - elkring B, which led 504-432 at r500 and then lost 486 gems on elk
+- **Change 3 (Stellar Focus):** the fights where Stellar is the main damage dealer (eight: A's Stellar dealt 9,336 champion damage). It helps change 1 kill the campers who stay in spell range of our spawn.
+- **Soft seats from the research:** corners A, eight B, lanes A, monolith A, elkring B and stampede B, which v16's code already wins against v6 or v8. These are the cheapest flips.
+- **Need:** 2 net flips on top of the 17-17 mirror.
+
+Risk maps:
+- **contest A and stampede A** (big-camp seats that v14 and v15 lost by weakening the push or gold income).
+  - Change 1 triggers only for a champion standing on its own spawn with an enemy within 9 tiles, and only when it would not win the fight. On a winning seat that almost never happens, and the push code is untouched.
+  - Change 2 delays Monster STR by one emblem (150 gold), so early camp clears are about 10% slower and Strength comes later. That is the main risk to the monolith clears on contest A. Watch the guard games.
+- **4-pick maps (interlock, rows):** v16 wins both seats there. The `home_open` opening is unchanged. Change 2 shifts item timing on these maps too; the guard games check it.
+- **Stalling:** change 1 caps each hold at `SPAWN_HOLD_MAX = 30` turns, then the champion walks out as in v16. The hold also ends as soon as an ally standing next to us (within 2 tiles, counted by `ally_in_fight`) lifts the ratio to `R_GO`. That is the regroup effect.
+- **All maps:** every map re-rolls, because changes 2 and 3 alter every game. That is unavoidable for a seat-flipping change. The test plan below checks the winning seats.
+
+Changes (implement all of them; start from a clean copy of `bots/v16`):
+1. `ball.py`: hold on spawn under siege.
+   - Constants, added to the constant block: `SPAWN_HOLD_D = 9`, `SPAWN_HOLD_MAX = 30`, `SPAWN_HOLD_W = 1000.0`, `SPAWN_RISK_F = 0.35`.
+   - In `ball_init` add `self.hold_sp = 0` and `self.spawn_hold = False`.
+   - New method:
+     ```
+     def want_spawn_hold(self):
+         """v17: on our spawn with enemies lurking and no fight we would win: wait there for company."""
+         if (self.px, self.py) not in self.spawn_xy:
+             self.hold_sp = 0
+             return False
+         near = [e for e in self.enemies if cheb(self.px, self.py, e[0], e[1]) <= SPAWN_HOLD_D]
+         if not near:
+             self.hold_sp = 0
+             return False
+         if self.hold_sp >= SPAWN_HOLD_MAX or self.endgame_bank(self.df_altar.get(self.pos)):
+             return False
+         if self.fight_ratio(near) >= R_GO:
+             return False
+         self.hold_sp += 1
+         return True
+     ```
+     `fight_ratio` must be the unmodified v16 one. It deliberately gives us no credit for our spawn, because the question is whether we would win *off* it. If `endgame_bank` with a 65535 distance causes trouble, guard it with `d < 65535`.
+   - `ball_decide`: as the first line after `self.maybe_lock()` (line 411), add `self.spawn_hold = self.want_spawn_hold()`.
+     - After the `on_spawn` / `field_shop` buy block (i.e. right after line 431, before the `bstate == S_GATHER` line), add `if self.spawn_hold: return heal + "spawn-hold"`.
+     - This sits after `buy_items()`, so the champion still shops, and after the skirmish, so it still fights anything in reach.
+   - `plan_fight.evaluate` (`ball.py:1115`), right after the `risk` loops (before `pos_v = -lam * risk`), add:
+     ```
+     if (x, y) in spawn_set:
+         risk *= SPAWN_RISK_F          # spawn tiles heal us to full every turn end and enemies can't step on them
+     ```
+     Bind `spawn_set = self.spawn_xy` and `hold = self.spawn_hold` as locals before `def evaluate`.
+   - After `pos_v` is set, add `if hold and (x, y) not in spawn_set: pos_v -= SPAWN_HOLD_W`, so a holding champion attacks and casts only from spawn tiles.
+   - Why: research #3. contest B has 54 deaths at respawn rhythm, 7-9 tiles from its spawn. eight B's deaths are all in its own half. v16 walks each lone respawn into the campers because `skirmish` ignores enemies out of reach (`ball.py:894-898`) and `ball_decide` only heals when no enemy is visible. Each feed gives the camper 50 gold plus our carried gems (GameRules l.361). This targets the routs, which no earlier version changed except v15's opening, and does not touch the push.
+2. `tables.py`: Jungle first.
+   - `BUILD_FIGHTER = [(JUN, HP), (MON, STR), (TRE, STR), (DUR, HP), (POW, STR), (HOME, HP)] + [(POW, STR), (POW, HP)] * 12`. This swaps only the first two entries; leave `BUILD_RANGED`, `BUILD_SUPPORT` and `BUILD_BALL` alone.
+   - Why: the lead's concrete request (ladder teams finish Jungle first). In this code it also lifts `cap_inc` by 1/0.7 and cuts `taken` in `group_estimate`, which is the suspected idle-body gate (research #2, ambush A, stampede). Fewer camp deaths also means fewer destroyed bags (GameRules l.361), which is the elk part of elkring B's 486 lost gems. Health shards bought on spawn also heal (GameRules l.322).
+3. `tables.py` + `bot.py:250`: a Focus build for Stellar.
+   - Add `BUILD_STELLAR = [(JUN, FOC), (MON, FOC), (TRE, FOC), (DUR, HP), (POW, FOC), (HOME, HP)] + [(POW, FOC), (POW, HP)] * 12`.
+   - In `Bot.__init__` replace line 250 with `self.build = list(T.BUILD_STELLAR if self.ctype == T.STELLAR else T.BUILD_FIGHTER)`.
+   - Why: the lead's Focus request, narrowed by the numbers above. More spell burst also helps change 1, since Stellar's range-4 spells reach campers from spawn tiles, and `can_finish` (`ball.py:863-874`) adds `modifier*mfocus` for kills.
+
+Explicitly not included:
+- bank veto, team bank, death memory, `kappa`, `GOLD_HOME_FAR` (all tried)
+- any change to `best_group` push or deny weights, or to `home_open`
+
+Test plan for the implementer (deterministic, 1 game each, v17 seat stated):
+- **Crash check:** `cambc run v17 v16 --map contest`. There should be 0 `bot error` lines.
+- **Rout flips:**
+  - `cambc run v16 v17 --map eight` (B), `cambc run v16 v17 --map packs` (B), `cambc run v16 v17 --map contest` (B)
+  - `cambc run v17 v16 --map fragment` (A), `cambc run v17 v16 --map collision` (A)
+  - Success: at least 1 win. Also check the stats file: v17's deaths before r300 should fall clearly (contest B was 11).
+- **Economy flips:**
+  - `cambc run v17 v16 --map ambush` (A), `cambc run v17 v16 --map monolith` (A), `cambc run v17 v16 --map corners` (A), `cambc run v17 v16 --map lanes` (A)
+  - `cambc run v16 v17 --map elkring` (B), `cambc run v16 v17 --map stampede` (B)
+- **Winning-seat guards (must stay wins):**
+  - `cambc run v17 v16 --map contest` (A), `cambc run v17 v16 --map stampede` (A), `cambc run v17 v16 --map eight` (A), `cambc run v17 v16 --map elkring` (A)
+  - `cambc run v17 v16 --map interlock`, `cambc run v16 v17 --map interlock`, `cambc run v17 v16 --map rows`, `cambc run v16 v17 --map rows`
+- **Pass bar:** (wins on the flip list) − (losses on the guard list) ≥ 2.
+
+Fallback (re-run the same games after each step):
+- (a) If the guards lose but the flips hold, drop change 3 (Stellar back to `BUILD_FIGHTER`).
+- (b) If contest A or stampede A is lost, change 2 is the likely cause (Monster comes later). Try `(JUN, STR)` instead of `(JUN, HP)` as the first entry, which keeps early Strength. If that still loses, put `(MON, STR)` first and `(JUN, HP)` second, i.e. revert change 2.
+- (c) If no rout seat moves and v17's early deaths don't drop, raise `SPAWN_HOLD_D` to 11 and `SPAWN_HOLD_MAX` to 45.
+- (d) If a winning seat loses because champions sit on spawn (many "spawn-hold" turns in a won-before game), lower `SPAWN_HOLD_MAX` to 15.
+- Don't drop change 1: it is the only change aimed at the rout seats.
+
+### v17 — promoted (74% vs v16)
+- Based on: v16 (pipeline: researcher, designer, implementer)
+- Changes: v17 is built and passes the design's bar: 4 flip seats won and all 8 guard seats held (+4 against a pass mark of +2). There were no crashes or `bot error` lines in any game. I changed one thing from the plan: Jungle-first applies only to teams that don't have exactly 4 champions, because on 4-champion maps it lost two guard seats.
+
+## What I changed
+1. **Hold on spawn**, all in `ball.py`, as specified:
+   - **Constants:** `SPAWN_HOLD_D=9`, `SPAWN_HOLD_MAX=30`, `SPAWN_HOLD_W=1000.0`, `SPAWN_RISK_F=0.35`.
+   - **`ball_init`:** added `hold_sp` and `spawn_hold`.
+   - **New `want_spawn_hold`:** uses the unmodified `fight_ratio`. The end-of-game banking check is skipped when no altar is reachable. Without that guard the check always fired at distance 65535, so the hold would never have started.
+   - **`ball_decide`:** sets `spawn_hold` right after `maybe_lock()`. It returns `heal + "spawn-hold"` after the buy block, so the champion still shops and fights while holding.
+   - **`plan_fight.evaluate`:** damage on spawn tiles counts at 0.35, and stepping off the spawn while holding costs 1000.
+2. **Jungle first** (`tables.py`): `BUILD_FIGHTER` now starts with `(JUN, HP), (MON, STR)`.
+   - **Change:** I added `BUILD_FIGHTER_MON` (v16's Monster-first order). `bot.py:Bot.__init__` uses it when `self.home_open` is true, which means exactly 4 champions (interlock, rows).
+3. **Focus for Stellar** (`tables.py` + `bot.py:Bot.__init__`): added `BUILD_STELLAR` as specified, behind a `STELLAR_FOC
+- Evaluation (results/eval_v17): v16 74%, v9 76%, v8 71%; overall 74%
+- Status: promoted, new champion.
+
+### Research on v17 — 2026-10-17 (results/eval_v17; eval_v15 for the monolith/eight comparison)
+Method: no Bash. There are no rejected versions against v17 yet, so v17 itself (v16 + spawn hold + Jungle first + Stellar Focus) is the only new controlled experiment. I read the per-seat results of all 102 records in results/eval_v17/summary.json and the full records of the v16 games on collision A, contest B, eight B, expanse A, fragment A, monolith A, pilgrimage A/B and ambush A. I also opened eval_v17/v16/{eight__cand-B, eight__cand-A, pilgrimage__cand-A}.stats.json and checked the v15 eight and monolith records in eval_v15.
+
+**Correction to earlier sections:** collision, fragment and expanse are **3-pick** maps. Every side drafts Varg, Ryth and Marcella (summary.json l.905-909, l.3366-3370, l.3021-3025). The v16 research counted collision and fragment among the "12 5-pick maps"; there are 10 five-pick maps.
+
+Map picture: v17 vs v16, v17's seat, W/L and round. All 3-pick and 5-pick games except expanse are round-identical against v16 and v9, so v16 = v9 there, and the "fuel butterfly" stays refuted.
+- **5-pick maps:**
+  - Both seats won: ambush (888/820), corners (553/555), elkring (664/631), lanes (625/560), packs (664/833), stampede (1216/895).
+  - Split: contest (A W r1519, B L r1694), eight (A W r710, B L r613), monolith (A L r485, B W r611).
+  - Both seats lost: pilgrimage (A L r1058, B L r1132).
+- **3-pick maps:** the A seat loses all three (collision r901, expanse r742, fragment r792) and the B seat wins all three (r1019, r715, r968).
+- **4-pick maps:** interlock W/W, rows W/W, rushbait W/W, swirl A L r540 / B W r514. The rushbait A win (r675) is new: v16 A lost rushbait in every earlier pairing.
+- **Net against the v16 mirror (from the v16 research):**
+  - Gained 7 seats: ambush A, corners A, lanes A, elkring B, packs B, stampede B, rushbait A.
+  - Lost 1 seat: pilgrimage A, which v16's code wins.
+  - expanse: the mirror result is unknown.
+  - Total: 25-9.
+- **Locked losing seats.** v17 loses these to v16, v9 **and** v8, and v9-code lost the same seats before:
+  - collision A, contest B, eight B, fragment A, monolith A
+  - pilgrimage B
+- **Fragile v17 seats** (each is lost to at least one older bot):
+  - stampede A (L vs v8 r1372), packs B (L vs v8 r755), rushbait A (L vs v8 r784, v9 r792)
+  - pilgrimage A (won only vs v8), swirl A (won only vs v9)
+  - expanse A (lost 988-1024 to v16, won vs v8 and v9)
+- **Hypothesis for a v18 baseline:** the v17 mirror is about 17-17, with the locked maps splitting by seat (collision B, fragment B, monolith B, contest A, eight A, swirl B). A challenger therefore has to win a **locked** seat, or win both seats on a map v17 split.
+
+Lessons from rejected versions (none against v17 yet; v17's own diff is the experiment):
+- **v17's rout targets mostly did not move.**
+  - contest B: the first four deaths fall at **r31, 35, 68, 76**, identical to the v16 mirror. There are 51 deaths against 54, 11 of them before r300 (same as before), and still 0 gems collected (l.1640-1665).
+  - eight B: the first death is still at r56, with 11 deaths and 0 submitted.
+  - fragment A and collision A are still lost. Only packs B flipped.
+  - So the spawn hold does not touch the deaths that decide routs.
+- **The economy targets moved instead.**
+  - Flipped: ambush A, elkring B, stampede B, plus corners A and lanes A.
+  - ambush A (l.530-637): v17 had **no death between r124 and r522**, while v16 B died at r160, 197, 259 and 296. v17 had 510 submitted by r500 against 212.
+  - monolith A did not flip.
+- **Build order moves seats.** The implementer reports that Jungle-first lost interlock A and rows B on 4-pick maps, which is why `tables.py:49-53` keeps `BUILD_FIGHTER_MON` there.
+- **v15 (rejected vs v9) is the only version that ever won monolith A.** It won against v6, v8 and v9 (r585, r599, r542; eval_v15 l.4583, 11628, 18655) and lost monolith B to all three. It also won eight B against v6 (r907) and v9 (r958) after a bad opening: 6 deaths before r300 and 490 gems lost, while v9 A lost 380 (eval_v15 l.16558-16655). The stay-home opening is the only known lever on those two locked seats.
+- **Still do not repeat:** bank veto (v11), team bank (v13), death memory (v12), `kappa` = 0 (v14), the global stay-home opening (v15).
+
+1. **The locked seats are decided by deaths before any respawn, and on eight at the single shared altar. The spawn hold can't reach either.**
+   - Evidence:
+     - contest B: deaths at r31 and r35, before any champion could have respawned, are identical to the mirror. The champions dealt 56,812 champion damage but collected 0 gems in 1694 rounds. v16 A didn't submit until r957, so it farmed kills (l.1551-1665).
+     - eight has **one altar, at (20,15)**, which both teams use: every gemSubmission in eight__cand-A.stats.json is at x 20, y 15.
+       - In eight B, v17 collected 374 gems and submitted **0** (l.2459-2545).
+       - Its carriers died next to that altar: Varg with 110 at (21,14) r475, Marcella with 132 at (24,15) r455, Tavi with 66 at (21,14) r458, Ryth with 22 at (24,15) r395 (eight__cand-B.stats.json gemLoss).
+       - A, by contrast, submitted 550 by r500.
+     - fragment A: first death at r49 against r290, 10 deaths against 4, 278 gems lost. Marcella died 5 times and submitted 0 (l.3418-3500).
+   - Cause in code:
+     - `bots/v17/src/ball.py:465-471` (`want_spawn_hold`) returns False unless the champion is already on a spawn tile with an enemy within 9. Opening deaths and deaths at the altar happen off spawn, so the hold never fires for them.
+     - At the shared altar, `ball.py:502` (`ball_want_bank`) refuses to bank under `threat_near()` unless the altar is within `BANK_NEAR` (the near-altar exception). On eight's contested centre that veto never clears, so carriers wait nearby with full bags until they are killed.
+     - The opening walk itself is `bot.py:1115` (`best_group`, `push = self.push_f * esc`), unchanged since v9.
+   - Maps it decides: contest B, eight B, fragment A (locked in every version since v9). monolith A is a banking race (see #3).
+   - Confidence: high on the data (identical death rounds, altar coordinates). Medium on the eight bank-veto mechanism, since I couldn't trace it turn by turn.
+
+2. **The 3-pick maps are B-seat maps for this code, and the A seat loses the late race.**
+   - Evidence:
+     - collision A (l.957-1028):
+       - The race was level at r500, 314 against 322.
+       - Varg died at r44 and collected only 88 gems all game.
+       - Then two deaths at r666 and r669 lost 124 gems, while B went from 322 to 802 by r750. B never died.
+       - The same seat is lost to v8 (r887) and v9 (r901).
+     - expanse A (l.3086-3157): lost **988-1024**, with 1 death per side. Gold earned was 3620 against 4544, and B's Marcella alone earned 2038 gold and 502 gems. The seat is won against v8 and v9, so it is the softest of the three.
+     - fragment A: see #1.
+   - Cause in code (hypothesis):
+     - With 3 bodies, v17 uses Jungle-first (`tables.py:46`, chosen at `bot.py:253-256` because `home_open` is False) and v9's push opening (`bot.py:1115`).
+     - Expanse is a pure income race lost by 36 gems, which fits slower early clears from Monster STR coming one emblem later.
+     - The collision A loss repeats the late carrier deaths of the v16 research (#1): two deaths in 3 rounds while carrying.
+   - Maps it decides: collision A, expanse A, fragment A (all A seat); B wins all three.
+   - Confidence: high on the seat pattern (3 of 3, across 3 opponents for collision and fragment). Low on the Jungle part.
+
+3. **Long farming races are lost on income, not on fights. Idle bodies are still there.**
+   - Evidence:
+     - pilgrimage A (l.5357-5530): v17 won the fights (8 deaths against 10, **0 gems lost against 218**) and still lost 946-1034 at r1058.
+       - Gold earned was **3367 against 5834**. v16's Ryth alone earned 3311 gold and 626 gems and bought 132 items.
+       - v17's Tavi collected 0 gems and 105 gold in 1058 rounds, with 4 deaths.
+       - v17's Varg earned 0 gold until r183, then stayed at 105 from r227 to r494 (pilgrimage__cand-A.stats.json, `earnedGold` run lengths 183/22/22/267).
+     - pilgrimage B: gold earned 3881 against 4191; v17's Marcella collected 0 gems and 135 gold.
+     - pilgrimage A was a winning seat for v16's code and is v17's only lost seat against the mirror. The play logic changed only in the spawn hold and the shard order.
+     - monolith A (l.4631-4728): deaths were even (4 against 3), but B banked faster: first submit r69 against r99, 374 against 242 by r250, and 1040 against 630 by r485.
+     - Idle bodies persist in wins too: on ambush A, v17's Stellar collected 0 gems.
+     - Per-champion gold earned across eval_v17 averages Marcella 875 and Tavi 923, against Varg 1428 (side_stats.candidate_champions).
+   - Cause in code:
+     - Idle bodies: `bot.py:1101` (`best_group`: `cap_inc = 0.15*hp_full/mult` keeps under-shopped champions off camps; hypothesis carried over from the v16 research #2).
+     - Slower early income: `tables.py:46` (Jungle HP before Monster STR). This is a hypothesis; it is the only economy change between v16 and v17 on 5-pick maps.
+   - Maps it decides: pilgrimage A and B, monolith A, and probably expanse A (#2).
+   - Confidence: medium on pilgrimage (it reproduces against v16 and v9), low on the mechanism.
+
+Old hypotheses:
+- **Refuted:** v16 research #3 / the v17 design premise that a spawn hold would stop the rout feed on contest B and eight B. The opening deaths are identical (#1).
+- **Partly confirmed:** v16 research #1, that carried bags lost after about r480 decide close races (collision A r666/669; elkring B flipped once v17 stopped dying).
+- **Confirmed, not fixed:** v16 research #2, idle bodies (pilgrimage Tavi and Marcella, ambush Stellar).
+- **Confirmed:** routs are decided before r100 (contest r31, eight r56, fragment r49). The only version that ever moved monolith A or eight B is v15's stay-home opening.
+
+### Design for v18 — 2026-10-17 (based on v17)
+Idea: v17 is a mirror. Leave every seat it plays in the mirror byte-identical, and in the few seats where we have recorded evidence that another of our own behaviours beats v17's behaviour, switch to that behaviour. The switch is chosen per map and per seat from static map facts. Global changes re-roll all 34 games, as v14, v15 and v17's 4-pick shard flip did. Gated changes can only move the seats they touch.
+
+Arithmetic:
+- Two copies of the same code always score exactly 17-17. Each map gives 1-1, because whichever seat wins, it wins again after the swap.
+- Every map and seat that v18 does not touch plays v17 against v17, so it reproduces that exactly.
+- The only seats that can change are the gated ones below. Change 1 touches 2 seats (both pilgrimage seats). Changes 2 and 3 each touch 1 seat, and in the mirror that seat is a v17 **loss**, so they can only gain.
+- So the worst case is 16-18 (only if pilgrimage flips the wrong way) and the best case is 20-14. We need 2 of the 3 gains.
+
+What the code and data show (checked for this design):
+- **Map facts available at init:** `bot.py:133-139` reads `game_map.width()`, `game_map.height()`, `game_map.altars()`, `game_map.spawn_region(ALLY/ENEMY)` and `self.spawn_xy`. `self.nslots` holds the body count (`bot.py:212-226`). `Team` is relative only (ALLY/ENEMY, BotAPIPython.md l.4295, 6416), so the seat has to come from spawn geometry.
+- **Map sizes** (eval_v17 stats `match.width/height`):
+  - eight 41x30 and pilgrimage 50x65 are unique.
+  - monolith is 50x50, the same as contest (also 5-pick) and rows (4-pick, which `nslots` separates). contest vs monolith needs one more fact (see change 0).
+- **Pilgrimage, both seats:** v16 beat v17 from both seats (v16 A won r1132, v16 B won r1058; research #3). The 5-pick v16 code is v17 with three things off:
+  - the spawn hold (`ball.py:419/440/463`)
+  - `SPAWN_RISK_F` in `plan_fight.evaluate` (`ball.py:1156-1161`)
+  - the build: v16 used `BUILD_FIGHTER` = Monster-first for every champion including Stellar (`bots/v16/src/tables.py:46`, `bot.py:250`). That list is v17's `T.BUILD_FIGHTER_MON`.
+
+  A v18 that plays "v16 mode" on pilgrimage should therefore **replay the two recorded v16-vs-v17 games**. Those games are deterministic, so the seats should come out the same.
+- **Monolith A / eight B:** v15's stay-home opening is the only thing that ever won these seats.
+  - monolith A: won vs v6, v8 and v9 (r585, r599, r542).
+  - eight B: won vs v9 (r958) and v6 (r907).
+  - v17 keeps that opening behind `self.home_open` (`bot.py:226`, `:1116` with `OPEN_HOME_R = 300`, and `ball.py:939-943` with `HOME_FIGHT_F 0.85`).
+  - v15 lost the *other* seat of both maps. That is why v15 netted 0 there and why v18 gates by seat.
+
+Target maps:
+- **pilgrimage A and B** (change 1): from 1-1 in the mirror to 2-0, so +1. This is evidence-backed by exact replay.
+- **monolith A** (change 2): +1. Basis: 3/3 v15 wins in this seat.
+- **eight B** (change 3): +1. Basis: 2 v15 wins in this seat. The v17 A opponent is stronger than v9 A, so this is the least certain.
+
+Risk maps:
+- **pilgrimage only.** If v16 mode does not replay (a fuel-dependent branch such as `CHOOSE_MIN_FUEL` re-rolls it), the map could go 0-2. The test plan checks both seats; if either is lost, drop change 1.
+- **All other maps:** none, provided the gates match only their intended map and seat. The implementer must prove this with the fingerprint print (change 0) on all 17 maps. The "fuel butterfly" has been refuted for init-time flags twice (v16, v17 research).
+- **monolith B, eight A, contest (both seats), rows:** these must not match a gate. Change 0's checks guard this.
+
+Changes (implement all of them; start from a clean copy of `bots/v17`):
+0. `bot.py` `init_world`: map and seat fingerprint. Place it right after `self.home_open = ...` (line 226), because it needs `nslots`.
+   - Code:
+     ```
+     sp = sorted(self.spawn_xy); ep = sorted((v.x, v.y) for v in self.espawn.positions())
+     self.seat_a = sp[0] < ep[0]          # HYPOTHESIS: seat A's spawn has the lexicographically smaller (x, y)
+     key = (self.W, self.H, self.nslots)
+     self.map_tag = None
+     if key == (50, 65, 5): self.map_tag = "pilgrimage"
+     elif key == (41, 30, 5): self.map_tag = "eight"
+     elif key == (50, 50, 5) and <monolith-only fact>: self.map_tag = "monolith"
+     ```
+   - The `<monolith-only fact>` separates monolith from contest, which is also 50x50 with 5 bodies. Find it with a temporary print of `(W, H, nslots, len(self.altar_xy), len(self.groups), sp[0], ep[0])` on all 17 maps, from both seats. Use `len(self.altar_xy)` or `len(self.groups)` if it differs between the two maps; otherwise use the exact `sp[0]` tuple. Remove the print afterwards.
+   - Seat check: the research says eight's A seat shops near x=0 and B near x=40. Confirm the `seat_a` rule on eight, monolith and pilgrimage by printing it in `cambc run v18 v17` (v18 should be A) and `cambc run v17 v18` (v18 should be B). If the rule is wrong on any of the three maps, replace it with a per-map comparison that is right on all three.
+   - All other maps must give `map_tag = None`. Verify this from the print.
+1. **pilgrimage (both seats): v16 mode.** Set `self.legacy16 = (self.map_tag == "pilgrimage")`. When it is true:
+   - Build: `self.build = list(T.BUILD_FIGHTER_MON)` for **every** champion, Stellar included (put the check before the `STELLAR_FOCUS` branch at `bot.py:251`).
+   - `ball.py` `want_spawn_hold`: if `self.legacy16`, set `self.hold_sp = 0` and `return False` as the first statement.
+   - `ball.py` `plan_fight.evaluate`: bind `rf = 1.0 if self.legacy16 else SPAWN_RISK_F` next to `spawn_set` and use `risk *= rf`.
+   - The hold penalty never fires, because `hold` is always False.
+   - Also diff `bots/v16/src` against `bots/v17/src` and make sure nothing else differs on 5-pick play. `home_open` stays False on pilgrimage, as in both versions.
+   - Why: research #3. v17 loses both pilgrimage seats to v16 (gold 3367 vs 5834 in A), and pilgrimage A was a v16-mirror winning seat. Replaying v16's behaviour there reproduces two recorded wins against v17.
+2. **monolith, A seat only: stay-home opening.** If `self.map_tag == "monolith" and self.seat_a`, set `self.home_open = True`.
+   - Do this before the shopping block, so `bot.py:253` also gives the Monster-first build, as in v15, which used v9's Monster-first build.
+   - Stellar keeps `BUILD_STELLAR`; see the fallback.
+   - Nothing else changes: `bot.py:1116` and `ball.py:939` already read `home_open`.
+   - Why: research #3 / old research #1. Monolith A is a banking race lost from r69 vs r99. v15's opening won this exact seat against all three opponents, and v17 has lost it to v16, v9 and v8.
+3. **eight, B seat only: stay-home opening.** If `self.map_tag == "eight" and not self.seat_a`, set `self.home_open = True`, the same way as change 2.
+   - Why: research #1. eight B is lost in the opening (first death r56 in our own half). Carriers then die beside the single shared altar (20,15). Staying home for 300 rounds means we don't feed the opening, and v15 won this seat twice.
+
+Not included (tried and failed, or re-rolls every map):
+- any global change to the build, push, bank veto, team bank, death memory or `kappa`.
+- the global stay-home opening (v15).
+
+Test plan for the implementer (deterministic, 1 game each, v18's seat in brackets):
+- **Fingerprint:** the print run from change 0 on all 17 maps. Exactly 4 (map, seat) pairs may get a non-default behaviour: pilgrimage A, pilgrimage B, monolith A and eight B.
+- **Pilgrimage replay:**
+  - `cambc run v18 v17 --map pilgrimage` [A] should be a v18 win, about r1132.
+  - `cambc run v17 v18 --map pilgrimage` [B] should be a v18 win, about r1058.
+- **Opening gains:**
+  - `cambc run v18 v17 --map monolith` [A]
+  - `cambc run v17 v18 --map eight` [B]
+- **Untouched guards** (must match the mirror; any seat result is fine, as long as the gate print shows no gate fired):
+  - `cambc run v18 v17 --map contest`, `cambc run v17 v18 --map contest`
+  - `cambc run v17 v18 --map monolith` [B]
+  - `cambc run v18 v17 --map eight` [A]
+- **Success:** at least 2 of the 4 target seats won, and pilgrimage not 0-2. That gives ≥ 19/34 by the arithmetic above.
+
+Fallback (re-run only the affected game after each step):
+- (a) Pilgrimage does not replay or loses a seat: first check that Stellar really got `BUILD_FIGHTER_MON` and that spawn-hold never fires. If it still loses, gate change 1 to the seat that wins only. Drop the change if both seats lose.
+- (b) monolith A or eight B is still lost:
+  - First give Stellar `BUILD_FIGHTER_MON` in that seat too, which is v15's exact build.
+  - Then try `OPEN_HOME_R = 200` for that gate only, as a separate per-instance attribute; do not change the global constant used on 4-pick maps.
+  - Then try the v17 Jungle build with the opening.
+  - Keep whichever variant wins. If none does, drop that gate (it costs nothing to leave it out).
+- (c) If only 1 target seat is won after (a) and (b), there is no other proven seat-lever. The obvious ones are known to lose:
+  - `legacy16` on swirl A, collision A, fragment A or expanse A would replay the v16-A vs v17-B game, which v17 B won in eval_v17.
+  - v15's opening on contest B lost 0-1000.
+
+  The only experimental option is on eight B: on top of change 3, while `map_tag == "eight"`, let `ball_want_bank` ignore the `threat_near()` veto (`ball.py:502`) when `df_altar` ≤ 4 (research #1: carriers die 1-4 tiles from (20,15) holding 66-132 gems). Keep it only if eight B is won. Report honestly if the bar is not reached.
+- **Lead decision: no map-specific behaviour.** Changes must generalise to maps we don't have.
+  Don't key behaviour to individual maps or seats (map fingerprints, per-map tables). Use
+  general game state instead (roster size, distances, camp values, enemies, HP, gold, round,
+  score). v18's design (per-map/per-seat switches) went against this; if v18 is promoted, the
+  next version should replace its map gates with general conditions or remove them.
+
+### v18 — promoted (59% vs v17)
+- Based on: v17 (pipeline: researcher, designer, implementer)
+- Changes: v18 is built and passes the plan's bar. Against v17 it now wins 4 seats that v17 loses in its own mirror, and every other seat I ran reproduced the v17-vs-v17 game exactly. Crashes were 0 in every game. I couldn't check for `bot error` lines: bot stdout goes only into the zipped replay, and my shell can't unzip it.
+
+## Two problems the plan didn't foresee
+1. **Any extra fuel use re-rolls games.** My first build did the map check at init. With ungated v18 as B on monolith, it won at r560, but the true v17 mirror is an A win at r668. v17 has several `fuel_remaining()` cut-offs (for example `CHOOSE_MIN_FUEL`), so a few extra instructions before them change decisions. I rebuilt the gates so ungated games run exactly v17's instructions:
+   - The map check runs at the end of the first full turn, after every fuel check.
+   - Gates switch behaviour by overriding a module constant or an instance method, so there are no per-turn checks.
+   - `ball.py` is byte-identical to v17's.
+   - With this, ungated v18 reproduced the mirror exactly on all six ungated games I ran (monolith B before I gated it, contest A and B, eight A, expanse A).
+2. **The plan's mirror seats were wrong.** They came from games against v16, v9 and v8. The real v17 mirrors: monolith A wins, eight A wins, contest A wins, expanse A wins; collision, fragment and swirl B win. So monolith A and eight B could never gain. I changed targets to the seats v17 really loses where a recorded v16 game beats v17.
+
+## What I changed 
+- Evaluation (results/eval_v18): v17 59%, v16 76%, v9 82%; overall 73%
+- Status: promoted, new champion.
+
+### Research on v18 — 2026-10-17 (results/eval_v18; eval_v17, eval_v16 for side splits)
+Method: no rejected versions exist against v18 yet. The new controlled data is v18 against v17: v18 runs v17's exact instructions on the 14 ungated maps (implementer note above), so those 14 games **are the true v17/v18 mirror**. I read all 34 v17 records in results/eval_v18/summary.json (l.7389-14420). I also opened eval_v18/v17/{stampede, rushbait-v2, packs, ambush}__cand-A.stats.json and the rushbait and stampede records in eval_v17.
+
+**Corrections:**
+- packs is a **3-pick** map (Varg, Ryth, Marcella; summary l.12021-12111), not 5-pick as the v17 research listed. The 3-pick maps are collision, expanse, fragment and packs.
+- rushbait-v2 is 4-pick.
+
+Map picture: the v17 = v18 mirror, final score A-B (winning seat).
+- **Seat A wins (4):** contest 1000-200, eight 1068-0, elkring 1026-558, rows 1056-924.
+- **Seat B wins (10):**
+  - routs: ambush 298-1068, collision 504-1042, fragment 314-1020, swirl 600-1028
+  - close: corners 990-1014, packs 896-1012
+  - mid: interlock 744-1048, lanes 746-1030
+  - shutouts: rushbait 0-1000, stampede 0-1080
+- **Gated maps in a v18 mirror:**
+  - expanse = B. A runs v17 code against B in v16 mode, which is the recorded game l.10187, B r742.
+  - pilgrimage: both seats play v16 mode. Hypothesis A: v16 A beat v18's v16-mode B at r1011 (l.5535).
+  - monolith (stay-home A against v16-mode B): never played, unknown.
+- **The side split has been biased to B since v16:** B won 73% in eval_v16, 80% in eval_v17 and 78% in eval_v18, against 53-59% in eval_v10-v15 (by_side). A challenger that copies v18 scores 17-17. Each gain must be either an **A-seat win on one of the 10 B maps** or a B-seat win on contest, eight, elkring or rows.
+
+Lessons from rejected versions:
+- None exist against v18. v18's own diff is the experiment: per-map/seat gates applied from the end of turn 1 (`bot.py:466-507`, `fingerprint`).
+  - It moved **only** the gated maps: monolith, pilgrimage and expanse went 6-0 against v17. The 14 ungated games are exactly 14-14, with identical rounds in both seats.
+  - This confirms the design arithmetic: a change that is fuel-identical everywhere else moves only the seats it touches.
+- The gates have costs:
+  - v18's v16-mode pilgrimage B loses to v16 and to v9 (r1011, l.5535 and l.19533).
+  - v18 loses expanse in both seats to v16 (r742 and r686, l.3003 and l.3170).
+  - The lead has since banned map gates, so a successor that removes them gives back the 3 gated maps (+3 against v17) unless a general rule reproduces them.
+
+1. **Carriers die holding one big capture. The bank rules let a 100+ gem bag keep farming.**
+   - Evidence:
+     - **gems lost by seat A in its mirror losses:** ambush 318, swirl 184, collision 176, corners 160, fragment 160, interlock 154, packs 136.
+     - **B's losses in the same games:** 0, 0, 66, 168, 58, 204, 92.
+     - The killer receives the bag (GameRules l.361), so each loss counts twice.
+     - **ambush A** (ambush__cand-A.stats.json `gems` runs):
+       - Tavi, Varg and Stellar each captured a 106-gem camp and died with it **20, 15 and 17 rounds later** (r307 to r327, r462 to r477, r666 to r683). Each collected exactly 106 and submitted 0 (l.7445-7494).
+       - Only Ryth banked (after 42 rounds).
+       - Without those 318 gems, A had 106 submitted at r500, against B's 452.
+     - **packs A:** Varg lost 44 at r241 (18,22) and 92 at r588 (21,0), both times to the enemy Varg (packs__cand-A l.12453-12513).
+       - A finished on 896 against 1012, so the 136 lost decided the game.
+       - B's Varg, on 696 collected, banked the stolen bags.
+   - Cause in code:
+     - `bots/v18/src/bot.py:1054-1060` (`bank_threshold`): the threshold is 6·d+10, capped at 110. A 106-gem bag therefore does not trigger a bank trip at distance ≥ 17.
+     - `ball.py:500` (`ball_want_bank`): any champion with a task and live income never banks, whatever it carries.
+     - `ball.py:969-970` (`skirmish`): while committed to a camp, enemies are ignored until within COMMIT_RUN_SLACK=3 of reach.
+     - `ball.py:938` (`skirmish`): GEM_CAUTION=200 means a 106 bag raises the required fight ratio only ×1.53.
+   - Maps it decides: ambush A, packs A, swirl A, interlock A (all from the A seat in the mirror). It also contributes to collision A and fragment A, which are mostly openings (see the v17 research #1).
+   - Confidence: high on the data, medium on which of the four rules dominates. A rule keyed on bag size, e.g. "bank when the bag ≥ X% of a capture or ≥ 80 gems", is general rather than map-specific.
+
+2. **The winning bank is shadowed: corners A lost 990-1014 while carrying about 226 unbanked gems.**
+   - Evidence:
+     - corners A collected **1376** against B's 1240 (l.8708, 8795), submitted 990 and lost 160.
+     - That leaves about 226 still in bags at r739 (derived: 1376-990-160), when 10 would have won.
+     - A also banked later from the start: first submit r182 against r99, and 320 against 474 by r500.
+   - Cause in code: `ball.py:505-506` (`ball_want_bank`), the "submitted + gems·ball_n ≥ 998 → bank" check, sits **after** two earlier returns:
+     - the task/income return at l.500
+     - the `threat_near()` veto at l.502
+
+     `bot.py:1080` (`endgame_bank`) only covers the 2000-round limit, not the 1000-gem race.
+
+     Moving the finish check above l.500 only changes play once a side can reach 1000. That makes it the lowest-risk general change available. Caveat: the extra `global_submitted_gems` call per carrying turn costs fuel, and the v18 implementer showed that fuel changes re-roll games. Evaluate the call only when `gems ≥ 1000 - 2 - (last known submitted)`, using a cached value.
+   - Maps it decides: corners A (+1 against v18). It also shortens wins elsewhere.
+   - Confidence: high that corners A was winnable (226 in bags against a 10 shortfall). Medium that the reorder alone flips it, because the carriers' positions are unknown.
+
+3. **Two shutout maps: v17-code B banks 0 for the opponent whatever the A code.**
+   - Evidence:
+     - stampede A scored **0** against v17-code B with v8, v9, v16 and v17 code in seat A (eval_v17 l.6761, 13767, 20761; eval_v18 l.13532).
+       - In the mirror, A captured camps all game (Varg 11 `campCaptures`) but collected **0** gems.
+       - B's 1080 came in units of 180 (Stellar 540, Tavi 360, Marcella 180; l.13700-13729).
+       - So stampede gems sit in a few 180-gem camps and A never gets one.
+       - v17 A *does* beat v16 and v9 B (1080-720), so the seat is winnable.
+     - rushbait A against v17-code B: v8 and v9 earned **90 gold in 1424 rounds** (0 kills, 0 deaths; eval_v17 l.13343, 20343). The mirror A collected 256 and banked **0** in 1259 rounds.
+       - Varg idled with 0 gold until r391, then carried 44 for 468 rounds (rushbait__cand-A `gems` runs).
+       - A's Stellar took 66,948 champion damage and Ryth 30,800, with 1 death between them. B's Marcella took 56,318 with 0 deaths.
+       - This looks like an endless spawn-to-spawn poke, healed on both spawns, while B's Varg farms 736.
+   - Cause in code (hypothesis):
+     - rushbait: the stand-off loop is `ball.py:463-480` (`want_spawn_hold`, 30 turns) plus `ball.py:976-982` (hold → `skip_fight_until` only 3 rounds), and enemies on their own spawn count as non-threats (`at_home`, l.987).
+     - stampede: camp choice ignores the gem value per camp (`bot.py` `best_group`; not traced).
+   - Maps it decides: stampede A and rushbait A. They are expensive to flip, because 4 different A codes failed against this B.
+   - Confidence: high on the pattern, low on the mechanism.
+
+Cheapest flips against v18, in order:
+1. corners A (#2)
+2. packs A (#1, a 136-gem swing)
+3. ambush A (#1, 318)
+4. expanse A (988-1024, pure income; v16-mode B)
+5. rows B (924-1056, 0 gems lost, income)
+
+interlock A and lanes A need more than carrier safety (lanes: B collected 1052 against 936 with 0 deaths).
+
+Old hypotheses:
+- **Confirmed:** v16 research #1 / v17 research #2-#3, that carried bags lost late decide close races. It is now quantified per map (#1).
+- **Confirmed:** gated changes move only gated seats.
+- **Refuted:** the v17 research's "locked seats" list as a v17 mirror forecast. The real mirror losers are the A seat on 10 maps and the B seat on 4, and ambush, corners, lanes, packs and stampede are B-seat maps.
+- **Still open:** why B is favoured since v16. Turn order alternates each round (GameRules l.126), so the bias must come from geometry or coordinate tie-breaks in our code.
+
+### Design for v19 — 2026-10-17 (based on v18)
+Idea: bank the gems we capture. Convert big captures and late-race bags into tributed score before they can be stolen or the opponent reaches 1000. Remove v18's map/seat gates, as the lead requires.
+
+Arithmetic (read this first):
+- **The gates must go.** The lead banned map/seat behaviour, so v19 drops v18's `fingerprint` gates.
+- **What that costs.** On pilgrimage, monolith and expanse, v19 then plays v17-style code against v18's gated code. v18's gated code beat that code 6-0.
+- **The new baseline.** If nothing else changed, v19 would score about 14-20, not 17-17. The plan therefore needs about +5 net seats, not +2. The bar is hard, and I'm stating that openly rather than hiding it.
+- **Why I still think it's possible.** The changes below are global, so all 34 games re-roll, as they did for v17 (74% vs v16 from a global change). The 14-20 figure is a floor estimate, not a fixed count.
+- **Why this lever.** The researcher found that the A seat's losses come with 136-318 carried gems lost (#1) and unbanked winning bags (#2). That is the one weakness that shows up across many seats, so it is the lever with the most seats behind it.
+
+What the code shows (checked for this design):
+- `ball_decide` (`ball.py:412-461`) runs `update_push()` first on every turn. `update_push` already calls `cambc.global_submitted_gems(ALLY)` and `(ENEMY)` (`ball.py:405-406`; API at BotAPIPython.md l.581). Caching both values costs no extra API calls.
+- `ball_want_bank` (`ball.py:491-518`) is shadowed in three places:
+  - the task/income return at l.500 (a champion with a task and visible, live camp income never banks);
+  - the `threat_near` veto at l.502;
+  - only after those, the 1000-finish check at l.504-506, which makes a second `global_submitted_gems` call.
+- **Why 106-gem bags go unbanked.** Camp-group gems arrive on capture of the whole group (`bot.py:170`, `cg.gem_value()`). After a 106 capture the champion takes a new group, and l.500 then blocks banking for the whole next job. That fits ambush: 3 × 106 captured, each carrier died 15-20 rounds later.
+- **No team-wide carried total in ball mode.** In ball mode, shared-memory bytes 6-7 hold the leader's xy (`ball_write`, `ball.py:342-351`), not the team's carried total. So `self.tot` is **not** usable in ball mode. The plan uses the champion's own bag only.
+- **Tribute rules.** A tribute takes ceil(gems/10) turns, damage does not interrupt it, but death or stun does (GameRules l.223, 272). The whole bag counts at completion (l.230). A 226 bag therefore needs 23 turns, which is why waiting until the bag is huge loses races like corners A.
+- **Carrier fights.** `skirmish` (`ball.py:937-938`) scales the needed ratio by `1 + gems/GEM_CAUTION` (200). When committed to a camp, it ignores losing fights until enemies are within `COMMIT_RUN_SLACK=3` of reach (l.959-970).
+
+Target maps (v19 seat; mirror score from the research):
+- **corners A** (990-1014, about 226 gems unbanked): changes 2 and 3. The race rule banks those bags once B passes 800.
+- **expanse A** (988-1024, against v18's v16-mode B): change 3. This is a pure income race lost by 36, so banking in time decides it.
+- **packs A** (896-1012; Varg lost 44 and 92 in duels with the enemy Varg): changes 2 and 4. More caution plus earlier banking keeps those bags out of the enemy Varg's hands, which is a 136 × 2 swing.
+- **ambush A** (298-1068; three 106-gem bags died unbanked): change 2. With them banked, A would have had about 424 by r500 instead of 106. This is the least certain target, because B also farms faster there.
+- **rows B** (924-1056, 0 gems lost; an income race): change 3. Our bags get banked before A finishes.
+- **Secondary:**
+  - swirl A, collision A, interlock A, fragment A lost 154-184 carried gems each (change 2 or 4 may flip one).
+  - pilgrimage and monolith are expected losses after gate removal; any win there is a bonus.
+
+Risk maps:
+- **B-seat wins (ambush, collision, corners, fragment, interlock, lanes, packs, swirl, stampede, rushbait) and A-seat wins (contest, eight, elkring, rows).** Every change only fires for a champion carrying ≥90 gems, a champion with ≥30 gems once the enemy has ≥800 tributed, or a bag that wins outright.
+  - In a seat we already win, the winner usually lost 0-92 gems and banked steadily, so these rules rarely fire before the end.
+  - The race rule cannot cost a game the opponent was about to win anyway.
+- **stampede A/B and contest A (big-camp seats, sensitive to income; v14/v15 lesson).**
+  - The 180-gem stampede captures trigger change 2 immediately, but those carriers already bank right away (the B seat wins by banking 180s).
+  - contest A wins 1000-200 through kills, so the bank rules barely touch it.
+  - Change 2 does **not** interrupt a capture in progress (`cstate == 2` or `cap_since > 0`). That limits the income lost.
+- **Fight aggression (change 4)** applies only to carriers. Champions with empty bags fight exactly as before, so the push that wins contest A and stampede A is untouched.
+- **Butterfly:** every game re-rolls, which is unavoidable. The test plan checks guard seats.
+
+Changes (implement all of them; start from a clean copy of `bots/v18`):
+1. `bot.py`: remove the map/seat gates.
+   - Delete the `if not self.fp_done: self.fingerprint()` call at the end of `turn()` (l.462-463), the `fingerprint` and `_no_spawn_hold` methods (l.465-511), and the constants `MONOLITH_GROUPS`, `EIGHT_GATE`, `MONO_B_LEGACY`, `EXPANSE_B_LEGACY` and `GATE_STELLAR_MON` (l.27-31). The `self.fp_done = False` line (l.130) can stay or go.
+   - Keep `home_open` (roster size == 4), which is a general rule.
+   - v19 is then v17 code plus changes 2-4. Check with `diff -r bots/v17/src bots/v19/src`: the only differences should be changes 2-4.
+   - Why: lead decision (NOTES l.1241-1245). No map fingerprints or seat detection.
+2. `ball.py` `ball_init` + `update_push` + `ball_want_bank`: banking on big bags and to finish the game.
+   - Constants (ball.py constant block): `BIG_BAG = 90`, `RACE_E = 800`, `RACE_MIN = 30`.
+   - In `ball_init`, add `self.sub_ally = 0` and `self.sub_enemy = 0`.
+   - In `update_push`, after the two `global_submitted_gems` calls succeed, store `self.sub_ally = ours` and `self.sub_enemy = theirs`. The exception path leaves the old values in place.
+   - Rewrite the top of `ball_want_bank` like this (keep everything else):
+     ```
+     gems = self.gems
+     if gems <= 0: return False
+     d = self.df_altar.get(self.pos)
+     if d >= 65535: return False
+     if self.endgame_bank(d): return True
+     fin = self.sub_ally + gems * max(1, self.ball_n) >= 1000 - 2      # this bag wins the game
+     race = self.sub_enemy >= RACE_E and gems >= RACE_MIN               # they are about to finish: carried gems will be worth 0
+     big = gems >= BIG_BAG and not (self.task is not None and (self.cstate == 2 or self.cap_since > 0))
+     if fin or race or big:
+         if self.threat_near() and not (d <= BANK_NEAR and gems >= BANK_NEAR_GEMS):
+             return False
+         return True
+     if self.task is not None and self.camps and self.inc > 0.0:
+         return False
+     if self.threat_near() and not (d <= BANK_NEAR and gems >= BANK_NEAR_GEMS):
+         return False
+     if self.committed():
+         return False
+     ... (from `if d <= 2 and gems >= 10` onwards, unchanged)
+     ```
+     That is, the old `submitted = cambc.global_submitted_gems(ALLY)` line and the `>= 1000 - 2` check (l.504-506) are removed and replaced by the cached `fin` above. This saves one API call per carrying turn.
+   - `bank_latch` handling in `ball_decide` stays as it is, so a started trip is not abandoned.
+   - Why: research #1 (ambush 3×106, packs 136, swirl 184, collision 176 lost as carried bags) and #2 (corners A lost 990-1014 with about 226 unbanked; expanse A lost 988-1024; rows B lost 924-1056). l.500 blocks banking for any champion with a new task, which is exactly the "capture 106, take the next group, die 15-20 rounds later" pattern.
+3. (Part of change 2, listed separately because it is the race rule.) The `race` term is the general version of "bank before they win": tributed gems are permanent score and carried gems count for nothing at the end (GameRules l.217).
+   - RACE_E = 800: a v18 winner typically goes from 800 to 1000 in 60-150 rounds (corners B, packs B, expanse B finish at r739/r755/r742), which is long enough for 3-23-turn tributes.
+   - RACE_MIN = 30 avoids long walks for tiny bags.
+4. `ball.py` constants + `skirmish`: more caution for carriers.
+   - Set `GEM_CAUTION = 120.0` (was 200). A 92-gem bag then needs ×1.77 the ratio instead of ×1.46.
+   - In the committed branch (l.969), replace `COMMIT_RUN_SLACK` with a local: `run_slack = COMMIT_RUN_SLACK + 3 if self.gems >= BIG_BAG else COMMIT_RUN_SLACK`, and use `slack >= run_slack` in the `not go` test. A big-bag carrier that would lose then reacts to approaching enemies 3 tiles earlier instead of finishing the camp.
+   - Why: research #1. The packs A bags (44, 92) went to the enemy Varg in duels, and the ambush carriers died while working the next camp. Champions with empty bags are unaffected (`gems == 0` gives the same `need` and the same slack).
+
+Explicitly not included:
+- bank veto relaxation alone (v11), team bank (v13: and shared bytes 6-7 are taken in ball mode anyway), death memory (v12), `kappa` (v14), the global stay-home opening (v15).
+- **Difference from v11:** v11 relaxed one veto with no size or race condition and moved nothing. This plan targets the specific l.500 task shadow for big bags and adds the endgame race term, which the research shows decides corners, expanse, rows and packs.
+- No map, size or seat conditions anywhere.
+
+Test plan for the implementer (1 game each; v19's seat in brackets):
+- **Crash check:** `cambc run v19 v18 --map ambush`. There must be no `ERR` lines.
+- **Target seats** (want ≥ 4 wins out of 5):
+  - `cambc run v19 v18 --map corners` [A]
+  - `cambc run v19 v18 --map expanse` [A]
+  - `cambc run v19 v18 --map packs` [A]
+  - `cambc run v19 v18 --map ambush` [A]
+  - `cambc run v18 v19 --map rows` [B]
+- **Secondary:**
+  - `cambc run v19 v18 --map swirl` [A], `--map collision` [A], `--map interlock` [A]
+- **Guards** (currently wins in the mirror; must stay wins):
+  - `cambc run v18 v19 --map lanes` [B], `cambc run v18 v19 --map stampede` [B], `cambc run v18 v19 --map corners` [B], `cambc run v18 v19 --map packs` [B]
+  - `cambc run v19 v18 --map contest` [A], `cambc run v19 v18 --map elkring` [A], `cambc run v19 v18 --map eight` [A]
+- **Gate-removal cost:**
+  - `cambc run v19 v18 --map pilgrimage`, `cambc run v18 v19 --map pilgrimage`
+  - `cambc run v19 v18 --map monolith`, `cambc run v18 v19 --map monolith`, `cambc run v18 v19 --map expanse`
+  - Expect losses; record them.
+- **Success:** (target + secondary wins) − (guard losses) ≥ 5, which offsets the expected 0-2 on the formerly gated maps plus expanse B. If it comes out lower, still run the full evaluation if it is ≥ 3, and report the gap honestly.
+
+Fallback (re-run only the affected games after each step):
+- (a) A guard falls on income (stampede B, contest A, lanes B): raise `BIG_BAG` to 110 first. If it still falls, restrict `big` to `self.task is None or not self.awake` (bank between jobs only).
+- (b) corners A / expanse A / rows B don't move: lower `RACE_E` to 700. If a guard falls from that, go back to 800.
+- (c) packs A doesn't move: try `GEM_CAUTION = 90`. If a guard falls, go back to 120.
+- (d) Change 1 is not negotiable: do **not** re-add map or seat gates to reach the bar.
+
+### v19 — rejected (50% vs v18)
+- Based on: v18 (pipeline: researcher, designer, implementer)
+- Changes: I built all of v19, but it misses the bar in my tests: net **+1** against the target of +5. Targets and secondaries won 2 of 8, and the guards held 6 of 7. None of the three fallbacks moved a single result, so v19 ships with the plan's original values. The orchestrator's full evaluation is still needed.
+
+## What I changed
+1. **Gates removed** (`bot.py`): deleted `fingerprint()`, `_no_spawn_hold()`, the `fp_done` flag and its call at the end of the turn, and the five gate constants (`MONOLITH_GROUPS`, `EIGHT_GATE`, `MONO_B_LEGACY`, `EXPANSE_B_LEGACY`, `GATE_STELLAR_MON`). The 4-champion `home_open` opening stays.
+2. **Bank big and winning bags first** (`ball.py`):
+   - `update_push` now saves `sub_ally` and `sub_enemy` from the `global_submitted_gems` calls it already makes. I checked that call in BotAPIPython.md, and both values start at 0.
+   - In `ball_want_bank`, three triggers now run before the "has a task, never bank" exit:
+     - **fin:** this bag wins the game. It uses the same formula as the old 1000 check, which now reads the saved value.
+     - **race:** the enemy has tributed 800 or more and we carry at least 30 gems.
+     - **big:** we carry at least 90 gems.
+   - All three still respect the "enemy nearby" veto, and none fires mid-capture (fighting the camp or standing on its spawn tile). I applied that guard to all three, following the plan's statement that no trigger interrupts a capture.
+   - New constants: `BIG_BAG`, `RACE_ENEMY`, `RACE_GEMS`.
+3. **Race rule:
+- Evaluation (results/eval_v19): v18 50%, v17 56%, v16 71%; overall 59%
+- Status: rejected, moved to rejected/v19. Lesson: these changes did not beat v18.

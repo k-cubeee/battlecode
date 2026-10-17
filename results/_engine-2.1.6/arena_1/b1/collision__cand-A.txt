@@ -1,0 +1,19 @@
+cambc run v6 b1 --map collision -o /home/kcube/battlecode/results/arena_1/b1/.collision__cand-A.replay --statistics /home/kcube/battlecode/results/arena_1/b1/collision__cand-A.stats.json
+
+v6 vs b1 on /home/kcube/battlecode/maps/collision.map26a
+Team A (v6) wins: reached 1000 gems in round 666
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v6   1104    11      0        3128        0  Varg, Ryth, Marcella
+  B    b1      0     0     11        1603        0  Varg, Vesper Vale, Tavi
+replay bundle: /home/kcube/battlecode/results/arena_1/b1/.collision__cand-A.replay/v6-vs-b1-1792174793192.repl26a
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+finished: round 666/2000 — teamA

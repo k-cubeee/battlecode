@@ -13,14 +13,29 @@
 
 ## Workflow
 - Each improved version is a new copy: copy the champion to the next free `bots/vN/`
-  (numbers are never reused; check `rejected/` too).
+  (numbers are never reused; check `rejected/` and `archive/` too).
 - Never edit an older version once it's been evaluated.
 - NOTES.md records every version: what changed, win rate, promoted/rejected.
   Read it before proposing new ideas so failed ideas aren't repeated.
 - Promote a version only if it wins >= 55% head-to-head against the current champion
   over a full run_matches.py evaluation (and doesn't regress against older versions).
   Rejected versions are moved to `rejected/vN/`, so `bots/` holds only v1 and promoted versions.
-- `orchestrator.py` automates the whole loop with the Claude Agent SDK (needs ANTHROPIC_API_KEY).
+  After each new version the orchestrator moves the team's oldest bot to `archive/`
+  (never v1, the champion or a bot in the evaluation pool).
+- `orchestrator_hardened.py` automates the analyst/strategist loop with the Claude Agent SDK
+  (needs ANTHROPIC_API_KEY). It also provides the shared agent runner, match runner and smoke test.
+
+## Specialist pipeline
+- `orchestrator_pipeline.py` develops the same line (`bots/vN`, `NOTES.md`,
+  `orchestrator_state.json`) with three agents per version, all on Opus:
+  `researcher` (studies evaluations and the rejected attempts against the champion),
+  `designer` (writes a 2-4 part change plan meant to flip whole maps) and
+  `implementer` (builds and tests it in `bots/vN`). Each appends to NOTES.md; the
+  orchestrator evaluates, promotes or rejects, and archives the oldest bot.
+- Run it with `python orchestrator_pipeline.py --allow-host`. Don't run two orchestrators at once,
+  and don't run matches by hand while one is running.
+- Team B (`bN` bots, its arena and referee) was retired on 2026-10-17; everything is in
+  `archive/team_b/`.
 
 ## Rules for changes
 - Make focused, testable changes, not full rewrites.

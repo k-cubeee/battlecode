@@ -1,0 +1,22 @@
+cambc run v1 b1 --map monolith -o /home/kcube/battlecode/results/benchB_b1/v1/.monolith__cand-B.replay --statistics /home/kcube/battlecode/results/benchB_b1/v1/monolith__cand-B.stats.json
+
+v1 vs b1 on /home/kcube/battlecode/maps/monolith.map26a
+Team B (b1) wins: reached 1000 gems in round 915
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v1    454     6     13        3025        0  Ryth, Vesper Vale, Varg, Tavi, Marcella
+  B    b1   1018     2     31        5835        0  Tavi, Ren, Vendetta, Cassi & Issac, Prism
+replay bundle: /home/kcube/battlecode/results/benchB_b1/v1/.monolith__cand-B.replay/v1-vs-b1-1792174718446.repl26a
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+running: round 800/2000
+running: round 900/2000
+finished: round 915/2000 — teamB

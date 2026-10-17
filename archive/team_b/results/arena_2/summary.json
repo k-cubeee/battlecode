@@ -1,0 +1,6061 @@
+{
+  "tag": "arena_2",
+  "candidate": "v9",
+  "opponents": [
+    "b2"
+  ],
+  "maps": [
+    "ambush",
+    "collision",
+    "contest",
+    "corners",
+    "eight",
+    "elkring",
+    "expanse",
+    "fragment",
+    "interlock",
+    "lanes",
+    "monolith",
+    "packs",
+    "pilgrimage",
+    "rows",
+    "rushbait-v2",
+    "stampede",
+    "swirl"
+  ],
+  "overall": {
+    "wins": 34,
+    "losses": 0,
+    "draws": 0,
+    "errors": 0,
+    "played": 34,
+    "win_rate": 1.0
+  },
+  "by_opponent": {
+    "b2": {
+      "wins": 34,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 34,
+      "win_rate": 1.0
+    }
+  },
+  "by_map": {
+    "ambush": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "collision": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "contest": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "corners": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "eight": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "elkring": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "expanse": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "fragment": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "interlock": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "lanes": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "monolith": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "packs": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "pilgrimage": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "rows": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "rushbait-v2": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "stampede": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    },
+    "swirl": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 2,
+      "win_rate": 1.0
+    }
+  },
+  "by_side": {
+    "A": {
+      "wins": 17,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 17,
+      "win_rate": 1.0
+    },
+    "B": {
+      "wins": 17,
+      "losses": 0,
+      "draws": 0,
+      "errors": 0,
+      "played": 17,
+      "win_rate": 1.0
+    }
+  },
+  "avg_round_of_wins": 679.3,
+  "avg_round_of_losses": null,
+  "end_reasons": {
+    "reached 1000 gems": 34
+  },
+  "candidate_crashes": 0,
+  "side_stats": {
+    "candidate": {
+      "kills": 8.6,
+      "deaths": 0.6,
+      "assists": 7.6,
+      "collectedGems": 1097.7,
+      "submittedGems": 1035.8,
+      "earnedGold": 5644.9,
+      "spentGold": 5034.4,
+      "championDamageDone": 14341.5,
+      "championDamageTaken": 2595.6,
+      "monsterDamageTaken": 18523.1,
+      "healingDone": 0.0,
+      "matches": 34
+    },
+    "opponent": {
+      "kills": 0.4,
+      "deaths": 9.1,
+      "assists": 0.6,
+      "collectedGems": 276.4,
+      "submittedGems": 185.3,
+      "earnedGold": 1649.6,
+      "spentGold": 1299.7,
+      "championDamageDone": 2595.6,
+      "championDamageTaken": 14341.5,
+      "monsterDamageTaken": 8460.1,
+      "healingDone": 0.0,
+      "matches": 34
+    },
+    "candidate_in_wins": {
+      "kills": 8.6,
+      "deaths": 0.6,
+      "assists": 7.6,
+      "collectedGems": 1097.7,
+      "submittedGems": 1035.8,
+      "earnedGold": 5644.9,
+      "spentGold": 5034.4,
+      "championDamageDone": 14341.5,
+      "championDamageTaken": 2595.6,
+      "monsterDamageTaken": 18523.1,
+      "healingDone": 0.0,
+      "matches": 34
+    },
+    "opponent_in_wins": {
+      "kills": 0.4,
+      "deaths": 9.1,
+      "assists": 0.6,
+      "collectedGems": 276.4,
+      "submittedGems": 185.3,
+      "earnedGold": 1649.6,
+      "spentGold": 1299.7,
+      "championDamageDone": 2595.6,
+      "championDamageTaken": 14341.5,
+      "monsterDamageTaken": 8460.1,
+      "healingDone": 0.0,
+      "matches": 34
+    },
+    "candidate_in_losses": null,
+    "opponent_in_losses": null,
+    "candidate_champions": {
+      "Cassi": {
+        "kills": 0.0,
+        "deaths": 0.0,
+        "collectedGems": 280.0,
+        "submittedGems": 269.0,
+        "earnedGold": 1216.0,
+        "spentGold": 1045.0,
+        "championDamageTaken": 0.0,
+        "itemsBought": 41.0,
+        "matches": 2
+      },
+      "Issac": {
+        "kills": 0.0,
+        "deaths": 0.0,
+        "collectedGems": 121.0,
+        "submittedGems": 110.0,
+        "earnedGold": 495.0,
+        "spentGold": 385.0,
+        "championDamageTaken": 0.0,
+        "itemsBought": 14.5,
+        "matches": 2
+      },
+      "Marcella": {
+        "kills": 1.8,
+        "deaths": 0.2,
+        "collectedGems": 196.3,
+        "submittedGems": 171.9,
+        "earnedGold": 1027.0,
+        "spentGold": 913.4,
+        "championDamageTaken": 610.7,
+        "itemsBought": 35.6,
+        "matches": 32
+      },
+      "Ryth": {
+        "kills": 2.4,
+        "deaths": 0.1,
+        "collectedGems": 302.6,
+        "submittedGems": 294.1,
+        "earnedGold": 1486.4,
+        "spentGold": 1292.4,
+        "championDamageTaken": 774.2,
+        "itemsBought": 50.8,
+        "matches": 34
+      },
+      "Stellar": {
+        "kills": 1.7,
+        "deaths": 0.1,
+        "collectedGems": 189.9,
+        "submittedGems": 174.2,
+        "earnedGold": 1127.2,
+        "spentGold": 979.6,
+        "championDamageTaken": 338.6,
+        "itemsBought": 38.3,
+        "matches": 26
+      },
+      "Tavi": {
+        "kills": 2.1,
+        "deaths": 0.3,
+        "collectedGems": 205.2,
+        "submittedGems": 191.7,
+        "earnedGold": 1106.4,
+        "spentGold": 1097.2,
+        "championDamageTaken": 586.1,
+        "itemsBought": 43.4,
+        "matches": 18
+      },
+      "Varg": {
+        "kills": 2.2,
+        "deaths": 0.1,
+        "collectedGems": 332.9,
+        "submittedGems": 322.9,
+        "earnedGold": 1643.5,
+        "spentGold": 1468.2,
+        "championDamageTaken": 677.4,
+        "itemsBought": 57.7,
+        "matches": 34
+      }
+    }
+  },
+  "matches": [
+    {
+      "opponent": "b2",
+      "map": "ambush",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.3,
+      "reason": "reached 1000 gems in round 704",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1032,
+          "kills": 7,
+          "deaths": 1,
+          "gold_earned": 4836,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 252,
+          "kills": 0,
+          "deaths": 9,
+          "gold_earned": 1226,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 7,
+          "deaths": 1,
+          "assists": 3,
+          "collectedGems": 1138,
+          "submittedGems": 1032,
+          "earnedGold": 4836,
+          "spentGold": 4010,
+          "championDamageDone": 8730,
+          "championDamageTaken": 1450,
+          "monsterDamageTaken": 14741.6,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 452,
+              "submittedGems": 452,
+              "earnedGold": 1738,
+              "spentGold": 1340,
+              "championDamageTaken": 0,
+              "itemsBought": 52
+            },
+            "Ryth": {
+              "kills": 4,
+              "deaths": 0,
+              "collectedGems": 368,
+              "submittedGems": 368,
+              "earnedGold": 1468,
+              "spentGold": 1060,
+              "championDamageTaken": 565,
+              "itemsBought": 42
+            },
+            "Stellar": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 295,
+              "spentGold": 280,
+              "championDamageTaken": 135,
+              "itemsBought": 10
+            },
+            "Marcella": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 190,
+              "spentGold": 190,
+              "championDamageTaken": 570,
+              "itemsBought": 7
+            },
+            "Tavi": {
+              "kills": 1,
+              "deaths": 1,
+              "collectedGems": 318,
+              "submittedGems": 212,
+              "earnedGold": 1145,
+              "spentGold": 1140,
+              "championDamageTaken": 180,
+              "itemsBought": 45
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 9,
+          "assists": 0,
+          "collectedGems": 322,
+          "submittedGems": 252,
+          "earnedGold": 1226,
+          "spentGold": 1170,
+          "championDamageDone": 1450,
+          "championDamageTaken": 8730,
+          "monsterDamageTaken": 21765,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 108,
+              "submittedGems": 108,
+              "earnedGold": 404,
+              "spentGold": 390,
+              "championDamageTaken": 2440,
+              "itemsBought": 15
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 144,
+              "submittedGems": 144,
+              "earnedGold": 640,
+              "spentGold": 630,
+              "championDamageTaken": 1075,
+              "itemsBought": 25
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 1400,
+              "itemsBought": 0
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 35,
+              "submittedGems": 0,
+              "earnedGold": 83,
+              "spentGold": 60,
+              "championDamageTaken": 1240,
+              "itemsBought": 2
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 35,
+              "submittedGems": 0,
+              "earnedGold": 99,
+              "spentGold": 90,
+              "championDamageTaken": 2575,
+              "itemsBought": 3
+            }
+          }
+        }
+      },
+      "round": 704,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "ambush",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.4,
+      "reason": "reached 1000 gems in round 837",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 72,
+          "kills": 1,
+          "deaths": 10,
+          "gold_earned": 1010,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1000,
+          "kills": 9,
+          "deaths": 1,
+          "gold_earned": 4980,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 1,
+          "deaths": 10,
+          "assists": 1,
+          "collectedGems": 216,
+          "submittedGems": 72,
+          "earnedGold": 1010,
+          "spentGold": 960,
+          "championDamageDone": 2495,
+          "championDamageTaken": 9982,
+          "monsterDamageTaken": 20800,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 1,
+              "deaths": 1,
+              "collectedGems": 108,
+              "submittedGems": 36,
+              "earnedGold": 530,
+              "spentGold": 510,
+              "championDamageTaken": 795,
+              "itemsBought": 20
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 36,
+              "submittedGems": 0,
+              "earnedGold": 160,
+              "spentGold": 150,
+              "championDamageTaken": 3560,
+              "itemsBought": 6
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 72,
+              "submittedGems": 36,
+              "earnedGold": 320,
+              "spentGold": 300,
+              "championDamageTaken": 2967,
+              "itemsBought": 12
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 2660,
+              "itemsBought": 0
+            }
+          }
+        },
+        "B": {
+          "kills": 9,
+          "deaths": 1,
+          "assists": 6,
+          "collectedGems": 1226,
+          "submittedGems": 1000,
+          "earnedGold": 4980,
+          "spentGold": 3810,
+          "championDamageDone": 9982,
+          "championDamageTaken": 2495,
+          "monsterDamageTaken": 22221,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 3,
+              "deaths": 0,
+              "collectedGems": 351,
+              "submittedGems": 351,
+              "earnedGold": 1293,
+              "spentGold": 1290,
+              "championDamageTaken": 860,
+              "itemsBought": 50
+            },
+            "Ryth": {
+              "kills": 3,
+              "deaths": 0,
+              "collectedGems": 303,
+              "submittedGems": 303,
+              "earnedGold": 1065,
+              "spentGold": 580,
+              "championDamageTaken": 665,
+              "itemsBought": 22
+            },
+            "Stellar": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 466,
+              "submittedGems": 346,
+              "earnedGold": 1937,
+              "spentGold": 1540,
+              "championDamageTaken": 320,
+              "itemsBought": 61
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 106,
+              "submittedGems": 0,
+              "earnedGold": 390,
+              "spentGold": 130,
+              "championDamageTaken": 80,
+              "itemsBought": 4
+            },
+            "Tavi": {
+              "kills": 1,
+              "deaths": 1,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 295,
+              "spentGold": 270,
+              "championDamageTaken": 570,
+              "itemsBought": 10
+            }
+          }
+        }
+      },
+      "round": 837,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "collision",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 29.7,
+      "reason": "reached 1000 gems in round 698",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1038,
+          "kills": 12,
+          "deaths": 0,
+          "gold_earned": 4480,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Marcella"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 22,
+          "kills": 0,
+          "deaths": 12,
+          "gold_earned": 1235,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 12,
+          "deaths": 0,
+          "assists": 15,
+          "collectedGems": 1038,
+          "submittedGems": 1038,
+          "earnedGold": 4480,
+          "spentGold": 4330,
+          "championDamageDone": 24090,
+          "championDamageTaken": 4898.4,
+          "monsterDamageTaken": 10214.4,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 5,
+              "deaths": 0,
+              "collectedGems": 320,
+              "submittedGems": 320,
+              "earnedGold": 1394,
+              "spentGold": 1390,
+              "championDamageTaken": 2869.4,
+              "itemsBought": 55
+            },
+            "Ryth": {
+              "kills": 4,
+              "deaths": 0,
+              "collectedGems": 388,
+              "submittedGems": 388,
+              "earnedGold": 1710,
+              "spentGold": 1690,
+              "championDamageTaken": 913,
+              "itemsBought": 67
+            },
+            "Marcella": {
+              "kills": 3,
+              "deaths": 0,
+              "collectedGems": 330,
+              "submittedGems": 330,
+              "earnedGold": 1376,
+              "spentGold": 1250,
+              "championDamageTaken": 1116,
+              "itemsBought": 49
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 12,
+          "assists": 0,
+          "collectedGems": 242,
+          "submittedGems": 22,
+          "earnedGold": 1235,
+          "spentGold": 1050,
+          "championDamageDone": 4898.4,
+          "championDamageTaken": 24090,
+          "monsterDamageTaken": 3880,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 66,
+              "submittedGems": 0,
+              "earnedGold": 375,
+              "spentGold": 330,
+              "championDamageTaken": 8080,
+              "itemsBought": 13
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 110,
+              "submittedGems": 22,
+              "earnedGold": 450,
+              "spentGold": 450,
+              "championDamageTaken": 5100,
+              "itemsBought": 18
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 66,
+              "submittedGems": 0,
+              "earnedGold": 410,
+              "spentGold": 270,
+              "championDamageTaken": 10910,
+              "itemsBought": 10
+            }
+          }
+        }
+      },
+      "round": 698,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "collision",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 29.6,
+      "reason": "reached 1000 gems in round 721",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 110,
+          "kills": 0,
+          "deaths": 6,
+          "gold_earned": 1200,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1026,
+          "kills": 5,
+          "deaths": 0,
+          "gold_earned": 5494,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Marcella"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 6,
+          "assists": 0,
+          "collectedGems": 242,
+          "submittedGems": 110,
+          "earnedGold": 1200,
+          "spentGold": 1050,
+          "championDamageDone": 1287.4,
+          "championDamageTaken": 8960,
+          "monsterDamageTaken": 4310,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 88,
+              "submittedGems": 44,
+              "earnedGold": 430,
+              "spentGold": 390,
+              "championDamageTaken": 5110,
+              "itemsBought": 15
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 132,
+              "submittedGems": 66,
+              "earnedGold": 680,
+              "spentGold": 570,
+              "championDamageTaken": 3100,
+              "itemsBought": 22
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 22,
+              "submittedGems": 0,
+              "earnedGold": 90,
+              "spentGold": 90,
+              "championDamageTaken": 750,
+              "itemsBought": 3
+            }
+          }
+        },
+        "B": {
+          "kills": 5,
+          "deaths": 0,
+          "assists": 7,
+          "collectedGems": 1178,
+          "submittedGems": 1026,
+          "earnedGold": 5494,
+          "spentGold": 5230,
+          "championDamageDone": 8960,
+          "championDamageTaken": 1287.4,
+          "monsterDamageTaken": 16748,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 456,
+              "submittedGems": 456,
+              "earnedGold": 2278,
+              "spentGold": 2260,
+              "championDamageTaken": 450,
+              "itemsBought": 90
+            },
+            "Ryth": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 344,
+              "submittedGems": 300,
+              "earnedGold": 1488,
+              "spentGold": 1250,
+              "championDamageTaken": 612.4,
+              "itemsBought": 49
+            },
+            "Marcella": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 378,
+              "submittedGems": 270,
+              "earnedGold": 1728,
+              "spentGold": 1720,
+              "championDamageTaken": 225,
+              "itemsBought": 68
+            }
+          }
+        }
+      },
+      "round": 721,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "contest",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 31.2,
+      "reason": "reached 1000 gems in round 1257",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1000,
+          "kills": 41,
+          "deaths": 0,
+          "gold_earned": 11916,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 0,
+          "kills": 0,
+          "deaths": 44,
+          "gold_earned": 1722,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 41,
+          "deaths": 0,
+          "assists": 28,
+          "collectedGems": 1000,
+          "submittedGems": 1000,
+          "earnedGold": 11916,
+          "spentGold": 11590,
+          "championDamageDone": 58050,
+          "championDamageTaken": 7520.8,
+          "monsterDamageTaken": 52346,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 7,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 2287,
+              "spentGold": 2270,
+              "championDamageTaken": 1165.5,
+              "itemsBought": 90
+            },
+            "Ryth": {
+              "kills": 5,
+              "deaths": 0,
+              "collectedGems": 600,
+              "submittedGems": 600,
+              "earnedGold": 2628,
+              "spentGold": 2600,
+              "championDamageTaken": 2802,
+              "itemsBought": 103
+            },
+            "Stellar": {
+              "kills": 6,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 1618,
+              "spentGold": 1360,
+              "championDamageTaken": 450,
+              "itemsBought": 54
+            },
+            "Marcella": {
+              "kills": 9,
+              "deaths": 0,
+              "collectedGems": 200,
+              "submittedGems": 200,
+              "earnedGold": 2639,
+              "spentGold": 2620,
+              "championDamageTaken": 2342.8,
+              "itemsBought": 104
+            },
+            "Tavi": {
+              "kills": 14,
+              "deaths": 0,
+              "collectedGems": 200,
+              "submittedGems": 200,
+              "earnedGold": 2744,
+              "spentGold": 2740,
+              "championDamageTaken": 760.5,
+              "itemsBought": 109
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 44,
+          "assists": 0,
+          "collectedGems": 0,
+          "submittedGems": 0,
+          "earnedGold": 1722,
+          "spentGold": 1500,
+          "championDamageDone": 7520.8,
+          "championDamageTaken": 58050,
+          "monsterDamageTaken": 4900,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 9,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 403,
+              "spentGold": 270,
+              "championDamageTaken": 13700,
+              "itemsBought": 10
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 9,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 315,
+              "spentGold": 300,
+              "championDamageTaken": 16860,
+              "itemsBought": 12
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 9,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 350,
+              "spentGold": 330,
+              "championDamageTaken": 8990,
+              "itemsBought": 13
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 8,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 402,
+              "spentGold": 390,
+              "championDamageTaken": 9745,
+              "itemsBought": 15
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 9,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 252,
+              "spentGold": 210,
+              "championDamageTaken": 8755,
+              "itemsBought": 8
+            }
+          }
+        }
+      },
+      "round": 1257,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "contest",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.8,
+      "reason": "reached 1000 gems in round 1498",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 0,
+          "kills": 3,
+          "deaths": 42,
+          "gold_earned": 3047,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1000,
+          "kills": 42,
+          "deaths": 3,
+          "gold_earned": 11868,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 3,
+          "deaths": 42,
+          "assists": 5,
+          "collectedGems": 0,
+          "submittedGems": 0,
+          "earnedGold": 3047,
+          "spentGold": 2730,
+          "championDamageDone": 19604,
+          "championDamageTaken": 45400,
+          "monsterDamageTaken": 0,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 53,
+              "spentGold": 30,
+              "championDamageTaken": 1050,
+              "itemsBought": 1
+            },
+            "Marcella": {
+              "kills": 1,
+              "deaths": 10,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 875,
+              "spentGold": 780,
+              "championDamageTaken": 13170,
+              "itemsBought": 31
+            },
+            "Varg": {
+              "kills": 1,
+              "deaths": 12,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 664,
+              "spentGold": 600,
+              "championDamageTaken": 12000,
+              "itemsBought": 24
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 11,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 663,
+              "spentGold": 570,
+              "championDamageTaken": 9550,
+              "itemsBought": 22
+            },
+            "Vesper Vale": {
+              "kills": 1,
+              "deaths": 9,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 792,
+              "spentGold": 750,
+              "championDamageTaken": 9630,
+              "itemsBought": 30
+            }
+          }
+        },
+        "B": {
+          "kills": 42,
+          "deaths": 3,
+          "assists": 30,
+          "collectedGems": 1200,
+          "submittedGems": 1000,
+          "earnedGold": 11868,
+          "spentGold": 11310,
+          "championDamageDone": 45400,
+          "championDamageTaken": 19604,
+          "monsterDamageTaken": 60116,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 12,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 2328,
+              "spentGold": 2200,
+              "championDamageTaken": 4013.5,
+              "itemsBought": 87
+            },
+            "Ryth": {
+              "kills": 11,
+              "deaths": 0,
+              "collectedGems": 400,
+              "submittedGems": 400,
+              "earnedGold": 2924,
+              "spentGold": 2560,
+              "championDamageTaken": 4097.5,
+              "itemsBought": 102
+            },
+            "Stellar": {
+              "kills": 9,
+              "deaths": 0,
+              "collectedGems": 200,
+              "submittedGems": 200,
+              "earnedGold": 2085,
+              "spentGold": 2060,
+              "championDamageTaken": 699,
+              "itemsBought": 81
+            },
+            "Marcella": {
+              "kills": 5,
+              "deaths": 1,
+              "collectedGems": 200,
+              "submittedGems": 0,
+              "earnedGold": 2509,
+              "spentGold": 2480,
+              "championDamageTaken": 4039,
+              "itemsBought": 98
+            },
+            "Tavi": {
+              "kills": 5,
+              "deaths": 2,
+              "collectedGems": 400,
+              "submittedGems": 400,
+              "earnedGold": 2022,
+              "spentGold": 2010,
+              "championDamageTaken": 6755,
+              "itemsBought": 80
+            }
+          }
+        }
+      },
+      "round": 1498,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "corners",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.3,
+      "reason": "reached 1000 gems in round 517",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1094,
+          "kills": 5,
+          "deaths": 0,
+          "gold_earned": 4752,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 80,
+          "kills": 0,
+          "deaths": 5,
+          "gold_earned": 1218,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 5,
+          "deaths": 0,
+          "assists": 6,
+          "collectedGems": 1130,
+          "submittedGems": 1094,
+          "earnedGold": 4752,
+          "spentGold": 3650,
+          "championDamageDone": 8470,
+          "championDamageTaken": 390,
+          "monsterDamageTaken": 19459.6,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 352,
+              "submittedGems": 352,
+              "earnedGold": 1406,
+              "spentGold": 1400,
+              "championDamageTaken": 250,
+              "itemsBought": 55
+            },
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 182,
+              "submittedGems": 182,
+              "earnedGold": 770,
+              "spentGold": 430,
+              "championDamageTaken": 95,
+              "itemsBought": 16
+            },
+            "Stellar": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 218,
+              "submittedGems": 218,
+              "earnedGold": 980,
+              "spentGold": 670,
+              "championDamageTaken": 0,
+              "itemsBought": 26
+            },
+            "Marcella": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 268,
+              "submittedGems": 232,
+              "earnedGold": 1116,
+              "spentGold": 670,
+              "championDamageTaken": 45,
+              "itemsBought": 26
+            },
+            "Tavi": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 110,
+              "submittedGems": 110,
+              "earnedGold": 480,
+              "spentGold": 480,
+              "championDamageTaken": 0,
+              "itemsBought": 19
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 5,
+          "assists": 0,
+          "collectedGems": 284,
+          "submittedGems": 80,
+          "earnedGold": 1218,
+          "spentGold": 1080,
+          "championDamageDone": 390,
+          "championDamageTaken": 8470,
+          "monsterDamageTaken": 9920,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 58,
+              "submittedGems": 36,
+              "earnedGold": 250,
+              "spentGold": 240,
+              "championDamageTaken": 1740,
+              "itemsBought": 9
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 44,
+              "submittedGems": 22,
+              "earnedGold": 180,
+              "spentGold": 180,
+              "championDamageTaken": 2890,
+              "itemsBought": 7
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 80,
+              "submittedGems": 22,
+              "earnedGold": 340,
+              "spentGold": 330,
+              "championDamageTaken": 2440,
+              "itemsBought": 13
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 80,
+              "submittedGems": 0,
+              "earnedGold": 340,
+              "spentGold": 240,
+              "championDamageTaken": 1100,
+              "itemsBought": 9
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 22,
+              "submittedGems": 0,
+              "earnedGold": 108,
+              "spentGold": 90,
+              "championDamageTaken": 300,
+              "itemsBought": 3
+            }
+          }
+        }
+      },
+      "round": 517,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "corners",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 29.8,
+      "reason": "reached 1000 gems in round 465",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 22,
+          "kills": 0,
+          "deaths": 3,
+          "gold_earned": 788,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1000,
+          "kills": 3,
+          "deaths": 0,
+          "gold_earned": 4872,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 3,
+          "assists": 0,
+          "collectedGems": 182,
+          "submittedGems": 22,
+          "earnedGold": 788,
+          "spentGold": 330,
+          "championDamageDone": 310,
+          "championDamageTaken": 2140,
+          "monsterDamageTaken": 6000,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 58,
+              "submittedGems": 22,
+              "earnedGold": 250,
+              "spentGold": 90,
+              "championDamageTaken": 860,
+              "itemsBought": 3
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 58,
+              "submittedGems": 0,
+              "earnedGold": 250,
+              "spentGold": 150,
+              "championDamageTaken": 660,
+              "itemsBought": 6
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 44,
+              "submittedGems": 0,
+              "earnedGold": 180,
+              "spentGold": 90,
+              "championDamageTaken": 620,
+              "itemsBought": 3
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 22,
+              "submittedGems": 0,
+              "earnedGold": 108,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            }
+          }
+        },
+        "B": {
+          "kills": 3,
+          "deaths": 0,
+          "assists": 2,
+          "collectedGems": 1154,
+          "submittedGems": 1000,
+          "earnedGold": 4872,
+          "spentGold": 4040,
+          "championDamageDone": 2140,
+          "championDamageTaken": 310,
+          "monsterDamageTaken": 17835.8,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 294,
+              "submittedGems": 198,
+              "earnedGold": 1074,
+              "spentGold": 680,
+              "championDamageTaken": 50,
+              "itemsBought": 26
+            },
+            "Ryth": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 182,
+              "submittedGems": 182,
+              "earnedGold": 762,
+              "spentGold": 550,
+              "championDamageTaken": 260,
+              "itemsBought": 21
+            },
+            "Stellar": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 240,
+              "submittedGems": 204,
+              "earnedGold": 1052,
+              "spentGold": 850,
+              "championDamageTaken": 0,
+              "itemsBought": 33
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 240,
+              "submittedGems": 218,
+              "earnedGold": 1102,
+              "spentGold": 1090,
+              "championDamageTaken": 0,
+              "itemsBought": 43
+            },
+            "Tavi": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 198,
+              "submittedGems": 198,
+              "earnedGold": 882,
+              "spentGold": 870,
+              "championDamageTaken": 0,
+              "itemsBought": 34
+            }
+          }
+        }
+      },
+      "round": 465,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "eight",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 29.8,
+      "reason": "reached 1000 gems in round 448",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1014,
+          "kills": 10,
+          "deaths": 1,
+          "gold_earned": 4656,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 22,
+          "kills": 1,
+          "deaths": 11,
+          "gold_earned": 1230,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 10,
+          "deaths": 1,
+          "assists": 8,
+          "collectedGems": 1130,
+          "submittedGems": 1014,
+          "earnedGold": 4656,
+          "spentGold": 4010,
+          "championDamageDone": 11515,
+          "championDamageTaken": 1985,
+          "monsterDamageTaken": 19020.4,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 182,
+              "submittedGems": 138,
+              "earnedGold": 856,
+              "spentGold": 640,
+              "championDamageTaken": 410,
+              "itemsBought": 25
+            },
+            "Ryth": {
+              "kills": 3,
+              "deaths": 0,
+              "collectedGems": 292,
+              "submittedGems": 292,
+              "earnedGold": 1378,
+              "spentGold": 1240,
+              "championDamageTaken": 505,
+              "itemsBought": 49
+            },
+            "Stellar": {
+              "kills": 4,
+              "deaths": 0,
+              "collectedGems": 248,
+              "submittedGems": 248,
+              "earnedGold": 786,
+              "spentGold": 500,
+              "championDamageTaken": 0,
+              "itemsBought": 19
+            },
+            "Marcella": {
+              "kills": 2,
+              "deaths": 1,
+              "collectedGems": 138,
+              "submittedGems": 138,
+              "earnedGold": 370,
+              "spentGold": 370,
+              "championDamageTaken": 1070,
+              "itemsBought": 14
+            },
+            "Tavi": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 270,
+              "submittedGems": 198,
+              "earnedGold": 1266,
+              "spentGold": 1260,
+              "championDamageTaken": 0,
+              "itemsBought": 50
+            }
+          }
+        },
+        "B": {
+          "kills": 1,
+          "deaths": 11,
+          "assists": 1,
+          "collectedGems": 276,
+          "submittedGems": 22,
+          "earnedGold": 1230,
+          "spentGold": 1200,
+          "championDamageDone": 1985,
+          "championDamageTaken": 11515,
+          "monsterDamageTaken": 11400,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 1,
+              "deaths": 3,
+              "collectedGems": 138,
+              "submittedGems": 22,
+              "earnedGold": 640,
+              "spentGold": 630,
+              "championDamageTaken": 4545,
+              "itemsBought": 25
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 22,
+              "submittedGems": 0,
+              "earnedGold": 90,
+              "spentGold": 90,
+              "championDamageTaken": 630,
+              "itemsBought": 3
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 116,
+              "submittedGems": 0,
+              "earnedGold": 500,
+              "spentGold": 480,
+              "championDamageTaken": 3260,
+              "itemsBought": 19
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 2500,
+              "itemsBought": 0
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 580,
+              "itemsBought": 0
+            }
+          }
+        }
+      },
+      "round": 448,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "eight",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.1,
+      "reason": "reached 1000 gems in round 474",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 44,
+          "kills": 0,
+          "deaths": 9,
+          "gold_earned": 838,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1002,
+          "kills": 9,
+          "deaths": 0,
+          "gold_earned": 4392,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 9,
+          "assists": 0,
+          "collectedGems": 182,
+          "submittedGems": 44,
+          "earnedGold": 838,
+          "spentGold": 810,
+          "championDamageDone": 1799,
+          "championDamageTaken": 12940,
+          "monsterDamageTaken": 11640,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 44,
+              "submittedGems": 0,
+              "earnedGold": 180,
+              "spentGold": 180,
+              "championDamageTaken": 6470,
+              "itemsBought": 7
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 58,
+              "submittedGems": 22,
+              "earnedGold": 250,
+              "spentGold": 240,
+              "championDamageTaken": 4105,
+              "itemsBought": 9
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 80,
+              "submittedGems": 22,
+              "earnedGold": 408,
+              "spentGold": 390,
+              "championDamageTaken": 2365,
+              "itemsBought": 15
+            }
+          }
+        },
+        "B": {
+          "kills": 9,
+          "deaths": 0,
+          "assists": 14,
+          "collectedGems": 1046,
+          "submittedGems": 1002,
+          "earnedGold": 4392,
+          "spentGold": 4160,
+          "championDamageDone": 12940,
+          "championDamageTaken": 1799,
+          "monsterDamageTaken": 23123.4,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 396,
+              "submittedGems": 396,
+              "earnedGold": 1876,
+              "spentGold": 1870,
+              "championDamageTaken": 1004,
+              "itemsBought": 74
+            },
+            "Ryth": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 182,
+              "submittedGems": 182,
+              "earnedGold": 866,
+              "spentGold": 850,
+              "championDamageTaken": 335,
+              "itemsBought": 33
+            },
+            "Stellar": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 88,
+              "submittedGems": 88,
+              "earnedGold": 410,
+              "spentGold": 220,
+              "championDamageTaken": 0,
+              "itemsBought": 8
+            },
+            "Marcella": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 234,
+              "submittedGems": 212,
+              "earnedGold": 820,
+              "spentGold": 800,
+              "championDamageTaken": 190,
+              "itemsBought": 31
+            },
+            "Tavi": {
+              "kills": 3,
+              "deaths": 0,
+              "collectedGems": 146,
+              "submittedGems": 124,
+              "earnedGold": 420,
+              "spentGold": 420,
+              "championDamageTaken": 270,
+              "itemsBought": 16
+            }
+          }
+        }
+      },
+      "round": 474,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "elkring",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.8,
+      "reason": "reached 1000 gems in round 695",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1116,
+          "kills": 8,
+          "deaths": 0,
+          "gold_earned": 6446,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 36,
+          "kills": 0,
+          "deaths": 8,
+          "gold_earned": 1208,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 8,
+          "deaths": 0,
+          "assists": 15,
+          "collectedGems": 1188,
+          "submittedGems": 1116,
+          "earnedGold": 6446,
+          "spentGold": 5940,
+          "championDamageDone": 13505,
+          "championDamageTaken": 950,
+          "monsterDamageTaken": 26578.8,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 126,
+              "submittedGems": 126,
+              "earnedGold": 635,
+              "spentGold": 620,
+              "championDamageTaken": 220,
+              "itemsBought": 24
+            },
+            "Ryth": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 540,
+              "submittedGems": 504,
+              "earnedGold": 3259,
+              "spentGold": 3020,
+              "championDamageTaken": 0,
+              "itemsBought": 120
+            },
+            "Stellar": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 108,
+              "submittedGems": 108,
+              "earnedGold": 441,
+              "spentGold": 220,
+              "championDamageTaken": 0,
+              "itemsBought": 8
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 234,
+              "submittedGems": 198,
+              "earnedGold": 1384,
+              "spentGold": 1360,
+              "championDamageTaken": 100,
+              "itemsBought": 54
+            },
+            "Tavi": {
+              "kills": 4,
+              "deaths": 0,
+              "collectedGems": 180,
+              "submittedGems": 180,
+              "earnedGold": 727,
+              "spentGold": 720,
+              "championDamageTaken": 630,
+              "itemsBought": 28
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 8,
+          "assists": 0,
+          "collectedGems": 216,
+          "submittedGems": 36,
+          "earnedGold": 1208,
+          "spentGold": 1140,
+          "championDamageDone": 950,
+          "championDamageTaken": 13505,
+          "monsterDamageTaken": 14400,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 36,
+              "submittedGems": 18,
+              "earnedGold": 196,
+              "spentGold": 180,
+              "championDamageTaken": 3115,
+              "itemsBought": 7
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 36,
+              "submittedGems": 18,
+              "earnedGold": 194,
+              "spentGold": 180,
+              "championDamageTaken": 2825,
+              "itemsBought": 7
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 72,
+              "submittedGems": 0,
+              "earnedGold": 390,
+              "spentGold": 390,
+              "championDamageTaken": 2745,
+              "itemsBought": 15
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 36,
+              "submittedGems": 0,
+              "earnedGold": 196,
+              "spentGold": 180,
+              "championDamageTaken": 1560,
+              "itemsBought": 7
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 36,
+              "submittedGems": 0,
+              "earnedGold": 232,
+              "spentGold": 210,
+              "championDamageTaken": 3260,
+              "itemsBought": 8
+            }
+          }
+        }
+      },
+      "round": 695,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "elkring",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.1,
+      "reason": "reached 1000 gems in round 496",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 108,
+          "kills": 0,
+          "deaths": 12,
+          "gold_earned": 1598,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1008,
+          "kills": 12,
+          "deaths": 0,
+          "gold_earned": 5428,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 12,
+          "assists": 0,
+          "collectedGems": 288,
+          "submittedGems": 108,
+          "earnedGold": 1598,
+          "spentGold": 1320,
+          "championDamageDone": 1005,
+          "championDamageTaken": 14620,
+          "monsterDamageTaken": 20400,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 72,
+              "submittedGems": 36,
+              "earnedGold": 392,
+              "spentGold": 270,
+              "championDamageTaken": 4440,
+              "itemsBought": 10
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 72,
+              "submittedGems": 36,
+              "earnedGold": 388,
+              "spentGold": 270,
+              "championDamageTaken": 5000,
+              "itemsBought": 10
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 72,
+              "submittedGems": 18,
+              "earnedGold": 391,
+              "spentGold": 390,
+              "championDamageTaken": 2140,
+              "itemsBought": 15
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 36,
+              "submittedGems": 18,
+              "earnedGold": 195,
+              "spentGold": 180,
+              "championDamageTaken": 1300,
+              "itemsBought": 7
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 36,
+              "submittedGems": 0,
+              "earnedGold": 232,
+              "spentGold": 210,
+              "championDamageTaken": 1740,
+              "itemsBought": 8
+            }
+          }
+        },
+        "B": {
+          "kills": 12,
+          "deaths": 0,
+          "assists": 14,
+          "collectedGems": 1008,
+          "submittedGems": 1008,
+          "earnedGold": 5428,
+          "spentGold": 4590,
+          "championDamageDone": 14620,
+          "championDamageTaken": 1005,
+          "monsterDamageTaken": 23986.8,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 10,
+              "deaths": 0,
+              "collectedGems": 414,
+              "submittedGems": 414,
+              "earnedGold": 2052,
+              "spentGold": 1740,
+              "championDamageTaken": 883.5,
+              "itemsBought": 68
+            },
+            "Ryth": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 180,
+              "submittedGems": 180,
+              "earnedGold": 1064,
+              "spentGold": 820,
+              "championDamageTaken": 0,
+              "itemsBought": 32
+            },
+            "Stellar": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 162,
+              "submittedGems": 162,
+              "earnedGold": 869,
+              "spentGold": 610,
+              "championDamageTaken": 0,
+              "itemsBought": 24
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 72,
+              "submittedGems": 72,
+              "earnedGold": 390,
+              "spentGold": 370,
+              "championDamageTaken": 0,
+              "itemsBought": 14
+            },
+            "Tavi": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 180,
+              "submittedGems": 180,
+              "earnedGold": 1053,
+              "spentGold": 1050,
+              "championDamageTaken": 121.5,
+              "itemsBought": 42
+            }
+          }
+        }
+      },
+      "round": 496,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "expanse",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.6,
+      "reason": "reached 1000 gems in round 689",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1026,
+          "kills": 0,
+          "deaths": 0,
+          "gold_earned": 4238,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Cassi & Issac",
+            "Ryth"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 616,
+          "kills": 0,
+          "deaths": 0,
+          "gold_earned": 2610,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 0,
+          "assists": 0,
+          "collectedGems": 1070,
+          "submittedGems": 1026,
+          "earnedGold": 4238,
+          "spentGold": 3610,
+          "championDamageDone": 700,
+          "championDamageTaken": 0,
+          "monsterDamageTaken": 15048.2,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 514,
+              "submittedGems": 514,
+              "earnedGold": 1782,
+              "spentGold": 1780,
+              "championDamageTaken": 0,
+              "itemsBought": 70
+            },
+            "Cassi": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 220,
+              "submittedGems": 198,
+              "earnedGold": 1024,
+              "spentGold": 700,
+              "championDamageTaken": 0,
+              "itemsBought": 27
+            },
+            "Issac": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 110,
+              "submittedGems": 88,
+              "earnedGold": 450,
+              "spentGold": 340,
+              "championDamageTaken": 0,
+              "itemsBought": 13
+            },
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 226,
+              "submittedGems": 226,
+              "earnedGold": 982,
+              "spentGold": 790,
+              "championDamageTaken": 0,
+              "itemsBought": 31
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 0,
+          "assists": 0,
+          "collectedGems": 638,
+          "submittedGems": 616,
+          "earnedGold": 2610,
+          "spentGold": 1710,
+          "championDamageDone": 0,
+          "championDamageTaken": 700,
+          "monsterDamageTaken": 7560,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 198,
+              "submittedGems": 198,
+              "earnedGold": 810,
+              "spentGold": 540,
+              "championDamageTaken": 0,
+              "itemsBought": 21
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 198,
+              "submittedGems": 176,
+              "earnedGold": 810,
+              "spentGold": 540,
+              "championDamageTaken": 300,
+              "itemsBought": 21
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 242,
+              "submittedGems": 242,
+              "earnedGold": 990,
+              "spentGold": 630,
+              "championDamageTaken": 400,
+              "itemsBought": 25
+            }
+          }
+        }
+      },
+      "round": 689,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "expanse",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.1,
+      "reason": "reached 1000 gems in round 651",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 484,
+          "kills": 0,
+          "deaths": 0,
+          "gold_earned": 1980,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1084,
+          "kills": 0,
+          "deaths": 0,
+          "gold_earned": 4396,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Cassi & Issac",
+            "Ryth"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 0,
+          "assists": 0,
+          "collectedGems": 484,
+          "submittedGems": 484,
+          "earnedGold": 1980,
+          "spentGold": 1350,
+          "championDamageDone": 300,
+          "championDamageTaken": 800,
+          "monsterDamageTaken": 7520,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 44,
+              "submittedGems": 44,
+              "earnedGold": 180,
+              "spentGold": 180,
+              "championDamageTaken": 0,
+              "itemsBought": 7
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 264,
+              "submittedGems": 264,
+              "earnedGold": 1080,
+              "spentGold": 810,
+              "championDamageTaken": 100,
+              "itemsBought": 32
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 176,
+              "submittedGems": 176,
+              "earnedGold": 720,
+              "spentGold": 360,
+              "championDamageTaken": 700,
+              "itemsBought": 14
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 0,
+          "assists": 0,
+          "collectedGems": 1084,
+          "submittedGems": 1084,
+          "earnedGold": 4396,
+          "spentGold": 3850,
+          "championDamageDone": 800,
+          "championDamageTaken": 300,
+          "monsterDamageTaken": 15046.8,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 378,
+              "submittedGems": 378,
+              "earnedGold": 1428,
+              "spentGold": 1030,
+              "championDamageTaken": 300,
+              "itemsBought": 40
+            },
+            "Cassi": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 340,
+              "submittedGems": 340,
+              "earnedGold": 1408,
+              "spentGold": 1390,
+              "championDamageTaken": 0,
+              "itemsBought": 55
+            },
+            "Issac": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 132,
+              "submittedGems": 132,
+              "earnedGold": 540,
+              "spentGold": 430,
+              "championDamageTaken": 0,
+              "itemsBought": 16
+            },
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 234,
+              "submittedGems": 234,
+              "earnedGold": 1020,
+              "spentGold": 1000,
+              "championDamageTaken": 0,
+              "itemsBought": 39
+            }
+          }
+        }
+      },
+      "round": 651,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "fragment",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.4,
+      "reason": "reached 1000 gems in round 645",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1017,
+          "kills": 10,
+          "deaths": 0,
+          "gold_earned": 6120,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Marcella"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 160,
+          "kills": 0,
+          "deaths": 10,
+          "gold_earned": 1250,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 10,
+          "deaths": 0,
+          "assists": 11,
+          "collectedGems": 1075,
+          "submittedGems": 1017,
+          "earnedGold": 6120,
+          "spentGold": 5060,
+          "championDamageDone": 18337,
+          "championDamageTaken": 1811.5,
+          "monsterDamageTaken": 16477.8,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 237,
+              "submittedGems": 237,
+              "earnedGold": 1310,
+              "spentGold": 940,
+              "championDamageTaken": 675.5,
+              "itemsBought": 37
+            },
+            "Ryth": {
+              "kills": 3,
+              "deaths": 0,
+              "collectedGems": 452,
+              "submittedGems": 394,
+              "earnedGold": 2595,
+              "spentGold": 2120,
+              "championDamageTaken": 553.5,
+              "itemsBought": 84
+            },
+            "Marcella": {
+              "kills": 6,
+              "deaths": 0,
+              "collectedGems": 386,
+              "submittedGems": 386,
+              "earnedGold": 2215,
+              "spentGold": 2000,
+              "championDamageTaken": 582.5,
+              "itemsBought": 79
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 10,
+          "assists": 0,
+          "collectedGems": 248,
+          "submittedGems": 160,
+          "earnedGold": 1250,
+          "spentGold": 1080,
+          "championDamageDone": 1811.5,
+          "championDamageTaken": 18337,
+          "monsterDamageTaken": 6500,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 62,
+              "submittedGems": 29,
+              "earnedGold": 313,
+              "spentGold": 240,
+              "championDamageTaken": 4845,
+              "itemsBought": 9
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 73,
+              "submittedGems": 62,
+              "earnedGold": 376,
+              "spentGold": 360,
+              "championDamageTaken": 5492,
+              "itemsBought": 14
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 113,
+              "submittedGems": 69,
+              "earnedGold": 561,
+              "spentGold": 480,
+              "championDamageTaken": 8000,
+              "itemsBought": 19
+            }
+          }
+        }
+      },
+      "round": 645,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "fragment",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.1,
+      "reason": "reached 1000 gems in round 602",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 33,
+          "kills": 1,
+          "deaths": 0,
+          "gold_earned": 300,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1020,
+          "kills": 0,
+          "deaths": 1,
+          "gold_earned": 6025,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Marcella"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 1,
+          "deaths": 0,
+          "assists": 1,
+          "collectedGems": 44,
+          "submittedGems": 33,
+          "earnedGold": 300,
+          "spentGold": 270,
+          "championDamageDone": 1280,
+          "championDamageTaken": 2185,
+          "monsterDamageTaken": 4640,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 11,
+              "submittedGems": 0,
+              "earnedGold": 63,
+              "spentGold": 60,
+              "championDamageTaken": 785,
+              "itemsBought": 2
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 100,
+              "itemsBought": 0
+            },
+            "Varg": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 33,
+              "submittedGems": 33,
+              "earnedGold": 237,
+              "spentGold": 210,
+              "championDamageTaken": 1300,
+              "itemsBought": 8
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 1,
+          "assists": 0,
+          "collectedGems": 1100,
+          "submittedGems": 1020,
+          "earnedGold": 6025,
+          "spentGold": 5240,
+          "championDamageDone": 2185,
+          "championDamageTaken": 1280,
+          "monsterDamageTaken": 13203.6,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 480,
+              "submittedGems": 458,
+              "earnedGold": 2550,
+              "spentGold": 2390,
+              "championDamageTaken": 100,
+              "itemsBought": 94
+            },
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 408,
+              "submittedGems": 350,
+              "earnedGold": 2250,
+              "spentGold": 1790,
+              "championDamageTaken": 0,
+              "itemsBought": 70
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 212,
+              "submittedGems": 212,
+              "earnedGold": 1225,
+              "spentGold": 1060,
+              "championDamageTaken": 1180,
+              "itemsBought": 42
+            }
+          }
+        }
+      },
+      "round": 602,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "interlock",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.5,
+      "reason": "reached 1000 gems in round 747",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1036,
+          "kills": 10,
+          "deaths": 0,
+          "gold_earned": 4618,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 44,
+          "kills": 0,
+          "deaths": 10,
+          "gold_earned": 1490,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 10,
+          "deaths": 0,
+          "assists": 11,
+          "collectedGems": 1058,
+          "submittedGems": 1036,
+          "earnedGold": 4618,
+          "spentGold": 4090,
+          "championDamageDone": 17658,
+          "championDamageTaken": 2986,
+          "monsterDamageTaken": 12954.6,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 3,
+              "deaths": 0,
+              "collectedGems": 248,
+              "submittedGems": 248,
+              "earnedGold": 1002,
+              "spentGold": 1000,
+              "championDamageTaken": 939,
+              "itemsBought": 39
+            },
+            "Ryth": {
+              "kills": 4,
+              "deaths": 0,
+              "collectedGems": 270,
+              "submittedGems": 270,
+              "earnedGold": 1170,
+              "spentGold": 770,
+              "championDamageTaken": 1327,
+              "itemsBought": 30
+            },
+            "Stellar": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 220,
+              "submittedGems": 198,
+              "earnedGold": 962,
+              "spentGold": 850,
+              "championDamageTaken": 450,
+              "itemsBought": 33
+            },
+            "Marcella": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 320,
+              "submittedGems": 320,
+              "earnedGold": 1484,
+              "spentGold": 1470,
+              "championDamageTaken": 270,
+              "itemsBought": 57
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 10,
+          "assists": 0,
+          "collectedGems": 330,
+          "submittedGems": 44,
+          "earnedGold": 1490,
+          "spentGold": 1470,
+          "championDamageDone": 2986,
+          "championDamageTaken": 17658,
+          "monsterDamageTaken": 9340,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 66,
+              "submittedGems": 0,
+              "earnedGold": 340,
+              "spentGold": 330,
+              "championDamageTaken": 6816,
+              "itemsBought": 13
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 66,
+              "submittedGems": 0,
+              "earnedGold": 340,
+              "spentGold": 330,
+              "championDamageTaken": 4772,
+              "itemsBought": 13
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 88,
+              "submittedGems": 0,
+              "earnedGold": 360,
+              "spentGold": 360,
+              "championDamageTaken": 2520,
+              "itemsBought": 14
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 110,
+              "submittedGems": 44,
+              "earnedGold": 450,
+              "spentGold": 450,
+              "championDamageTaken": 3550,
+              "itemsBought": 18
+            }
+          }
+        }
+      },
+      "round": 747,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "interlock",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.3,
+      "reason": "reached 1000 gems in round 687",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 154,
+          "kills": 2,
+          "deaths": 10,
+          "gold_earned": 1950,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1014,
+          "kills": 10,
+          "deaths": 2,
+          "gold_earned": 4288,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 2,
+          "deaths": 10,
+          "assists": 2,
+          "collectedGems": 418,
+          "submittedGems": 154,
+          "earnedGold": 1950,
+          "spentGold": 1710,
+          "championDamageDone": 4018.5,
+          "championDamageTaken": 26165.5,
+          "monsterDamageTaken": 9920,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 88,
+              "submittedGems": 22,
+              "earnedGold": 360,
+              "spentGold": 270,
+              "championDamageTaken": 5190,
+              "itemsBought": 10
+            },
+            "Marcella": {
+              "kills": 1,
+              "deaths": 1,
+              "collectedGems": 110,
+              "submittedGems": 66,
+              "earnedGold": 535,
+              "spentGold": 510,
+              "championDamageTaken": 8483,
+              "itemsBought": 20
+            },
+            "Varg": {
+              "kills": 1,
+              "deaths": 4,
+              "collectedGems": 88,
+              "submittedGems": 22,
+              "earnedGold": 410,
+              "spentGold": 390,
+              "championDamageTaken": 4640,
+              "itemsBought": 15
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 132,
+              "submittedGems": 44,
+              "earnedGold": 645,
+              "spentGold": 540,
+              "championDamageTaken": 7852.5,
+              "itemsBought": 21
+            }
+          }
+        },
+        "B": {
+          "kills": 10,
+          "deaths": 2,
+          "assists": 13,
+          "collectedGems": 1014,
+          "submittedGems": 1014,
+          "earnedGold": 4288,
+          "spentGold": 3690,
+          "championDamageDone": 26165.5,
+          "championDamageTaken": 4018.5,
+          "monsterDamageTaken": 13578.6,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 2,
+              "deaths": 1,
+              "collectedGems": 248,
+              "submittedGems": 248,
+              "earnedGold": 1034,
+              "spentGold": 970,
+              "championDamageTaken": 1516.5,
+              "itemsBought": 38
+            },
+            "Ryth": {
+              "kills": 5,
+              "deaths": 1,
+              "collectedGems": 314,
+              "submittedGems": 314,
+              "earnedGold": 1220,
+              "spentGold": 1090,
+              "championDamageTaken": 1892,
+              "itemsBought": 43
+            },
+            "Stellar": {
+              "kills": 3,
+              "deaths": 0,
+              "collectedGems": 248,
+              "submittedGems": 248,
+              "earnedGold": 1110,
+              "spentGold": 1110,
+              "championDamageTaken": 610,
+              "itemsBought": 43
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 204,
+              "submittedGems": 204,
+              "earnedGold": 924,
+              "spentGold": 520,
+              "championDamageTaken": 0,
+              "itemsBought": 20
+            }
+          }
+        }
+      },
+      "round": 687,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "lanes",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 29.9,
+      "reason": "reached 1000 gems in round 499",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1022,
+          "kills": 3,
+          "deaths": 1,
+          "gold_earned": 4772,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 534,
+          "kills": 0,
+          "deaths": 5,
+          "gold_earned": 2300,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 3,
+          "deaths": 1,
+          "assists": 3,
+          "collectedGems": 1066,
+          "submittedGems": 1022,
+          "earnedGold": 4772,
+          "spentGold": 3980,
+          "championDamageDone": 5716,
+          "championDamageTaken": 324,
+          "monsterDamageTaken": 15442.4,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 3,
+              "deaths": 0,
+              "collectedGems": 270,
+              "submittedGems": 270,
+              "earnedGold": 1302,
+              "spentGold": 1280,
+              "championDamageTaken": 324,
+              "itemsBought": 50
+            },
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 248,
+              "submittedGems": 248,
+              "earnedGold": 1090,
+              "spentGold": 790,
+              "championDamageTaken": 0,
+              "itemsBought": 31
+            },
+            "Stellar": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 154,
+              "submittedGems": 154,
+              "earnedGold": 630,
+              "spentGold": 430,
+              "championDamageTaken": 0,
+              "itemsBought": 16
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 168,
+              "submittedGems": 124,
+              "earnedGold": 700,
+              "spentGold": 430,
+              "championDamageTaken": 0,
+              "itemsBought": 16
+            },
+            "Tavi": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 226,
+              "submittedGems": 226,
+              "earnedGold": 1050,
+              "spentGold": 1050,
+              "championDamageTaken": 0,
+              "itemsBought": 42
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 5,
+          "assists": 0,
+          "collectedGems": 556,
+          "submittedGems": 534,
+          "earnedGold": 2300,
+          "spentGold": 1500,
+          "championDamageDone": 324,
+          "championDamageTaken": 5716,
+          "monsterDamageTaken": 11974,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 234,
+              "submittedGems": 234,
+              "earnedGold": 970,
+              "spentGold": 450,
+              "championDamageTaken": 506,
+              "itemsBought": 18
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 154,
+              "submittedGems": 132,
+              "earnedGold": 630,
+              "spentGold": 630,
+              "championDamageTaken": 2750,
+              "itemsBought": 25
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 168,
+              "submittedGems": 168,
+              "earnedGold": 700,
+              "spentGold": 420,
+              "championDamageTaken": 1960,
+              "itemsBought": 16
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 500,
+              "itemsBought": 0
+            }
+          }
+        }
+      },
+      "round": 499,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "lanes",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.3,
+      "reason": "reached 1000 gems in round 487",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 600,
+          "kills": 0,
+          "deaths": 0,
+          "gold_earned": 2480,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1016,
+          "kills": 0,
+          "deaths": 0,
+          "gold_earned": 4600,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 0,
+          "assists": 0,
+          "collectedGems": 600,
+          "submittedGems": 600,
+          "earnedGold": 2480,
+          "spentGold": 1770,
+          "championDamageDone": 0,
+          "championDamageTaken": 440,
+          "monsterDamageTaken": 15500,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 190,
+              "submittedGems": 190,
+              "earnedGold": 790,
+              "spentGold": 360,
+              "championDamageTaken": 0,
+              "itemsBought": 14
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 220,
+              "submittedGems": 220,
+              "earnedGold": 900,
+              "spentGold": 810,
+              "championDamageTaken": 0,
+              "itemsBought": 32
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 190,
+              "submittedGems": 190,
+              "earnedGold": 790,
+              "spentGold": 600,
+              "championDamageTaken": 440,
+              "itemsBought": 24
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 0,
+          "assists": 0,
+          "collectedGems": 1038,
+          "submittedGems": 1016,
+          "earnedGold": 4600,
+          "spentGold": 4030,
+          "championDamageDone": 440,
+          "championDamageTaken": 0,
+          "monsterDamageTaken": 12260.2,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 234,
+              "submittedGems": 234,
+              "earnedGold": 1038,
+              "spentGold": 610,
+              "championDamageTaken": 0,
+              "itemsBought": 24
+            },
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 248,
+              "submittedGems": 248,
+              "earnedGold": 1140,
+              "spentGold": 1120,
+              "championDamageTaken": 0,
+              "itemsBought": 44
+            },
+            "Stellar": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 168,
+              "submittedGems": 168,
+              "earnedGold": 700,
+              "spentGold": 700,
+              "championDamageTaken": 0,
+              "itemsBought": 27
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 234,
+              "submittedGems": 212,
+              "earnedGold": 1056,
+              "spentGold": 940,
+              "championDamageTaken": 0,
+              "itemsBought": 37
+            },
+            "Tavi": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 154,
+              "submittedGems": 154,
+              "earnedGold": 666,
+              "spentGold": 660,
+              "championDamageTaken": 0,
+              "itemsBought": 26
+            }
+          }
+        }
+      },
+      "round": 487,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "monolith",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.5,
+      "reason": "reached 1000 gems in round 459",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1026,
+          "kills": 7,
+          "deaths": 0,
+          "gold_earned": 4782,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 154,
+          "kills": 0,
+          "deaths": 7,
+          "gold_earned": 1544,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 7,
+          "deaths": 0,
+          "assists": 3,
+          "collectedGems": 1114,
+          "submittedGems": 1026,
+          "earnedGold": 4782,
+          "spentGold": 3910,
+          "championDamageDone": 6152.5,
+          "championDamageTaken": 1335,
+          "monsterDamageTaken": 12985.4,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 374,
+              "submittedGems": 330,
+              "earnedGold": 1674,
+              "spentGold": 1430,
+              "championDamageTaken": 0,
+              "itemsBought": 56
+            },
+            "Ryth": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 132,
+              "submittedGems": 132,
+              "earnedGold": 500,
+              "spentGold": 310,
+              "championDamageTaken": 180,
+              "itemsBought": 12
+            },
+            "Stellar": {
+              "kills": 4,
+              "deaths": 0,
+              "collectedGems": 198,
+              "submittedGems": 154,
+              "earnedGold": 884,
+              "spentGold": 560,
+              "championDamageTaken": 0,
+              "itemsBought": 21
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 132,
+              "submittedGems": 132,
+              "earnedGold": 540,
+              "spentGold": 440,
+              "championDamageTaken": 1155,
+              "itemsBought": 16
+            },
+            "Tavi": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 278,
+              "submittedGems": 278,
+              "earnedGold": 1184,
+              "spentGold": 1170,
+              "championDamageTaken": 0,
+              "itemsBought": 46
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 7,
+          "assists": 0,
+          "collectedGems": 330,
+          "submittedGems": 154,
+          "earnedGold": 1544,
+          "spentGold": 1320,
+          "championDamageDone": 1335,
+          "championDamageTaken": 6152.5,
+          "monsterDamageTaken": 6280,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 132,
+              "submittedGems": 110,
+              "earnedGold": 680,
+              "spentGold": 570,
+              "championDamageTaken": 1680,
+              "itemsBought": 22
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 22,
+              "submittedGems": 0,
+              "earnedGold": 90,
+              "spentGold": 90,
+              "championDamageTaken": 785,
+              "itemsBought": 3
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 88,
+              "submittedGems": 44,
+              "earnedGold": 360,
+              "spentGold": 360,
+              "championDamageTaken": 1332.5,
+              "itemsBought": 14
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 22,
+              "submittedGems": 0,
+              "earnedGold": 90,
+              "spentGold": 90,
+              "championDamageTaken": 375,
+              "itemsBought": 3
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 66,
+              "submittedGems": 0,
+              "earnedGold": 324,
+              "spentGold": 210,
+              "championDamageTaken": 1980,
+              "itemsBought": 8
+            }
+          }
+        }
+      },
+      "round": 459,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "monolith",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.0,
+      "reason": "reached 1000 gems in round 487",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 198,
+          "kills": 0,
+          "deaths": 7,
+          "gold_earned": 1535,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1018,
+          "kills": 7,
+          "deaths": 1,
+          "gold_earned": 5040,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 7,
+          "assists": 0,
+          "collectedGems": 264,
+          "submittedGems": 198,
+          "earnedGold": 1535,
+          "spentGold": 1200,
+          "championDamageDone": 1340,
+          "championDamageTaken": 8376,
+          "monsterDamageTaken": 6620,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 110,
+              "submittedGems": 110,
+              "earnedGold": 730,
+              "spentGold": 510,
+              "championDamageTaken": 1740,
+              "itemsBought": 20
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 88,
+              "submittedGems": 22,
+              "earnedGold": 360,
+              "spentGold": 270,
+              "championDamageTaken": 4160,
+              "itemsBought": 10
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 44,
+              "submittedGems": 44,
+              "earnedGold": 355,
+              "spentGold": 330,
+              "championDamageTaken": 1180,
+              "itemsBought": 13
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 22,
+              "submittedGems": 22,
+              "earnedGold": 90,
+              "spentGold": 90,
+              "championDamageTaken": 1296,
+              "itemsBought": 3
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            }
+          }
+        },
+        "B": {
+          "kills": 7,
+          "deaths": 1,
+          "assists": 4,
+          "collectedGems": 1106,
+          "submittedGems": 1018,
+          "earnedGold": 5040,
+          "spentGold": 3820,
+          "championDamageDone": 8376,
+          "championDamageTaken": 1340,
+          "monsterDamageTaken": 12438.4,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 308,
+              "submittedGems": 308,
+              "earnedGold": 1292,
+              "spentGold": 850,
+              "championDamageTaken": 45,
+              "itemsBought": 33
+            },
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 212,
+              "submittedGems": 212,
+              "earnedGold": 930,
+              "spentGold": 920,
+              "championDamageTaken": 0,
+              "itemsBought": 36
+            },
+            "Stellar": {
+              "kills": 1,
+              "deaths": 1,
+              "collectedGems": 198,
+              "submittedGems": 154,
+              "earnedGold": 932,
+              "spentGold": 500,
+              "championDamageTaken": 360,
+              "itemsBought": 19
+            },
+            "Marcella": {
+              "kills": 5,
+              "deaths": 0,
+              "collectedGems": 190,
+              "submittedGems": 190,
+              "earnedGold": 1004,
+              "spentGold": 680,
+              "championDamageTaken": 935,
+              "itemsBought": 26
+            },
+            "Tavi": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 198,
+              "submittedGems": 154,
+              "earnedGold": 882,
+              "spentGold": 870,
+              "championDamageTaken": 0,
+              "itemsBought": 34
+            }
+          }
+        }
+      },
+      "round": 487,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "packs",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.2,
+      "reason": "reached 1000 gems in round 501",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1008,
+          "kills": 7,
+          "deaths": 0,
+          "gold_earned": 3996,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Marcella"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 408,
+          "kills": 0,
+          "deaths": 7,
+          "gold_earned": 1430,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 7,
+          "deaths": 0,
+          "assists": 9,
+          "collectedGems": 1052,
+          "submittedGems": 1008,
+          "earnedGold": 3996,
+          "spentGold": 3340,
+          "championDamageDone": 11755,
+          "championDamageTaken": 2170,
+          "monsterDamageTaken": 8752.2,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 528,
+              "submittedGems": 484,
+              "earnedGold": 1906,
+              "spentGold": 1670,
+              "championDamageTaken": 180,
+              "itemsBought": 66
+            },
+            "Ryth": {
+              "kills": 4,
+              "deaths": 0,
+              "collectedGems": 344,
+              "submittedGems": 344,
+              "earnedGold": 1430,
+              "spentGold": 1030,
+              "championDamageTaken": 990,
+              "itemsBought": 40
+            },
+            "Marcella": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 180,
+              "submittedGems": 180,
+              "earnedGold": 660,
+              "spentGold": 640,
+              "championDamageTaken": 1000,
+              "itemsBought": 25
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 7,
+          "assists": 0,
+          "collectedGems": 504,
+          "submittedGems": 408,
+          "earnedGold": 1430,
+          "spentGold": 1080,
+          "championDamageDone": 2170,
+          "championDamageTaken": 11755,
+          "monsterDamageTaken": 8780,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 252,
+              "submittedGems": 204,
+              "earnedGold": 715,
+              "spentGold": 510,
+              "championDamageTaken": 2085,
+              "itemsBought": 20
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 92,
+              "submittedGems": 92,
+              "earnedGold": 250,
+              "spentGold": 120,
+              "championDamageTaken": 2760,
+              "itemsBought": 4
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 160,
+              "submittedGems": 112,
+              "earnedGold": 465,
+              "spentGold": 450,
+              "championDamageTaken": 6910,
+              "itemsBought": 18
+            }
+          }
+        }
+      },
+      "round": 501,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "packs",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 29.8,
+      "reason": "reached 1000 gems in round 552",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 712,
+          "kills": 0,
+          "deaths": 3,
+          "gold_earned": 2250,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1048,
+          "kills": 3,
+          "deaths": 0,
+          "gold_earned": 4120,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Marcella"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 3,
+          "assists": 0,
+          "collectedGems": 760,
+          "submittedGems": 712,
+          "earnedGold": 2250,
+          "spentGold": 1380,
+          "championDamageDone": 850.5,
+          "championDamageTaken": 6600,
+          "monsterDamageTaken": 13040,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 370,
+              "submittedGems": 370,
+              "earnedGold": 1160,
+              "spentGold": 570,
+              "championDamageTaken": 3800,
+              "itemsBought": 22
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 138,
+              "submittedGems": 138,
+              "earnedGold": 375,
+              "spentGold": 360,
+              "championDamageTaken": 2040,
+              "itemsBought": 14
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 252,
+              "submittedGems": 204,
+              "earnedGold": 715,
+              "spentGold": 450,
+              "championDamageTaken": 760,
+              "itemsBought": 18
+            }
+          }
+        },
+        "B": {
+          "kills": 3,
+          "deaths": 0,
+          "assists": 4,
+          "collectedGems": 1096,
+          "submittedGems": 1048,
+          "earnedGold": 4120,
+          "spentGold": 3040,
+          "championDamageDone": 6600,
+          "championDamageTaken": 850.5,
+          "monsterDamageTaken": 10333.2,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 388,
+              "submittedGems": 388,
+              "earnedGold": 1580,
+              "spentGold": 850,
+              "championDamageTaken": 850.5,
+              "itemsBought": 33
+            },
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 390,
+              "submittedGems": 390,
+              "earnedGold": 1419,
+              "spentGold": 1180,
+              "championDamageTaken": 0,
+              "itemsBought": 46
+            },
+            "Marcella": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 318,
+              "submittedGems": 270,
+              "earnedGold": 1121,
+              "spentGold": 1010,
+              "championDamageTaken": 0,
+              "itemsBought": 39
+            }
+          }
+        }
+      },
+      "round": 552,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "pilgrimage",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.3,
+      "reason": "reached 1000 gems in round 722",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1048,
+          "kills": 0,
+          "deaths": 0,
+          "gold_earned": 3747,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 0,
+          "kills": 0,
+          "deaths": 0,
+          "gold_earned": 1120,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 0,
+          "assists": 0,
+          "collectedGems": 1140,
+          "submittedGems": 1048,
+          "earnedGold": 3747,
+          "spentGold": 3050,
+          "championDamageDone": 1440,
+          "championDamageTaken": 0,
+          "monsterDamageTaken": 11264.2,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 252,
+              "submittedGems": 160,
+              "earnedGold": 575,
+              "spentGold": 190,
+              "championDamageTaken": 0,
+              "itemsBought": 7
+            },
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 320,
+              "submittedGems": 320,
+              "earnedGold": 868,
+              "spentGold": 590,
+              "championDamageTaken": 0,
+              "itemsBought": 22
+            },
+            "Stellar": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 68,
+              "submittedGems": 68,
+              "earnedGold": 460,
+              "spentGold": 460,
+              "championDamageTaken": 0,
+              "itemsBought": 18
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 160,
+              "submittedGems": 160,
+              "earnedGold": 535,
+              "spentGold": 520,
+              "championDamageTaken": 0,
+              "itemsBought": 20
+            },
+            "Tavi": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 340,
+              "submittedGems": 340,
+              "earnedGold": 1309,
+              "spentGold": 1290,
+              "championDamageTaken": 0,
+              "itemsBought": 51
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 0,
+          "assists": 0,
+          "collectedGems": 0,
+          "submittedGems": 0,
+          "earnedGold": 1120,
+          "spentGold": 0,
+          "championDamageDone": 0,
+          "championDamageTaken": 1440,
+          "monsterDamageTaken": 0,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 315,
+              "spentGold": 0,
+              "championDamageTaken": 440,
+              "itemsBought": 0
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 175,
+              "spentGold": 0,
+              "championDamageTaken": 240,
+              "itemsBought": 0
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 245,
+              "spentGold": 0,
+              "championDamageTaken": 280,
+              "itemsBought": 0
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 385,
+              "spentGold": 0,
+              "championDamageTaken": 140,
+              "itemsBought": 0
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 340,
+              "itemsBought": 0
+            }
+          }
+        }
+      },
+      "round": 722,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "pilgrimage",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.3,
+      "reason": "reached 1000 gems in round 730",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 0,
+          "kills": 0,
+          "deaths": 0,
+          "gold_earned": 1155,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1056,
+          "kills": 0,
+          "deaths": 0,
+          "gold_earned": 4035,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 0,
+          "assists": 0,
+          "collectedGems": 0,
+          "submittedGems": 0,
+          "earnedGold": 1155,
+          "spentGold": 0,
+          "championDamageDone": 0,
+          "championDamageTaken": 0,
+          "monsterDamageTaken": 0,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 210,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 280,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 420,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 245,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 0,
+          "assists": 0,
+          "collectedGems": 1124,
+          "submittedGems": 1056,
+          "earnedGold": 4035,
+          "spentGold": 3720,
+          "championDamageDone": 0,
+          "championDamageTaken": 0,
+          "monsterDamageTaken": 11465.2,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 406,
+              "submittedGems": 406,
+              "earnedGold": 1654,
+              "spentGold": 1640,
+              "championDamageTaken": 0,
+              "itemsBought": 64
+            },
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 456,
+              "submittedGems": 388,
+              "earnedGold": 1384,
+              "spentGold": 1120,
+              "championDamageTaken": 0,
+              "itemsBought": 44
+            },
+            "Stellar": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 105,
+              "spentGold": 100,
+              "championDamageTaken": 0,
+              "itemsBought": 3
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 126,
+              "submittedGems": 126,
+              "earnedGold": 357,
+              "spentGold": 350,
+              "championDamageTaken": 0,
+              "itemsBought": 13
+            },
+            "Tavi": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 136,
+              "submittedGems": 136,
+              "earnedGold": 535,
+              "spentGold": 510,
+              "championDamageTaken": 0,
+              "itemsBought": 20
+            }
+          }
+        }
+      },
+      "round": 730,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "rows",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.2,
+      "reason": "reached 1000 gems in round 694",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1056,
+          "kills": 2,
+          "deaths": 2,
+          "gold_earned": 5062,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 330,
+          "kills": 2,
+          "deaths": 2,
+          "gold_earned": 1720,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 2,
+          "deaths": 2,
+          "assists": 0,
+          "collectedGems": 1056,
+          "submittedGems": 1056,
+          "earnedGold": 5062,
+          "spentGold": 5020,
+          "championDamageDone": 6644.5,
+          "championDamageTaken": 3208,
+          "monsterDamageTaken": 17698,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 264,
+              "submittedGems": 264,
+              "earnedGold": 1184,
+              "spentGold": 1180,
+              "championDamageTaken": 1083,
+              "itemsBought": 46
+            },
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 528,
+              "submittedGems": 528,
+              "earnedGold": 2535,
+              "spentGold": 2530,
+              "championDamageTaken": 0,
+              "itemsBought": 100
+            },
+            "Stellar": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 264,
+              "submittedGems": 264,
+              "earnedGold": 1293,
+              "spentGold": 1270,
+              "championDamageTaken": 705,
+              "itemsBought": 50
+            },
+            "Marcella": {
+              "kills": 1,
+              "deaths": 1,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 50,
+              "spentGold": 40,
+              "championDamageTaken": 1420,
+              "itemsBought": 1
+            }
+          }
+        },
+        "B": {
+          "kills": 2,
+          "deaths": 2,
+          "assists": 3,
+          "collectedGems": 396,
+          "submittedGems": 330,
+          "earnedGold": 1720,
+          "spentGold": 1260,
+          "championDamageDone": 3208,
+          "championDamageTaken": 6644.5,
+          "monsterDamageTaken": 10640,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 132,
+              "submittedGems": 110,
+              "earnedGold": 540,
+              "spentGold": 360,
+              "championDamageTaken": 1949.5,
+              "itemsBought": 14
+            },
+            "Marcella": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 88,
+              "submittedGems": 66,
+              "earnedGold": 460,
+              "spentGold": 180,
+              "championDamageTaken": 708.5,
+              "itemsBought": 7
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 88,
+              "submittedGems": 88,
+              "earnedGold": 360,
+              "spentGold": 360,
+              "championDamageTaken": 1259,
+              "itemsBought": 14
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 88,
+              "submittedGems": 66,
+              "earnedGold": 360,
+              "spentGold": 360,
+              "championDamageTaken": 2727.5,
+              "itemsBought": 14
+            }
+          }
+        }
+      },
+      "round": 694,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "rows",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.1,
+      "reason": "reached 1000 gems in round 678",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 572,
+          "kills": 1,
+          "deaths": 1,
+          "gold_earned": 2480,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1056,
+          "kills": 1,
+          "deaths": 1,
+          "gold_earned": 4650,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 1,
+          "deaths": 1,
+          "assists": 2,
+          "collectedGems": 594,
+          "submittedGems": 572,
+          "earnedGold": 2480,
+          "spentGold": 2190,
+          "championDamageDone": 2794.5,
+          "championDamageTaken": 12939,
+          "monsterDamageTaken": 11800,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 0,
+              "itemsBought": 0
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 176,
+              "submittedGems": 176,
+              "earnedGold": 720,
+              "spentGold": 720,
+              "championDamageTaken": 2549,
+              "itemsBought": 28
+            },
+            "Varg": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 209,
+              "submittedGems": 209,
+              "earnedGold": 905,
+              "spentGold": 900,
+              "championDamageTaken": 5596,
+              "itemsBought": 36
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 209,
+              "submittedGems": 187,
+              "earnedGold": 855,
+              "spentGold": 570,
+              "championDamageTaken": 4794,
+              "itemsBought": 22
+            }
+          }
+        },
+        "B": {
+          "kills": 1,
+          "deaths": 1,
+          "assists": 1,
+          "collectedGems": 1078,
+          "submittedGems": 1056,
+          "earnedGold": 4650,
+          "spentGold": 4540,
+          "championDamageDone": 12939,
+          "championDamageTaken": 2794.5,
+          "monsterDamageTaken": 18657,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 264,
+              "submittedGems": 264,
+              "earnedGold": 1134,
+              "spentGold": 1120,
+              "championDamageTaken": 0,
+              "itemsBought": 44
+            },
+            "Ryth": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 286,
+              "submittedGems": 264,
+              "earnedGold": 1194,
+              "spentGold": 1120,
+              "championDamageTaken": 1219.5,
+              "itemsBought": 44
+            },
+            "Stellar": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 330,
+              "submittedGems": 330,
+              "earnedGold": 1458,
+              "spentGold": 1450,
+              "championDamageTaken": 1575,
+              "itemsBought": 57
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 198,
+              "submittedGems": 198,
+              "earnedGold": 864,
+              "spentGold": 850,
+              "championDamageTaken": 0,
+              "itemsBought": 33
+            }
+          }
+        }
+      },
+      "round": 678,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "rushbait-v2",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.2,
+      "reason": "reached 1000 gems in round 595",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1036,
+          "kills": 4,
+          "deaths": 0,
+          "gold_earned": 4744,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 198,
+          "kills": 0,
+          "deaths": 5,
+          "gold_earned": 1170,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 4,
+          "deaths": 0,
+          "assists": 4,
+          "collectedGems": 1058,
+          "submittedGems": 1036,
+          "earnedGold": 4744,
+          "spentGold": 4110,
+          "championDamageDone": 6315,
+          "championDamageTaken": 288,
+          "monsterDamageTaken": 15243.4,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 300,
+              "submittedGems": 300,
+              "earnedGold": 1296,
+              "spentGold": 1210,
+              "championDamageTaken": 225,
+              "itemsBought": 48
+            },
+            "Ryth": {
+              "kills": 3,
+              "deaths": 0,
+              "collectedGems": 342,
+              "submittedGems": 342,
+              "earnedGold": 1590,
+              "spentGold": 1260,
+              "championDamageTaken": 63,
+              "itemsBought": 49
+            },
+            "Stellar": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 204,
+              "submittedGems": 182,
+              "earnedGold": 910,
+              "spentGold": 910,
+              "championDamageTaken": 0,
+              "itemsBought": 36
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 212,
+              "submittedGems": 212,
+              "earnedGold": 948,
+              "spentGold": 730,
+              "championDamageTaken": 0,
+              "itemsBought": 28
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 5,
+          "assists": 0,
+          "collectedGems": 286,
+          "submittedGems": 198,
+          "earnedGold": 1170,
+          "spentGold": 1080,
+          "championDamageDone": 288,
+          "championDamageTaken": 6315,
+          "monsterDamageTaken": 5770,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 0,
+              "spentGold": 0,
+              "championDamageTaken": 880,
+              "itemsBought": 0
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 132,
+              "submittedGems": 132,
+              "earnedGold": 540,
+              "spentGold": 540,
+              "championDamageTaken": 340,
+              "itemsBought": 21
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 88,
+              "submittedGems": 44,
+              "earnedGold": 360,
+              "spentGold": 270,
+              "championDamageTaken": 3040,
+              "itemsBought": 10
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 66,
+              "submittedGems": 22,
+              "earnedGold": 270,
+              "spentGold": 270,
+              "championDamageTaken": 2055,
+              "itemsBought": 10
+            }
+          }
+        }
+      },
+      "round": 595,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "rushbait-v2",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.0,
+      "reason": "reached 1000 gems in round 798",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 154,
+          "kills": 0,
+          "deaths": 1,
+          "gold_earned": 630,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1020,
+          "kills": 1,
+          "deaths": 0,
+          "gold_earned": 5440,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 1,
+          "assists": 0,
+          "collectedGems": 154,
+          "submittedGems": 154,
+          "earnedGold": 630,
+          "spentGold": 630,
+          "championDamageDone": 0,
+          "championDamageTaken": 1175,
+          "monsterDamageTaken": 3400,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 66,
+              "submittedGems": 66,
+              "earnedGold": 270,
+              "spentGold": 270,
+              "championDamageTaken": 0,
+              "itemsBought": 10
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 44,
+              "submittedGems": 44,
+              "earnedGold": 180,
+              "spentGold": 180,
+              "championDamageTaken": 100,
+              "itemsBought": 7
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 22,
+              "submittedGems": 22,
+              "earnedGold": 90,
+              "spentGold": 90,
+              "championDamageTaken": 340,
+              "itemsBought": 3
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 22,
+              "submittedGems": 22,
+              "earnedGold": 90,
+              "spentGold": 90,
+              "championDamageTaken": 735,
+              "itemsBought": 3
+            }
+          }
+        },
+        "B": {
+          "kills": 1,
+          "deaths": 0,
+          "assists": 1,
+          "collectedGems": 1158,
+          "submittedGems": 1020,
+          "earnedGold": 5440,
+          "spentGold": 5190,
+          "championDamageDone": 1175,
+          "championDamageTaken": 0,
+          "monsterDamageTaken": 15978,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 452,
+              "submittedGems": 452,
+              "earnedGold": 2136,
+              "spentGold": 2110,
+              "championDamageTaken": 0,
+              "itemsBought": 84
+            },
+            "Ryth": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 198,
+              "submittedGems": 198,
+              "earnedGold": 914,
+              "spentGold": 910,
+              "championDamageTaken": 0,
+              "itemsBought": 36
+            },
+            "Stellar": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 304,
+              "submittedGems": 304,
+              "earnedGold": 1466,
+              "spentGold": 1250,
+              "championDamageTaken": 0,
+              "itemsBought": 49
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 204,
+              "submittedGems": 66,
+              "earnedGold": 924,
+              "spentGold": 920,
+              "championDamageTaken": 0,
+              "itemsBought": 36
+            }
+          }
+        }
+      },
+      "round": 798,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "stampede",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 31.2,
+      "reason": "reached 1000 gems in round 1076",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1080,
+          "kills": 21,
+          "deaths": 0,
+          "gold_earned": 11712,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 0,
+          "kills": 0,
+          "deaths": 21,
+          "gold_earned": 4319,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 21,
+          "deaths": 0,
+          "assists": 16,
+          "collectedGems": 1080,
+          "submittedGems": 1080,
+          "earnedGold": 11712,
+          "spentGold": 10890,
+          "championDamageDone": 43920,
+          "championDamageTaken": 7224.5,
+          "monsterDamageTaken": 17298,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 720,
+              "submittedGems": 720,
+              "earnedGold": 4586,
+              "spentGold": 4410,
+              "championDamageTaken": 450,
+              "itemsBought": 175
+            },
+            "Ryth": {
+              "kills": 8,
+              "deaths": 0,
+              "collectedGems": 360,
+              "submittedGems": 360,
+              "earnedGold": 2938,
+              "spentGold": 2920,
+              "championDamageTaken": 3232,
+              "itemsBought": 116
+            },
+            "Stellar": {
+              "kills": 3,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 2098,
+              "spentGold": 1780,
+              "championDamageTaken": 2205,
+              "itemsBought": 70
+            },
+            "Marcella": {
+              "kills": 5,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 1124,
+              "spentGold": 820,
+              "championDamageTaken": 1197.5,
+              "itemsBought": 32
+            },
+            "Tavi": {
+              "kills": 5,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 966,
+              "spentGold": 960,
+              "championDamageTaken": 140,
+              "itemsBought": 38
+            }
+          }
+        },
+        "B": {
+          "kills": 0,
+          "deaths": 21,
+          "assists": 0,
+          "collectedGems": 0,
+          "submittedGems": 0,
+          "earnedGold": 4319,
+          "spentGold": 3450,
+          "championDamageDone": 7224.5,
+          "championDamageTaken": 43920,
+          "monsterDamageTaken": 0,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 1015,
+              "spentGold": 990,
+              "championDamageTaken": 5804,
+              "itemsBought": 39
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 840,
+              "spentGold": 480,
+              "championDamageTaken": 9200,
+              "itemsBought": 19
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 1085,
+              "spentGold": 690,
+              "championDamageTaken": 13420,
+              "itemsBought": 27
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 665,
+              "spentGold": 630,
+              "championDamageTaken": 10202,
+              "itemsBought": 25
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 5,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 714,
+              "spentGold": 660,
+              "championDamageTaken": 5294,
+              "itemsBought": 26
+            }
+          }
+        }
+      },
+      "round": 1076,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "stampede",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 31.2,
+      "reason": "reached 1000 gems in round 1065",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 0,
+          "kills": 1,
+          "deaths": 23,
+          "gold_earned": 3368,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta",
+            "Vesper Vale"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1080,
+          "kills": 23,
+          "deaths": 1,
+          "gold_earned": 10650,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella",
+            "Tavi"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 1,
+          "deaths": 23,
+          "assists": 2,
+          "collectedGems": 0,
+          "submittedGems": 0,
+          "earnedGold": 3368,
+          "spentGold": 3150,
+          "championDamageDone": 8156.6,
+          "championDamageTaken": 61788,
+          "monsterDamageTaken": 0,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 700,
+              "spentGold": 690,
+              "championDamageTaken": 14670,
+              "itemsBought": 27
+            },
+            "Marcella": {
+              "kills": 1,
+              "deaths": 5,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 715,
+              "spentGold": 630,
+              "championDamageTaken": 11830,
+              "itemsBought": 25
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 945,
+              "spentGold": 930,
+              "championDamageTaken": 14400,
+              "itemsBought": 37
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 840,
+              "spentGold": 750,
+              "championDamageTaken": 9140,
+              "itemsBought": 30
+            },
+            "Vesper Vale": {
+              "kills": 0,
+              "deaths": 6,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 168,
+              "spentGold": 150,
+              "championDamageTaken": 11748,
+              "itemsBought": 6
+            }
+          }
+        },
+        "B": {
+          "kills": 23,
+          "deaths": 1,
+          "assists": 18,
+          "collectedGems": 1080,
+          "submittedGems": 1080,
+          "earnedGold": 10650,
+          "spentGold": 9920,
+          "championDamageDone": 61788,
+          "championDamageTaken": 8156.6,
+          "monsterDamageTaken": 20378.4,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 540,
+              "submittedGems": 540,
+              "earnedGold": 3020,
+              "spentGold": 2660,
+              "championDamageTaken": 0,
+              "itemsBought": 105
+            },
+            "Ryth": {
+              "kills": 14,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 2332,
+              "spentGold": 2320,
+              "championDamageTaken": 4635,
+              "itemsBought": 92
+            },
+            "Stellar": {
+              "kills": 4,
+              "deaths": 0,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 1822,
+              "spentGold": 1810,
+              "championDamageTaken": 814.5,
+              "itemsBought": 72
+            },
+            "Marcella": {
+              "kills": 4,
+              "deaths": 0,
+              "collectedGems": 180,
+              "submittedGems": 180,
+              "earnedGold": 1186,
+              "spentGold": 850,
+              "championDamageTaken": 1584.5,
+              "itemsBought": 33
+            },
+            "Tavi": {
+              "kills": 1,
+              "deaths": 1,
+              "collectedGems": 360,
+              "submittedGems": 360,
+              "earnedGold": 2290,
+              "spentGold": 2280,
+              "championDamageTaken": 1122.6,
+              "itemsBought": 91
+            }
+          }
+        }
+      },
+      "round": 1065,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "swirl",
+      "candidate_side": "A",
+      "team_a": "v9",
+      "team_b": "b2",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.2,
+      "reason": "reached 1000 gems in round 436",
+      "teams": {
+        "A": {
+          "bot": "v9",
+          "gems": 1044,
+          "kills": 12,
+          "deaths": 2,
+          "gold_earned": 5692,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella"
+          ]
+        },
+        "B": {
+          "bot": "b2",
+          "gems": 108,
+          "kills": 1,
+          "deaths": 15,
+          "gold_earned": 1320,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 12,
+          "deaths": 2,
+          "assists": 8,
+          "collectedGems": 1164,
+          "submittedGems": 1044,
+          "earnedGold": 5692,
+          "spentGold": 5380,
+          "championDamageDone": 18639,
+          "championDamageTaken": 2733,
+          "monsterDamageTaken": 17833.8,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 9,
+              "deaths": 0,
+              "collectedGems": 572,
+              "submittedGems": 572,
+              "earnedGold": 3030,
+              "spentGold": 2770,
+              "championDamageTaken": 1053,
+              "itemsBought": 110
+            },
+            "Ryth": {
+              "kills": 0,
+              "deaths": 1,
+              "collectedGems": 44,
+              "submittedGems": 44,
+              "earnedGold": 215,
+              "spentGold": 190,
+              "championDamageTaken": 1200,
+              "itemsBought": 7
+            },
+            "Stellar": {
+              "kills": 2,
+              "deaths": 0,
+              "collectedGems": 438,
+              "submittedGems": 318,
+              "earnedGold": 1912,
+              "spentGold": 1900,
+              "championDamageTaken": 480,
+              "itemsBought": 75
+            },
+            "Marcella": {
+              "kills": 1,
+              "deaths": 1,
+              "collectedGems": 110,
+              "submittedGems": 110,
+              "earnedGold": 535,
+              "spentGold": 520,
+              "championDamageTaken": 0,
+              "itemsBought": 20
+            }
+          }
+        },
+        "B": {
+          "kills": 1,
+          "deaths": 15,
+          "assists": 2,
+          "collectedGems": 144,
+          "submittedGems": 108,
+          "earnedGold": 1320,
+          "spentGold": 960,
+          "championDamageDone": 2733,
+          "championDamageTaken": 18639,
+          "monsterDamageTaken": 11076,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 18,
+              "submittedGems": 18,
+              "earnedGold": 169,
+              "spentGold": 90,
+              "championDamageTaken": 2741.5,
+              "itemsBought": 3
+            },
+            "Marcella": {
+              "kills": 1,
+              "deaths": 4,
+              "collectedGems": 90,
+              "submittedGems": 54,
+              "earnedGold": 712,
+              "spentGold": 630,
+              "championDamageTaken": 7587.5,
+              "itemsBought": 25
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 4,
+              "collectedGems": 18,
+              "submittedGems": 18,
+              "earnedGold": 202,
+              "spentGold": 90,
+              "championDamageTaken": 4180,
+              "itemsBought": 3
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 18,
+              "submittedGems": 18,
+              "earnedGold": 237,
+              "spentGold": 150,
+              "championDamageTaken": 4130,
+              "itemsBought": 6
+            }
+          }
+        }
+      },
+      "round": 436,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamA",
+      "winner": "v9"
+    },
+    {
+      "opponent": "b2",
+      "map": "swirl",
+      "candidate_side": "B",
+      "team_a": "b2",
+      "team_b": "v9",
+      "result": "win",
+      "exit_code": 0,
+      "attempts": 1,
+      "seconds": 30.3,
+      "reason": "reached 1000 gems in round 485",
+      "teams": {
+        "A": {
+          "bot": "b2",
+          "gems": 72,
+          "kills": 0,
+          "deaths": 10,
+          "gold_earned": 1365,
+          "crashes": 0,
+          "draft": [
+            "Ryth",
+            "Marcella",
+            "Varg",
+            "Vendetta"
+          ]
+        },
+        "B": {
+          "bot": "v9",
+          "gems": 1076,
+          "kills": 9,
+          "deaths": 2,
+          "gold_earned": 5081,
+          "crashes": 0,
+          "draft": [
+            "Varg",
+            "Ryth",
+            "Stellar",
+            "Marcella"
+          ]
+        }
+      },
+      "sides": {
+        "A": {
+          "kills": 0,
+          "deaths": 10,
+          "assists": 0,
+          "collectedGems": 196,
+          "submittedGems": 72,
+          "earnedGold": 1365,
+          "spentGold": 1290,
+          "championDamageDone": 3736,
+          "championDamageTaken": 11465,
+          "monsterDamageTaken": 7870,
+          "healingDone": 0,
+          "champions": {
+            "Ryth": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 105,
+              "spentGold": 90,
+              "championDamageTaken": 4415,
+              "itemsBought": 3
+            },
+            "Marcella": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 92,
+              "submittedGems": 30,
+              "earnedGold": 605,
+              "spentGold": 600,
+              "championDamageTaken": 3000,
+              "itemsBought": 24
+            },
+            "Varg": {
+              "kills": 0,
+              "deaths": 2,
+              "collectedGems": 12,
+              "submittedGems": 12,
+              "earnedGold": 88,
+              "spentGold": 60,
+              "championDamageTaken": 1390,
+              "itemsBought": 2
+            },
+            "Vendetta": {
+              "kills": 0,
+              "deaths": 3,
+              "collectedGems": 92,
+              "submittedGems": 30,
+              "earnedGold": 567,
+              "spentGold": 540,
+              "championDamageTaken": 2660,
+              "itemsBought": 21
+            }
+          }
+        },
+        "B": {
+          "kills": 9,
+          "deaths": 2,
+          "assists": 6,
+          "collectedGems": 1076,
+          "submittedGems": 1076,
+          "earnedGold": 5081,
+          "spentGold": 5020,
+          "championDamageDone": 11465,
+          "championDamageTaken": 3736,
+          "monsterDamageTaken": 19055.6,
+          "healingDone": 0,
+          "champions": {
+            "Varg": {
+              "kills": 3,
+              "deaths": 2,
+              "collectedGems": 0,
+              "submittedGems": 0,
+              "earnedGold": 150,
+              "spentGold": 130,
+              "championDamageTaken": 3115,
+              "itemsBought": 4
+            },
+            "Ryth": {
+              "kills": 1,
+              "deaths": 0,
+              "collectedGems": 314,
+              "submittedGems": 314,
+              "earnedGold": 1441,
+              "spentGold": 1420,
+              "championDamageTaken": 180,
+              "itemsBought": 56
+            },
+            "Stellar": {
+              "kills": 0,
+              "deaths": 0,
+              "collectedGems": 414,
+              "submittedGems": 414,
+              "earnedGold": 2093,
+              "spentGold": 2080,
+              "championDamageTaken": 0,
+              "itemsBought": 82
+            },
+            "Marcella": {
+              "kills": 5,
+              "deaths": 0,
+              "collectedGems": 348,
+              "submittedGems": 348,
+              "earnedGold": 1397,
+              "spentGold": 1390,
+              "championDamageTaken": 441,
+              "itemsBought": 55
+            }
+          }
+        }
+      },
+      "round": 485,
+      "bot_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "outcome": "teamB",
+      "winner": "v9"
+    }
+  ]
+}

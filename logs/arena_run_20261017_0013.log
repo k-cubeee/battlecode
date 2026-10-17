@@ -1,0 +1,129 @@
+[00:13:59] Team A: champion v8 | history ['v1', 'v2', 'v3', 'v5', 'v6', 'v8']
+[00:13:59] Team B: champion b1 | history ['b1']
+[00:13:59] ===== Arena 1: Team A v8 vs Team B b1 =====
+[00:13:59] Running matches: run_matches.py v8 b1 --tag arena_1 -j 2 --resume
+v8 vs b1: 34 matches, 17 maps, 2 parallel -> results/arena_1
+[  1/34] vs b1               ambush       cand=A  WIN   reached 1000 gems in round 826
+[  2/34] vs b1               ambush       cand=B  WIN   reached 1000 gems in round 811
+[  3/34] vs b1               collision    cand=A  WIN   reached 1000 gems in round 625
+[  4/34] vs b1               collision    cand=B  WIN   reached 1000 gems in round 666
+[  5/34] vs b1               contest      cand=A  WIN   reached 1000 gems in round 1367
+[  6/34] vs b1               contest      cand=B  WIN   reached 1000 gems in round 1400
+[  7/34] vs b1               corners      cand=A  WIN   reached 1000 gems in round 439
+[  8/34] vs b1               corners      cand=B  WIN   reached 1000 gems in round 467
+[  9/34] vs b1               eight        cand=A  WIN   reached 1000 gems in round 507
+[ 10/34] vs b1               eight        cand=B  WIN   reached 1000 gems in round 442
+[ 11/34] vs b1               elkring      cand=A  WIN   reached 1000 gems in round 465
+[ 12/34] vs b1               elkring      cand=B  WIN   reached 1000 gems in round 555
+[ 13/34] vs b1               expanse      cand=A  WIN   reached 1000 gems in round 667
+[ 14/34] vs b1               expanse      cand=B  WIN   reached 1000 gems in round 692
+[ 15/34] vs b1               fragment     cand=A  WIN   reached 1000 gems in round 644
+[ 16/34] vs b1               fragment     cand=B  WIN   reached 1000 gems in round 618
+[ 17/34] vs b1               interlock    cand=A  WIN   reached 1000 gems in round 564
+[ 18/34] vs b1               interlock    cand=B  WIN   reached 1000 gems in round 617
+[ 19/34] vs b1               lanes        cand=A  WIN   reached 1000 gems in round 456
+[ 20/34] vs b1               lanes        cand=B  WIN   reached 1000 gems in round 482
+[ 21/34] vs b1               monolith     cand=A  WIN   reached 1000 gems in round 455
+[ 22/34] vs b1               monolith     cand=B  WIN   reached 1000 gems in round 448
+[ 23/34] vs b1               packs        cand=A  WIN   reached 1000 gems in round 493
+[ 24/34] vs b1               packs        cand=B  WIN   reached 1000 gems in round 460
+[ 25/34] vs b1               pilgrimage   cand=A  WIN   reached 1000 gems in round 778
+[ 26/34] vs b1               pilgrimage   cand=B  WIN   reached 1000 gems in round 829
+[ 27/34] vs b1               rows         cand=A  WIN   reached 1000 gems in round 607
+[ 28/34] vs b1               rows         cand=B  WIN   reached 1000 gems in round 665
+[ 29/34] vs b1               rushbait-v2  cand=A  WIN   reached 1000 gems in round 583
+[ 30/34] vs b1               rushbait-v2  cand=B  WIN   reached 1000 gems in round 627
+[ 31/34] vs b1               stampede     cand=A  WIN   reached 1000 gems in round 1075
+[ 32/34] vs b1               stampede     cand=B  WIN   reached 1000 gems in round 1356
+[ 33/34] vs b1               swirl        cand=A  WIN   reached 1000 gems in round 488
+[ 34/34] vs b1               swirl        cand=B  WIN   reached 1000 gems in round 572
+
+v8: 34W 0L 0D (0 errors)  win rate 1.0
+  vs b1               34-0  win rate 1.0
+summary: results/arena_1/summary.json
+[00:22:28] Arena 1: Team A 34-0 Team B (Team A win rate 100%)
+   [referee] I've confirmed v8 won 34-0 and found that b1's draft is broken. Now I'm checking v8's source for the draft, banking, fighting and shopping logic.
+   [referee] ### Arena 1 — v8 (Team A) vs b1 (Team B) — 2026-10-17
+Score: Team A 34-0 Team B (100%); draws/errors: 0. Previous arena: first.
+Per map: ambush: A, collision: A, contest: A, corners: A, eight: A, elkr
+[00:23:34] referee finished (cost $0.40)
+
+### Arena 1 — v8 (Team A) vs b1 (Team B) — 2026-10-17
+Score: Team A 34-0 Team B (100%); draws/errors: 0. Previous arena: first.
+Per map: ambush: A, collision: A, contest: A, corners: A, eight: A, elkring: A, expanse: A, fragment: A, interlock: A, lanes: A, monolith: A, packs: A, pilgrimage: A, rows: A, rushbait-v2: A, stampede: A, swirl: A. Average winning round: A 669, B n/a (no wins).
+
+**Why the winner wins**
+- **b1 doesn't really draft. The engine picks its champions at random.** `bots/b1/src/draft.py:play` ends with `cambc.draft.pick(damn)`, and `damn` is never defined, so every draft turn raises a NameError. `main.py:main` catches it with try/except and prints it. By `GameRules.md:86`, if a draft bot crashes without picking, "the remaining selections are randomly selected by the game". That fits the data: b1 fields a different roster on every map, such as Ryth/Marcella/Cassi & Issac/Vesper Vale/Prism on ambush and Willow/Vendetta/Varg on collision. v8 (`bots/v8/src/draft.py:play`) uses fixed priorities: Varg/Ryth/Marcella on 3-pick maps, Varg/Ryth/Stellar/Marcella/Tavi on 5-pick maps, and the Cassi & Issac list for far-apart spawns (`FAR_SPAWN_DIST = 60`). Varg is v8's best farmer, averaging 347.9 gems collected (`candidate_champions.Varg`).
+- **b1 throws away its gems and its time.** Per match, b1 collects 198.5 gems but submits only 115.5, and dies 18.0 times against v8's 0.5. v8 gets 10.0 kills per match (`side_stats`). Carried gems go to the killer, and each death costs 60 rounds out of play (`GameRules.md:217,363`). b1 runs `bot.py:play_turn` → `farm_camps`: it banks only after farming, recalls below 35% HP, and attacks whatever enemy is in range first. v8 has `assess_enemies` and `flee` (bot.py:710-764), which simulate the fight with allied DPS added and run home if v8 would lose. It also banks by distance and gem count (`bank_threshold` = 6·d+10, clamped 30-110, plus `endgame_bank`).
+- **v8 earns far more gold and spends it better.** Earned gold is 5881 vs 1397 per match, and spent gold 4769 vs 1107. v8's `buy_items` (bot.py:949-978) buys shards in sets of 5 that follow a build order, so it gets the set bonuses. b1's `Bot.buy_items` pours all its gold into one randomly chosen shard type (`below(3)`). b1 also never casts a spell: `bot.py` has no cast call. v8 casts through `cast_enemy_spells`, `cast_shield` and `cast_spells`. Champion damage done is 12068 vs 2263 per match.
+- The games end early: all 34 ended at "reached 1000 gems", 18 of them by round 627 or earlier. The fastest were corners (439) and eight (442).
+
+**Where the loser is competitive**
+- **Long, fight-heavy maps take v8 much longer.** Contest ended at rounds 1367 and 1400, and stampede at 1075 and 1356. Both are about twice the 669 average. On contest with b1 on side A, b1 had 6 kills and 13846.5 champion damage, and v8 took 6 deaths. That is v8's worst death count in the arena. In both contest games b1 collected 0 gems but still slowed v8. Hypothesis: contest and stampede force champion-on-champion contact even with a random b1 roster.
+- None of b1's wins or close results can be credited to its own logic. Its best gem total in any match was 144 (ambush, side A).
+
+**Advice to the lead**
+- **Team B: fix the draft before anything else.** Replace `pick(damn)` with a real priority list. Varg first is well supported: in v8's data Varg is the top farmer in every match (`candidate_champions`). After that, b1 should bank when carrying gems near enemies and should stop fighting fights it loses. Losing 83 gems per match on death (198.5 collected − 115.5 submitted) is the cheapest thing to recover. Team B can learn the roster and the banking thresholds from `results/arena_1`, since those files are open to both teams.
+- **Team A: v8 has little to learn from b1, so keep developing against Team A's own pool.** The one weak spot this arena shows is contest/stampede, where v8 lost 6 champions and needed about 1400 rounds. Hypothesis: retreat logic there (`flee`, `keep` threshold in `assess_enemies`) could be tuned for a better kill/death trade.
+- **The harness can't see caught exceptions.** b1's draft error happens every draft turn, but every match reports `crashes: 0` and `bot_faults` 0, and none of the `.txt` files contains "error". `main.py`'s try/except hides it from the crash counter. Consider surfacing caught `bot error:` lines in the match summary. No fuel or timeout problems appeared: no errors, and every match ended by gem total.
+
+[00:23:34] ########## Round 1/5 ##########
+[00:23:34] ===== Team A: building v9 (champion: v8) =====
+   [A:analyst] Still on the v8 analysis. I've read NOTES.md and both summaries (eval_v8 64-38, arena_1 34-0 vs b1). Now I'm pulling the per-match results.
+   [A:analyst] I'm checking the camp table in GameRules, then the v8 source, to explain the slow wins and the lopsided games where both teams run the same code.
+   [A:analyst] Checking the camp-group events in stampede to confirm which monsters drop those 360-gem chunks.
+   [A:analyst] The lopsided same-code games look like a death spiral: the losing side earns 680-1125 gold against 4891-4940. Checking when the first deaths happen in fragment.
+Traceback (most recent call last):
+  File "/home/kcube/battlecode/venv/lib/python3.14/site-packages/claude_agent_sdk/_internal/query.py", line 391, in _read_messages
+    async for message in self.transport.read_messages():
+    ...<114 lines>...
+        await self._message_send.send(message)
+  File "/home/kcube/battlecode/venv/lib/python3.14/site-packages/claude_agent_sdk/_internal/transport/subprocess_cli.py", line 1162, in _read_messages_impl
+    raise self._exit_error
+claude_agent_sdk._errors.ProcessError: Command failed with exit code 1 (exit code: 1)
+Error output: Check stderr output for details
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kcube/battlecode/orchestrator_arena.py", line 468, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.14/asyncio/runners.py", line 204, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.14/asyncio/runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.14/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/kcube/battlecode/orchestrator_arena.py", line 450, in main
+    spent += await team_cycle(t, states[t.key], MAX_RUN_COST_USD - spent,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              latest_arena_tag(arena))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kcube/battlecode/orchestrator_arena.py", line 285, in team_cycle
+    analysis, cost = await oh.run_agent(
+                     ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/home/kcube/battlecode/orchestrator_hardened.py", line 340, in run_agent
+    async for msg in query(prompt=prompt, options=options):
+    ...<6 lines>...
+            cost = msg.total_cost_usd or 0.0
+  File "/home/kcube/battlecode/venv/lib/python3.14/site-packages/claude_agent_sdk/query.py", line 129, in query
+    async for message in client.process_query(
+    ...<2 lines>...
+        yield message
+  File "/home/kcube/battlecode/venv/lib/python3.14/site-packages/claude_agent_sdk/_internal/client.py", line 56, in process_query
+    async for msg in inner:
+        yield msg
+  File "/home/kcube/battlecode/venv/lib/python3.14/site-packages/claude_agent_sdk/_internal/client.py", line 204, in _process_query_inner
+    async for data in query.receive_messages():
+    ...<2 lines>...
+            yield message
+  File "/home/kcube/battlecode/venv/lib/python3.14/site-packages/claude_agent_sdk/_internal/query.py", line 1144, in receive_messages
+    raise exc
+claude_agent_sdk._errors.ResultError: Claude Code returned an error result: Reached maximum number of turns (30) (exit code: 1)

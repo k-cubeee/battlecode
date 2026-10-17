@@ -1,0 +1,20 @@
+cambc run v1 b1 --map packs -o /home/kcube/battlecode/results/benchB_b1/v1/.packs__cand-B.replay --statistics /home/kcube/battlecode/results/benchB_b1/v1/packs__cand-B.stats.json
+
+v1 vs b1 on /home/kcube/battlecode/maps/packs.map26a
+Team B (b1) wins: reached 1000 gems in round 790
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v1    548     3     11        1940        0  Ren, Prism, Stellar
+  B    b1   1000     2     10        3000        0  Ren, Vendetta, Varg
+replay bundle: /home/kcube/battlecode/results/benchB_b1/v1/.packs__cand-B.replay/v1-vs-b1-1792174745432.repl26a
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+finished: round 790/2000 — teamB

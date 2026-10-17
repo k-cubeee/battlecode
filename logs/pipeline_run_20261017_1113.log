@@ -1,0 +1,23 @@
+[11:13:33] champion v9 | history ['v1', 'v2', 'v3', 'v5', 'v6', 'v8', 'v9'] | model claude-opus-5-5 | 5 rounds, cap $50
+[11:13:33] ########## Round 1/5 ##########
+[11:13:33] ===== building v15 (champion: v9) =====
+   [researcher] I'm pulling per-map results against v9 for each rejected version from the summary files.
+   [researcher] Checking whether v9's code has fuel/time-dependent logic that could explain the non-mirror swirl games.
+   [researcher] The wasm seems to contain the source text; checking whether v9's build matches its source.
+   [researcher] Found `fuelExhausted` events in the export; inspecting who and when.
+   [researcher] Now gathering per-map results vs v9 for v11, v12 and v13.
+   [researcher] Now reading eval_v10's side_stats (the cleanest mirror) for timing of the decisive moment.
+   [researcher] Looking at v14's flipped games (the only rejected version that flipped maps).
+   [researcher] Examining an early-decided mirror game (fragment, A loses with 0 submitted) to locate the opening fight.
+   [researcher] Fragment has zero fuel exhaustion while swirl has many — checking other maps.
+   [researcher] Now confirming the code lines in v9 (bank veto, kappa, shopping trigger).
+   [researcher] Checking the opening of an early-decided mirror (eight: B loses 7 champions before r300) — where and to whom the deaths happen.
+[11:21:01] researcher stopped early (error_max_turns): Claude Code returned an error result: Reached maximum number of turns (60) (exit code: 1)
+[11:21:01] researcher finished (cost $2.98)
+   [designer] Reading NOTES.md and the eval summaries to locate which maps each rejected version flipped against v9; next I'll read v9's code to design the change.
+   [designer] Counting how often each team's champions run out of fuel on swirl (a possible cause of v9's unexplained swirl wins).
+   [designer] Fuel exhaustion is symmetric (both teams run out on rounds 1 and 3 plus a few later turns), so it doesn't explain the swirl gap. Now reading v9's fight and banking code.
+   [designer] Looking at when the first deaths and first banks happen in each v9 mirror game, to find where the opening is lost.
+   [designer] Swirl's round-1 fuel events have Team A Varg at input 8 and Team B Varg at input 9, which suggests the two teams' turns interleave champion by champion. Checking Ryth's entry to confirm.
+[11:25:02] designer stopped early (error_max_turns): Claude Code returned an error result: Reached maximum number of turns (40) (exit code: 1)
+[11:25:02] designer finished (cost $1.93)

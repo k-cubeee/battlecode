@@ -1,0 +1,21 @@
+cambc run b5 b2 --map lanes -o /home/kcube/battlecode/results/evalB_b5/b2/.lanes__cand-A.replay --statistics /home/kcube/battlecode/results/evalB_b5/b2/lanes__cand-A.stats.json --json
+
+b5 vs b2 on /home/kcube/battlecode/maps/lanes.map26a
+Team B (b2) wins: reached 1000 gems in round 743
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    b5    958     0      0        4024        0  Ryth, Marcella, Varg, Vendetta, Vesper Vale
+  B    b2   1000     0      1        4212        0  Ryth, Marcella, Varg, Vendetta, Vesper Vale
+replay bundle: /home/kcube/battlecode/results/evalB_b5/b2/.lanes__cand-A.replay/b5-vs-b2-1792206181487.repl26a
+match summary: /home/kcube/battlecode/results/evalB_b5/b2/lanes__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+finished: round 743/2000 — teamB

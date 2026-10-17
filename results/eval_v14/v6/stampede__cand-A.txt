@@ -1,0 +1,25 @@
+cambc run v14 v6 --map stampede -o /home/kcube/battlecode/results/eval_v14/v6/.stampede__cand-A.replay --statistics /home/kcube/battlecode/results/eval_v14/v6/stampede__cand-A.stats.json --json
+
+v14 vs v6 on /home/kcube/battlecode/maps/stampede.map26a
+Team A (v14) wins: reached 1000 gems in round 1166
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v14  1080    13      7        5548        0  Varg, Ryth, Stellar, Marcella, Tavi
+  B    v6    360     6     13        9238        0  Varg, Ryth, Stellar, Marcella, Willow
+replay bundle: /home/kcube/battlecode/results/eval_v14/v6/.stampede__cand-A.replay/v14-vs-v6-1792212376912.repl26a
+match summary: /home/kcube/battlecode/results/eval_v14/v6/stampede__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+running: round 800/2000
+running: round 900/2000
+running: round 1000/2000
+running: round 1100/2000
+finished: round 1166/2000 — teamA

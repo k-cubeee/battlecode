@@ -1,0 +1,22 @@
+cambc run b7 b2 --map corners -o /home/kcube/battlecode/results/evalB_b7/b2/.corners__cand-A.replay --statistics /home/kcube/battlecode/results/evalB_b7/b2/corners__cand-A.stats.json --json
+
+b7 vs b2 on /home/kcube/battlecode/maps/corners.map26a
+Team B (b2) wins: reached 1000 gems in round 817
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    b7    682     1      1        3946        0  Ryth, Marcella, Varg, Vendetta, Vesper Vale
+  B    b2   1008     0      3        4652        0  Ryth, Marcella, Varg, Vendetta, Vesper Vale
+replay bundle: /home/kcube/battlecode/results/evalB_b7/b2/.corners__cand-A.replay/b7-vs-b2-1792212646943.repl26a
+match summary: /home/kcube/battlecode/results/evalB_b7/b2/corners__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+running: round 800/2000
+finished: round 817/2000 — teamB

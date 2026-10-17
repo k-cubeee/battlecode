@@ -1,0 +1,21 @@
+cambc run v17 v9 --map expanse -o /home/kcube/battlecode/results/eval_v17/v9/.expanse__cand-A.replay --statistics /home/kcube/battlecode/results/eval_v17/v9/expanse__cand-A.stats.json --json
+
+v17 vs v9 on /home/kcube/battlecode/maps/expanse.map26a
+Team A (v17) wins: reached 1000 gems in round 718
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v17  1020     2      0        3974        0  Varg, Ryth, Marcella
+  B    v9    852     0      2        3582        0  Varg, Cassi & Issac, Ryth
+replay bundle: /home/kcube/battlecode/results/eval_v17/v9/.expanse__cand-A.replay/v17-vs-v9-1792239376761.repl26a
+match summary: /home/kcube/battlecode/results/eval_v17/v9/expanse__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+finished: round 718/2000 — teamA

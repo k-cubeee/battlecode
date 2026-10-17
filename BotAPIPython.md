@@ -10,6 +10,370 @@ import cambc as bc
 
 ## cambc
 
+### Ability
+
+```python
+class Ability: ...
+```
+
+One of a champion's two ability slots.
+
+Public SDK type declaration.
+
+```python
+class Ability: ...
+```
+
+### AbilityAoeDamage
+
+```python
+class AbilityAoeDamage: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; range: float; modifier: float; radius: float; duration: int
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class AbilityAoeDamage: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; range: float; modifier: float; radius: float; duration: int
+```
+
+### AbilityAttackReset
+
+```python
+class AbilityAttackReset: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; enhanced_attack: bool
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class AbilityAttackReset: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; enhanced_attack: bool
+```
+
+### AbilityCc
+
+```python
+class AbilityCc: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; range: float; modifier: float; duration: int
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class AbilityCc: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; range: float; modifier: float; duration: int
+```
+
+### AbilityDamage
+
+```python
+class AbilityDamage: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; range: float; modifier: float
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class AbilityDamage: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; range: float; modifier: float
+```
+
+### AbilityDash
+
+```python
+class AbilityDash: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; range: float
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class AbilityDash: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; range: float
+```
+
+### AbilityHeal
+
+```python
+class AbilityHeal: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; range: float; modifier: float
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class AbilityHeal: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; range: float; modifier: float
+```
+
+### AbilityInfo
+
+```python
+AbilityInfo = Union[ AbilityAttackReset, AbilityDamage, AbilityAoeDamage, AbilityCc, AbilityHeal, AbilityDash, AbilityShield ]
+```
+
+
+
+Public SDK type declaration.
+
+```python
+AbilityInfo = Union[ AbilityAttackReset, AbilityDamage, AbilityAoeDamage, AbilityCc, AbilityHeal, AbilityDash, AbilityShield ]
+```
+
+### AbilityKind
+
+```python
+class AbilityKind(IntEnum): ATTACK_RESET = 1; DAMAGE = 2; AOE_DAMAGE = 3; CC = 4; HEAL = 5; DASH = 6; SHIELD = 7
+```
+
+Ability property kind.
+
+Public SDK type declaration.
+
+```python
+class AbilityKind(IntEnum): ATTACK_RESET = 1; DAMAGE = 2; AOE_DAMAGE = 3; CC = 4; HEAL = 5; DASH = 6; SHIELD = 7
+```
+
+### AbilityShield
+
+```python
+class AbilityShield: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; range: float; modifier: float; duration: int
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class AbilityShield: max_cooldown: int; valid_targets: Any; exclusive_with_movement: bool; range: float; modifier: float; duration: int
+```
+
+### AbilityTargetMask
+
+```python
+class AbilityTargetMask: CAMPS: ClassVar[AbilityTargetMask]; ENEMIES: ClassVar[AbilityTargetMask]; ALLIES: ClassVar[AbilityTargetMask]; SELF: ClassVar[AbilityTargetMask]; GROUND: ClassVar[AbilityTargetMask]
+```
+
+Valid ability target bits.
+
+Public SDK type declaration.
+
+```python
+class AbilityTargetMask: CAMPS: ClassVar[AbilityTargetMask]; ENEMIES: ClassVar[AbilityTargetMask]; ALLIES: ClassVar[AbilityTargetMask]; SELF: ClassVar[AbilityTargetMask]; GROUND: ClassVar[AbilityTargetMask]
+```
+
+### AltarLock
+
+```python
+class AltarLock: ...
+```
+
+Snapshot of an altar lock.
+
+Public SDK type declaration.
+
+```python
+class AltarLock: ...
+```
+
+### Bitboard
+
+```python
+class Bitboard: ...
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class Bitboard: ...
+```
+
+### Buff
+
+```python
+Buff = Union[BuffShield, BuffStun, BuffEnhancedAttack]
+```
+
+
+
+Public SDK type declaration.
+
+```python
+Buff = Union[BuffShield, BuffStun, BuffEnhancedAttack]
+```
+
+### BuffCollection
+
+```python
+class BuffCollection: ...
+```
+
+Snapshot of a unit's active buffs; iterates present buffs in BuffTypes order.
+
+Public SDK type declaration.
+
+```python
+class BuffCollection: ...
+```
+
+### BuffEnhancedAttack
+
+```python
+class BuffEnhancedAttack: kind: ClassVar[int]; duration: int
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class BuffEnhancedAttack: kind: ClassVar[int]; duration: int
+```
+
+### BuffRestrictions
+
+```python
+class BuffRestrictions: MOVE: ClassVar[BuffRestrictions]; ATTACK: ClassVar[BuffRestrictions]; CAST: ClassVar[BuffRestrictions]; SHOP: ClassVar[BuffRestrictions]; CONSUMABLE: ClassVar[BuffRestrictions]; WARD: ClassVar[BuffRestrictions]
+```
+
+Actions blocked by buffs.
+
+Public SDK type declaration.
+
+```python
+class BuffRestrictions: MOVE: ClassVar[BuffRestrictions]; ATTACK: ClassVar[BuffRestrictions]; CAST: ClassVar[BuffRestrictions]; SHOP: ClassVar[BuffRestrictions]; CONSUMABLE: ClassVar[BuffRestrictions]; WARD: ClassVar[BuffRestrictions]
+```
+
+### BuffShield
+
+```python
+class BuffShield: kind: ClassVar[int]; duration: int; value: float
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class BuffShield: kind: ClassVar[int]; duration: int; value: float
+```
+
+### BuffStun
+
+```python
+class BuffStun: kind: ClassVar[int]; duration: int
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class BuffStun: kind: ClassVar[int]; duration: int
+```
+
+### BuffTypes
+
+```python
+class BuffTypes(IntEnum): SHIELD = 0; STUN = 1; ENHANCED_ATTACK = 2; COUNT = 3
+```
+
+Buff kind.
+
+Public SDK type declaration.
+
+```python
+class BuffTypes(IntEnum): SHIELD = 0; STUN = 1; ENHANCED_ATTACK = 2; COUNT = 3
+```
+
+### Camp
+
+```python
+class Camp(Unit): ...
+```
+
+A neutral camp; int(camp) is its engine handle.
+
+Public SDK type declaration.
+
+```python
+class Camp(Unit): ...
+```
+
+### CampState
+
+```python
+class CampState(IntEnum): DEAD = 0; ALIVE = 1; ASLEEP = 2
+```
+
+Individual camp lifecycle; ALIVE means awake, ASLEEP means living but dormant.
+
+Public SDK type declaration.
+
+```python
+class CampState(IntEnum): DEAD = 0; ALIVE = 1; ASLEEP = 2
+```
+
+### CampStats
+
+```python
+class CampStats: vision_radius: float; base_move_speed: int; base_attack_range: int; base_health: float; health_growth: float; base_strength: float; strength_growth: float; base_focus: float; focus_growth: float
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class CampStats: vision_radius: float; base_move_speed: int; base_attack_range: int; base_health: float; health_growth: float; base_strength: float; strength_growth: float; base_focus: float; focus_growth: float
+```
+
+### CampType
+
+```python
+class CampType(IntEnum): WOLF = 0; ELK = 1; GEM_CLUSTER = 2; GOLD_CLUSTER = 3; MONOLITH = 4
+```
+
+Neutral camp type.
+
+Public SDK type declaration.
+
+```python
+class CampType(IntEnum): WOLF = 0; ELK = 1; GEM_CLUSTER = 2; GOLD_CLUSTER = 3; MONOLITH = 4
+```
+
+### Champion
+
+```python
+class Champion(Unit): ...
+```
+
+A champion; int(champion) is its engine handle. Champion.design(kind) builds a draft design.
+
+Public SDK type declaration.
+
+```python
+class Champion(Unit): ...
+```
+
+### ChampionDraft
+
+```python
+class ChampionDraft(IntEnum): RYTH = 0; VESPER_VALE = 1; VENDETTA = 2; CASSI_AND_ISSAC = 3; STELLAR = 4; PRISM = 5; MARCELLA = 6; WILLOW = 7; REN = 8; VARG = 9; TAVI = 10
+```
+
+Draft pick.
+
+Public SDK type declaration.
+
+```python
+class ChampionDraft(IntEnum): RYTH = 0; VESPER_VALE = 1; VENDETTA = 2; CASSI_AND_ISSAC = 3; STELLAR = 4; PRISM = 5; MARCELLA = 6; WILLOW = 7; REN = 8; VARG = 9; TAVI = 10
+```
+
 ### champions
 
 ```python
@@ -27,6 +391,135 @@ Inputs:
 result = bc.champions(team)
 ```
 
+### ChampionState
+
+```python
+class ChampionState: ALIVE: ClassVar[ChampionState]; RECALLING: ClassVar[ChampionState]; SUBMITTING_GEMS: ClassVar[ChampionState]; CAN_MOVE: ClassVar[ChampionState]; CAN_ATTACK: ClassVar[ChampionState]; COMPLETED_TURN: ClassVar[ChampionState]; RECALL_STARTED: ClassVar[ChampionState]; SUBMIT_GEMS_STARTED: ClassVar[ChampionState]; RECALL_CANCELLED: ClassVar[ChampionState]; SUBMIT_GEMS_CANCELLED: ClassVar[ChampionState]; TELEPORTING: ClassVar[ChampionState]; CAN_CAST: ClassVar[ChampionState]
+```
+
+Champion state bits.
+
+Public SDK type declaration.
+
+```python
+class ChampionState: ALIVE: ClassVar[ChampionState]; RECALLING: ClassVar[ChampionState]; SUBMITTING_GEMS: ClassVar[ChampionState]; CAN_MOVE: ClassVar[ChampionState]; CAN_ATTACK: ClassVar[ChampionState]; COMPLETED_TURN: ClassVar[ChampionState]; RECALL_STARTED: ClassVar[ChampionState]; SUBMIT_GEMS_STARTED: ClassVar[ChampionState]; RECALL_CANCELLED: ClassVar[ChampionState]; SUBMIT_GEMS_CANCELLED: ClassVar[ChampionState]; TELEPORTING: ClassVar[ChampionState]; CAN_CAST: ClassVar[ChampionState]
+```
+
+### ChampionStats
+
+```python
+class ChampionStats: vision_radius: float; base_move_speed: int; base_attack_range: int; base_health: float; health_growth: float; base_strength: float; strength_growth: float; base_focus: float; focus_growth: float; camp_damage_multiplier: float
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class ChampionStats: vision_radius: float; base_move_speed: int; base_attack_range: int; base_health: float; health_growth: float; base_strength: float; strength_growth: float; base_focus: float; focus_growth: float; camp_damage_multiplier: float
+```
+
+### ChampionType
+
+```python
+class ChampionType(IntEnum): RYTH = 0; VESPER_VALE = 1; VENDETTA = 2; CASSI = 3; ISSAC = 4; STELLAR = 5; PRISM = 6; MARCELLA = 7; WILLOW = 8; REN = 9; VARG = 10; TAVI = 11
+```
+
+Playable champion type.
+
+Public SDK type declaration.
+
+```python
+class ChampionType(IntEnum): RYTH = 0; VESPER_VALE = 1; VENDETTA = 2; CASSI = 3; ISSAC = 4; STELLAR = 5; PRISM = 6; MARCELLA = 7; WILLOW = 8; REN = 9; VARG = 10; TAVI = 11
+```
+
+### Consumable
+
+```python
+class Consumable: ...
+```
+
+A champion's consumable slot of one type.
+
+Public SDK type declaration.
+
+```python
+class Consumable: ...
+```
+
+### ConsumableInfo
+
+```python
+class ConsumableInfo: cost: int; carry_limit: int
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class ConsumableInfo: cost: int; carry_limit: int
+```
+
+### ConsumableType
+
+```python
+class ConsumableType(int): TP_CRYSTAL: ClassVar[ConsumableType]; ALTAR_LOCK: ClassVar[ConsumableType]; COUNT: ClassVar[int]; name: str
+```
+
+Consumable type with getters that forward to info().
+
+Public SDK type declaration.
+
+```python
+class ConsumableType(int): TP_CRYSTAL: ClassVar[ConsumableType]; ALTAR_LOCK: ClassVar[ConsumableType]; COUNT: ClassVar[int]; name: str
+```
+
+### debug_block
+
+```python
+def debug_block(fn: Callable[[], object]) -> None
+```
+
+Run `fn` without spending fuel when the bot is built in debug mode (`cambc run`, the default); skipped entirely in release mode (`--release`, and always on the platform). The free budget per block is 1000 turns, beyond which the rest is charged; ending the turn inside closes the free window. Can also be used as a bare decorator. Args: fn: Callable taking no arguments; never called in release mode.
+
+Use this value in your bot's draft or turn logic.
+
+Inputs:
+- fn: Callable[[], object]
+
+```python
+bc.debug_block(fn)
+```
+
+### DistanceField
+
+```python
+class DistanceField: ...
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class DistanceField: ...
+```
+
+### DraftMemoryBuffer
+
+```python
+class DraftMemoryBuffer: ...
+```
+
+Draft memory as read at startup; submit() replaces it during the draft.
+
+Public SDK type declaration.
+
+```python
+class DraftMemoryBuffer: ...
+```
+
 ### end_turn
 
 ```python
@@ -40,6 +533,34 @@ Stop optional planning when little fuel remains and yield the current turn.
 ```python
 if bc.fuel_remaining() < 1000:
     bc.end_turn()
+```
+
+### Error
+
+```python
+class Error(Exception): code: int; message: str
+```
+
+Engine error raised by API calls; code is an ErrorCode.
+
+Public SDK type declaration.
+
+```python
+class Error(Exception): code: int; message: str
+```
+
+### ErrorCode
+
+```python
+class ErrorCode(IntEnum): SUCCESS = 0; INVALID_HANDLE = 1; OUT_OF_MEMORY = 2; FILE_NOT_FOUND = 3; NULL_POINTER = 4; INVALID_ARGUMENT = 5; MAP_PARSE_ERROR = 6; INVALID_MAP_FILE = 7; INVALID_MAP_VERSION = 8; REPLAY_PARSE_ERROR = 9; INVALID_REPLAY_FILE = 10; INVALID_REPLAY_VERSION = 11; INVALID_DRAFT = 12; DRAFT_NOT_DRAFTING = 13; DRAFT_DUPLICATE_CHAMPION = 14; DRAFT_INVALID_ROUND = 15; DRAFT_UNAVAILABLE = 16; ALREADY_INITIALIZED = 17; INVALID_ACTION = 18; INVALID_ACTION_MEMORY_BAD_RANGE = 19; INVALID_ACTION_MEMORY_DRAFT_FROZEN = 20; INVALID_ACTION_MOVE_CANT_MOVE = 21; INVALID_ACTION_MOVE_BAD_DESTINATION = 22; INVALID_ACTION_SPELL_CAST_INVALID_SOURCE = 23; INVALID_ACTION_SPELL_CAST_INVALID_SLOT = 24; INVALID_ACTION_SPELL_CAST_NO_ABILITY = 25; INVALID_ACTION_SPELL_CAST_CANT_CAST = 26; INVALID_ACTION_SPELL_CAST_ALREADY_CAST = 27; INVALID_ACTION_SPELL_CAST_ON_COOLDOWN = 28; INVALID_ACTION_SPELL_CAST_NO_CHARGES = 29; INVALID_ACTION_SPELL_CAST_BAD_TARGET = 30; INVALID_ACTION_SPELL_CAST_OUT_OF_RANGE = 31; INVALID_ACTION_SPELL_CAST_BAD_DESTINATION = 32; INVALID_ACTION_CANT_ACT = 33; INVALID_ACTION_IS_RECALLING = 34; INVALID_ACTION_IS_SUBMITTING_GEMS = 35; INVALID_ACTION_MOVE_ALREADY_MOVED = 36; INVALID_ACTION_MOVE_OUT_OF_RANGE = 37; INVALID_ACTION_MOVE_UNREACHABLE = 38; INVALID_ACTION_ATTACK_INVALID_SOURCE = 39; INVALID_ACTION_ATTACK_CANT_ATTACK = 40; INVALID_ACTION_ATTACK_ALREADY_ATTACKED = 41; INVALID_ACTION_ATTACK_BAD_TARGET = 42; INVALID_ACTION_ATTACK_OUT_OF_RANGE = 43; INVALID_ACTION_RECALL_CANT_CHANNEL = 44; INVALID_ACTION_SUBMIT_GEMS_CANT_CHANNEL = 45; INVALID_ACTION_SUBMIT_GEMS_NO_GEMS = 46; INVALID_ACTION_SUBMIT_GEMS_BAD_ALTAR = 47; INVALID_ACTION_SUBMIT_GEMS_OUT_OF_RANGE = 48; INVALID_ACTION_BUY_ITEM_NOT_ON_SPAWN = 49; INVALID_ACTION_BUY_ITEM_INVALID_ITEM = 50; INVALID_ACTION_BUY_ITEM_INVALID_COUNT = 51; INVALID_ACTION_BUY_ITEM_NOT_ENOUGH_GOLD = 52; INVALID_ACTION_BUY_ITEM_INVENTORY_FULL = 53; INVALID_ACTION_BUY_ITEM_STATS_OVERFLOW = 54; INVALID_ACTION_BUY_CONSUMABLE_NOT_ON_SPAWN = 55; INVALID_ACTION_BUY_CONSUMABLE_INVALID_TYPE = 56; INVALID_ACTION_BUY_CONSUMABLE_INVALID_COUNT = 57; INVALID_ACTION_BUY_CONSUMABLE_INVENTORY_FULL = 58; INVALID_ACTION_BUY_CONSUMABLE_NOT_ENOUGH_GOLD = 59; INVALID_ACTION_USE_CONSUMABLE_INVALID_TYPE = 60; INVALID_ACTION_USE_CONSUMABLE_NOT_OWNED = 61; INVALID_ACTION_PLACE_WARD_NO_CHARGES = 62; INVALID_ACTION_PLACE_WARD_CANT_PLACE = 63; INVALID_ACTION_PLACE_WARD_BAD_DESTINATION = 64; INVALID_ACTION_PLACE_WARD_OUT_OF_RANGE = 65; MAP_SET_TEAM_ASPAWN_AREA_BAD_POSITION = 66; MAP_ADD_BUSH_BAD_POSITION = 67; MAP_REMOVE_BUSH_BAD_POSITION = 68; MAP_ADD_WALL_BAD_POSITION = 69; MAP_REMOVE_WALL_BAD_POSITION = 70; MAP_ADD_HOLE_BAD_POSITION = 71; MAP_REMOVE_HOLE_BAD_POSITION = 72; MAP_ADD_ALTAR_BAD_POSITION = 73; MAP_REMOVE_ALTAR_BAD_POSITION = 74; MAP_GET_BUSH_BAD_POSITION = 75; MAP_GET_WALL_BAD_POSITION = 76; MAP_GET_HOLE_BAD_POSITION = 77; MAP_GET_ALTAR_BAD_POSITION = 78; MAP_GET_CAMP_HANDLE_AT_BAD_POSITION = 79; MAP_ADD_CAMP_BAD_POSITION = 80; MAP_SET_CAMP_BAD_POSITION = 81; INVALID_ACTION_CHAMPION_TELEPORT_BAD_DESTINATION = 82; INVALID_ACTION_RESPAWN_GROUP_BLOCKED_SPAWN = 83; INVALID_ACTION_CAMP_TELEPORT_BAD_DESTINATION = 84; TIMELINE_BAD_SEEK_POSITION = 85; TIMELINE_BAD_SEEK_SUBSTEP = 86; API_NO_MAP = 87; MANAGED_RESOURCES_BAD_POSITION = 88; MANAGED_RESOURCES_BAD_RADIUS = 89; MANAGED_RESOURCES_ALIASING = 90; MANAGED_RESOURCES_METADATA_MISMATCH = 91; MANAGED_RESOURCES_OPAQUE_ORIGIN = 92; API_INVALID_TEAM = 93; API_INVALID_PERSPECTIVE = 94; API_NOT_INITIALIZED = 95; API_BAD_POSITION = 96; API_NOT_IN_VISION = 97; API_NOT_FOUND = 98; API_INVALID_CAMP_GROUP = 99; API_INVALID_CAMP_INFO = 100; API_INVALID_CAMP = 101; API_INVALID_CHAMPION = 102; API_INVALID_WARD = 103; API_INVALID_ABILITY = 104; API_NOT_TEAMMATE = 105; API_CAMP_GROUP_NOT_WAITING_TO_RESPAWN = 106; API_CHAMPION_ALIVE = 107; API_INVALID_CHAMPION_TYPE = 108; API_INVALID_CAMP_TYPE = 109; API_VALUE_OUT_OF_RANGE = 110; API_BUFFER_TOO_SMALL = 111; API_NOT_OWNER = 112; INVALID_ACTION_RECALL_ALREADY_USED = 113; INVALID_ACTION_SUBMIT_GEMS_ALREADY_USED = 114; INVALID_ACTION_CANCEL_CHANNEL_NOT_CHANNELING = 115; INVALID_ACTION_CANCEL_CHANNEL_ALREADY_USED = 116; INVALID_ACTION_PLACE_WARD_ALLY_WARD_PRESENT = 117; INVALID_ACTION_ALTAR_LOCK_BAD_ALTAR = 118; INVALID_ACTION_ALTAR_LOCK_OUT_OF_RANGE = 119; INVALID_ACTION_ALTAR_LOCK_ALREADY_LOCKED = 120; INVALID_ACTION_IS_TELEPORTING = 123; INVALID_ACTION_CANCEL_CHANNEL_NOT_CANCELLABLE = 124; INVALID_ACTION_SUBMIT_GEMS_ALTAR_LOCKED = 125; INVALID_ACTION_SPELL_CAST_ALREADY_MOVED = 126; INVALID_ACTION_MOVE_EXCLUSIVE_SPELL_CAST = 127; INVALID_ACTION_SELL_NOT_TAVI = 128; INVALID_ACTION_SELL_INVALID_ITEM = 129; INVALID_ACTION_SELL_NOT_OWNED = 130; INVALID_ACTION_SELL_ALREADY_SOLD = 131; INVALID_ACTION_SELL_GOLD_OVERFLOW = 132; INVALID_ACTION_SELL_NOT_ON_SPAWN = 133
+```
+
+Engine error codes carried by Error.code.
+
+Public SDK type declaration.
+
+```python
+class ErrorCode(IntEnum): SUCCESS = 0; INVALID_HANDLE = 1; OUT_OF_MEMORY = 2; FILE_NOT_FOUND = 3; NULL_POINTER = 4; INVALID_ARGUMENT = 5; MAP_PARSE_ERROR = 6; INVALID_MAP_FILE = 7; INVALID_MAP_VERSION = 8; REPLAY_PARSE_ERROR = 9; INVALID_REPLAY_FILE = 10; INVALID_REPLAY_VERSION = 11; INVALID_DRAFT = 12; DRAFT_NOT_DRAFTING = 13; DRAFT_DUPLICATE_CHAMPION = 14; DRAFT_INVALID_ROUND = 15; DRAFT_UNAVAILABLE = 16; ALREADY_INITIALIZED = 17; INVALID_ACTION = 18; INVALID_ACTION_MEMORY_BAD_RANGE = 19; INVALID_ACTION_MEMORY_DRAFT_FROZEN = 20; INVALID_ACTION_MOVE_CANT_MOVE = 21; INVALID_ACTION_MOVE_BAD_DESTINATION = 22; INVALID_ACTION_SPELL_CAST_INVALID_SOURCE = 23; INVALID_ACTION_SPELL_CAST_INVALID_SLOT = 24; INVALID_ACTION_SPELL_CAST_NO_ABILITY = 25; INVALID_ACTION_SPELL_CAST_CANT_CAST = 26; INVALID_ACTION_SPELL_CAST_ALREADY_CAST = 27; INVALID_ACTION_SPELL_CAST_ON_COOLDOWN = 28; INVALID_ACTION_SPELL_CAST_NO_CHARGES = 29; INVALID_ACTION_SPELL_CAST_BAD_TARGET = 30; INVALID_ACTION_SPELL_CAST_OUT_OF_RANGE = 31; INVALID_ACTION_SPELL_CAST_BAD_DESTINATION = 32; INVALID_ACTION_CANT_ACT = 33; INVALID_ACTION_IS_RECALLING = 34; INVALID_ACTION_IS_SUBMITTING_GEMS = 35; INVALID_ACTION_MOVE_ALREADY_MOVED = 36; INVALID_ACTION_MOVE_OUT_OF_RANGE = 37; INVALID_ACTION_MOVE_UNREACHABLE = 38; INVALID_ACTION_ATTACK_INVALID_SOURCE = 39; INVALID_ACTION_ATTACK_CANT_ATTACK = 40; INVALID_ACTION_ATTACK_ALREADY_ATTACKED = 41; INVALID_ACTION_ATTACK_BAD_TARGET = 42; INVALID_ACTION_ATTACK_OUT_OF_RANGE = 43; INVALID_ACTION_RECALL_CANT_CHANNEL = 44; INVALID_ACTION_SUBMIT_GEMS_CANT_CHANNEL = 45; INVALID_ACTION_SUBMIT_GEMS_NO_GEMS = 46; INVALID_ACTION_SUBMIT_GEMS_BAD_ALTAR = 47; INVALID_ACTION_SUBMIT_GEMS_OUT_OF_RANGE = 48; INVALID_ACTION_BUY_ITEM_NOT_ON_SPAWN = 49; INVALID_ACTION_BUY_ITEM_INVALID_ITEM = 50; INVALID_ACTION_BUY_ITEM_INVALID_COUNT = 51; INVALID_ACTION_BUY_ITEM_NOT_ENOUGH_GOLD = 52; INVALID_ACTION_BUY_ITEM_INVENTORY_FULL = 53; INVALID_ACTION_BUY_ITEM_STATS_OVERFLOW = 54; INVALID_ACTION_BUY_CONSUMABLE_NOT_ON_SPAWN = 55; INVALID_ACTION_BUY_CONSUMABLE_INVALID_TYPE = 56; INVALID_ACTION_BUY_CONSUMABLE_INVALID_COUNT = 57; INVALID_ACTION_BUY_CONSUMABLE_INVENTORY_FULL = 58; INVALID_ACTION_BUY_CONSUMABLE_NOT_ENOUGH_GOLD = 59; INVALID_ACTION_USE_CONSUMABLE_INVALID_TYPE = 60; INVALID_ACTION_USE_CONSUMABLE_NOT_OWNED = 61; INVALID_ACTION_PLACE_WARD_NO_CHARGES = 62; INVALID_ACTION_PLACE_WARD_CANT_PLACE = 63; INVALID_ACTION_PLACE_WARD_BAD_DESTINATION = 64; INVALID_ACTION_PLACE_WARD_OUT_OF_RANGE = 65; MAP_SET_TEAM_ASPAWN_AREA_BAD_POSITION = 66; MAP_ADD_BUSH_BAD_POSITION = 67; MAP_REMOVE_BUSH_BAD_POSITION = 68; MAP_ADD_WALL_BAD_POSITION = 69; MAP_REMOVE_WALL_BAD_POSITION = 70; MAP_ADD_HOLE_BAD_POSITION = 71; MAP_REMOVE_HOLE_BAD_POSITION = 72; MAP_ADD_ALTAR_BAD_POSITION = 73; MAP_REMOVE_ALTAR_BAD_POSITION = 74; MAP_GET_BUSH_BAD_POSITION = 75; MAP_GET_WALL_BAD_POSITION = 76; MAP_GET_HOLE_BAD_POSITION = 77; MAP_GET_ALTAR_BAD_POSITION = 78; MAP_GET_CAMP_HANDLE_AT_BAD_POSITION = 79; MAP_ADD_CAMP_BAD_POSITION = 80; MAP_SET_CAMP_BAD_POSITION = 81; INVALID_ACTION_CHAMPION_TELEPORT_BAD_DESTINATION = 82; INVALID_ACTION_RESPAWN_GROUP_BLOCKED_SPAWN = 83; INVALID_ACTION_CAMP_TELEPORT_BAD_DESTINATION = 84; TIMELINE_BAD_SEEK_POSITION = 85; TIMELINE_BAD_SEEK_SUBSTEP = 86; API_NO_MAP = 87; MANAGED_RESOURCES_BAD_POSITION = 88; MANAGED_RESOURCES_BAD_RADIUS = 89; MANAGED_RESOURCES_ALIASING = 90; MANAGED_RESOURCES_METADATA_MISMATCH = 91; MANAGED_RESOURCES_OPAQUE_ORIGIN = 92; API_INVALID_TEAM = 93; API_INVALID_PERSPECTIVE = 94; API_NOT_INITIALIZED = 95; API_BAD_POSITION = 96; API_NOT_IN_VISION = 97; API_NOT_FOUND = 98; API_INVALID_CAMP_GROUP = 99; API_INVALID_CAMP_INFO = 100; API_INVALID_CAMP = 101; API_INVALID_CHAMPION = 102; API_INVALID_WARD = 103; API_INVALID_ABILITY = 104; API_NOT_TEAMMATE = 105; API_CAMP_GROUP_NOT_WAITING_TO_RESPAWN = 106; API_CHAMPION_ALIVE = 107; API_INVALID_CHAMPION_TYPE = 108; API_INVALID_CAMP_TYPE = 109; API_VALUE_OUT_OF_RANGE = 110; API_BUFFER_TOO_SMALL = 111; API_NOT_OWNER = 112; INVALID_ACTION_RECALL_ALREADY_USED = 113; INVALID_ACTION_SUBMIT_GEMS_ALREADY_USED = 114; INVALID_ACTION_CANCEL_CHANNEL_NOT_CHANNELING = 115; INVALID_ACTION_CANCEL_CHANNEL_ALREADY_USED = 116; INVALID_ACTION_PLACE_WARD_ALLY_WARD_PRESENT = 117; INVALID_ACTION_ALTAR_LOCK_BAD_ALTAR = 118; INVALID_ACTION_ALTAR_LOCK_OUT_OF_RANGE = 119; INVALID_ACTION_ALTAR_LOCK_ALREADY_LOCKED = 120; INVALID_ACTION_IS_TELEPORTING = 123; INVALID_ACTION_CANCEL_CHANNEL_NOT_CANCELLABLE = 124; INVALID_ACTION_SUBMIT_GEMS_ALTAR_LOCKED = 125; INVALID_ACTION_SPELL_CAST_ALREADY_MOVED = 126; INVALID_ACTION_MOVE_EXCLUSIVE_SPELL_CAST = 127; INVALID_ACTION_SELL_NOT_TAVI = 128; INVALID_ACTION_SELL_INVALID_ITEM = 129; INVALID_ACTION_SELL_NOT_OWNED = 130; INVALID_ACTION_SELL_ALREADY_SOLD = 131; INVALID_ACTION_SELL_GOLD_OVERFLOW = 132; INVALID_ACTION_SELL_NOT_ON_SPAWN = 133
 ```
 
 ### fuel_remaining
@@ -88,6 +609,48 @@ Use this value in your bot's draft or turn logic.
 is_draft = bc.is_draft()
 ```
 
+### ItemInfo
+
+```python
+class ItemInfo: cost: int; combine_count: int; result: Any; health_points: int; strength_points: int; focus_points: int; passive: Any; passive_magnitude: float; purchasable: bool
+```
+
+
+
+Public SDK type declaration.
+
+```python
+class ItemInfo: cost: int; combine_count: int; result: Any; health_points: int; strength_points: int; focus_points: int; passive: Any; passive_magnitude: float; purchasable: bool
+```
+
+### ItemPassive
+
+```python
+class ItemPassive(IntEnum): MONSTER = 1; DURABILITY = 2; TREASURE = 3; JUNGLE = 4; HOME = 5
+```
+
+Item passive group.
+
+Public SDK type declaration.
+
+```python
+class ItemPassive(IntEnum): MONSTER = 1; DURABILITY = 2; TREASURE = 3; JUNGLE = 4; HOME = 5
+```
+
+### ItemType
+
+```python
+class ItemType(int): MONSTER_SHARD_OF_STRENGTH: ClassVar[ItemType]; MONSTER_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; MONSTER_SHARD_OF_FOCUS: ClassVar[ItemType]; MONSTER_EMBLEM_OF_FOCUS: ClassVar[ItemType]; MONSTER_SHARD_OF_HEALTH: ClassVar[ItemType]; MONSTER_EMBLEM_OF_HEALTH: ClassVar[ItemType]; POWER_SHARD_OF_STRENGTH: ClassVar[ItemType]; POWER_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; POWER_SHARD_OF_FOCUS: ClassVar[ItemType]; POWER_EMBLEM_OF_FOCUS: ClassVar[ItemType]; POWER_SHARD_OF_HEALTH: ClassVar[ItemType]; POWER_EMBLEM_OF_HEALTH: ClassVar[ItemType]; DURABILITY_SHARD_OF_STRENGTH: ClassVar[ItemType]; DURABILITY_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; DURABILITY_SHARD_OF_FOCUS: ClassVar[ItemType]; DURABILITY_EMBLEM_OF_FOCUS: ClassVar[ItemType]; DURABILITY_SHARD_OF_HEALTH: ClassVar[ItemType]; DURABILITY_EMBLEM_OF_HEALTH: ClassVar[ItemType]; TREASURE_SHARD_OF_STRENGTH: ClassVar[ItemType]; TREASURE_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; TREASURE_SHARD_OF_FOCUS: ClassVar[ItemType]; TREASURE_EMBLEM_OF_FOCUS: ClassVar[ItemType]; TREASURE_SHARD_OF_HEALTH: ClassVar[ItemType]; TREASURE_EMBLEM_OF_HEALTH: ClassVar[ItemType]; JUNGLE_SHARD_OF_STRENGTH: ClassVar[ItemType]; JUNGLE_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; JUNGLE_SHARD_OF_FOCUS: ClassVar[ItemType]; JUNGLE_EMBLEM_OF_FOCUS: ClassVar[ItemType]; JUNGLE_SHARD_OF_HEALTH: ClassVar[ItemType]; JUNGLE_EMBLEM_OF_HEALTH: ClassVar[ItemType]; HOME_SHARD_OF_STRENGTH: ClassVar[ItemType]; HOME_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; HOME_SHARD_OF_FOCUS: ClassVar[ItemType]; HOME_EMBLEM_OF_FOCUS: ClassVar[ItemType]; HOME_SHARD_OF_HEALTH: ClassVar[ItemType]; HOME_EMBLEM_OF_HEALTH: ClassVar[ItemType]; BRUISER_SHARD_OF_STRENGTH: ClassVar[ItemType]; BRUISER_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; BRUISER_SHARD_OF_FOCUS: ClassVar[ItemType]; BRUISER_EMBLEM_OF_FOCUS: ClassVar[ItemType]; BRUISER_SHARD_OF_HEALTH: ClassVar[ItemType]; BRUISER_EMBLEM_OF_HEALTH: ClassVar[ItemType]; COUNT: ClassVar[int]; name: str
+```
+
+Item type: an engine item ID with getters that forward to info().
+
+Public SDK type declaration.
+
+```python
+class ItemType(int): MONSTER_SHARD_OF_STRENGTH: ClassVar[ItemType]; MONSTER_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; MONSTER_SHARD_OF_FOCUS: ClassVar[ItemType]; MONSTER_EMBLEM_OF_FOCUS: ClassVar[ItemType]; MONSTER_SHARD_OF_HEALTH: ClassVar[ItemType]; MONSTER_EMBLEM_OF_HEALTH: ClassVar[ItemType]; POWER_SHARD_OF_STRENGTH: ClassVar[ItemType]; POWER_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; POWER_SHARD_OF_FOCUS: ClassVar[ItemType]; POWER_EMBLEM_OF_FOCUS: ClassVar[ItemType]; POWER_SHARD_OF_HEALTH: ClassVar[ItemType]; POWER_EMBLEM_OF_HEALTH: ClassVar[ItemType]; DURABILITY_SHARD_OF_STRENGTH: ClassVar[ItemType]; DURABILITY_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; DURABILITY_SHARD_OF_FOCUS: ClassVar[ItemType]; DURABILITY_EMBLEM_OF_FOCUS: ClassVar[ItemType]; DURABILITY_SHARD_OF_HEALTH: ClassVar[ItemType]; DURABILITY_EMBLEM_OF_HEALTH: ClassVar[ItemType]; TREASURE_SHARD_OF_STRENGTH: ClassVar[ItemType]; TREASURE_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; TREASURE_SHARD_OF_FOCUS: ClassVar[ItemType]; TREASURE_EMBLEM_OF_FOCUS: ClassVar[ItemType]; TREASURE_SHARD_OF_HEALTH: ClassVar[ItemType]; TREASURE_EMBLEM_OF_HEALTH: ClassVar[ItemType]; JUNGLE_SHARD_OF_STRENGTH: ClassVar[ItemType]; JUNGLE_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; JUNGLE_SHARD_OF_FOCUS: ClassVar[ItemType]; JUNGLE_EMBLEM_OF_FOCUS: ClassVar[ItemType]; JUNGLE_SHARD_OF_HEALTH: ClassVar[ItemType]; JUNGLE_EMBLEM_OF_HEALTH: ClassVar[ItemType]; HOME_SHARD_OF_STRENGTH: ClassVar[ItemType]; HOME_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; HOME_SHARD_OF_FOCUS: ClassVar[ItemType]; HOME_EMBLEM_OF_FOCUS: ClassVar[ItemType]; HOME_SHARD_OF_HEALTH: ClassVar[ItemType]; HOME_EMBLEM_OF_HEALTH: ClassVar[ItemType]; BRUISER_SHARD_OF_STRENGTH: ClassVar[ItemType]; BRUISER_EMBLEM_OF_STRENGTH: ClassVar[ItemType]; BRUISER_SHARD_OF_FOCUS: ClassVar[ItemType]; BRUISER_EMBLEM_OF_FOCUS: ClassVar[ItemType]; BRUISER_SHARD_OF_HEALTH: ClassVar[ItemType]; BRUISER_EMBLEM_OF_HEALTH: ClassVar[ItemType]; COUNT: ClassVar[int]; name: str
+```
+
 ### me
 
 ```python
@@ -100,6 +663,20 @@ Use this value in your bot's draft or turn logic.
 
 ```python
 result = bc.me()
+```
+
+### PassiveType
+
+```python
+class PassiveType(IntEnum): NONE = 0; BONUS_GOLD = 1; REMOTE_SHOP = 2; GEM_FOCUS = 3; SPLASH_ATTACK = 4; HEALTH_STRENGTH = 5; RESET_COOLDOWNS_ON_KILL = 6; RETALIATION = 7; STUN_IMMUNITY = 8
+```
+
+Champion passive.
+
+Public SDK type declaration.
+
+```python
+class PassiveType(IntEnum): NONE = 0; BONUS_GOLD = 1; REMOTE_SHOP = 2; GEM_FOCUS = 3; SPLASH_ATTACK = 4; HEALTH_STRENGTH = 5; RESET_COOLDOWNS_ON_KILL = 6; RETALIATION = 7; STUN_IMMUNITY = 8
 ```
 
 ### resign
@@ -128,6 +705,104 @@ Use this value in your bot's draft or turn logic.
 
 ```python
 result = bc.round_number()
+```
+
+### SharedMemoryBuffer
+
+```python
+class SharedMemoryBuffer: ...
+```
+
+Fixed-size team shared memory; index for single bytes, read/write for buffers.
+
+Public SDK type declaration.
+
+```python
+class SharedMemoryBuffer: ...
+```
+
+### Symmetry
+
+```python
+class Symmetry(IntEnum): HORIZONTAL = 0; VERTICAL = 1; ROTATIONAL180 = 2
+```
+
+Map symmetry.
+
+Public SDK type declaration.
+
+```python
+class Symmetry(IntEnum): HORIZONTAL = 0; VERTICAL = 1; ROTATIONAL180 = 2
+```
+
+### Team
+
+```python
+class Team(IntEnum): ALLY = 0; ENEMY = 1
+```
+
+Relative team of a unit or object.
+
+Public SDK type declaration.
+
+```python
+class Team(IntEnum): ALLY = 0; ENEMY = 1
+```
+
+### Teleport
+
+```python
+class Teleport: ...
+```
+
+Snapshot of a channelling teleport and its reserved destination.
+
+Public SDK type declaration.
+
+```python
+class Teleport: ...
+```
+
+### Unit
+
+```python
+class Unit: ...
+```
+
+Common interface of champions and camps.
+
+Public SDK type declaration.
+
+```python
+class Unit: ...
+```
+
+### Vec2
+
+```python
+class Vec2: NORTH: ClassVar[Vec2]; NORTH_EAST: ClassVar[Vec2]; EAST: ClassVar[Vec2]; SOUTH_EAST: ClassVar[Vec2]; SOUTH: ClassVar[Vec2]; SOUTH_WEST: ClassVar[Vec2]; WEST: ClassVar[Vec2]; NORTH_WEST: ClassVar[Vec2]; x: int; y: int
+```
+
+Unit vectors for the 8 standard directions; north is +y.
+
+Public SDK type declaration.
+
+```python
+class Vec2: NORTH: ClassVar[Vec2]; NORTH_EAST: ClassVar[Vec2]; EAST: ClassVar[Vec2]; SOUTH_EAST: ClassVar[Vec2]; SOUTH: ClassVar[Vec2]; SOUTH_WEST: ClassVar[Vec2]; WEST: ClassVar[Vec2]; NORTH_WEST: ClassVar[Vec2]; x: int; y: int
+```
+
+### Ward
+
+```python
+class Ward: ...
+```
+
+Immutable snapshot of a visible ward.
+
+Public SDK type declaration.
+
+```python
+class Ward: ...
 ```
 
 ## cambc.Ability
@@ -2422,6 +3097,74 @@ Inputs:
 result = subject.health()
 ```
 
+### is_alive
+
+```python
+def is_alive(self) -> bool
+```
+
+Query whether this camp is living (awake or asleep); uses the visibility checks of state().
+
+Evaluate a visible camp before choosing where to farm.
+
+Inputs:
+- subject: bc.Camp (a valid instance)
+
+```python
+is_alive = subject.is_alive()
+```
+
+### is_asleep
+
+```python
+def is_asleep(self) -> bool
+```
+
+Query whether this camp is living but dormant; uses the visibility checks of state().
+
+Evaluate a visible camp before choosing where to farm.
+
+Inputs:
+- subject: bc.Camp (a valid instance)
+
+```python
+is_asleep = subject.is_asleep()
+```
+
+### is_awake
+
+```python
+def is_awake(self) -> bool
+```
+
+Query whether this camp is awake; uses the same visibility checks as state().
+
+Evaluate a visible camp before choosing where to farm.
+
+Inputs:
+- subject: bc.Camp (a valid instance)
+
+```python
+is_awake = subject.is_awake()
+```
+
+### is_dead
+
+```python
+def is_dead(self) -> bool
+```
+
+Query whether this camp is dead; uses the same visibility checks as state().
+
+Evaluate a visible camp before choosing where to farm.
+
+Inputs:
+- subject: bc.Camp (a valid instance)
+
+```python
+is_dead = subject.is_dead()
+```
+
 ### is_elk
 
 ```python
@@ -2592,6 +3335,23 @@ Inputs:
 result = subject.spawn_position()
 ```
 
+### state
+
+```python
+def state(self) -> CampState
+```
+
+Return CampState.DEAD, ALIVE (awake), or ASLEEP (living but dormant). The current tile, or last occupied tile when dead, must be in vision; hidden camps raise Error with API_NOT_IN_VISION. Separate from camp-group state.
+
+Evaluate a visible camp before choosing where to farm.
+
+Inputs:
+- subject: bc.Camp (a valid instance)
+
+```python
+result = subject.state()
+```
+
 ### strength
 
 ```python
@@ -2608,6 +3368,101 @@ Inputs:
 ```python
 result = subject.strength()
 ```
+
+## cambc.CampState
+
+### __new__
+
+```python
+def __new__(cls, value: int = 0)
+```
+
+
+
+Inspect a camp's captured life and wake state.
+
+Inputs:
+- value: int
+
+```python
+result = bc.CampState(value)
+```
+
+### is_alive
+
+```python
+def is_alive(self) -> bool
+```
+
+Check whether the captured state is living, including asleep camps.
+
+Inspect a camp's captured life and wake state.
+
+Inputs:
+- subject: bc.CampState (a valid instance)
+
+```python
+is_alive = subject.is_alive()
+```
+
+### is_asleep
+
+```python
+def is_asleep(self) -> bool
+```
+
+Check whether the captured state is living but dormant.
+
+Inspect a camp's captured life and wake state.
+
+Inputs:
+- subject: bc.CampState (a valid instance)
+
+```python
+is_asleep = subject.is_asleep()
+```
+
+### is_awake
+
+```python
+def is_awake(self) -> bool
+```
+
+Check whether the captured state is awake (the ALIVE enum value).
+
+Inspect a camp's captured life and wake state.
+
+Inputs:
+- subject: bc.CampState (a valid instance)
+
+```python
+is_awake = subject.is_awake()
+```
+
+### is_dead
+
+```python
+def is_dead(self) -> bool
+```
+
+Check whether the captured state is dead.
+
+Inspect a camp's captured life and wake state.
+
+Inputs:
+- subject: bc.CampState (a valid instance)
+
+```python
+is_dead = subject.is_dead()
+```
+
+### to_string
+
+```python
+def to_string(value: int) -> str
+```
+
+
 
 ## cambc.CampType
 
@@ -4786,6 +5641,101 @@ Inspect map geometry when choosing a route or objective.
 result = bc.game_map.camp_groups()
 ```
 
+### CampGroup
+
+```python
+class CampGroup: ...
+```
+
+A camp group; int(group) is its engine handle and iterating yields its camps.
+
+Read the remaining respawn rounds for a group with an original spawn tile in current vision. Alive and unclaimed-reward states have no countdown.
+
+Inputs:
+- group: a camp group currently in vision
+
+```python
+state = group.state()
+if isinstance(state, bc.game_map.CampGroupRespawning):
+    print(state.timer)
+```
+
+### CampGroupAlive
+
+```python
+class CampGroupAlive: ...
+```
+
+The group still contains living camps; this state has no respawn countdown.
+
+Read the remaining respawn rounds for a group with an original spawn tile in current vision. Alive and unclaimed-reward states have no countdown.
+
+Inputs:
+- group: a camp group currently in vision
+
+```python
+state = group.state()
+if isinstance(state, bc.game_map.CampGroupRespawning):
+    print(state.timer)
+```
+
+### CampGroupRespawning
+
+```python
+class CampGroupRespawning: timer: int
+```
+
+The group is waiting to respawn. The timer is the remaining round countdown; zero means respawning is currently blocked by occupied spawn tiles.
+
+Read the remaining respawn rounds for a group with an original spawn tile in current vision. Alive and unclaimed-reward states have no countdown.
+
+Inputs:
+- group: a camp group currently in vision
+
+```python
+state = group.state()
+if isinstance(state, bc.game_map.CampGroupRespawning):
+    print(state.timer)
+```
+
+### CampGroupRewardAvailable
+
+```python
+class CampGroupRewardAvailable: ...
+```
+
+All camps are defeated and the reward is available. The respawn countdown begins after the reward is captured.
+
+Read the remaining respawn rounds for a group with an original spawn tile in current vision. Alive and unclaimed-reward states have no countdown.
+
+Inputs:
+- group: a camp group currently in vision
+
+```python
+state = group.state()
+if isinstance(state, bc.game_map.CampGroupRespawning):
+    print(state.timer)
+```
+
+### CampGroupState
+
+```python
+CampGroupState = Union[CampGroupAlive, CampGroupRewardAvailable, CampGroupRespawning]
+```
+
+Returned by CampGroup.state(). Use isinstance(state, game_map.CampGroupRespawning), then read state.timer. Reading state requires at least one original camp spawn tile in current vision; otherwise the SDK reports a visibility error. max_respawn_timer gives the configured full duration, not the remaining countdown.
+
+Read the remaining respawn rounds for a group with an original spawn tile in current vision. Alive and unclaimed-reward states have no countdown.
+
+Inputs:
+- group: a camp group currently in vision
+
+```python
+state = group.state()
+if isinstance(state, bc.game_map.CampGroupRespawning):
+    print(state.timer)
+```
+
 ### height
 
 ```python
@@ -5107,13 +6057,15 @@ def state(self) -> CampGroupState
 
 Return the group's current state.
 
-Evaluate a visible camp before choosing where to farm.
+Read the remaining respawn rounds for a group with an original spawn tile in current vision. Alive and unclaimed-reward states have no countdown.
 
 Inputs:
-- subject: bc.game_map.CampGroup (a valid instance)
+- group: a camp group currently in vision
 
 ```python
-result = subject.state()
+state = group.state()
+if isinstance(state, bc.game_map.CampGroupRespawning):
+    print(state.timer)
 ```
 
 ## cambc.ItemPassive

@@ -1,0 +1,19 @@
+cambc run v9 b7 --map rushbait-v2 -o /home/kcube/battlecode/results/arena_3/b7/.rushbait-v2__cand-A.replay --statistics /home/kcube/battlecode/results/arena_3/b7/rushbait-v2__cand-A.stats.json --json
+
+v9 vs b7 on /home/kcube/battlecode/maps/rushbait-v2.map26a
+Team A (v9) wins: reached 1000 gems in round 591
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v9   1028     3      0        4904        0  Varg, Ryth, Stellar, Marcella
+  B    b7    154     0      3         882        0  Ryth, Marcella, Varg, Vendetta
+replay bundle: /home/kcube/battlecode/results/arena_3/b7/.rushbait-v2__cand-A.replay/v9-vs-b7-1792214500839.repl26a
+match summary: /home/kcube/battlecode/results/arena_3/b7/rushbait-v2__cand-A.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+finished: round 591/2000 — teamA

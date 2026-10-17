@@ -1,0 +1,20 @@
+cambc run v6 v15 --map corners -o /home/kcube/battlecode/results/eval_v15/v6/.corners__cand-B.replay --statistics /home/kcube/battlecode/results/eval_v15/v6/corners__cand-B.stats.json --json
+
+v6 vs v15 on /home/kcube/battlecode/maps/corners.map26a
+Team B (v15) wins: reached 1000 gems in round 638
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v6    502     2      8        3342        0  Varg, Ryth, Stellar, Marcella, Willow
+  B    v15  1002     8      3        6050        0  Varg, Ryth, Stellar, Marcella, Tavi
+replay bundle: /home/kcube/battlecode/results/eval_v15/v6/.corners__cand-B.replay/v6-vs-v15-1792234651210.repl26a
+match summary: /home/kcube/battlecode/results/eval_v15/v6/corners__cand-B.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+finished: round 638/2000 — teamB

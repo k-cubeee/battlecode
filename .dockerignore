@@ -1,6 +1,0 @@
-venv/
-.venv/
-.git/
-results/
-rejected/
-__pycache__/

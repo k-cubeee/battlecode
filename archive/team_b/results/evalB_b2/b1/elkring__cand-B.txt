@@ -1,0 +1,21 @@
+cambc run b1 b2 --map elkring -o /home/kcube/battlecode/results/evalB_b2/b1/.elkring__cand-B.replay --statistics /home/kcube/battlecode/results/evalB_b2/b1/elkring__cand-B.stats.json --json
+
+b1 vs b2 on /home/kcube/battlecode/maps/elkring.map26a
+Team B (b2) wins: reached 1000 gems in round 611
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    b1    288     0     24        2164        0  Vendetta, Ryth, Varg, Vesper Vale, Tavi
+  B    b2   1008     8      0        5654        0  Ryth, Marcella, Varg, Vendetta, Vesper Vale
+replay bundle: /home/kcube/battlecode/results/evalB_b2/b1/.elkring__cand-B.replay/b1-vs-b2-1792196092353.repl26a
+match summary: /home/kcube/battlecode/results/evalB_b2/b1/elkring__cand-B.stats.json
+A newer version of cambc is available for linux-x64. Download: https://2026a.battlecode.co.uk/game/download
+If installed with pip, run `python -m pip install --upgrade cambc`.
+drafting: round 0/2000
+team A draft bot yielded without picking; its remaining picks are random
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+finished: round 611/2000 — teamB
