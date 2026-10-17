@@ -1,13 +1,13 @@
 {
-  "champion": "b2",
+  "champion": "b7",
   "history": [
     "b1",
-    "b2"
+    "b2",
+    "b7"
   ],
-  "next_version": 7,
-  "total_cost": 2.3014714,
+  "next_version": 8,
+  "total_cost": 2.5835037,
   "last_results": [
-    "evalB_b5",
-    "evalB_b6"
+    "evalB_b7"
   ]
 }

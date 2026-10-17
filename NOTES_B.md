@@ -1,6 +1,6 @@
 # Team B bot notes
 
-**Current champion: b2**
+**Current champion: b7**
 
 Team B develops its own line of bots (bots/bN) independently of Team A (bots/vN).
 b1 is a copy of v1, the SDK starter bot. Promotion gate: >= 55% head-to-head vs Team B's
@@ -265,3 +265,37 @@ I left finding #3 (holding at spawn near enemy champions) for a later version, s
 The analysis said to judge this by items bought and gold spent in the arena, not only win rate. This smoke test doesn't measure either.
 - Evaluation (results/evalB_b6): b2 47%, b1 91%, v1 91%; overall 76%
 - Status: rejected, moved to rejected/b6. Lesson: these changes did not beat b2.
+
+### Analysis of b2 (fifth pass, with b5/b6 data) — 2026-10-17 (results/arena_2, results/evalB_b5, results/evalB_b6)
+Record: evalB_b5 (b5 vs b2) 17-17; evalB_b6 (b6 vs b2) 16-18 (b2 53%); vs b1/v1 b6 is 31-3 each. Arena vs Team A (v9): **0-34**, all "reached 1000 gems". Weakest: fragment (evalB_b6 0-6), stampede and corners in the arena. Side: in evalB_b6 side B wins 90% (46-5) vs 63% for side A; ties go to team B, so the b2 mirror results are noisy. Arena has no side effect (17-0 each).
+Four rewrites (b3-b6) all failed to beat b2, and each one changed behaviour (retreat, camp split, casting, stat mix). None changed what is bought, which is the one thing Team A does differently in the shop.
+
+1. **b2 buys only Power shards, so it never gets a passive emblem; Team A gets Treasure, Jungle and Monster emblems by round 222**
+   - Evidence: results/arena_2/b2/stampede__cand-A.stats.json (events, ~L16248-16300): Team A buys "Monster Shard of Strength" x5 at round 222, "Jungle Shard of Health" x5 and "Treasure Shard of Strength" x3 in the same round. The file has 175 item-name entries for Power/Treasure/Jungle/Monster. GameRules.md:296-303: Power gives no passive; Treasure gives +20% gold, Jungle -30% camp damage, Monster +10% camp damage, Durability -10% incoming damage (all cost the same 30 per shard, 150 per emblem). Earned gold is 1650 vs 5645 per match (arena side_stats), so the gold bonus compounds.
+   - Cause in code: `bots/b2/src/bot.py:110` (buy_items): the tuple holds only `Item.POWER_SHARD_OF_STRENGTH` and `Item.POWER_SHARD_OF_HEALTH`. Power gives an extra shard of stats but no passive. Never `Item.TREASURE_*`, `JUNGLE_*` or `DURABILITY_*` (names in BotAPIPython.md:643).
+   - Suggested fix: change only the item family in buy_items. Health champions buy `JUNGLE_SHARD_OF_HEALTH` for 5 shards (then Durability); Strength champions buy `TREASURE_SHARD_OF_STRENGTH` for 5 (then Monster). Keep the random stat choice, so nothing else changes. Measure earnedGold and championDamageTaken per champion in the arena, and win rate vs b2.
+   - Confidence: medium (Team A's purchases and the rules are solid; the size of the gain is a hypothesis).
+
+2. **Gold sits unspent: shopping happens only at spawn, and a champion never goes back to spawn on its own**
+   - Evidence: evalB_b6 side_stats opponent (b2 side): earnedGold 3333, spentGold 2023 (61%); candidate (b6, which also shops while dead) 4465 earned, 2550 spent (57%). Wins of b2: spent 1604 of 2896 (55%). Arena: 1650 earned, 1300 spent (79%), against 89% for Team A. About 1300-1900 gold per match, around 45-60 shards, is never turned into stats. b6's shop-while-dead change did not raise the ratio, because there are only 0.7 deaths per match in the mirror.
+   - Cause in code: `bots/b2/src/bot.py:129-131`: `buy_items` is called only when the champion stands on its spawn region. The only trip back is the recall below 35% HP (bot.py:134-144), or the altar round trip. A healthy champion farming far from spawn never shops, and gold keeps accumulating (and a leftover under 30 gold is wasted). `buy_items` also buys `gold // cost` of one stat, so the last purchase before a long farm is fixed in size.
+   - Suggested fix: when gold >= 90 (3 shards) and no enemy champion is visible and no gems are carried, call `me.recall()` (or walk to spawn) instead of farming, then buy on arrival. Check spent/earned > 85% and no drop in collectedGems.
+   - Confidence: low-medium (ratio solid; whether trips cost more than the stats give is untested).
+
+3. **When an enemy champion is in range b2 stands still and trades; Team A's focused trades kill it, and respawned champions walk straight back into the same fight**
+   - Evidence: stampede cand-A (arena_2/b2/stampede__cand-A.txt:6-7): Team A 21 kills, 0 deaths, b2 21 deaths, 0 kills, 0 gems, 0 monster damage in 1076 rounds. Deaths are even (4,4,4,4,5 per champion, stats.json L15976-16160), so it is a repeated loop, not one bad champion. Corners cand-A: Team A 5 kills, 0 deaths; b2 5 deaths, 80 gems, 0 kills (txt:6-7). Champion damage taken 14341 vs 2596 per match.
+   - Cause in code: `bots/b2/src/bot.py:147-149`: after the first in-range basic attack the turn returns, so the champion never advances or retreats and fights wherever it stands (Team A has better stats, see #1). `bot.py:128-131`: a respawned champion buys, then `farm_camps` (bot.py:79-98) walks it out of spawn alone toward the same camp tiles, through the area where the enemy is waiting. b3 (retreat on HP/outnumbered) and b5 (cast, lowest-HP target) did not fix this, so a smarter single fight is not enough. Hypothesis: the issue is the repeated solo walk-out.
+   - Suggested fix: after a champion has died once this game, hold inside the spawn region (attack enemies in range only) until at least 3 allies are alive within 5 tiles, then move out together. Measure arena deaths on stampede (target < 10) and compare with b2 on the other maps, since b4 showed that breaking b2's clustering loses.
+   - Confidence: low (no position traces were read; the death loop is solid, the reason is inferred).
+
+Fix first: #1 (item family). It's a three-line change in buy_items, it touches neither movement nor fighting (the parts b3-b6 broke or left unchanged), and it targets the gold and damage-taken gap with Team A directly.
+
+### b7 — promoted (56% vs b2)
+- Based on: b2
+- Changes: I changed `buy_items` in `bots/b7/src/bot.py` (line 110) to buy passive-emblem shards instead of Power shards. This is finding #1 only. Strength champions now buy `Item.TREASURE_SHARD_OF_STRENGTH` (+20% gold). Health champions buy `Item.JUNGLE_SHARD_OF_HEALTH` (-30% camp damage). The random stat choice is unchanged, and so are the shop trigger, movement and fighting.
+
+Power shards have no passive, so b2 never got a passive emblem. Treasure and Jungle cost the same as Power, so this should lift earned gold and cut camp damage taken at no extra cost. I checked both item names in `BotAPIPython.md` (line 643). I did not re-check the passive effects in `GameRules.md`. They come from the analysis.
+
+The smoke test on stampede (`cambc run b7 b2 --map stampede`) ran all 2000 rounds with 0 crashes for both bots. b7 won on the tiebreak: gems were tied, and b7 earned 8071 gold to b2's 8008. There were no kills or deaths on either side. That is one deterministic match, so it shows the bot runs, not that it is stronger.
+- Evaluation (results/evalB_b7): b2 56%, b1 91%, v1 91%; overall 79%
+- Status: promoted, new champion.
