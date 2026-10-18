@@ -84,10 +84,20 @@ MARCH_BANK_PER = 3
 RET_W_FLEE = 60.0         # pull toward the spawn when running there would save us
 FLEE_SAFETY = 0.8         # ... i.e. when the walk takes under this fraction of the turns we can survive
 REGROUP_W = 3.0           # alone and outnumbered: drift toward the spawn instead of holding in place
+REGROUP_W_BALL = 2.0      # v20: ... and with allies about (each planner retreats, CO_W keeps the body together)
 BANK_NEAR = 3             # an altar this close is used even with enemies about (damage does not stop a tribute)
 BANK_NEAR_GEMS = 20
-BANK_RUN_GEMS = 40        # on a bank trip with this many gems a retreat heads for the altar when it is nearer
+BANK_RUN_ANY = 25         # v20: a retreat with this many gems heads for the altar when it is nearer than home and the enemy
+PRESS_BANK_MARGIN = 2.0   # v20: pressed beside an altar, tribute when our health covers this much of the channel's damage
 MELEE_TYPES = (T.RYTH, T.VENDETTA, T.ISSAC, T.MARCELLA, T.REN, T.VARG)
+
+THREAT_R = 6              # v20: a lost fight marks camp groups whose centre is this close to the enemy ...
+THREAT_T = 25             # ... for this many rounds (no new task there, and the current one is dropped)
+STANDOFF_SKIP = 3         # v20: lost fight but nobody can hit us next turn: ignore it this long and get on with work
+# v20: how far each champion can strike before our next turn: walk (or dash 2) and a basic attack, or a spell's
+# range plus its radius. A refused fight presses us only within this + 1, and a retreat keeps out of it.
+HIT_REACH = {T.RYTH: 5, T.VESPER: 5, T.VENDETTA: 4, T.CASSI: 4, T.ISSAC: 4, T.STELLAR: 5, T.PRISM: 5,
+             T.MARCELLA: 4, T.WILLOW: 3, T.REN: 4, T.VARG: 2, T.TAVI: 4}
 
 SPAWN_HOLD_D = 9          # v17: on our spawn, enemies this close and a fight we would lose: wait for company
 SPAWN_HOLD_MAX = 30       # ... for at most this many consecutive turns
@@ -208,6 +218,9 @@ class BallMixin:
         self.df_near = DistanceField()
         self.hold_fights = 0
         self.skip_fight_until = -1
+        self.done_b_rank = -1                     # v20: group we just captured, broadcast as S_DONE ...
+        self.done_b_until = -1                    # ... until this round
+        self.press_rnd = -99
         self.last_ratio = 1.0
         self.hard_retreat = False
         self.xch_round = -10
@@ -353,6 +366,9 @@ class BallMixin:
     def ball_byte(self, alive):
         if not alive:
             return 0
+        if self.bstate != S_GATHER and self.rnd <= self.done_b_until and 0 <= self.done_b_rank < 61:
+            self.tag("sdone-bcast")
+            return (S_DONE << 6) | (self.done_b_rank + 1)   # v20: tell everybody what we just captured
         st = self.bstate
         code = NOOBJ
         if st != S_GATHER:
@@ -441,6 +457,10 @@ class BallMixin:
             return heal + "spawn-hold"
         if self.bstate == S_GATHER and on_spawn and self.hp >= self.maxhp * 0.97:
             self.bstate = S_READY
+            if SOLO:
+                self.elect()                      # v20: lead ourselves this turn instead of a "wait-leader" turn
+        if SOLO and self.bstate == S_GATHER and not on_spawn and self.mode != 1:
+            self.mode = 1                         # v20: on the way home (a bank detour reset the mode): carry on home
         if self.bstage == B_GATHER:
             return heal + self.gather_turn()
         # wounded or rich: back home
@@ -598,7 +618,7 @@ class BallMixin:
         best = None
         best_t = 1e9
         for g in self.groups:
-            if g.d_enemy <= ESP_AVOID or g.block_until > rnd + 30:
+            if g.d_enemy <= ESP_AVOID or g.block_until > rnd + 30 or g.threat_until > rnd:
                 continue
             d = self.df_me.get(g.v0)
             if d >= 65535:
@@ -926,7 +946,7 @@ class BallMixin:
             self.engaged = False
             return None
         if self.skip_fight_until > self.rnd:
-            if not any(cheb(px, py, e[0], e[1]) <= (2 if e[6] <= 1 else e[6]) + 1 for e in rel):
+            if not any(cheb(px, py, e[0], e[1]) <= HIT_REACH.get(e[8], 5) + 1 for e in rel):
                 return None                       # resting from a stand-off, unless someone can hit us
         if DEBUG_HOLD:
             eg = [(e[8], e[11]) for e in rel if len(e) > 11 and e[11] > 0]
@@ -968,6 +988,35 @@ class BallMixin:
                     near_me = d
             if (go and slack >= COMMIT_GO_SLACK and near_me > 4) or (not go and slack >= COMMIT_RUN_SLACK):
                 return None                       # nobody can get at us yet: keep working the camp
+        if not go:
+            # v20: a fight we refuse. Mark the area, and unless someone can hit us next turn leave with a new job
+            # instead of hovering at the edge of their reach.
+            self.mark_threat(rel)
+            hitters = [e for e in rel if cheb(px, py, e[0], e[1]) <= HIT_REACH.get(e[8], 5) + 1]
+            if not hitters:
+                self.skip_fight_until = self.rnd + STANDOFF_SKIP
+                self.hold_fights = 0
+                self.tag("standoff-break")
+                return None
+            # pressed beside an altar with a bag: tribute when our health covers the channel (damage does not stop it)
+            if self.gems >= BANK_NEAR_GEMS:
+                at_altar = False
+                for (ax, ay) in self.altar_xy:
+                    if cheb(px, py, ax, ay) <= cambc.constants.SUBMIT_GEMS_RANGE:
+                        at_altar = True
+                        break
+                if at_altar:
+                    t_ch = max(1, (self.gems + 9) // 10)
+                    inc = self.inc
+                    for e in hitters:
+                        inc += unit_dps(e[8], e[3], e[7])
+                    if eff > PRESS_BANK_MARGIN * t_ch * inc:
+                        act = self.do_bank()
+                        if act == "submit":
+                            self.press_rnd = self.rnd
+                            return "submit-press"
+                    else:
+                        self.tag("press-fail")
         if cambc.fuel_remaining() < 500000:
             return self.fallback_attack(rel)
         act = self.plan_fight(rel, not go)
@@ -983,6 +1032,28 @@ class BallMixin:
         else:
             self.hold_fights = 0
         return act
+
+    def mark_threat(self, rel):
+        """v20: enemies we will not fight mark the camp groups around them for THREAT_T rounds; our own task there is
+        dropped unless we are already capturing it."""
+        pts = [(e[0], e[1]) for e in rel if not self.at_home(e)]
+        if not pts:
+            return
+        rnd = self.rnd
+        until = rnd + THREAT_T
+        for g in self.groups:
+            gx, gy = int(g.cx), int(g.cy)
+            for (ex, ey) in pts:
+                if cheb(gx, gy, ex, ey) <= THREAT_R:
+                    if g.threat_until < until:
+                        g.threat_until = until
+                    break
+        t = self.task
+        if t is not None and t.threat_until > rnd and self.cap_since == 0:
+            self.task = None
+            self.cstate = 0
+            self.done_rank = -1
+            self.tag("threat-drop")
 
     def at_home(self, e):
         if (e[0], e[1]) in self.espawn_xy:
@@ -1027,6 +1098,7 @@ class BallMixin:
         EHP = [e[2] for e in near]
         EDPS = []
         EREACH = []
+        ERISK = []
         EWT = []
         EKV = []
         ESV = []
@@ -1036,6 +1108,7 @@ class BallMixin:
             EDPS.append(dps)
             reach = 2 if e[6] <= 1 else e[6]
             EREACH.append(reach)
+            ERISK.append(HIT_REACH.get(e[8], reach) if retreat else reach)    # v20: retreats keep out of spell reach
             frac = e[2] / e[9] if e[9] > 0 else 1.0
             w = T.TARGET_W.get(e[8], 1.0) * (1.0 + 1.0 * (1.0 - frac))
             if (e[0], e[1]) in self.espawn_xy:
@@ -1126,9 +1199,19 @@ class BallMixin:
         splash = self.splash
         best = [-1e18, None]
         flee_w = RET_W
-        if retreat and self.mode == 2 and self.gems >= BANK_RUN_GEMS and \
-                self.df_altar.get(self.pos) < df_spawn.get(self.pos):
-            df_spawn = self.df_altar               # on a bank trip: the altar is the nearer way out
+        if retreat and self.gems >= BANK_RUN_ANY:
+            d_alt = self.df_altar.get(self.pos)
+            if d_alt < df_spawn.get(self.pos) and d_alt < min(self.df_altar.get(e[5]) for e in near):
+                # v20: carrying a bag, the altar is nearer than home and them; go there only if we can also
+                # survive the walk and the tribute under the current pressure
+                inc_hit = self.inc
+                for i in range(n_en):
+                    if cheb(px, py, EX[i], EY[i]) <= ERISK[i] + 1:
+                        inc_hit += EDPS[i]
+                t_ch = max(1, (self.gems + 9) // 10)
+                if self.hp + self.shield_value() > PRESS_BANK_MARGIN * (t_ch + d_alt) * inc_hit:
+                    df_spawn = self.df_altar
+                    self.tag("altar-run")
         if retreat and hard:
             inc_est = self.xch_t if self.xch_n >= 1 else 0.0
             if inc_est < 1.0:
@@ -1136,7 +1219,8 @@ class BallMixin:
             surv = (self.hp + self.shield_value()) / (inc_est if inc_est > 1.0 else 1.0)
             if df_spawn.get(self.pos) <= surv * FLEE_SAFETY:
                 flee_w = RET_W_FLEE            # we can make it home, where the spawn heals us: go
-        regroup = retreat and not hard and alone and close_enemy
+        regroup = retreat and not hard       # v20: everybody pressed (see skirmish) backs off with a destination
+        regroup_w = REGROUP_W if alone else REGROUP_W_BALL
 
         def tile_free(nx, ny):
             return 0 <= nx < W and 0 <= ny < H and not block.is_set(Vec2(nx, ny))
@@ -1148,7 +1232,7 @@ class BallMixin:
             dist = [cheb(x, y, EX[i], EY[i]) for i in range(n_en)]
             risk = 0.0
             for i in range(n_en):
-                if dist[i] <= EREACH[i]:
+                if dist[i] <= ERISK[i]:
                     risk += EDPS[i] / ESHARE[i]
             for (kx, ky, kd) in camp_thr:
                 if cheb(x, y, kx, ky) <= 3:
@@ -1167,7 +1251,7 @@ class BallMixin:
                 if hard:
                     pos_v -= flee_w * df_spawn.get(Vec2(x, y))
                 elif regroup:
-                    pos_v -= REGROUP_W * df_spawn.get(Vec2(x, y))
+                    pos_v -= regroup_w * df_spawn.get(Vec2(x, y))
             elif focus >= 0 and not no_chase:
                 d = dist[focus] - arange
                 if d > 0:

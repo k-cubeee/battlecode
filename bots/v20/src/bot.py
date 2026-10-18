@@ -56,7 +56,8 @@ class Grp:
     """Static facts about one camp group plus what we remember about it."""
     __slots__ = ("i", "cg", "xy", "vec", "bb", "gems", "gold", "resp", "kind", "hp", "st", "n", "adj",
                  "cx", "cy", "rank", "d_spawn", "far", "ready_at", "block_until", "hpleft", "hp_ver",
-                 "est_key", "est", "xyset", "v0", "stsum", "hp_total", "hpsum", "contest", "deny", "d_enemy")
+                 "est_key", "est", "xyset", "v0", "stsum", "hp_total", "hpsum", "contest", "deny", "d_enemy",
+                 "threat_until")
 
 
 def is_big(g):
@@ -123,6 +124,9 @@ class Bot(BallMixin):
         self.inited = False
         self.task = None
         self.mode = M_IDLE
+        self.note = ""               # DEBUG: tags of this turn's notable events (end of the status line)
+        self.pend_note = ""
+        self.recent = []             # DEBUG: event letters of the last few turns, reported at death
 
     # ------------------------------------------------------------------ setup
     def init_world(self):
@@ -194,6 +198,7 @@ class Bot(BallMixin):
             g.contest = 1.0 - 0.4 * (0.0 if lean < 0.0 else (1.0 if lean > 1.0 else lean))
             g.ready_at = 0
             g.block_until = 0
+            g.threat_until = 0           # v20: enemies we would not fight were seen here until this round
             g.hpleft = None
             g.hp_ver = 0
             g.est_key = None
@@ -331,6 +336,11 @@ class Bot(BallMixin):
         if DEBUG:
             print(f"R{self.rnd} S{self.slot} {msg}", flush=True)
 
+    def tag(self, word):
+        """DEBUG: mark this turn's status line with an event word (counted by the action tally)."""
+        if DEBUG:
+            self.note = (self.note + "+" + word) if self.note else (" " + word)
+
     # ------------------------------------------------------------------ shared memory
     def read_shared(self):
         buf = self.sbuf
@@ -409,10 +419,18 @@ class Bot(BallMixin):
                 lines.append(tb.tb_lineno)
                 tb = tb.tb_next
             print(f"ERR R{self.rnd} S{getattr(self, 'slot', -1)} {error!r} lines={lines}", flush=True)
+            if DEBUG:      # a status line too, so the action tally counts errors
+                print(f"R{self.rnd} S{getattr(self, 'slot', 0)} (0,0) hp=0/0 gems=0 gold=0 mode=0 task=-1/0 "
+                      f"fuel=0/0 bot-ERR", flush=True)
 
     def turn(self):
         me = self.me
         f0 = cambc.fuel_remaining()
+        if DEBUG:
+            self.note = ""
+            if self.pend_note:
+                self.tag(self.pend_note)
+                self.pend_note = ""
         st = int(me.state())
         self.st = st
         if not (st & 1):
@@ -450,13 +468,36 @@ class Bot(BallMixin):
             extra = ""
             if self.camps and (self.inc > 0.0 or self.mode == M_HOME):
                 extra = " camps=" + str([(c[0], c[1], int(c[2])) for c in self.camps]) + f" inc={self.inc:.0f} aw={int(self.awake)}"
+            if act in ("step retreat", "hold retreat"):
+                act = act.replace(" ", "-")       # stand-off turns get their own word in the tally
             self.log(f"({self.px},{self.py}) hp={int(self.hp)}/{int(self.maxhp)} gems={self.gems} gold={self.gold} "
-                     f"mode={self.mode} task={self.task.i if self.task else -1}/{self.cstate} fuel={used}/{self.fuel_max} {act}{extra}")
+                     f"mode={self.mode} task={self.task.i if self.task else -1}/{self.cstate} fuel={used}/{self.fuel_max} {act}{self.note}{extra}")
+            nt, a, fl = self.note, act or "", ""
+            for w, c in (("standoff-break", "S"), ("threat-drop", "D"), ("altar-run", "A"), ("press-fail", "P")):
+                if w in nt:
+                    fl += c
+            if a.endswith("retreat"):
+                fl += "R"
+            elif a.endswith("fight"):
+                fl += "F"
+            if self.mode == M_HOME:
+                fl += "H"
+            self.recent.append(fl)
+            if len(self.recent) > 6:
+                del self.recent[0]
 
     def dead_turn(self):
         if self.was_alive:
             print(f"R{self.rnd} S{self.slot} DEAD", flush=True)
             self.was_alive = False
+            if DEBUG and self.rnd - getattr(self, "press_rnd", -99) <= 10:
+                self.pend_note = "press-died"
+            if DEBUG:      # one tally line per event seen in the last 6 turns before this death
+                feats = sorted(set("".join(self.recent))) or ["W"]
+                for w in ["died"] + ["died-" + c for c in feats] + (["died-g"] if self.gems >= 20 else []):
+                    print(f"R{self.rnd} S{self.slot} (0,0) hp=0/0 gems=0 gold=0 mode=0 task=-1/0 fuel=0/0 {w}",
+                          flush=True)
+                self.recent = []
         self.task = None
         self.mode = M_IDLE
         self.done_rank = -1
@@ -1120,6 +1161,8 @@ class Bot(BallMixin):
         for g in groups:
             if g.block_until > rnd:
                 continue
+            if g.threat_until > rnd:
+                continue                            # v20: a stronger enemy is about there
             hs = g.hpsum
             if ball and g.d_enemy <= ESP_AVOID:
                 continue                            # never camp on the enemy's doorstep
@@ -1316,6 +1359,9 @@ class Bot(BallMixin):
         if self.cstate == C_FIGHT and self.cap_since > 0:
             g.ready_at = self.rnd + g.resp
             self.done_rank = g.rank
+            self.done_b_rank = g.rank             # v20: broadcast the capture for two rounds (ball_byte)
+            self.done_b_until = self.rnd + 1
+            self.tag("captured")
             self.log(f"CAPTURED {g.i} gems={self.gems} gold={self.gold}")
         else:
             g.ready_at = self.rnd + timer
