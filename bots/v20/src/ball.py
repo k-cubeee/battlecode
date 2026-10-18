@@ -91,13 +91,15 @@ BANK_RUN_ANY = 25         # v20: a retreat with this many gems heads for the alt
 PRESS_BANK_MARGIN = 2.0   # v20: pressed beside an altar, tribute when our health covers this much of the channel's damage
 MELEE_TYPES = (T.RYTH, T.VENDETTA, T.ISSAC, T.MARCELLA, T.REN, T.VARG)
 
-THREAT_R = 6              # v20: a lost fight marks camp groups whose centre is this close to the enemy ...
-THREAT_T = 25             # ... for this many rounds (no new task there, and the current one is dropped)
+THREAT_R = 4              # v20: a lost fight marks camp groups whose centre is this close to the enemy ...
+THREAT_T = 12             # ... for this many rounds (no new task there; an uncommitted task there is dropped)
 STANDOFF_SKIP = 3         # v20: lost fight but nobody can hit us next turn: ignore it this long and get on with work
+DASHERS = (T.VENDETTA, T.ISSAC, T.REN, T.VESPER)    # their dash adds 2 tiles to their reach
 # v20: how far each champion can strike before our next turn: walk (or dash 2) and a basic attack, or a spell's
-# range plus its radius. A refused fight presses us only within this + 1, and a retreat keeps out of it.
+# range plus its radius. Retreats keep out of it; a refused fight presses us within the spell part of it too.
 HIT_REACH = {T.RYTH: 5, T.VESPER: 5, T.VENDETTA: 4, T.CASSI: 4, T.ISSAC: 4, T.STELLAR: 5, T.PRISM: 5,
              T.MARCELLA: 4, T.WILLOW: 3, T.REN: 4, T.VARG: 2, T.TAVI: 4}
+SPELL_REACH = {T.RYTH: 5, T.CASSI: 4, T.STELLAR: 5, T.PRISM: 5, T.MARCELLA: 4, T.REN: 4, T.TAVI: 4}
 
 SPAWN_HOLD_D = 9          # v17: on our spawn, enemies this close and a fight we would lose: wait for company
 SPAWN_HOLD_MAX = 30       # ... for at most this many consecutive turns
@@ -946,7 +948,7 @@ class BallMixin:
             self.engaged = False
             return None
         if self.skip_fight_until > self.rnd:
-            if not any(cheb(px, py, e[0], e[1]) <= HIT_REACH.get(e[8], 5) + 1 for e in rel):
+            if not any(cheb(px, py, e[0], e[1]) <= self.press_r(e) for e in rel):
                 return None                       # resting from a stand-off, unless someone can hit us
         if DEBUG_HOLD:
             eg = [(e[8], e[11]) for e in rel if len(e) > 11 and e[11] > 0]
@@ -992,7 +994,7 @@ class BallMixin:
             # v20: a fight we refuse. Mark the area, and unless someone can hit us next turn leave with a new job
             # instead of hovering at the edge of their reach.
             self.mark_threat(rel)
-            hitters = [e for e in rel if cheb(px, py, e[0], e[1]) <= HIT_REACH.get(e[8], 5) + 1]
+            hitters = [e for e in rel if cheb(px, py, e[0], e[1]) <= self.press_r(e)]
             if not hitters:
                 self.skip_fight_until = self.rnd + STANDOFF_SKIP
                 self.hold_fights = 0
@@ -1035,25 +1037,36 @@ class BallMixin:
 
     def mark_threat(self, rel):
         """v20: enemies we will not fight mark the camp groups around them for THREAT_T rounds; our own task there is
-        dropped unless we are already capturing it."""
+        dropped unless we are committed to it or it is more than half cleared."""
         pts = [(e[0], e[1]) for e in rel if not self.at_home(e)]
         if not pts:
             return
         rnd = self.rnd
         until = rnd + THREAT_T
+        t = self.task
+        keep = t if (t is not None and t.hpsum < 0.5 * t.hp_total) else None    # more than half cleared: finish it
         for g in self.groups:
+            if g is keep:
+                continue
             gx, gy = int(g.cx), int(g.cy)
             for (ex, ey) in pts:
                 if cheb(gx, gy, ex, ey) <= THREAT_R:
                     if g.threat_until < until:
                         g.threat_until = until
                     break
-        t = self.task
-        if t is not None and t.threat_until > rnd and self.cap_since == 0:
+        if t is not None and t is not keep and t.threat_until > rnd and self.cap_since == 0 and not self.committed():
             self.task = None
             self.cstate = 0
             self.done_rank = -1
             self.tag("threat-drop")
+
+    def press_r(self, e):
+        """v20: within this distance an enemy can hit us next turn (enemies resting at home only with a basic attack)."""
+        r = (2 if e[6] <= 1 else e[6]) + 1 + (2 if e[8] in DASHERS else 0)
+        if self.at_home(e):
+            return r
+        s = SPELL_REACH.get(e[8], 0)
+        return s if s > r else r
 
     def at_home(self, e):
         if (e[0], e[1]) in self.espawn_xy:
