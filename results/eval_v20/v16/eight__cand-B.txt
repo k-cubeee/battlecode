@@ -1,0 +1,19 @@
+cambc run v16 v20 --map eight -o /home/user/battlecode/results/eval_v20/v16/.eight__cand-B.replay --statistics /home/user/battlecode/results/eval_v20/v16/eight__cand-B.stats.json --json
+
+v16 vs v20 on /home/user/battlecode/maps/eight.map26a
+Team A (v16) wins: reached 1000 gems in round 749
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v16  1052    14     12        5618        0  Varg, Ryth, Stellar, Marcella, Tavi
+  B    v20   270    12     19        2944        0  Ren, Stellar, Cassi & Issac, Varg, Ryth
+replay bundle: /home/user/battlecode/results/eval_v20/v16/.eight__cand-B.replay/v16-vs-v20-1792295323460.repl26a
+match summary: /home/user/battlecode/results/eval_v20/v16/eight__cand-B.stats.json
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+finished: round 749/2000 — teamA

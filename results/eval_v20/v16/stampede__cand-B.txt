@@ -1,0 +1,23 @@
+cambc run v16 v20 --map stampede -o /home/user/battlecode/results/eval_v20/v16/.stampede__cand-B.replay --statistics /home/user/battlecode/results/eval_v20/v16/stampede__cand-B.stats.json --json
+
+v16 vs v20 on /home/user/battlecode/maps/stampede.map26a
+Team A (v16) wins: reached 1000 gems in round 1124
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v16  1080    21      7        8384        0  Varg, Ryth, Stellar, Marcella, Tavi
+  B    v20   360     7     27        5438        0  Ren, Stellar, Cassi & Issac, Varg, Ryth
+replay bundle: /home/user/battlecode/results/eval_v20/v16/.stampede__cand-B.replay/v16-vs-v20-1792295773291.repl26a
+match summary: /home/user/battlecode/results/eval_v20/v16/stampede__cand-B.stats.json
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+running: round 800/2000
+running: round 900/2000
+running: round 1000/2000
+running: round 1100/2000
+finished: round 1124/2000 — teamA

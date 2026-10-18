@@ -1,0 +1,19 @@
+cambc run v18 v20 --map elkring -o /home/user/battlecode/results/eval_v20/v18/.elkring__cand-B.replay --statistics /home/user/battlecode/results/eval_v20/v18/elkring__cand-B.stats.json --json
+
+v18 vs v20 on /home/user/battlecode/maps/elkring.map26a
+Team A (v18) wins: reached 1000 gems in round 703
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v18  1026    13      7        6103        0  Varg, Ryth, Stellar, Marcella, Tavi
+  B    v20   630     7     19        5011        0  Ren, Stellar, Cassi & Issac, Varg, Ryth
+replay bundle: /home/user/battlecode/results/eval_v20/v18/.elkring__cand-B.replay/v18-vs-v20-1792296064168.repl26a
+match summary: /home/user/battlecode/results/eval_v20/v18/elkring__cand-B.stats.json
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+finished: round 703/2000 — teamA

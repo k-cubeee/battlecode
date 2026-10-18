@@ -1,0 +1,20 @@
+cambc run v18 v20 --map ambush -o /home/user/battlecode/results/eval_v20/v18/.ambush__cand-B.replay --statistics /home/user/battlecode/results/eval_v20/v18/ambush__cand-B.stats.json --json
+
+v18 vs v20 on /home/user/battlecode/maps/ambush.map26a
+Team A (v18) wins: reached 1000 gems in round 864
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v18  1048     7      8        4600        0  Varg, Ryth, Stellar, Marcella, Tavi
+  B    v20   852     8     11        3508        0  Ren, Stellar, Cassi & Issac, Varg, Ryth
+replay bundle: /home/user/battlecode/results/eval_v20/v18/.ambush__cand-B.replay/v18-vs-v20-1792295856843.repl26a
+match summary: /home/user/battlecode/results/eval_v20/v18/ambush__cand-B.stats.json
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+running: round 800/2000
+finished: round 864/2000 — teamA

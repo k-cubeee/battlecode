@@ -1,0 +1,18 @@
+cambc run v16 v20 --map expanse -o /home/user/battlecode/results/eval_v20/v16/.expanse__cand-B.replay --statistics /home/user/battlecode/results/eval_v20/v16/expanse__cand-B.stats.json --json
+
+v16 vs v20 on /home/user/battlecode/maps/expanse.map26a
+Team A (v16) wins: reached 1000 gems in round 695
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v16  1126     3      0        4244        0  Varg, Ryth, Marcella
+  B    v20   564     0      4        2854        0  Ren, Stellar, Cassi & Issac
+replay bundle: /home/user/battlecode/results/eval_v20/v16/.expanse__cand-B.replay/v16-vs-v20-1792295404962.repl26a
+match summary: /home/user/battlecode/results/eval_v20/v16/expanse__cand-B.stats.json
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+finished: round 695/2000 — teamA

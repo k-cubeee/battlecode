@@ -1,0 +1,18 @@
+cambc run v17 v20 --map corners -o /home/user/battlecode/results/eval_v20/v17/.corners__cand-B.replay --statistics /home/user/battlecode/results/eval_v20/v17/corners__cand-B.stats.json --json
+
+v17 vs v20 on /home/user/battlecode/maps/corners.map26a
+Team A (v17) wins: reached 1000 gems in round 677
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v17  1080     4     10        4816        0  Varg, Ryth, Stellar, Marcella, Tavi
+  B    v20   746    10      4        4744        0  Ren, Stellar, Cassi & Issac, Varg, Ryth
+replay bundle: /home/user/battlecode/results/eval_v20/v17/.corners__cand-B.replay/v17-vs-v20-1792294531550.repl26a
+match summary: /home/user/battlecode/results/eval_v20/v17/corners__cand-B.stats.json
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+finished: round 677/2000 — teamA

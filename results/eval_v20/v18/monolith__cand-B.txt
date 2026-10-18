@@ -1,0 +1,17 @@
+cambc run v18 v20 --map monolith -o /home/user/battlecode/results/eval_v20/v18/.monolith__cand-B.replay --statistics /home/user/battlecode/results/eval_v20/v18/monolith__cand-B.stats.json --json
+
+v18 vs v20 on /home/user/battlecode/maps/monolith.map26a
+Team A (v18) wins: reached 1000 gems in round 548
+  team bot  gems kills deaths gold earned  crashes  draft
+  A    v18  1062     7      4        4850        0  Varg, Ryth, Stellar, Marcella, Tavi
+  B    v20   996     4     10        5186        0  Ren, Stellar, Cassi & Issac, Varg, Ryth
+replay bundle: /home/user/battlecode/results/eval_v20/v18/.monolith__cand-B.replay/v18-vs-v20-1792296264053.repl26a
+match summary: /home/user/battlecode/results/eval_v20/v18/monolith__cand-B.stats.json
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+finished: round 548/2000 — teamA
