@@ -1748,3 +1748,49 @@ Fallback (in this order; change constants only):
 3. **If `submit-press` loses bags** (carrier deaths during a channel): `PRESS_BANK_MARGIN` 2.0→3.0, and skip the rule when a `hit_next` enemy is a stunner (`T.RYTH, T.MARCELLA, T.TAVI, T.PRISM, T.REN, T.CASSI`).
 4. **If the group splits under the all-retreat pull:** go back to `regroup` only when `alone` (v17 behaviour), keeping the altar-run change.
 5. **If claim collisions show** (two teammates on one group after a capture): drop 3(c) and keep 3(a) and 3(b).
+
+### v20 — rejected (47% vs v17; general-only effort)
+- Based on: v17, not the champion v18, by user directive: "make a better bot in a general sense, not based on the map". v18's map/seat gates are excluded. Built with the researcher, designer and implementer agents; the session ran the evaluation. The bar was >= 55% vs v17 with no regression.
+- Changes (Design for v20 above, plus implementer fixes; no map, seat or size conditions):
+  1. **Stand-off breaker.** In a lost skirmish, `mark_threat` marks camp groups near visible enemies for `THREAT_T` 12 rounds within `THREAT_R` 4. Uncommitted tasks on marked groups are dropped. `best_group` and `leader_idle` skip marked groups, but groups more than half cleared are kept.
+  2. **Retreat with a destination.**
+     - An altar run for carriers with 25 or more gems, but only when the walk plus the tribute is survivable.
+     - A spawn pull on every soft retreat.
+     - Spell reach is counted in the "can be hit next turn" test (basic reach for enemies sitting at home).
+     - A bank-under-pressure rule (`submit-press`).
+  3. **Solo-mode fixes:** `elect()` after S_GATHER becomes S_READY (no lost turn after a heal), off-spawn S_GATHER resumes the trip home, and an S_DONE broadcast after each capture.
+  4. **Cassi & Issac pair rule:** the pair fights only at 1.3x the usual ratio, judges bail and retreat by the weaker body's HP, and goes home below 60%.
+  5. **User directive, draft:** one priority list for every team size: Ren, Stellar, Cassi & Issac, Varg, Ryth. That gives 3 picks Ren, Stellar, C&I (4 bodies); 4 picks + Varg; 5 picks + Ryth (6 bodies).
+  6. **User directive, builds:** Ren and Cassi get the Focus build (`BUILD_FOCUS` = `BUILD_STELLAR`, Jungle Focus first).
+- What fired (DEBUG tallies, d20 vs v17 on lanes, eight, contest, collision and rows):
+  - The retreat share of turns fell from 13.9% to 8.0%, and step/hold-retreat from about 10% to 4.5%.
+  - standoff-break fired 23-134 times per game.
+  - wait-leader fell from 14-89 per game to 0.
+  - `submit-press` never fired: pressed carriers are rarely in tribute range.
+- Evaluation (results/eval_v20): **v17 16-18 (47%)**, v16 13-21 (38%), v18 15-19 (44%); overall 43%. 0 errors.
+  - **Re-rolled v17 copies** (see the methodology note below; summary in results/eval_v20_reroll/summary.json): v17r1 17-17, v17r3 16-18, v17r4 18-16, so 51-51.
+  - **v17 family in total: 67-69 (49%) over 136 games.**
+  - Dev maps vs the v17 family: 45-43. Held-out maps (ambush, fragment, interlock, pilgrimage, stampede, swirl): 22-26.
+  - vs v17 by map (A/B): ambush LL, collision WW, contest WL, corners WL, eight LL, elkring WL, expanse LL, fragment LL, interlock WW, lanes WL, monolith WW, packs WL, pilgrimage WL, rows LW, rushbait-v2 LW, stampede WL, swirl LW.
+- Why it failed:
+  - **Deaths doubled:** 14.3 per game vs the opponent's 7.0 (v17 in eval_v17: 5.9 vs 8.3). Deaths before r300 were 5 vs 3, kills 7 vs 10, gold 4,430 vs 4,798.
+  - **Cassi & Issac** die 3.6 times each per game and farm least: Issac 68 gems and 349 gold per game, Cassi 109 and 505.
+  - **Every other body also dies more:** Ryth 2.2 vs 1.2 in v17, Varg 1.8 vs 1.2.
+  - **The 3-pick roster has no Varg.** Expanse went LL vs v17 and 0-6 on the dev runs. It is a pure farming race, and Varg's splash was v17's farming engine.
+  - **Roster-only control** (v17 + the meta roster + Focus builds, no behaviour changes, dev maps): 21-23 (7-15 vs v17, 14-8 vs v17r1). Deaths 11 vs 8. The roster alone does not beat v17 with this play logic.
+- Lessons:
+  1. The behaviour fixes work mechanically (fewer stand-offs, no lost turns) but do not convert into wins. Leaving fights earlier did not reduce deaths.
+  2. With this code, the 6-body meta roster dies more than v17's roster. Cassi & Issac's linked death costs about 7 deaths a game. The ladder meta probably assumes grouped play (Lead input), and v17's champions farm solo (SOLO=1).
+  3. Without Varg, 3-pick farming races are lost.
+- Status: rejected, moved to rejected/v20.
+
+### Methodology note — 2026-10-18: noise floor and re-rolled opponents
+- **Matches are deterministic, but any change in fuel use re-rolls them.** v17 has `fuel_remaining()` cut-offs, so extra instructions change decisions.
+- **Null change:** v17 plus a 400-iteration no-op loop per turn in main.py scored 16-18 vs v17, and 9 of the 28 ungated mirror seats changed winner. So one 34-game run has a noise band of about ±2 games (about ±5%), and 19/34 (the 55% gate) is within it.
+- **Re-rolled copies of v17** give more independent games of equal strength. Each is v17 plus `for _i in range(N): _x += _i` before `bot.play_turn()` in main.py.
+  - N=400 (v17r1): 16-18 vs v17, 9 of 28 seats flipped.
+  - N=120 (v17r4): 16-18, 5 of 28 flipped.
+  - N=17 (v17r3): 15-19, 3 of 28 flipped.
+  - N=3: identical to v17 (0 flips), so it is useless as a re-roll.
+  - N >= 1100 cripples the bot: a Python loop iteration costs about 1k fuel, so v17's low-fuel fallbacks and fuelExhausted fire.
+- **Suggestion:** judge a candidate on 100+ games, e.g. vs v17 plus 2-3 re-rolls (about ±3.5% standard error at 136 games), and look at aggregates (deaths, gems lost, gold) before seat flips.
