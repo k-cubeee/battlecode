@@ -100,6 +100,10 @@ DASHERS = (T.VENDETTA, T.ISSAC, T.REN, T.VESPER)    # their dash adds 2 tiles to
 HIT_REACH = {T.RYTH: 5, T.VESPER: 5, T.VENDETTA: 4, T.CASSI: 4, T.ISSAC: 4, T.STELLAR: 5, T.PRISM: 5,
              T.MARCELLA: 4, T.WILLOW: 3, T.REN: 4, T.VARG: 2, T.TAVI: 4}
 SPELL_REACH = {T.RYTH: 5, T.CASSI: 4, T.STELLAR: 5, T.PRISM: 5, T.MARCELLA: 4, T.REN: 4, T.TAVI: 4}
+# v20: Cassi and Issac die together, so each fights only with a clear edge, judges its health by the weaker of
+# the two, and goes home earlier
+PAIR_NEED = 1.3
+HOME_HP_PAIR = 0.6
 
 SPAWN_HOLD_D = 9          # v17: on our spawn, enemies this close and a fight we would lose: wait for company
 SPAWN_HOLD_MAX = 30       # ... for at most this many consecutive turns
@@ -540,7 +544,7 @@ class BallMixin:
         return gems >= thr
 
     def need_home_ball(self):
-        if self.hp < self.maxhp * HOME_HP:
+        if self.hp < self.maxhp * (HOME_HP_PAIR if self.pair else HOME_HP):
             return True
         if self.gold >= GOLD_HOME and not self.field_shop and not self.enemies:
             if self.df_spawn.get(self.pos) <= 18:
@@ -965,19 +969,25 @@ class BallMixin:
                     need *= HOME_FIGHT_F
             except Error:
                 pass
+        eff = self.hp + self.shield_value()
+        eff_w = eff
+        if self.pair:
+            need *= PAIR_NEED
+            pf = self.partner_frac()
+            if pf is not None and pf * self.maxhp < eff_w:
+                eff_w = pf * self.maxhp           # the weaker of the pair decides when both die
         go = ratio >= need
         xch = self.observe_exchange(rel)
-        eff = self.hp + self.shield_value()
         bad = False
         if go and xch is not None and xch[0] < xch[1] * XCH_MARGIN:
             go = False                            # the real exchange says we lose this one
             bad = True
-        if go and eff < BAIL_HP * self.maxhp and not self.can_finish(rel):
+        if go and eff_w < BAIL_HP * self.maxhp and not self.can_finish(rel):
             go = False
             bad = True
         self.engaged = go
         self.last_ratio = ratio
-        self.hard_retreat = bad or ratio < 0.5 or eff < self.maxhp * 0.4
+        self.hard_retreat = bad or ratio < 0.5 or eff_w < self.maxhp * 0.4
         if self.committed():
             slack = 99
             near_me = 99
@@ -1059,6 +1069,14 @@ class BallMixin:
             self.cstate = 0
             self.done_rank = -1
             self.tag("threat-drop")
+
+    def partner_frac(self):
+        """v20: health fraction of our linked partner (Cassi <-> Issac) when we can see it, else None."""
+        want = T.ISSAC if self.ctype == T.CASSI else T.CASSI
+        for a in self.allies:
+            if a[6] == want:
+                return a[2] / a[3] if a[3] > 0 else 1.0
+        return None
 
     def press_r(self, e):
         """v20: within this distance an enemy can hit us next turn (enemies resting at home only with a basic attack)."""

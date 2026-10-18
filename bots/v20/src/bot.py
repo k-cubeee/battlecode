@@ -253,8 +253,8 @@ class Bot(BallMixin):
                                  for _, k, i in self.abil)
 
         # shopping
-        if STELLAR_FOCUS and self.ctype == T.STELLAR:
-            self.build = list(T.BUILD_STELLAR)
+        if (STELLAR_FOCUS and self.ctype == T.STELLAR) or self.ctype in (T.REN, T.CASSI):
+            self.build = list(T.BUILD_FOCUS)       # v20: Ren and Cassi too (user directive)
         elif self.home_open:
             self.build = list(T.BUILD_FIGHTER_MON)
         else:
@@ -1025,6 +1025,8 @@ class Bot(BallMixin):
             gold -= cost * n
             self.set_cnt += n
             bought = True
+            if DEBUG:
+                self.tag(f"buy{self.ctype}-{T.FAMILY[fam]}-{T.STAT[stat]}")
             if self.set_cnt >= 5:
                 self.set_cnt = 0
                 self.set_pos += 1

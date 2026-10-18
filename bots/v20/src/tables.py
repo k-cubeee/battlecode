@@ -55,6 +55,9 @@ BUILD_STELLAR = (     # v17: Focus pays more than Strength only for Stellar's sp
     [(JUN, FOC), (MON, FOC), (TRE, FOC), (DUR, HP), (POW, FOC), (HOME, HP)]
     + [(POW, FOC), (POW, HP)] * 12
 )
+# v20: Focus builds for the spell champions (Stellar, Ren, Cassi) by user directive; the ladder's top teams buy
+# Focus on every champion except Varg
+BUILD_FOCUS = BUILD_STELLAR
 BUILD_RANGED = (
     [(MON, STR), (JUN, HP), (TRE, STR), (DUR, HP), (POW, STR), (HOME, HP)]
     + [(POW, STR), (POW, HP)] * 12
