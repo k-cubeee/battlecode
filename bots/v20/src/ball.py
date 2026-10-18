@@ -1439,6 +1439,7 @@ class BallMixin:
                     if not self.melee:
                         self.can_attack = False
                     act += "dash "
+                    self.tag(f"dash{self.ctype}")
                 else:
                     failed_move = True
             except Error:
@@ -1473,6 +1474,7 @@ class BallMixin:
                     if cinfo.exclusive_with_movement:
                         self.can_move = False
                     act += "spell "
+                    self.tag(f"pvpcast{self.ctype}")
             except Error:
                 pass
         elif ckind == 5:

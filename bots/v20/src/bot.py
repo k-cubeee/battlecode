@@ -1597,5 +1597,6 @@ class Bot(BallMixin):
                     self.can_move = False
                 self.last_attack_round = self.rnd
                 self.fight_gi = best[3]
+                self.tag(f"campcast{self.ctype}")
                 return "spell "
         return ""

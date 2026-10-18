@@ -1,12 +1,11 @@
 """Draft: pick the roster in priority order and record it for the champions.
 
-The rosters were chosen by playing candidate rosters against each other (same code on both teams, both
-sides, the maps of that team size). Varg's splash is what makes the farming fast, Ryth and Marcella are the
-tanks, Stellar is the ranged burst and Willow keeps the front line alive. Cassi and Issac die together, so
-they cost more deaths than the extra body is worth and are left out on maps where the spawns meet.
+v20 drafts the ladder meta roster by user directive: Ren, Stellar, Cassi & Issac, Varg and Ryth, in that
+order, for every team size (3 picks: Ren, Stellar, Cassi & Issac = 4 bodies; 4 picks: + Varg; 5 picks:
++ Ryth = 6 bodies). The tail of the list is only a safety net (picks are simultaneous, mirroring is allowed).
 
-On 3-pick maps whose spawns are far apart (expanse) there is little contact and the game is a pure farming
-race, so the extra body of Cassi & Issac wins it: those maps use PREFS_FAR_3 instead.
+Earlier versions drafted Varg, Ryth, Marcella / Stellar / Tavi from roster-vs-roster tests. The far-spawn
+3-pick list PREFS_FAR_3 stays disabled (FAR_SPAWN_DIST).
 """
 import cambc
 from cambc import game_map
@@ -14,10 +13,11 @@ import tables as T
 
 # Preferred picks per team size (ChampionDraft values), best first. Only the first `size` entries are
 # normally used; the rest is a safety net.
+_META = [T.D_REN, T.D_STELLAR, T.D_CASSI_ISSAC, T.D_VARG, T.D_RYTH, T.D_MARCELLA, T.D_TAVI, T.D_WILLOW]
 PREFS = {
-    3: [T.D_VARG, T.D_RYTH, T.D_MARCELLA, T.D_STELLAR, T.D_WILLOW, T.D_TAVI],
-    4: [T.D_VARG, T.D_RYTH, T.D_STELLAR, T.D_MARCELLA, T.D_TAVI, T.D_WILLOW],
-    5: [T.D_VARG, T.D_RYTH, T.D_STELLAR, T.D_MARCELLA, T.D_TAVI, T.D_WILLOW],
+    3: list(_META),
+    4: list(_META),
+    5: list(_META),
 }
 # 3-pick maps with distant spawns: the farming roster of v2 (four bodies).
 PREFS_FAR_3 = [T.D_VARG, T.D_CASSI_ISSAC, T.D_RYTH, T.D_MARCELLA, T.D_STELLAR, T.D_WILLOW, T.D_TAVI]
