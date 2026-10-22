@@ -5,6 +5,10 @@
   BotAPIPython.md). Read them before writing bot code. Never guess the API; check the docs.
 - Bots live in `bots/vN/src/` (Python). `v1` is the SDK starter bot with a tweaked
   draft: it is the baseline opponent. Higher numbers are our successive versions.
+- `bots/starter-python` and `bots/starter-cpp` are the current SDK starter bots from `cambc init`
+  (cambc 3.0.4). They're references, not part of the version line, and the orchestrators ignore them.
+- The engine is cambc 3.0.4 (`cambc.toml`). GameRules.md and BotAPIPython.md were exported for 2.2.3:
+  read the version notice at the top of each, and treat `sdk/python/` as the source of truth for the API.
 - The current champion (best evaluated version) is recorded at the top of NOTES.md.
 - Run a match: `cambc run <bot-a> <bot-b> [--map NAME]` (e.g. `cambc run v3 v1 --map corners`)
 - Evaluate a version: `python run_matches.py <candidate> <opponent>... --tag <tag>`

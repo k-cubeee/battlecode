@@ -2,6 +2,20 @@
 
 Event: cambc2026a. Read alongside GameRules.md. Signatures and descriptions come from the same SDK documentation shown on the Bot API page.
 
+> **Version notice (2026-10-22): this export predates cambc 3.0.4.** The project's SDK (`sdk/python/`) is now 3.0.4 and is
+> the source of truth: `sdk/python/cambc/__init__.py` and `sdk/python/_cambc.pyi` hold every signature and docstring.
+> Compared with this export, nothing was removed and no signature changed. Additions:
+> - `cambc.vision.awake_camp_tiles()`, `asleep_camp_tiles()` and their `*_into(out)` variants; `cambc.vision.in_vision(position)`
+> - `Camp.is_golem()` and `CampType.GOLEM` (5)
+> - `Ward.owner()`
+> - `DistanceField.copy_from(source, mask=None)`
+> - `AbilityDash.radius`, `.modifier`, `.duration` (dash landing damage and stun)
+> - `ChampionType.HEART_OF_RUIN` (12), `ChampionDraft.HEART_OF_RUIN` (11), `PassiveType.MISSING_HEALTH_DAMAGE` (10)
+> - Constants: `PRISM_FOCUS_PER_GEM` 0.2 -> 1.5, `VESPER_VALE_BONUS_GOLD_PERCENT` 20 -> 33, new
+>   `MARCELLA_TRIBUTE_GOLD_PER_GEM = 2` and `HEART_OF_RUIN_MISSING_HEALTH_DAMAGE_MAX_BONUS = 0.5`
+>
+> The competition site (2026a.battlecode.co.uk) is blocked from this environment, so this file could not be re-exported.
+
 Examples are fragments for an initialised bot. Check visibility and action preconditions. 
 
 ```python

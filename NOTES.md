@@ -1794,3 +1794,27 @@ Fallback (in this order; change constants only):
   - N=3: identical to v17 (0 flips), so it is useless as a re-roll.
   - N >= 1100 cripples the bot: a Python loop iteration costs about 1k fuel, so v17's low-fuel fallbacks and fuelExhausted fire.
 - **Suggestion:** judge a candidate on 100+ games, e.g. vs v17 plus 2-3 re-rolls (about ±3.5% standard error at 136 games), and look at aggregates (deaths, gems lost, gold) before seat flips.
+
+### Engine upgrade — 2026-10-22: cambc 2.2.3 -> 3.0.4
+- **Refreshed with `cambc init`:** the SDK (`sdk/`) and `cambc.toml` (sdk_version 3.0.4; languages still python and cpp). New starter bots are in `bots/starter-python` and `bots/starter-cpp`. bots/v1 is unchanged: it is the 2.2.3 starter with the tweaked draft.
+- **Not refreshed:**
+  - **maps/:** `cambc maps pull` needs 2026a.battlecode.co.uk, which this environment's network policy blocks (403). The 17 local maps are the 2.2.3-era pool, and the 3.0 pool may contain Golem camps.
+  - **GameRules.md and BotAPIPython.md:** same blocked site. Each now carries a version notice listing the confirmed SDK differences.
+- **SDK differences:**
+  - **API:** no API removed and no signatures changed.
+  - **New content:**
+    - Heart of Ruin champion (draft pick 11; passive: up to +50% damage at full missing health)
+    - Golem camp type (5)
+    - Dash landing damage and stun fields
+    - Awake/asleep camp tile queries, `in_vision`, `Ward.owner`, `DistanceField.copy_from`
+  - **Constants:** Prism 1.5 Focus per gem (was 0.2), Vesper Vale +33% gold (was 20%), Marcella 2 gold per tributed gem (new).
+- **Smoke games** (0 crashes, no bot errors except v1's known `damn` NameError):
+  - v18 vs v17 on expanse ended at r1988, v18 winning 1003-477 with 19 and 23 deaths. On 2.2.3 it was r781 with 2 and 0 deaths.
+  - starter-python vs v1 on corners reached the 2000-round limit with 76 deaths each.
+  - v17 beat starter-python on lanes at r1462.
+- **Consequences:**
+  - **Results:** every result before this entry is from 2.2.3 and isn't comparable with 3.0.4 games.
+  - **Hard-coded tables:** our bots' `tables.py` (camp stats, champion stats) reflect 2.2.3.
+  - **Golem crash risk:** `bot.py:179-180` (`init_world`) builds `[T.CAMP_HP[k] for k in kind]` with kind 0-4. On a map with a Golem camp (kind 5) this raises IndexError every turn. main.py catches it, so the bot does nothing all game. This applies to v16-v18 and v20; the local maps have no golems.
+  - **Heart of Ruin:** no crash. `PVP_KIT` and `TARGET_W` are read with `.get()` defaults, and it isn't in `MELEE_TYPES`, so the bot treats an enemy Heart of Ruin as a ranged champion without spells.
+- **Setup:** install with `pip install cambc==3.0.4`. `cambc init` needs `SSL_CERT_FILE=/root/.ccr/ca-bundle.crt` in this environment. Its C++ toolchain download (wasi-sdk from github.com) still fails TLS, which only matters for C++ bots.

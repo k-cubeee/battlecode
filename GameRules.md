@@ -2,6 +2,21 @@
 
 Event: cambc2026a. Exported from the current handbook, including all published champion specifications. Interactive diagrams are represented as text.
 
+> **Version notice (2026-10-22): this export predates cambc 3.0.4.** The project now runs cambc 3.0.4. The handbook
+> could not be re-exported because the competition site (2026a.battlecode.co.uk) is blocked from this environment.
+> Differences confirmed from the 3.0.4 SDK:
+> - **New champion: Heart of Ruin** (ChampionType 12, ChampionDraft 11). Passive MISSING_HEALTH_DAMAGE: up to +50%
+>   damage at 100% missing health (`HEART_OF_RUIN_MISSING_HEALTH_DAMAGE_MAX_BONUS = 0.5`). Its stats and abilities are not
+>   described below.
+> - **New camp type: Golem** (CampType 5). Its stats are not described below.
+> - **Prism:** +1.5 Focus per carried gem (was 0.2).
+> - **Vesper Vale:** +33% gold (was 20%).
+> - **Marcella:** gains 2 gold per tributed gem (new).
+> - **Dash abilities** can have landing damage and stun (`AbilityDash.radius`, `.modifier`, `.duration`).
+>
+> Smoke games on 3.0.4 run much longer, with many more deaths, so other rules may have changed as well. Verify numbers
+> against the SDK (`sdk/python/cambc/constants.py`, `cambc.constants` at runtime) before relying on them.
+
 ## The game
 
 ### Overview
